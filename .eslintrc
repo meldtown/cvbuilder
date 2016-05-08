@@ -1,0 +1,31 @@
+{
+	"extends": "standard",
+	"plugins": [
+		"standard"
+	],
+	"env": {
+		"browser": true,
+		"jasmine": true
+	},
+	"globals": {
+		"jQuery": false,
+		"$": false,
+		"ko": false
+	},
+	"rules": {
+		"semi": [
+			"error",
+			"always"
+		],
+		"indent": [
+			"error",
+			"tab"
+		],
+		"no-unused-vars": [
+			"error",
+			{
+				"varsIgnorePattern": "Model"
+			}
+		]
+	}
+}
