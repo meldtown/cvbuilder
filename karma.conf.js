@@ -15,6 +15,13 @@ module.exports = function (config) {
 			'js/**/*.js': ['coverage']
 		},
 		reporters: ['progress', 'coverage'],
+		coverageReporter: {
+			dir: 'coverage',
+			reporters: [
+				{type: 'html'},
+				{type: 'teamcity', subdir: '.', file: 'teamcity.txt'}
+			]
+		},
 		port: 9876,
 		colors: true,
 		logLevel: config.LOG_INFO,
