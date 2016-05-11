@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://css.rabota.com.ua/theme/rua/css/masterpage.css" />
+	<link rel="stylesheet" href="http://css.rabota.com.ua/theme/rua/css/blocks/select2.css" />
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="http://js.rabota.com.ua/src/js/tooltips.js"></script>
+	<script src="http://js.rabota.com.ua/js/jquery-ui-1.10.3/ui/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="http://js.rabota.com.ua/js/jquery.ui.tooltips.js"></script>
+	<script src="http://css.rabota.com.ua/js/jquery.lazyload.min.js"></script>
+	<script src="http://js.rabota.com.ua/src/js/controls/templates/header.js"></script>
+	<script src="node_modules/knockout/build/output/knockout-latest.debug.js"></script><!--<script src="http://js.rabota.com.ua/js/knockout-3.3.0.js"></script>-->
+	<script src="http://js.rabota.com.ua/js/bootstrap-2.3.2/js/bootstrap-carousel.js"></script>
+	<script src="http://js.rabota.com.ua/js/select2-4.0.0/dist/js/select2.full.js"></script>
+	<script src="http://js.rabota.com.ua/js/select2-4.0.0/dist/js/i18n/ru.js"></script>
+	<style>
+		html, body.rua-l-body {
+			background-color: #F7F7F7;
+		}
+	</style>
+
+	<link rel="stylesheet" href="dist/cvbuilder.css">
+	<script src="dist/cvbuilder.js"></script>
+</head>
+<body class="rua-l-body">
+	<div class="header header-default">
+		<ul class="header-inner">
+			<li class="header-item header-item-logo"><a class="header-link" href="/"><i class="ri_logo" style="padding-right: 0;"></i></a></li>
+		</ul>
+	</div>
+
+	<div class="rua-l-wrapper2">
+		<div data-bind="template: 'cvbuilder'"></div>
+	</div>
+
+	<div id="templates" style="display: none"></div>
+	<script>
+		jQuery.get('dist/cvbuilder.html', function(html){
+			jQuery('#templates').html(html);
+			window.model = new CvBuilderModel();
+			ko.applyBindings(window.model);
+		})
+	</script>
+</body>
+</html>

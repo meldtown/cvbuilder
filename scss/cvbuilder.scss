@@ -1,0 +1,9 @@
+@import 'typo';
+
+.cvbuilder {
+	display: flex;
+
+	.header, .body, .footer {border:1px solid red;}
+
+	.title {color: red;}
+}
