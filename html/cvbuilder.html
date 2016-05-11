@@ -1,3 +1,23 @@
 <h4>CVBUILDER MAIN TEMPLATE</h4>
 
-<div data-bind="template: 'personal-info-edit'"></div>
+<div data-bind="with: personalInfo">
+	<fieldset>
+		<legend>Personal info</legend>
+		<div data-bind="template: tpl"></div>
+	</fieldset>
+</div>
+
+<div data-bind="with: contacts">
+	<fieldset>
+		<legend>Contacts</legend>
+		<div data-bind="template: tpl"></div>
+	</fieldset>
+</div>
+
+<fieldset>
+	<legend>Experience</legend>
+	<div data-bind="foreach: experience">
+		<div data-bind="template: tpl"></div>
+	</div>
+	<button data-bind="click: addExperience">Add</button>
+</fieldset>

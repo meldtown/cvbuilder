@@ -1,0 +1,19 @@
+<table cellpadding="5" cellspacing="0" border="1">
+	<tr>
+		<th><label for="company">company</label></th>
+		<th><label for="position">position</label></th>
+		<th></th>
+	</tr>
+	<tr>
+		<td>
+			<input id="company" name="company" data-bind="value: company, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="position" name="position" data-bind="value: position, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<button data-bind="click: $root.saveExperience">Save</button>
+			<button data-bind="click: $root.cancelExperience">Cancel</button>
+		</td>
+	</tr>
+</table>

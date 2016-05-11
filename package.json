@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "jquery": "^2.2.3",
-    "knockout": "^3.4.0"
+    "knockout": "^3.4.0",
+    "knockout.validation": "^2.0.3",
+    "ko.editables": "mac2000/ko.editables"
   },
   "devDependencies": {
     "eslint": "^2.9.0",

@@ -5,6 +5,8 @@ module.exports = function (config) {
 		files: [
 			'node_modules/jquery/dist/jquery.js',
 			'node_modules/knockout/build/output/knockout-latest.debug.js',
+			'node_modules/knockout.validation/dist/knockout.validation.js',
+			'node_modules/ko.editables/ko.editables.js',
 			'js/**/*.js',
 			'spec/**/*.js'
 		],

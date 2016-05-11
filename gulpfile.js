@@ -26,9 +26,9 @@ gulp.task('test', function (done) {
 });
 
 gulp.task('js', function () {
-	return gulp.src('./js/*.js')
+	return gulp.src(['./js/Helpers.js', './js/*.js'])
 		.pipe(concat('cvbuilder.js'))
-		.pipe(uglify('cvbuilder.js'))
+		//.pipe(uglify('cvbuilder.js'))
 		.pipe(gulp.dest('./dist/'))
 });
 

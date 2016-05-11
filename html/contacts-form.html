@@ -1,0 +1,19 @@
+<table cellpadding="5" cellspacing="0" border="1">
+	<tr>
+		<th><label for="email">email</label></th>
+		<th><label for="phone">phone</label></th>
+		<th></th>
+	</tr>
+	<tr>
+		<td>
+			<input id="email" name="email" type="email" data-bind="value: email, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="phone" name="phone" data-bind="value: phone, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<button data-bind="click: $root.saveContacts">Save</button>
+			<button data-bind="click: rollback">Cancel</button>
+		</td>
+	</tr>
+</table>
