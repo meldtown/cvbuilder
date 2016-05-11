@@ -1,3 +1,4 @@
+/* global InitEditableModel */
 function ContactsModel (email, phone) {
 	var model = this;
 
@@ -5,7 +6,7 @@ function ContactsModel (email, phone) {
 	model.phone = ko.observable(phone).extend({required: true});
 
 	model.save = function () {
-		if(model.errors().length === 0) {
+		if (model.errors().length === 0) {
 			// ajax call will be here
 			model.commit();
 		}

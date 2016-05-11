@@ -1,3 +1,4 @@
+/* global InitEditableModel */
 function PersonalInfoModel (firstName, lastName) {
 	var model = this;
 
@@ -5,8 +6,8 @@ function PersonalInfoModel (firstName, lastName) {
 	model.lastName = ko.observable(lastName).extend({required: true});
 
 	model.save = function () {
-		if(model.errors().length === 0) {
-			if(model.firstName() === 'Alexandr') {
+		if (model.errors().length === 0) {
+			if (model.firstName() === 'Alexandr') {
 				model.firstName.setError('Already taken');
 				model.errors.showAllMessages(true);
 			} else {

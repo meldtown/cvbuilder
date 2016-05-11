@@ -1,4 +1,4 @@
-/* global ExperienceModel */
+/* global CvBuilderModel */
 describe('ExperienceModel', function () {
 	var model;
 
@@ -21,10 +21,10 @@ describe('ExperienceModel', function () {
 		item.company('hello');
 		expect(item.company.error()).toBeNull();
 	});
-	
+
 	it('should remove unsaved items', function () {
 		var count = model.experience().length;
-		
+
 		var item = model.addExperience();
 		console.log(item);
 

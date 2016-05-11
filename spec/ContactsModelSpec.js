@@ -1,4 +1,4 @@
-/* global ContactsModel */
+/* global CvBuilderModel */
 describe('ContactsModel', function () {
 	var model;
 

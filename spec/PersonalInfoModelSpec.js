@@ -1,4 +1,4 @@
-/* global PersonalInfoModel */
+/* global CvBuilderModel */
 describe('PersonalInfoModel', function () {
 	var model;
 

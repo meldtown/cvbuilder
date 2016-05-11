@@ -1,3 +1,4 @@
+/* global InitEditableModel */
 function ExperienceModel (id, company, position) {
 	var model = this;
 

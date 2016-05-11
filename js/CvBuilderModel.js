@@ -1,3 +1,6 @@
+/* global PersonalInfoModel */
+/* global ContactsModel */
+/* global ExperienceModel */
 function CvBuilderModel () {
 	var model = this;
 
@@ -10,7 +13,6 @@ function CvBuilderModel () {
 
 	model.personalInfo = new PersonalInfoModel('Alexandr', 'Marchenko');
 	model.contacts = new ContactsModel('marchenko.alexandr@gmail.com', '+3 8(091) 931-55-55');
-
 
 	model.experience = ko.observableArray([
 		new ExperienceModel(1, 'Google', 'Administrat'),
@@ -27,12 +29,12 @@ function CvBuilderModel () {
 	model.saveExperience = function (item) {
 		if (item.errors().length === 0) {
 			// ajax call will be here
-			console.log('MAX', Math.max.apply(null, model.experience().map(function(item) {
+			console.log('MAX', Math.max.apply(null, model.experience().map(function (item) {
 				return isNaN(parseInt(item.id())) ? 0 : parseInt(item.id());
 			})));
-			item.id(1 + Math.max.apply(null, model.experience().map(function(item) {
-					return isNaN(parseInt(item.id())) ? 0 : parseInt(item.id());
-				})));
+			item.id(1 + Math.max.apply(null, model.experience().map(function (item) {
+				return isNaN(parseInt(item.id())) ? 0 : parseInt(item.id());
+			})));
 			item.commit();
 		}
 	};
@@ -46,5 +48,3 @@ function CvBuilderModel () {
 		model.cancel(item, model.experience);
 	};
 }
-
-

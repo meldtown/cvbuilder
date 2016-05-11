@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "karma start --singleRun",
-    "eslint": "eslint src spec"
+    "eslint": "eslint js spec"
   },
   "dependencies": {
     "jquery": "^2.2.3",
