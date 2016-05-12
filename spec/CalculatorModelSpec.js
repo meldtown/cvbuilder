@@ -15,7 +15,7 @@ describe('CalculatorModel', function () {
 		model.a(2);
 		model.b(2);
 
-		expect(model.sum()).toBe(4);
+		expect(model.sum()).toBe(5);
 	});
 
 	it('should load data from backend', function () {
