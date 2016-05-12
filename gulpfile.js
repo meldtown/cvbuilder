@@ -6,7 +6,6 @@ var concat = require('gulp-concat');
 var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
 var mincss = require('gulp-clean-css');
-var uncss = require('gulp-uncss');
 var path = require('path');
 var Server = require('karma').Server;
 
@@ -41,9 +40,6 @@ gulp.task('css', function () {
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions'],
 			cascading: false
-		}))
-		.pipe(uncss({
-			html: ['index.html']
 		}))
 		.pipe(mincss())
 		.pipe(gulp.dest('./dist/'));
