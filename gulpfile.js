@@ -3,7 +3,6 @@ var eslint = require('gulp-eslint');
 var htmlmin = require('gulp-htmlmin');
 var insert = require('gulp-insert');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
 var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
 var mincss = require('gulp-clean-css');
@@ -12,10 +11,15 @@ var path = require('path');
 var Server = require('karma').Server;
 
 gulp.task('eslint', function () {
+	/** @type Function|stream */
+	var formatter = eslint.format();
+	/** @type Function|stream */
+	var done = eslint.failAfterError();
+
 	return gulp.src(['src/**/*.js', 'spec/**/*.js'])
 		.pipe(eslint())
-		.pipe(eslint.format())
-		.pipe(eslint.failAfterError());
+		.pipe(formatter)
+		.pipe(done);
 });
 
 gulp.task('test', function (done) {
@@ -28,8 +32,7 @@ gulp.task('test', function (done) {
 gulp.task('js', function () {
 	return gulp.src(['./js/Helpers.js', './js/*.js'])
 		.pipe(concat('cvbuilder.js'))
-		//.pipe(uglify('cvbuilder.js'))
-		.pipe(gulp.dest('./dist/'))
+		.pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('css', function () {
@@ -49,7 +52,7 @@ gulp.task('css', function () {
 gulp.task('html', function () {
 	return gulp.src('html/*.html')
 		.pipe(htmlmin({collapseWhitespace: true}))
-		.pipe(insert.transform(function(contents, file) {
+		.pipe(insert.transform(function (contents, file) {
 			var filename = path.basename(file.path, '.html');
 			return '<script id="' + filename + '" type="text/html">' + contents + '</script>';
 		}))
@@ -59,7 +62,7 @@ gulp.task('html', function () {
 
 gulp.task('dist', ['js', 'css', 'html']);
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
 	gulp.watch(['./scss/**/*.scss'], ['css']);
 	gulp.watch('./js/**/*.js', ['js']);
 	gulp.watch('./html/**/*.html', ['html']);
