@@ -30,7 +30,7 @@ TODO
 ----
 
  * Injecting HTML templates into main page may be done better somehow
- * Logic for arrays are in CvBuilderModel which is bad for collaborative work
+ * <s>Logic for arrays are in CvBuilderModel which is bad for collaborative work</s>
 
 Notices
 -------
