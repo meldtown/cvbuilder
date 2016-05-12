@@ -1,12 +1,14 @@
 CvBuilder
 =========
 
+Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
+
 Build
 -----
 
-npm install
-npm test
-gulp dist
+	npm install
+	npm test
+	gulp dist
 
 Artifacts
 ---------
@@ -24,10 +26,13 @@ Mark `coverage` and `dist` folders as excluded. `node_modules` as resources root
 
 Marking is done via right clicking on folder and choosing appropriate action in context menu.
 
+TODO
+----
 
+ * Injecting HTML templates into main page may be done better somehow
+ * Logic for arrays are in CvBuilderModel which is bad for collaborative work
 
-Things to consider:
+Notices
+-------
 
-# Injecting HTML templates should be rethinked
-# Logic for arrays are in CvBuilderModel which is bad for coloborative work
-
+We can not give parent model to child models because of editable will make them both start editing
