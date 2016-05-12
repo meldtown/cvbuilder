@@ -30,7 +30,7 @@ describe('ExperienceModel', function () {
 
 		expect(model.experience().length).toBe(count + 1);
 
-		model.cancelExperience(item);
+		item.cancel();
 		expect(model.experience().length).toBe(count);
 	});
 });
