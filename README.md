@@ -3,6 +3,12 @@ CvBuilder
 
 Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 
+Dependencies
+------------
+
+ * [Knockout-Validation](https://github.com/Knockout-Contrib/Knockout-Validation)
+ * [ko.editables](https://github.com/romanych/ko.editables)
+
 Build
 -----
 
