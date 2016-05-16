@@ -14,14 +14,14 @@ describe('PersonalInfoModel', function () {
 	it('should require first name', function () {
 		model.personalInfo.beginEdit();
 
-		expect(model.personalInfo.firstName.isValid()).toBeTruthy();
-		model.personalInfo.firstName('');
-		expect(model.personalInfo.firstName.isValid()).toBeFalsy();
+		expect(model.personalInfo.name.isValid()).toBeTruthy();
+		model.personalInfo.name('');
+		expect(model.personalInfo.name.isValid()).toBeFalsy();
 
-		model.personalInfo.firstName('Alexandr');
+		model.personalInfo.name('Alexandr');
 		model.personalInfo.save();
-		expect(model.personalInfo.firstName.isValid()).toBeFalsy();
-		expect(model.personalInfo.firstName.error()).toBe('Already taken');
+		expect(model.personalInfo.name.isValid()).toBeFalsy();
+		expect(model.personalInfo.name.error()).toBe('Already taken');
 	});
 });
 
