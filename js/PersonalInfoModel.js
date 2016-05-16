@@ -7,15 +7,32 @@ function PersonalInfoModel (name, surName, dateBirth, sex) {
 	model.dateBirth = ko.observable(dateBirth).extend({required: true});
 	model.sex = ko.observable(sex).extend({required: true});
 
+	model.get = function () {
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: api + '/api/Contact/' + resumeId
+		}).then(function (data) {
+			console.log(data);
+			model.additionalPhones(data.additionalPhones);
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR, textStatus, errorThrown);
+			model.message(textStatus);
+			model.messageCls('text-error');
+		});
+	};
+
 	model.save = function () {
 		if (model.errors().length === 0) {
-			if (model.name() === 'Alexandr') {
-				model.name.setError('Already taken');
-				model.errors.showAllMessages(true);
-			} else {
-				// ajax call will be here
+			$.post('/api/personal', {}).success(function () {
 				model.commit();
-			}
+			}).error(function (res) {
+				model.firstName.setError('Already taken');
+				model.errors.showAllMessages(true);
+			});
+
+			// ajax call will be here
+			model.commit();
 		}
 	};
 

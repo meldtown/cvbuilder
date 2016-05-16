@@ -2,14 +2,22 @@
 	<tr>
 		<th><label for="firstName">firstName</label></th>
 		<th><label for="lastName">lastName</label></th>
+		<th><label for="dateBirth">the date of birth</label></th>
+		<th><label for="sex">sex</label></th>
 		<th></th>
 	</tr>
 	<tr>
 		<td>
-			<input id="firstName" name="firstName" data-bind="value: firstName, valueUpdate: 'keyup'">
+			<input id="firstName" name="firstName" data-bind="value: name, valueUpdate: 'keyup'">
 		</td>
 		<td>
-			<input id="lastName" name="lastName" data-bind="value: lastName, valueUpdate: 'keyup'">
+			<input id="lastName" name="lastName" data-bind="value: surName, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="dateBirth" name="dateBirth" data-bind="value: dateBirth, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="sex" name="sex" data-bind="value: sex, valueUpdate: 'keyup'">
 		</td>
 		<td>
 			<button data-bind="click: save">Save</button>

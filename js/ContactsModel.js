@@ -27,14 +27,12 @@ function ContactsModel (api, resumeId, email, phone) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			// $.post('/api/personal', {...}).success(function () {
-			// 	model.commit();
-			// }).error(function (res) {
-			// 	  model.firstName.setError('Already taken');
-			//     model.errors.showAllMessages(true);
-			// });
-
-			// ajax call will be here
+			$.post('/api/personal', {}).success(function () {
+				model.commit();
+			}).error(function (res) {
+				model.firstName.setError('Already taken');
+				model.errors.showAllMessages(true);
+			});
 			model.commit();
 		}
 	};
