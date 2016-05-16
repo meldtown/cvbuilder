@@ -7,21 +7,6 @@ function PersonalInfoModel (name, surName, dateBirth, sex) {
 	model.dateBirth = ko.observable(dateBirth).extend({required: true});
 	model.sex = ko.observable(sex).extend({required: true});
 
-	model.get = function () {
-		$.ajax({
-			method: 'GET',
-			dataType: 'json',
-			url: api + '/api/Contact/' + resumeId
-		}).then(function (data) {
-			console.log(data);
-			model.additionalPhones(data.additionalPhones);
-		}).fail(function (jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR, textStatus, errorThrown);
-			model.message(textStatus);
-			model.messageCls('text-error');
-		});
-	};
-
 	model.save = function () {
 		if (model.errors().length === 0) {
 			// $.post('/api/personal', {}).success(function () {

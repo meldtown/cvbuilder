@@ -29,7 +29,7 @@ function ContactsModel (api, resumeId, email, phone) {
 		if (model.errors().length === 0) {
 			$.post('/api/personal', {}).success(function () {
 				model.commit();
-			}).error(function (res) {
+			}).error(function () {
 				model.firstName.setError('Already taken');
 				model.errors.showAllMessages(true);
 			});
