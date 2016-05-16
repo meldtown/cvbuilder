@@ -13,15 +13,10 @@ describe('PersonalInfoModel', function () {
 
 	it('should require first name', function () {
 		model.personalInfo.beginEdit();
-
 		expect(model.personalInfo.name.isValid()).toBeTruthy();
 		model.personalInfo.name('');
 		expect(model.personalInfo.name.isValid()).toBeFalsy();
-
-		model.personalInfo.name('Alexandr');
-		model.personalInfo.save();
-		expect(model.personalInfo.name.isValid()).toBeFalsy();
-		expect(model.personalInfo.name.error()).toBe('Already taken');
+		expect(model.personalInfo.name.error()).toBe('This field is required.');
 	});
 });
 

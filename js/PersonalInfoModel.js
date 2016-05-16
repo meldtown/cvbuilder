@@ -24,14 +24,18 @@ function PersonalInfoModel (name, surName, dateBirth, sex) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			$.post('/api/personal', {}).success(function () {
-				model.commit();
-			}).error(function (res) {
-				model.firstName.setError('Already taken');
-				model.errors.showAllMessages(true);
-			});
-
-			// ajax call will be here
+			// $.post('/api/personal', {}).success(function () {
+			// 	model.commit();
+			// }).error(function (res) {
+			// 	model.name.setError('Already taken');
+			// 	model.errors.showAllMessages(true);
+			// });
+			// if (model.name() === 'Alexandr') {
+			// 	// model.name.setError('Already taken');
+			// 	// model.errors.showAllMessages(true);
+			// } else {
+			//
+			// }
 			model.commit();
 		}
 	};
