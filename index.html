@@ -39,9 +39,11 @@
 
 	<div id="templates" style="display: none"></div>
 	<script>
+		var api = 'http://api.vitaliy.rabota.ua/';
+		var resumeId = 3496188; //TODO: readme from query string, e.g. (window.location.toString().split('?').pop().match(/resumeId=\d+/) || 'resumeId=0').replace('resumeId=', '')
 		jQuery.get('dist/cvbuilder.html', function(html){
 			jQuery('#templates').html(html);
-			window.model = new CvBuilderModel();
+			window.model = new CvBuilderModel(api, resumeId);
 			ko.applyBindings(window.model);
 		})
 	</script>

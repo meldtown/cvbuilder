@@ -42,3 +42,44 @@ Notices
 -------
 
 We can not give parent model to child models because of editable will make them both start editing
+
+Backend bad request validation errors response example:
+
+	{
+	  "message": "The request is invalid.",
+	  "modelState": {
+		"data.FirstName": [
+		  "Name is required EN \"MAC\"\r\n<font color=\"red\">was</font> here"
+		],
+		"data.LastName": [
+		  "The LastName field is required."
+		],
+		"data.FavoriteColor": [
+		  "The FavoriteColor field is required.",
+		  "Invalid value"
+		],
+		"data.Email": [
+		  "The Email field is required."
+		]
+	  }
+	}
+
+
+Possible backend responses that should be catched:
+
+404 - not found
+403 - forbidden
+409 - bad request
+
+
+Each model should have:
+
+ * fields like in backend
+ * save/get methods
+ * get method may catch 404, 403
+ * save method may catch 403, 409
+
+Each test should check:
+
+ * validation rules
+ * handling 409 (backend errors)

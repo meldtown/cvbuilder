@@ -1,8 +1,11 @@
 /* global PersonalInfoModel */
 /* global ContactsModel */
 /* global ExperienceModel */
-function CvBuilderModel () {
+function CvBuilderModel (api, resumeId) {
 	var model = this;
+
+	model.api = api;
+	model.resumeId = resumeId;
 
 	model.personalInfo = new PersonalInfoModel('Alexandr', 'Marchenko');
 	model.contacts = new ContactsModel('marchenko.alexandr@gmail.com', '+3 8(091) 931-55-55');
