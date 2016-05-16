@@ -1,9 +1,11 @@
 /* global InitEditableModel */
-function PersonalInfoModel (firstName, lastName) {
+function PersonalInfoModel (name, surName, dateBirth, sex) {
 	var model = this;
 
-	model.firstName = ko.observable(firstName).extend({required: true});
-	model.lastName = ko.observable(lastName).extend({required: true});
+	model.name = ko.observable(name).extend({required: true});
+	model.surName = ko.observable(surName).extend({required: true});
+	model.dateBirth = ko.observable(dateBirth).extend({required: true});
+	model.sex = ko.observable(sex).extend({required: true});
 
 	model.save = function () {
 		if (model.errors().length === 0) {
