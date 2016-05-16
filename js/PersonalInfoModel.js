@@ -9,8 +9,8 @@ function PersonalInfoModel (name, surName, dateBirth, sex) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			if (model.firstName() === 'Alexandr') {
-				model.firstName.setError('Already taken');
+			if (model.name() === 'Alexandr') {
+				model.name.setError('Already taken');
 				model.errors.showAllMessages(true);
 			} else {
 				// ajax call will be here
