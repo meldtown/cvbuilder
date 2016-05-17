@@ -21,3 +21,19 @@
 	</div>
 	<button data-bind="click: addExperience">Add</button>
 </fieldset>
+
+<fieldset data-bind="visible: educationBlockHasAdded()">
+	<button data-bind="click: removeEducationBlock">Remove</button>
+	<legend>Education</legend>
+	<div data-bind="foreach: education">
+		<div data-bind="template: tpl"></div>
+	</div>
+	<button data-bind="click: addEducation">Add</button>
+</fieldset>
+
+<div class="footer-blocks">
+	<div data-bind="visible: !educationBlockHasAdded();">
+		<h2>Education</h2>
+		<button data-bind="click: addEducationBlock">Add</button>
+	</div>
+</div>
