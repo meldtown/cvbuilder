@@ -8,7 +8,7 @@ function EducationModel (parent, id, typeOptions, selectedType, schoolName, loca
 	model.location = ko.observable(location).extend({required: true});
 	model.speciality = ko.observable(speciality).extend({required: true});
 	model.diploma = ko.observable(diploma).extend({required: true});
-	model.year = ko.observableArray(year).extend({required: true});
+	model.year = ko.observableArray(year);
 
 	model.save = function () {
 		if (model.errors().length === 0) {
