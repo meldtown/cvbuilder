@@ -1,3 +1,4 @@
+/* global InitEditableModel */
 function EducationModel (parent, id, typeOptions, selectedType, schoolName, location, speciality, diploma, year) {
 	var model = this;
 
