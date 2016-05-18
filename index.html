@@ -37,15 +37,25 @@
 		<div data-bind="template: 'cvbuilder'"></div>
 	</div>
 
-	<div id="templates" style="display: none"></div>
+
+
+	<div id="templates">
+		<script id="cvbuilder" type="text/html"><!--#include file="html/cvbuilder.html"--></script>
+		<script id="contacts-form" type="text/html"><!--#include file="html/contacts-form.html"--></script>
+		<script id="contacts-view" type="text/html"><!--#include file="html/contacts-view.html"--></script>
+		<script id="education-form" type="text/html"><!--#include file="html/education-form.html"--></script>
+		<script id="education-view" type="text/html"><!--#include file="html/education-view.html"--></script>
+		<script id="experience-form" type="text/html"><!--#include file="html/experience-form.html"--></script>
+		<script id="experience-view" type="text/html"><!--#include file="html/experience-view.html"--></script>
+		<script id="personal-info-form" type="text/html"><!--#include file="html/personal-info-form.html"--></script>
+		<script id="personal-info-view" type="text/html"><!--#include file="html/personal-info-view.html"--></script>
+	</div>
+
 	<script>
 		var api = 'http://api.vitaliy.rabota.ua';
 		var resumeId = 3496188; //TODO: readme from query string, e.g. (window.location.toString().split('?').pop().match(/resumeId=\d+/) || 'resumeId=0').replace('resumeId=', '')
-		jQuery.get('dist/cvbuilder.html', function(html){
-			jQuery('#templates').html(html);
-			window.model = new CvBuilderModel(api, resumeId);
-			ko.applyBindings(window.model);
-		})
+		var model = new CvBuilderModel(api, resumeId);
+		ko.applyBindings(model);
 	</script>
 
 	<!--suppress JSUnresolvedLibraryURL -->
