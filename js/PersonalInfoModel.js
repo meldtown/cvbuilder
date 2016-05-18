@@ -11,7 +11,10 @@ function PersonalInfoModel (parent, name, surName, dateBirth, sex) {
 		$.ajax({
 			method: 'GET',
 			url: parent.api + '/api/contact/' + parent.resumeId,
-			dataType: 'json'
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
 		}).success(function (data) {
 			console.log(data);
 		}).fail(function (jqXHR, textStatus, errorThrown) {
