@@ -21,4 +21,23 @@ function CvBuilderModel (api, resumeId) {
 		item.beginEdit();
 		return item;
 	};
+
+	model.education = ko.observableArray([
+		new EducationModel(model, 2, ['high', 'secondary'], "high", 'MIT', 'Boston', 'IT', 'bachelor', [2015, 2014, 2013, 2012, 2011]),
+		new EducationModel(model, 3, ['high', 'secondary'], "high", 'Oxford', 'London', 'Manager', 'magister', [2015, 2014, 2013, 2012, 2011])
+	]);
+
+	model.addEducation = function () {
+		var item = new EducationModel(model, 5, ['high', 'secondary'], '', '', '', '', [2015, 2014, 2013, 2012, 2011]);
+		model.education.push(item);
+		item.beginEdit();
+		return item;
+	};
+	model.educationBlockHasAdded = ko.observable(false);
+	model.addEducationBlock = function () {
+		model.educationBlockHasAdded(true);
+	};
+	model.removeEducationBlock = function () {
+		model.educationBlockHasAdded(false);
+	};
 }
