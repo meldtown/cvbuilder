@@ -83,3 +83,9 @@ Each test should check:
 
  * validation rules
  * handling 409 (backend errors)
+
+Browser Sync
+============
+
+	npm install -g browser-sync
+	browser-sync start -c bs-config.js
