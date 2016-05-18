@@ -42,7 +42,7 @@ function EducationModel (parent, id, typeOptions, selectedType, schoolName, loca
 	};
 	model.isSecondaryTypeSelected = ko.computed(function () {
 		return model.selectedType() === 'secondary';
-	})
+	});
 
 	InitEditableModel(model, 'education');
 }

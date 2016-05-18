@@ -8,7 +8,7 @@ function CvBuilderModel (api, resumeId) {
 	model.api = api;
 	model.resumeId = resumeId;
 
-	model.personalInfo = new PersonalInfoModel('Alexandr', 'Marchenko', new Date().toLocaleDateString(), 'male');
+	model.personalInfo = new PersonalInfoModel(model, 'Alexandr', 'Marchenko', new Date().toLocaleDateString(), 'male');
 	model.contacts = new ContactsModel(api, resumeId, 'marchenko.alexandr@gmail.com', '+3 8(091) 931-55-55');
 
 	model.experience = ko.observableArray([

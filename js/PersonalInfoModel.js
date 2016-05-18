@@ -1,11 +1,23 @@
 /* global InitEditableModel */
-function PersonalInfoModel (name, surName, dateBirth, sex) {
+function PersonalInfoModel (parent, name, surName, dateBirth, sex) {
 	var model = this;
 
 	model.name = ko.observable(name).extend({required: true});
 	model.surName = ko.observable(surName).extend({required: true});
 	model.dateBirth = ko.observable(dateBirth).extend({required: true});
 	model.sex = ko.observable(sex).extend({required: true});
+
+	model.get = function () {
+		$.ajax({
+			method: 'GET',
+			url: parent.api + '/api/contact/' + parent.resumeId,
+			dataType: 'json'
+		}).success(function (data) {
+			console.log(data);
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR, textStatus, errorThrown);
+		});
+	};
 
 	model.save = function () {
 		if (model.errors().length === 0) {
