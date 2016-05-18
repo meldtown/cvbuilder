@@ -1,3 +1,4 @@
+/* global CvBuilderModel */
 describe('EducationModel', function () {
 	var model;
 
