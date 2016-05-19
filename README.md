@@ -69,7 +69,7 @@ Possible backend responses that should be catched:
 
 404 - not found
 403 - forbidden
-409 - bad request
+400 - bad request
 
 
 Each model should have:
@@ -77,12 +77,12 @@ Each model should have:
  * fields like in backend
  * save/get methods
  * get method may catch 404, 403
- * save method may catch 403, 409
+ * save method may catch 403, 400
 
 Each test should check:
 
  * validation rules
- * handling 409 (backend errors)
+ * handling 400 (backend errors)
 
 Browser Sync
 ============
