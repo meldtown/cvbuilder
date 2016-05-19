@@ -3,7 +3,7 @@ function PersonalInfoModel (parent) {
 	var model = this;
 
 	model.name = ko.observable().extend({required: true});
-	model.middleName = ko.observable().extend({required: true});
+	model.middleName = ko.observable();//.extend({required: true});
 	model.surName = ko.observable().extend({required: true});
 	model.dateBirth = ko.observable().extend({required: true});
 	model.sex = ko.observable().extend({required: true});
@@ -33,19 +33,25 @@ function PersonalInfoModel (parent) {
 	};
 
 	model.save = function () {
-		if (model.errors().length === 0) {
+		// if (model.errors().length === 0) {
 			$.ajax({
-				method: 'POST',
+				type: 'POST',
 				url: parent.api + '/api/personal/' + parent.resumeId,
-				data: {
-					name: model.name(),
-					middleName: model.middleName(),
-					surName: model.surName(),
-					dateBirth: model.dateBirth(),
-					sex: model.sex(),
-					cityId: 1,
-					resumeId: parent.resumeId
-				},
+				data: JSON.stringify(
+					{
+						name: model.name(),
+						middleName: '',
+						surName: model.surName(),
+						dateBirth: model.dateBirth(),
+						sex: model.sex(),
+						cityId: 1,
+						moving: [],
+						age: '23',
+						cityName: 'Kiev',
+						resumeId: parent.resumeId
+					}
+				),
+				contentType: 'application/json',
 				dataType: 'json',
 				xhrFields: {
 					withCredentials: true
@@ -89,7 +95,7 @@ function PersonalInfoModel (parent) {
 					}
 				}
 			});
-		}
+		// }
 	};
 
 	InitEditableModel(model, 'personal-info');

@@ -11,10 +11,25 @@ function CvBuilderModel (api, resumeId) {
 	model.personalInfo = new PersonalInfoModel(model);
 	model.contacts = new ContactsModel(api, resumeId, 'marchenko.alexandr@gmail.com', '+3 8(091) 931-55-55');
 
-	model.experience = ko.observableArray([
-		new ExperienceModel(model, 1, 'Google', 'Administrat'),
-		new ExperienceModel(model, 2, 'Oracle', 'DBA')
-	]);
+	model.experience = ko.observableArray([]);
+
+	model.getExperiences = function () {
+		$.ajax({
+			method: 'GET',
+			url: parent.api + '/api/experience/' + parent.resumeId,
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
+		}).success(function (data) {
+			console.log(data)
+			data.forEach(function (item) {
+				model.experience.push(new ExperienceModel(model, item));
+			});
+		}).fail(function (jqXHR) {
+			console.log(jqXHR);
+		});
+	};
 
 	model.addExperience = function () {
 		var item = new ExperienceModel(model);
