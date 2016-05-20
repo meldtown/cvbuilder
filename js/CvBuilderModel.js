@@ -16,13 +16,12 @@ function CvBuilderModel (api, resumeId) {
 	model.getExperiences = function () {
 		$.ajax({
 			method: 'GET',
-			url: parent.api + '/api/experience/' + parent.resumeId,
+			url: parent.api + '/resume/' + parent.resumeId + '/experience',
 			dataType: 'json',
 			xhrFields: {
 				withCredentials: true
 			}
 		}).success(function (data) {
-			console.log(data)
 			data.forEach(function (item) {
 				model.experience.push(new ExperienceModel(model, item));
 			});
@@ -56,4 +55,7 @@ function CvBuilderModel (api, resumeId) {
 	model.removeEducationBlock = function () {
 		model.educationBlockHasAdded(false);
 	};
+
+	model.getExperiences();
+	model.personalInfo.get();
 }
