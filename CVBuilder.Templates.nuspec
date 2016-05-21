@@ -9,6 +9,6 @@
         <description>Templates for CVBuilder</description>
     </metadata>
     <files>
-        <file src="dist\cvbuilder.html" target="content\cvbuilder.html" />
+        <file src="dist\cvbuilder.html" target="content\Templates\CVBuilder.html" />
     </files>
 </package>
