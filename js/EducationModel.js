@@ -13,24 +13,11 @@ function ResumeEducationModel (parent, id, typeOptions, selectedType, schoolName
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			// $.post('/api/personal', {}).success(function () {
-			// 	model.commit();
-			// }).error(function (res) {
-			// 	model.name.setError('Already taken');
-			// 	model.errors.showAllMessages(true);
-			// });
-			// if (model.name() === 'Alexandr') {
-			// 	// model.name.setError('Already taken');
-			// 	// model.errors.showAllMessages(true);
-			// } else {
-			//
-			// }
 			model.commit();
 		}
 	};
 
 	model.remove = function () {
-		// ajax call will be here
 		parent.experience.remove(model);
 	};
 

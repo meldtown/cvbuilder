@@ -1,111 +1,47 @@
 /* global InitEditableModel */
+/* global backend */
+
 function ResumeExperienceModel (parent, data) {
 	var model = this;
-	model.id = ko.observable(data ? data.id : 0);
-	model.position = ko.observable(data ? data.position : '').extend({required: true});
-	model.company = ko.observable(data ? data.company : '').extend({required: true});
-	model.branchId = ko.observable(data ? data.branchId : 1).extend({required: true});
-	model.description = ko.observable(data ? data.description : '').extend({required: true});
-	model.notebookCompanyId = ko.observable(data ? data.notebookCompanyId : 0).extend({required: true});
-	model.startWork = ko.observable(data ? data.startWork : '10.10.2000').extend({required: true});
-	model.endWork = ko.observable(data ? data.endWork : '10.10.2010').extend({required: true});
+
+	InitSimpleResponseHandler (model);
+
+	model.id = ko.observable();
+	model.position = ko.observable().extend({required: true});
+	model.company = ko.observable().extend({required: true});
+	model.branchId = ko.observable().extend({required: true});
+	model.description = ko.observable().extend({required: true});
+	model.notebookCompanyId = ko.observable().extend({required: true});
+	model.startWork = ko.observable().extend({required: true});
+	model.endWork = ko.observable().extend({required: true});
 	model.recommendationList = ko.observableArray(data ? data.recommendationList.map(function (item) {
-		return new RecommendationList(item.id, item.experienceId, item.name, item.position, item.companyName, item.email, item.phone, item.atRequest, item.resumeId);
+		return new RecommendationList(item.id, item.experienceId, item.name, item.position, item.companyName, item.email, item.phone, item.atRequest, parent.resumeId);
 	}) : []);
-	model.companySite = ko.observable(data ? data.companySite : '').extend({required: true});
-	model.employeesAmount = ko.observable(data ? data.employeesAmount : 0).extend({required: true});
-	model.resumeId = ko.observable(parent.resumeId).extend({required: true});
-	// model.getMonthStart = ko.computed(function () {
-	// 	var month = new Date(model.startWork()).getMonth() + 1;
-	// 	return month;
-	// });
-	// model.getYearStart = ko.computed(function () {
-	// 	var year = new Date(model.startWork()).getFullYear();
-	// 	return year;
-	// });
-	// model.getMonthEnd = ko.computed(function () {
-	// 	var month = new Date(model.endWork()).getMonth() + 1;
-	// 	return month;
-	// });
-	// model.getYearEnd = ko.computed(function () {
-	// 	var year = new Date(model.endWork()).getFullYear();
-	// 	return year;
-	// });
+	model.companySite = ko.observable().extend({required: true});
+	model.employeesAmount = ko.observable().extend({required: true});
+
+	model.simpleResponseHandler(data, model);
+
 	model.save = function () {
-		// if (model.errors().length === 0) {
-		$.ajax({
-			type: 'POST',
-			url: parent.api + '/resume/' + parent.resumeId + '/experience',
-			data: JSON.stringify(
-				{
-					id: model.id(),
-					position: model.position(),
-					company: model.company(),
-					branchId: model.branchId(),
-					description: model.description(),
-					notebookCompanyId: model.notebookCompanyId(),
-					period: model.period(),
-					startWork: model.startWork(),
-					endWork: model.endWork(),
-					companySite: model.companySite(),
-					resumeId: model.resumeId(),
-					recommendationList: model.recommendationList()
-				}
-			),
-			contentType: 'application/json',
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).success(function (id) {
-			model.id(id);
-			console.log(id);
-			model.commit();
-		}).fail(function (jqXHR) {
-			console.log(jqXHR);
-			// if (jqXHR.status === 400) {
-			// 	var errors = JSON.parse(jqXHR.responseText);
-			//
-			// 	if (errors.hasOwnProperty('modelState')) {
-			// 		if (errors.modelState['data.Name']) {
-			// 			model.name.setError(errors.modelState['data.Name']);
-			// 		}
-			//
-			// 		if (errors.modelState['data.SurName']) {
-			// 			model.surName.setError(errors.modelState['data.SurName']);
-			// 		}
-			//
-			// 		if (errors.modelState['data.middleName']) {
-			// 			model.surName.setError(errors.modelState['data.middleName']);
-			// 		}
-			//
-			// 		if (errors.modelState['data.dateBirth']) {
-			// 			model.surName.setError(errors.modelState['data.dateBirth']);
-			// 		}
-			//
-			// 		if (errors.modelState['data.sex']) {
-			// 			model.name.setError(errors.modelState['data.sex']);
-			// 		}
-			//
-			// 		model.errors.showAllMessages(true);
-			// 	}
-			// }
-		});
-		// }
+		if (model.errors().length === 0) {
+			backend.post(parent.api + '/resume/' + parent.resumeId + '/experience', model)
+				.success(function (id) {
+					model.id(id);
+					model.commit();
+				})
+				.fail(function (jqXHR) {
+					if (jqXHR.status === 400) {
+						model.handleBarRequestResponse(jqXHR);
+					}
+				});
+		}
 	};
 
 	model.remove = function () {
-		$.ajax({
-			type: 'DELETE',
-			url: parent.api + '/resume/' + parent.resumeId + '/experience/' + model.id(),
-			contentType: 'application/json',
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).success(function () {
-			parent.experience.remove(model);
-		});
+		backend.remove(parent.api + '/resume/' + parent.resumeId + '/experience/' + model.id())
+			.success(function () {
+				parent.experience.remove(model);
+			});
 	};
 
 	model.cancel = function () {
@@ -114,6 +50,7 @@ function ResumeExperienceModel (parent, data) {
 			model.remove();
 		}
 	};
+
 	function RecommendationList (id, experienceId, name, position, companyName, email, phone, atRequest, resumeId) {
 		var model = this;
 		model.id = ko.observable(id);
@@ -128,16 +65,5 @@ function ResumeExperienceModel (parent, data) {
 	}
 
 	InitEditableModel(model, 'experience');
-
-	/**
-	 * I'm a temporary function to calculate next sequence
-	 * @returns {number}
-	 */
-	// function getNextId () {
-	// 	var ids = parent.experience().map(function (item) {
-	// 		return item.id() || 0;
-	// 	});
-	// 	var max = Math.max.apply(null, ids);
-	// 	return 1 + max;
-	// }
+	InitBadRequestResponseHandler(model);
 }

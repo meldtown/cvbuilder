@@ -1,4 +1,5 @@
 /* global InitEditableModel */
+/* global backend */
 function ResumeContactsModel (parent) {
 	var model = this;
 
@@ -9,64 +10,33 @@ function ResumeContactsModel (parent) {
 	model.portfolio = ko.observableArray([]);
 	model.socialNetworks = ko.observableArray([]);
 	model.resumeId = parent.resumeId;
+
+
+
+
+
 	model.get = function () {
-		$.ajax({
-			method: 'GET',
-			url: parent.api + '/resume/' + parent.resumeId + '/contact',
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).success(function (data) {
-			console.log(data);
-			model.phone(data.phone);
+		backend.get(parent.api + '/resume/' + parent.resumeId + '/contact').success(function (data) {
+			model.simpleResponseHandler(data, model);
 			model.additionalPhones(data.additionalPhones);
-			model.email(data.email);
-			model.skype(data.skype);
-			model.portfolio(data.portfolio);
-			model.socialNetworks(data.socialNetworks);
-		}).fail(function (jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR, textStatus, errorThrown);
 		});
 	};
 
 	model.save = function () {
-		// if (model.errors().length === 0) {
-		$.ajax({
-			type: 'POST',
-			url: parent.api + '/resume/' + parent.resumeId + '/contact',
-			data: JSON.stringify(
-				{
-					phone: model.phone(),
-					additionalPhones: model.additionalPhones(),
-					email: model.email(),
-					skype: model.skype(),
-					portfolio: model.portfolio(),
-					socialNetworks: model.socialNetworks(),
-					resumeId: model.resumeId
-				}
-			),
-			contentType: 'application/json',
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).success(function () {
-			console.log(model.email());
-			model.commit();
-		}).fail(function (jqXHR) {
-			console.log(jqXHR);
-		});
-		// }
+		if (model.errors().length === 0) {
+			backend.post(parent.api + '/resume/' + parent.resumeId + '/contact', model)
+				.success(function () {
+					model.commit();
+				})
+				.fail(function (jqXHR) {
+					if (jqXHR.status === 400) {
+						model.handleBarRequestResponse(jqXHR);
+					}
+				});
+		}
 	};
-	// model.addNumber = function () {
-	// 	return model;
-	// };
-	// function SocialNetworks(type, subtype, text) {
-	// 	var model = this;
-	// 	model.type = ko.observable(type);
-	// 	model.subtype = ko.observable(subtype);
-	// 	model.text = ko.observable(text);
-	// }
+
 	InitEditableModel(model, 'contacts');
+	InitBadRequestResponseHandler(model);
+	InitSimpleResponseHandler (model);
 }

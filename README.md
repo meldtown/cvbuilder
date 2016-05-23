@@ -35,8 +35,9 @@ Marking is done via right clicking on folder and choosing appropriate action in 
 TODO
 ----
 
- * Injecting HTML templates into main page may be done better somehow
+ * <s>Injecting HTML templates into main page may be done better somehow</s>
  * <s>Logic for arrays are in CvBuilderModel which is bad for collaborative work</s>
+ * Extract save method from models
 
 Notices
 -------
