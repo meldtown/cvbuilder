@@ -1,5 +1,5 @@
 /* global InitEditableModel */
-function EducationModel (parent, id, typeOptions, selectedType, schoolName, location, speciality, diploma, year) {
+function ResumeEducationModel (parent, id, typeOptions, selectedType, schoolName, location, speciality, diploma, year) {
 	var model = this;
 
 	model.id = ko.observable(id);

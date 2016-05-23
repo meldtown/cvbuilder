@@ -2,7 +2,10 @@
 	<tr>
 		<th><label for="company">company</label></th>
 		<th><label for="position">position</label></th>
-		<th></th>
+		<th><label for="startWork">Begin to work work</label></th>
+		<th><label for="endWork">Finish to work work</label></th>
+		<th><label for="branchId">Branch id</label></th>
+		<th><label for="description">description</label></th>
 	</tr>
 	<tr>
 		<td>
@@ -10,6 +13,18 @@
 		</td>
 		<td>
 			<input id="position" name="position" data-bind="value: position, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="startWork" name="startWork" data-bind="value: startWork, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="endWork" name="endWork" data-bind="value: endWork, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="branchId" name="branchId" data-bind="value: branchId, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="description" name="description" data-bind="value: description, valueUpdate: 'keyup'">
 		</td>
 		<td>
 			<button data-bind="click: save">Save</button>

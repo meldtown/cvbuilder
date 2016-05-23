@@ -2,12 +2,25 @@
 	<tr>
 		<th>company</th>
 		<th>position</th>
-		<th></th>
+		<th>Begin to work work</th>
+		<th>Finish to work work</th>
+		<th>Branch id</th>
+		<th>Notebook Company Id</th>
+		<th>Description</th>
+		<th>Company site</th>
 	</tr>
 	<tr>
 		<td data-bind="text: company"></td>
 		<td data-bind="text: position"></td>
-		<td>
+		<td data-bind="text: startWork"></td>
+		<td data-bind="text: endWork"></td>
+		<td data-bind="text: branchId"></td>
+		<td data-bind="text: notebookCompanyId"></td>
+		<td data-bind="if: description">
+			<span data-bind="text: description"></span>
+		</td>
+		<td data-bind="text: companySite"></td>
+		<td rowspan="2">
 			<button data-bind="click: beginEdit">Edit</button>
 			<button data-bind="click: remove">Remove</button>
 		</td>

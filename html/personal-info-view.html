@@ -1,17 +1,35 @@
 <table cellpadding="5" cellspacing="0" border="1">
 	<tr>
 		<th>firstName</th>
-		<th>lastName</th>
-		<th>The date of birth</th>
-		<th>Sex</th>
+		<td data-bind="text: name"></td>
+
 	</tr>
 	<tr>
-		<td data-bind="text: name"></td>
-		<td data-bind="text: surName"></td>
-		<td data-bind="text: dateBirth"></td>
-		<td data-bind="text: sex"></td>
-		<td>
-			<button data-bind="click: beginEdit">Edit</button>
-		</td>
+		<th>middleName</th>
+		<td data-bind="middleName"></td>
 	</tr>
+	<tr>
+		<th>lastName</th>
+		<td data-bind="text: surName"></td>
+	</tr>
+	<tr>
+		<th>The date of birth</th>
+		<td data-bind="text: dateBirth"></td>
+	</tr>
+	<tr>
+		<th>Sex</th>
+		<td data-bind="text: sex"></td>
+	</tr>
+	<tr>
+		<th>City</th>
+		<td data-bind="text: cityName"></td>
+	</tr>
+	<tr>
+		<th>Age</th>
+		<td data-bind="text: age"></td>
+	</tr>
+
+	<td colspan="2" align="center">
+		<button data-bind="click: beginEdit">Edit</button>
+	</td>
 </table>

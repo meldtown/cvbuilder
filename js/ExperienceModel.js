@@ -1,5 +1,5 @@
 /* global InitEditableModel */
-function ExperienceModel (parent, data) {
+function ResumeExperienceModel (parent, data) {
 	var model = this;
 	model.id = ko.observable(data ? data.id : 0);
 	model.position = ko.observable(data ? data.position : '').extend({required: true});
@@ -7,7 +7,6 @@ function ExperienceModel (parent, data) {
 	model.branchId = ko.observable(data ? data.branchId : 1).extend({required: true});
 	model.description = ko.observable(data ? data.description : '').extend({required: true});
 	model.notebookCompanyId = ko.observable(data ? data.notebookCompanyId : 0).extend({required: true});
-	model.period = ko.observable(data ? data.period : '25 {1}').extend({required: true});
 	model.startWork = ko.observable(data ? data.startWork : '10.10.2000').extend({required: true});
 	model.endWork = ko.observable(data ? data.endWork : '10.10.2010').extend({required: true});
 	model.recommendationList = ko.observableArray(data ? data.recommendationList.map(function (item) {
@@ -16,6 +15,22 @@ function ExperienceModel (parent, data) {
 	model.companySite = ko.observable(data ? data.companySite : '').extend({required: true});
 	model.employeesAmount = ko.observable(data ? data.employeesAmount : 0).extend({required: true});
 	model.resumeId = ko.observable(parent.resumeId).extend({required: true});
+	// model.getMonthStart = ko.computed(function () {
+	// 	var month = new Date(model.startWork()).getMonth() + 1;
+	// 	return month;
+	// });
+	// model.getYearStart = ko.computed(function () {
+	// 	var year = new Date(model.startWork()).getFullYear();
+	// 	return year;
+	// });
+	// model.getMonthEnd = ko.computed(function () {
+	// 	var month = new Date(model.endWork()).getMonth() + 1;
+	// 	return month;
+	// });
+	// model.getYearEnd = ko.computed(function () {
+	// 	var year = new Date(model.endWork()).getFullYear();
+	// 	return year;
+	// });
 	model.save = function () {
 		// if (model.errors().length === 0) {
 		$.ajax({

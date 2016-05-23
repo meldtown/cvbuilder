@@ -2,17 +2,26 @@
 	<tr>
 		<th>email</th>
 		<th>phone</th>
-		<th></th>
+		<th>additional phones</th>
+		<th>skype</th>
+		<th>portfolio</th>
+		<th>socials</th>
 	</tr>
 	<tr>
 		<td data-bind="text: email"></td>
 		<td data-bind="text: phone"></td>
+		<td data-bind="foreach: additionalPhones">
+			<div data-bind="text: $data, valueUpdate: 'keyup'"></div>
+		</td>
+		<td data-bind="text: skype"></td>
+		<td data-bind="text: portfolio"></td>
+		<td data-bind="text: socialNetworks"></td>
 		<td>
 			<button data-bind="click: beginEdit">Edit</button>
 		</td>
 	</tr>
 </table>
 
-<div data-bind="if: message">
-	<h1 data-bind="css: messageCls, text: message"></h1>
-</div>
+<!--<div data-bind="if: message">-->
+<!--<h1 data-bind="css: messageCls, text: message"></h1>-->
+<!--</div>-->

@@ -2,7 +2,10 @@
 	<tr>
 		<th><label for="email">email</label></th>
 		<th><label for="phone">phone</label></th>
-		<th></th>
+		<th><label for="additional numbers">additional numbers</label></th>
+		<th><label for="skype">skype</label></th>
+		<th><label for="portfolio">portfolio</label></th>
+		<th><label for="socialNetworks">socials</label></th>
 	</tr>
 	<tr>
 		<td>
@@ -12,7 +15,22 @@
 			<input id="phone" name="phone" data-bind="value: phone, valueUpdate: 'keyup'">
 		</td>
 		<td>
-			<button data-bind="click: $root.saveContacts">Save</button>
+			<div data-bind="foreach: additionalPhones">
+				<input id="additionalPhones" name="additionalPhones" data-bind="value: $data, valueUpdate: 'keyup'">
+			</div>
+			<button data-bind="click: $parent.addAdditionalPhone">Add number</button>
+		</td>
+		<td>
+			<input id="skype" name="skype" data-bind="value: skype, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="portfolio" name="portfolio" data-bind="value: portfolio, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<input id="socialNetworks" name="socialNetworks" data-bind="value: socialNetworks, valueUpdate: 'keyup'">
+		</td>
+		<td>
+			<button data-bind="click: save">Save</button>
 			<button data-bind="click: rollback">Cancel</button>
 		</td>
 	</tr>

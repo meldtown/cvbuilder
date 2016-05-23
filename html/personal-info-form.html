@@ -1,25 +1,48 @@
 <table cellpadding="5" cellspacing="0" border="1">
 	<tr>
 		<th><label for="firstName">firstName</label></th>
-		<th><label for="lastName">lastName</label></th>
-		<th><label for="dateBirth">the date of birth</label></th>
-		<th><label for="sex">sex</label></th>
-		<th></th>
-	</tr>
-	<tr>
 		<td>
 			<input id="firstName" name="firstName" data-bind="value: name, valueUpdate: 'keyup'">
 		</td>
+	</tr>
+	<tr>
+		<th><label for="middleName">middleName</label></th>
+		<td>
+			<input id="middleName" name="middleName" data-bind="value: middleName, valueUpdate: 'keyup'">
+		</td>
+	</tr>
+	<tr>
+		<th><label for="lastName">lastName</label></th>
 		<td>
 			<input id="lastName" name="lastName" data-bind="value: surName, valueUpdate: 'keyup'">
 		</td>
+	</tr>
+	<tr>
+		<th><label for="dateBirth">the date of birth</label></th>
 		<td>
 			<input id="dateBirth" name="dateBirth" data-bind="value: dateBirth, valueUpdate: 'keyup'">
 		</td>
+	</tr>
+	<tr>
+		<th><label for="sex">sex</label></th>
 		<td>
 			<input id="sex" name="sex" data-bind="value: sex, valueUpdate: 'keyup'">
 		</td>
+	</tr>
+	<tr>
+		<th><label for="cityName">city name</label></th>
 		<td>
+			<input id="cityName" name="cityName" data-bind="value: cityName, valueUpdate: 'keyup'">
+		</td>
+	</tr>
+	<tr>
+		<th><label for="age">age</label></th>
+		<td>
+			<input id="age" name="age" data-bind="value: age, valueUpdate: 'keyup'">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
 			<button data-bind="click: save">Save</button>
 			<button data-bind="click: rollback">Cancel</button>
 		</td>

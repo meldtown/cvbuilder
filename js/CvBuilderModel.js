@@ -1,15 +1,15 @@
-/* global PersonalInfoModel */
-/* global ContactsModel */
-/* global ExperienceModel */
-/* global EducationModel */
+/* global ResumePersonalModel */
+/* global ResumeContactsModel */
+/* global ResumeExperienceModel */
+/* global ResumeEducationModel */
 function CvBuilderModel (api, resumeId) {
 	var model = this;
 
 	model.api = api;
 	model.resumeId = resumeId;
 
-	model.personalInfo = new PersonalInfoModel(model);
-	model.contacts = new ContactsModel(api, resumeId, 'marchenko.alexandr@gmail.com', '+3 8(091) 931-55-55');
+	model.personalInfo = new ResumePersonalModel(model);
+	model.contacts = new ResumeContactsModel(model);
 
 	model.experience = ko.observableArray([]);
 
@@ -23,7 +23,7 @@ function CvBuilderModel (api, resumeId) {
 			}
 		}).success(function (data) {
 			data.forEach(function (item) {
-				model.experience.push(new ExperienceModel(model, item));
+				model.experience.push(new ResumeExperienceModel(model, item));
 			});
 		}).fail(function (jqXHR) {
 			console.log(jqXHR);
@@ -31,22 +31,26 @@ function CvBuilderModel (api, resumeId) {
 	};
 
 	model.addExperience = function () {
-		var item = new ExperienceModel(model);
+		var item = new ResumeExperienceModel(model);
 		model.experience.push(item);
 		item.beginEdit();
 		return item;
 	};
 
 	model.education = ko.observableArray([
-		new EducationModel(model, 2, ['high', 'secondary'], 'high', 'MIT', 'Boston', 'IT', 'bachelor', [2015, 2014, 2013, 2012, 2011]),
-		new EducationModel(model, 3, ['high', 'secondary'], 'high', 'Oxford', 'London', 'Manager', 'magister', [2015, 2014, 2013, 2012, 2011])
+		new ResumeEducationModel(model, 2, ['high', 'secondary'], 'high', 'MIT', 'Boston', 'IT', 'bachelor', [2015, 2014, 2013, 2012, 2011]),
+		new ResumeEducationModel(model, 3, ['high', 'secondary'], 'high', 'Oxford', 'London', 'Manager', 'magister', [2015, 2014, 2013, 2012, 2011])
 	]);
 
 	model.addEducation = function () {
-		var item = new EducationModel(model, 5, ['high', 'secondary'], '', '', '', '', [2015, 2014, 2013, 2012, 2011]);
+		var item = new ResumeEducationModel(model, 5, ['high', 'secondary'], '', '', '', '', [2015, 2014, 2013, 2012, 2011]);
 		model.education.push(item);
 		item.beginEdit();
 		return item;
+	};
+	model.addAdditionalPhone = function () {
+		model.contacts.additionalPhones.push('');
+		model.contacts.beginEdit();
 	};
 	model.educationBlockHasAdded = ko.observable(false);
 	model.addEducationBlock = function () {
@@ -58,4 +62,5 @@ function CvBuilderModel (api, resumeId) {
 
 	model.getExperiences();
 	model.personalInfo.get();
+	model.contacts.get();
 }
