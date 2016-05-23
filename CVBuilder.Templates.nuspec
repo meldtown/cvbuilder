@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>CVBuilder.Templates</id>
+        <version>1.0.0</version>
+        <title>CVBuilder Templates</title>
+        <authors>AlexandrM,VitaliyM</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Templates for CVBuilder</description>
+    </metadata>
+    <files>
+        <file src="dist\cvbuilder.html" target="content\Templates\CVBuilder.html" />
+    </files>
+</package>
