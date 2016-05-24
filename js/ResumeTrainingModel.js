@@ -1,4 +1,3 @@
-
 function ResumeTraininglModel (parent, data) {
 	var model = this;
 

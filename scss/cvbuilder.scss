@@ -5,5 +5,16 @@
 	.cvbuilder-block-subtitle{
 		margin: 0;
 	}
+
+	.cvbuilder-view,
+	.cvbuilder-form {
+		border: 1px solid #999;
+		margin: 20px;
+		padding: 20px;
+	}
+
+	.cvbuilder-form {
+		background: #ebebeb;
+	}
 }
 
