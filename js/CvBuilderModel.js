@@ -24,10 +24,15 @@ function CvBuilderModel (api, resumeId) {
 		return item;
 	};
 
-	model.education = ko.observableArray([
-		new ResumeEducationModel(model, 2, ['high', 'secondary'], 'high', 'MIT', 'Boston', 'IT', 'bachelor', [2015, 2014, 2013, 2012, 2011]),
-		new ResumeEducationModel(model, 3, ['high', 'secondary'], 'high', 'Oxford', 'London', 'Manager', 'magister', [2015, 2014, 2013, 2012, 2011])
-	]);
+	model.education = ko.observableArray();
+
+	model.getEducation = function () {
+		backend.get(parent.api + '/resume/' + model.resumeId + '/education').success(function (data) {
+			data.forEach(function (item) {
+				model.education.push(new ResumeEducationModel(model, item));
+			});
+		});
+	};
 
 	model.addEducation = function () {
 		var item = new ResumeEducationModel(model, 5, ['high', 'secondary'], '', '', '', '', [2015, 2014, 2013, 2012, 2011]);
@@ -61,6 +66,7 @@ function CvBuilderModel (api, resumeId) {
 		model.getExperiences();
 		model.personalInfo.get();
 		model.contacts.get();
+		model.getEducation();
 		model.getAdditional();
 	};
 
