@@ -38,4 +38,12 @@
 		</div>
 		<button data-bind="click: addAdditional">Add</button>
 	</div>
+
+	<div>
+		<h3 class="cvbuilder-block-title">Language</h3>
+		<div data-bind="foreach: language">
+			<div data-bind="template: tpl"></div>
+		</div>
+		<button data-bind="click: addLanguage">Add</button>
+	</div>
 </div>

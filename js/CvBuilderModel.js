@@ -45,6 +45,23 @@ function CvBuilderModel (api, resumeId) {
 		model.contacts.beginEdit();
 	};
 
+	model.language = ko.observableArray();
+
+	model.getLanguage = function () {
+		backend.get(parent.api + '/resume/' + model.resumeId + '/language').success(function (data) {
+			data.forEach(function (item) {
+				model.language.push(new ResumeLanguageModel(model, item));
+			});
+		});
+	};
+
+	model.addLanguage = function () {
+		var item = new ResumeLanguageModel(model);
+		model.language.push(item);
+		item.beginEdit();
+		return item;
+	};
+
 	model.additional = ko.observableArray();
 
 	model.getAdditional = function () {
@@ -61,9 +78,9 @@ function CvBuilderModel (api, resumeId) {
 		item.beginEdit();
 		return item;
 	};
-	
+
 	model.training = ko.observableArray([]);
-	
+
 	model.addTraining = function () {
 		var item = new ResumeTraininglModel(model);
 		model.training.push(item);
@@ -78,7 +95,7 @@ function CvBuilderModel (api, resumeId) {
 			});
 		});
 	};
-	
+
 	model.load = function () {
 		model.getExperiences();
 		model.personalInfo.get();
