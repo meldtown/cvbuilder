@@ -1,8 +1,9 @@
-function CvBuilderModel (api, resumeId) {
+function CvBuilderModel (api, resumeId, dictionary) {
 	var model = this;
 
 	model.api = api;
 	model.resumeId = resumeId;
+	model.dictionary = dictionary;
 
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);

@@ -30,6 +30,7 @@ function InitBadRequestResponseHandler (model) {
 	};
 }
 
+
 var mapper = {
 	isArrayObservable: function (item) {
 		return ko.isObservable(item) && typeof item.push === 'function';

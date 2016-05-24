@@ -80,8 +80,31 @@
 	<script>
 		var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
 		var resumeId = 3496188; //TODO: readme from query string, e.g. (window.location.toString().split('?').pop().match(/resumeId=\d+/) || 'resumeId=0').replace('resumeId=', '')
-		var model = new CvBuilderModel(api, resumeId);
-		ko.applyBindings(model);
+
+		jQuery.when(
+			jQuery.getJSON(api + '/dictionary/language'),
+			jQuery.getJSON(api + '/dictionary/experience'),
+			jQuery.getJSON(api + '/dictionary/city'),
+			jQuery.getJSON(api + '/dictionary/branch'),
+			jQuery.getJSON(api + '/dictionary/schedule'),
+			jQuery.getJSON(api + '/dictionary/resource'),
+			jQuery.getJSON(api + '/dictionary/activitylevel'),
+			jQuery.getJSON(api + '/dictionary/language/skill')
+		).then(function (langauge, experience, city, branch, schedule, resource, activityLevel, languageSkill) {
+			var dictionary = {
+				language: langauge,
+				experience: experience,
+				city: city,
+				branch: branch,
+				schedule: schedule,
+				resource: resource,
+				activityLevel: activityLevel,
+				languageSkill: languageSkill
+			};
+
+			window.model = new CvBuilderModel(api, resumeId, dictionary);
+			ko.applyBindings(model);
+		});
 	</script>
 
 	<!--suppress JSUnresolvedLibraryURL -->
