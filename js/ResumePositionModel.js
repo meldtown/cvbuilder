@@ -1,6 +1,8 @@
 function ResumePositionModel (parent, data) {
 	var model = this;
 
+	InitMultilanguageModel (model, parent);
+
 	model.resumeId = parent.resumeId;
 	model.api = parent.api + '/resume/' + parent.resumeId + '/position';
 
@@ -41,6 +43,10 @@ function ResumePositionModel (parent, data) {
 				});
 		}
 	};
+
+	model.experienceName = ko.computed(function () {
+		return model._dic(parent.dictionary.experience, model.experienceId);
+	});
 
 	InitEditableModel(model, 'position');
 	InitBadRequestResponseHandler(model);

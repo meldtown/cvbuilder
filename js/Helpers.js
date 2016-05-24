@@ -10,6 +10,25 @@ function InitEditableModel (model, templatePrefix) {
 	});
 }
 
+function InitMultilanguageModel (model, parent) {
+	model._lng = ko.observable(parent._lng());
+	parent._lng.subscribe(function (newValue) {
+		model._lng(newValue);
+	});
+
+	model._dic = function (dic, id) {
+		var val = ko.isObservable(id) ? id() : id;
+
+		if (!val) return '';
+
+		var res = parent.dictionary.experience.filter(function (item) {
+			return item.id.toString() === val.toString();
+		}).shift();
+
+		return res[model._lng()];
+	};
+}
+
 function InitBadRequestResponseHandler (model) {
 	model.handleBarRequestResponse = function (jqXHR) {
 		if (jqXHR.status === 400) {
@@ -41,7 +60,7 @@ var mapper = {
 		return ['number', 'string', 'boolean'].indexOf(typeof data) !== -1;
 	},
 	isPluginKey: function (key) {
-		return ['hasChanges', 'inTransaction', 'tpl'].indexOf(key) !== -1;
+		return ['hasChanges', 'inTransaction', 'tpl', '_lng'].indexOf(key) !== -1;
 	},
 	toJS: function (model) {
 		var keys = Object.keys(model).filter(function (key) {

@@ -5,6 +5,8 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.resumeId = resumeId;
 	model.dictionary = dictionary;
 
+	model._lng = ko.observable('ru');
+
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);
 	model.contacts = new ResumeContactsModel(model);
