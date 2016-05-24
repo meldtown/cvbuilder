@@ -13,12 +13,12 @@ function ResumePersonalModel (parent) {
 	model.cityId = ko.observable();
 	model.moving = ko.observableArray();
 
-	model.cityName = ko.computed(function () {
-		return 'TODO: CityName here from CityId';
-	});
-	model.age = ko.computed(function () {
-		return 'TODO: from dateBirth';
-	});
+	// model.cityName = ko.computed(function () {
+	// 	return 'TODO: CityName here from CityId';
+	// });
+	// model.age = ko.computed(function () {
+	// 	return 'TODO: from dateBirth';
+	// });
 
 	model.toJS = function () {
 		return mapper.toJS(model);

@@ -1,0 +1,46 @@
+<div class="cvbuilder-form">
+	<h3 class="cvbuilder-block-title">Training</h3>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="name">
+				name
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="name" name="name" data-bind="value: name, valueUpdate: 'keyup'">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="year">
+				year
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="year" name="year" data-bind="value: year, valueUpdate: 'keyup'">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="description">
+				description
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="description" name="description" data-bind="value: description, valueUpdate: 'keyup'">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			&nbsp;
+		</div>
+		<div class="col d-2of3">
+			<button class="btn btn-primary" data-bind="click: save">Save</button>
+			<button class="btn btn-link rua-p-c-light" data-bind="click: rollback">Cancel</button>
+		</div>
+	</div>
+</div>

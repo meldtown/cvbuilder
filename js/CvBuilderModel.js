@@ -61,16 +61,25 @@ function CvBuilderModel (api, resumeId) {
 	
 	model.addTraining = function () {
 		var item = new ResumeTraininglModel(model);
-		model.experience.push(item);
+		model.training.push(item);
 		item.beginEdit();
 		return item;
-	}
+	};
+
+	model.getTraining = function () {
+		backend.get(parent.api + '/resume/' + model.resumeId + '/training').success(function (data) {
+			data.forEach(function (item) {
+				model.additional.push(new ResumeTraininglModel(model, item));
+			});
+		});
+	};
 	
 	model.load = function () {
 		model.getExperiences();
 		model.personalInfo.get();
 		model.contacts.get();
 		model.getAdditional();
+		model.getTraining();
 	};
 
 	model.load();
