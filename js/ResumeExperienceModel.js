@@ -79,7 +79,7 @@ function ResumeExperienceRecommendationModel (parent, data) {
 	};
 
 	model.toJS = function () {
-		mapper.toJS(model);
+		return mapper.toJS(model);
 	};
 
 	if (data) model.fromJS(data);

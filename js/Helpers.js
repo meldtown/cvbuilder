@@ -46,6 +46,7 @@ var mapper = {
 		var keys = Object.keys(model).filter(function (key) {
 			return !mapper.isPluginKey(key);
 		});
+
 		var result = {};
 
 		// Simple types
