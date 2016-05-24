@@ -8,12 +8,12 @@ Blocks
 
 + Personal
 + Contacts
-Position
-Skills
+~ Position
++ Skills
 + Experience
 + Education
 + Trainings
-Languages
++ Languages
 + Additional
 
 

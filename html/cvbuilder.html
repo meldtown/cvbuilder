@@ -7,6 +7,14 @@
 		<div data-bind="template: tpl"></div>
 	</div>
 
+	<div data-bind="with: position">
+		<div data-bind="template: tpl"></div>
+	</div>
+
+	<div data-bind="with: skill">
+		<div data-bind="template: tpl"></div>
+	</div>
+
 	<div>
 		<h3 class="cvbuilder-block-title">Experience</h3>
 		<div data-bind="foreach: experience">
@@ -39,7 +47,11 @@
 		<button data-bind="click: addAdditional">Add</button>
 	</div>
 
-	<div data-bind="with: position">
-		<div data-bind="template: tpl"></div>
+	<div>
+		<h3 class="cvbuilder-block-title">Language</h3>
+		<div data-bind="foreach: language">
+			<div data-bind="template: tpl"></div>
+		</div>
+		<button data-bind="click: addLanguage">Add</button>
 	</div>
 </div>
