@@ -73,7 +73,7 @@ var mapper = {
 	},
 	fromJS: function (model, data) {
 		Object.keys(data).filter(function (key) {
-			return model.hasOwnProperty(key) && !mapper.isPluginKey(key) && !mapper.isArrayObservable(model[key]) && mapper.isSimpleType(model[key]);
+			return model.hasOwnProperty(key) && !mapper.isPluginKey(key) && !mapper.isArrayObservable(model[key]) && (mapper.isSimpleType(model[key]) || mapper.isSimpleType(data[key]));
 		}).forEach(function (key) {
 			if (ko.isObservable(model[key])) {
 				model[key](data[key]);

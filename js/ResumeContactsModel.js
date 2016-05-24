@@ -1,6 +1,8 @@
 function ResumeContactsModel (parent) {
 	var model = this;
 
+	model.resumeId = parent.resumeId;
+
 	model.phone = ko.observable().extend({required: true});
 	model.additionalPhones = ko.observableArray();
 	model.email = ko.observable().extend({required: true, email: true});
@@ -24,7 +26,7 @@ function ResumeContactsModel (parent) {
 
 	model.get = function () {
 		backend.get(parent.api + '/resume/' + parent.resumeId + '/contact').success(function (data) {
-			model.fromJS(model, data);
+			model.fromJS(data);
 		});
 	};
 
