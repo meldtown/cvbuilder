@@ -1,25 +1,9 @@
 @import 'typo';
 
 .cvbuilder {
-	display: flex;
-
-	.header, .body, .footer {border:1px solid red;}
-
-	.title {color: red;}
-}
-
-.footer-blocks {
-	border: 1px solid red;
-	margin-top: 20px;
-	height: 100px;
-	div {
-		background: #b5d592;
-		display: inline-block;
-		text-align: center;
-	}
-	h3 {
+	.cvbuilder-block-title,
+	.cvbuilder-block-subtitle{
 		margin: 0;
 	}
 }
-
 

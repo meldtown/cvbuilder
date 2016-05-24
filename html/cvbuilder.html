@@ -1,39 +1,26 @@
-<h4>CVBUILDER TEMPLATE</h4>
-
-<div data-bind="with: personalInfo">
-	<fieldset>
-		<legend>Personal info</legend>
-		<div data-bind="template: tpl"></div>
-	</fieldset>
-</div>
-
-<div data-bind="with: contacts">
-	<fieldset>
-		<legend>Contacts</legend>
-		<div data-bind="template: tpl"></div>
-	</fieldset>
-</div>
-
-<fieldset>
-	<legend>Experience</legend>
-	<div data-bind="foreach: experience">
+<div class="cvbuilder">
+	<div data-bind="with: personalInfo">
 		<div data-bind="template: tpl"></div>
 	</div>
-	<button data-bind="click: addExperience">Add</button>
-</fieldset>
 
-<fieldset data-bind="visible: educationBlockHasAdded()">
-	<button data-bind="click: removeEducationBlock">Remove</button>
-	<legend>Education</legend>
-	<div data-bind="foreach: education">
+	<div data-bind="with: contacts">
+		<h3 class="cvbuilder-block-title">Contacts</h3>
 		<div data-bind="template: tpl"></div>
 	</div>
-	<button data-bind="click: addEducation">Add</button>
-</fieldset>
 
-<div class="footer-blocks">
-	<div data-bind="visible: !educationBlockHasAdded();">
-		<h2>Education</h2>
-		<button data-bind="click: addEducationBlock">Add</button>
+	<div>
+		<h3 class="cvbuilder-block-title">Experience</h3>
+		<div data-bind="foreach: experience">
+			<div data-bind="template: tpl"></div>
+		</div>
+		<button data-bind="click: addExperience">Add</button>
+	</div>
+
+	<div>
+		<h3 class="cvbuilder-block-title">Education</h3>
+		<div data-bind="foreach: education">
+			<div data-bind="template: tpl"></div>
+		</div>
+		<button data-bind="click: addEducation">Add</button>
 	</div>
 </div>

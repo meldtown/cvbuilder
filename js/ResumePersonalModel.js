@@ -3,15 +3,18 @@ function ResumePersonalModel (parent) {
 
 	model.api = parent.api + '/resume/' + parent.resumeId + '/personal';
 
+	model.resumeId = parent.resumeId;
+
 	model.name = ko.observable().extend({required: true});
 	model.middleName = ko.observable();
 	model.surName = ko.observable().extend({required: true});
 	model.dateBirth = ko.observable().extend({required: true});
 	model.sex = ko.observable().extend({required: true});
 	model.cityId = ko.observable();
-	model.cityName = ko.observable().extend({required: true});
-	model.moving = ko.observable();
-	model.age = ko.observable();
+	model.moving = ko.observableArray();
+
+	model.cityName = ko.computed(function () { return 'TODO: CityName here from CityId'; });
+	model.age = ko.computed(function () { return 'TODO: from dateBirth'; });
 
 	model.toJS = function () {
 		return mapper.toJS(model);

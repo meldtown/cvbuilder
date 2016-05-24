@@ -1,36 +1,59 @@
-<table cellpadding="5" cellspacing="0" border="1">
-	<tr>
-		<th>firstName</th>
-		<td data-bind="text: name"></td>
-	</tr>
-	<tr>
-		<th>middleName</th>
-		<td data-bind="middleName"></td>
-	</tr>
-	<tr>
-		<th>lastName</th>
-		<td data-bind="text: surName"></td>
-	</tr>
-	<tr>
-		<th>The date of birth</th>
-		<td data-bind="text: dateBirth"></td>
-	</tr>
-	<tr>
-		<th>Sex</th>
-		<td data-bind="text: sex"></td>
-	</tr>
-	<tr>
-		<th>City</th>
-		<td data-bind="text: cityName"></td>
-	</tr>
-	<tr>
-		<th>Age</th>
-		<td data-bind="text: age"></td>
-	</tr>
-	<tr>
-		<th></th>
-		<td>
-			<button data-bind="click: beginEdit">Edit</button>
-		</td>
-	</tr>
-</table>
+<div class="cvbuilder-view">
+	<div class="row">
+		<div class="col d-2of3">
+			<h3 class="cvbuilder-block-title">Personal info</h3>
+		</div>
+		<div class="col d-1of3 text-right">
+			<a class="rua-p-c-light" href="#" data-bind="click: beginEdit">Edit</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			name
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: name"></span>
+		</div>
+	</div>
+	<div class="row" style="display: none">
+		<div class="col d-1of3">
+			middleName
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: middleName"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col d-1of3">
+			surName
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: surName"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col d-1of3">
+			dateBirth
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: dateBirth"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col d-1of3">
+			sex
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: sex"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col d-1of3">
+			cityId
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: cityId"></span>
+		</div>
+	</div>
+</div>

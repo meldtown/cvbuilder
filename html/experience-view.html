@@ -1,28 +1,86 @@
-<table cellpadding="5" cellspacing="0" border="1">
-	<tr>
-		<th>company</th>
-		<th>position</th>
-		<th>Begin to work work</th>
-		<th>Finish to work work</th>
-		<th>Branch id</th>
-		<th>Notebook Company Id</th>
-		<th>Description</th>
-		<th>Company site</th>
-	</tr>
-	<tr>
-		<td data-bind="text: company"></td>
-		<td data-bind="text: position"></td>
-		<td data-bind="text: startWork"></td>
-		<td data-bind="text: endWork"></td>
-		<td data-bind="text: branchId"></td>
-		<td data-bind="text: notebookCompanyId"></td>
-		<td data-bind="if: description">
+<div class="cvbuilder-view">
+
+	<div class="row">
+		<div class="col d-2of3">
+			<h3 class="cvbuilder-block-subtitle" data-bind="text: position"></h3>
+		</div>
+		<div class="col d-1of3 text-right">
+			<a class="rua-p-c-light" href="#" data-bind="click: remove">Remove</a>
+			<a class="rua-p-c-light" href="#" data-bind="click: beginEdit">Edit</a>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col d-1of3">
+			company
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: company"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			position
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: position"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			startWork
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: startWork"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			endWork
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: endWork"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			branchId
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: branchId"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			notebookCompanyId
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: notebookCompanyId"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			description
+		</div>
+		<div class="col d-2of3">
 			<span data-bind="text: description"></span>
-		</td>
-		<td data-bind="text: companySite"></td>
-		<td rowspan="2">
-			<button data-bind="click: beginEdit">Edit</button>
-			<button data-bind="click: remove">Remove</button>
-		</td>
-	</tr>
-</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			companySite
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: companySite"></span>
+		</div>
+	</div>
+
+</div>
