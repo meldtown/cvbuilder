@@ -6,6 +6,7 @@ function CvBuilderModel (api, resumeId) {
 
 	model.personalInfo = new ResumePersonalModel(model);
 	model.contacts = new ResumeContactsModel(model);
+	model.skill = new ResumeSkillModel(model);
 
 	model.experience = ko.observableArray([]);
 
@@ -97,12 +98,14 @@ function CvBuilderModel (api, resumeId) {
 	};
 
 	model.load = function () {
-		model.getExperiences();
 		model.personalInfo.get();
 		model.contacts.get();
+		model.skill.get();
+		model.getExperiences();
 		model.getEducation();
 		model.getAdditional();
 		model.getTraining();
+		model.getLanguage();
 	};
 
 	model.load();
