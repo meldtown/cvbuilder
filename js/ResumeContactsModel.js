@@ -24,7 +24,7 @@ function ResumeContactsModel (parent) {
 
 	model.get = function () {
 		backend.get(parent.api + '/resume/' + parent.resumeId + '/contact').success(function (data) {
-			model.fromJS(data);
+			model.fromJS(model, data);
 		});
 	};
 
