@@ -1,21 +1,55 @@
-<table cellpadding="5" cellspacing="0" border="1">
-	<tr>
-		<th>Education type</th>
-		<th>schoolName</th>
-		<th>location</th>
-		<th>speciality</th>
-		<th>diploma</th>
-		<th>year</th>
-	</tr>
-	<tr>
-		<td data-bind="text: selectedType"></td>
-		<td data-bind="text: schoolName"></td>
-		<td data-bind="text: location"></td>
-		<td data-bind="text: speciality"></td>
-		<td data-bind="text: diploma"></td>
-		<td data-bind="text: year"></td>
-		<td>
-			<button data-bind="click: beginEdit">Edit</button>
-		</td>
-	</tr>
-</table>
+<div class="cvbuilder-view">
+	<div class="row">
+		<div class="col d-2of3">
+			<h3 class="cvbuilder-block-title" data-bind="text: speciality"></h3>
+		</div>
+		<div class="col d-1of3 text-right">
+			<a class="rua-p-c-light" href="#" data-bind="click: beginEdit">Edit</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			selectedType
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: selectedType"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			schoolName
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: schoolName"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			location
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: location"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			diploma
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: diploma"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			year
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: year"></span>
+		</div>
+	</div>
+</div>
