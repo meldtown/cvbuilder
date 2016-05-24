@@ -74,7 +74,7 @@ function CvBuilderModel (api, resumeId) {
 	model.getTraining = function () {
 		backend.get(parent.api + '/resume/' + model.resumeId + '/training').success(function (data) {
 			data.forEach(function (item) {
-				model.additional.push(new ResumeTraininglModel(model, item));
+				model.training.push(new ResumeTraininglModel(model, item));
 			});
 		});
 	};

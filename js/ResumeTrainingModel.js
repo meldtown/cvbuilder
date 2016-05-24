@@ -2,10 +2,8 @@
 function ResumeTraininglModel (parent, data) {
 	var model = this;
 
-	model.api = parent.api + '/resume/' + parent.resumeId + '/personal';
-
 	model.resumeId = parent.resumeId;
-
+	model.id = ko.observable();
 	model.name = ko.observable().extend({required: true});
 	model.location = ko.observable();
 	model.description = ko.observable().extend({required: true});
@@ -19,12 +17,6 @@ function ResumeTraininglModel (parent, data) {
 		if (!data) return;
 
 		mapper.fromJS(model, data);
-	};
-
-	model.get = function () {
-		backend.get(model.api).success(function (data) {
-			model.fromJS(data);
-		});
 	};
 
 	model.save = function () {
@@ -45,7 +37,7 @@ function ResumeTraininglModel (parent, data) {
 	model.remove = function () {
 		backend.remove(parent.api + '/resume/' + parent.resumeId + '/training/' + model.id())
 			.success(function () {
-				parent.additional.remove(model);
+				parent.training.remove(model);
 			});
 	};
 
