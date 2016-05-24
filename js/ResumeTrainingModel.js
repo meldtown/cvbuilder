@@ -21,8 +21,8 @@ function ResumeTraininglModel (parent, data) {
 	model.save = function () {
 		if (model.errors().length === 0) {
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/training', model.toJS())
-				.success(function () {
-					// model.id(id);
+				.success(function (id) {
+					model.id(id);
 					model.commit();
 				})
 				.fail(function (jqXHR) {

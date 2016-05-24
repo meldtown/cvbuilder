@@ -79,10 +79,21 @@ function CvBuilderModel (api, resumeId) {
 		});
 	};
 	
+	model.position = new ResumePositionModel(model);
+	
+	model.getPosition = function () {
+		backend.get(parent.api + '/resume/' + model.resumeId + '/position').success(function (data) {
+			data.forEach(function (item) {
+				model.position.push(new ResumeTraininglModel(model, item));
+			});
+		});
+	};
+	
 	model.load = function () {
 		model.getExperiences();
 		model.personalInfo.get();
 		model.contacts.get();
+		model.position.get();
 		model.getEducation();
 		model.getAdditional();
 		model.getTraining();
