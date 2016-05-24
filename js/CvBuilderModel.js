@@ -46,7 +46,16 @@ function CvBuilderModel (api, resumeId) {
 	model.removeEducationBlock = function () {
 		model.educationBlockHasAdded(false);
 	};
-
+	
+	model.training = ko.observableArray([]);
+	
+	model.addTraining = function () {
+		var item = new ResumeTraininglModel(model);
+		model.experience.push(item);
+		item.beginEdit();
+		return item;
+	}
+	
 	model.load = function () {
 		model.getExperiences();
 		model.personalInfo.get();
