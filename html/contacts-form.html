@@ -1,39 +1,83 @@
-<table cellpadding="5" cellspacing="0" border="1">
-	<tr>
-		<th><label for="email">email</label></th>
-		<th><label for="phone">phone</label></th>
-		<th>additional numbers</th>
-		<th><label for="skype">skype</label></th>
-		<th><label for="portfolio">portfolio</label></th>
-		<th><label for="socialNetworks">socials</label></th>
-		<th></th>
-	</tr>
-	<tr>
-		<td>
-			<input id="email" name="email" type="email" data-bind="value: email, valueUpdate: 'keyup'">
-		</td>
-		<td>
+<div class="cvbuilder-form">
+	<h3 class="cvbuilder-block-title">Contacts</h3>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="email">
+				email
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="email" name="email" data-bind="value: email, valueUpdate: 'keyup'">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="phone">
+				phone
+			</label>
+		</div>
+		<div class="col d-2of3">
 			<input id="phone" name="phone" data-bind="value: phone, valueUpdate: 'keyup'">
-		</td>
-		<td>
-		<td>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label>
+				additionalPhones
+			</label>
+		</div>
+		<div class="col d-2of3">
 			<div data-bind="foreach: additionalPhones">
 				<div data-bind="template: tpl"></div>
 			</div>
+		</div>
+	</div>
 
-		</td>
-		<td>
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="skype">
+				skype
+			</label>
+		</div>
+		<div class="col d-2of3">
 			<input id="skype" name="skype" data-bind="value: skype, valueUpdate: 'keyup'">
-		</td>
-		<td>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="portfolio">
+				portfolio
+			</label>
+		</div>
+		<div class="col d-2of3">
 			<input id="portfolio" name="portfolio" data-bind="value: portfolio, valueUpdate: 'keyup'">
-		</td>
-		<td>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="socialNetworks">
+				socialNetworks
+			</label>
+		</div>
+		<div class="col d-2of3">
 			<input id="socialNetworks" name="socialNetworks" data-bind="value: socialNetworks, valueUpdate: 'keyup'">
-		</td>
-		<td>
-			<button data-bind="click: save">Save</button>
-			<button data-bind="click: cancel">Cancel</button>
-		</td>
-	</tr>
-</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			&nbsp;
+		</div>
+		<div class="col d-2of3">
+			<button class="btn btn-primary" data-bind="click: save">Save</button>
+			<button class="btn btn-link rua-p-c-light" data-bind="click: cancel">Cancel</button>
+		</div>
+	</div>
+
+</div>

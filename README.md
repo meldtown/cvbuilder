@@ -5,14 +5,14 @@ Blocks
 ------
 
 + Personal
-~ Contacts
++ Contacts
 Position
 Skills
-~ Experience
++ Experience
 ~ Education
 V Trainings
 Languages
-A Additional
++ Additional
 
 
 
