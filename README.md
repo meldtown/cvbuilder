@@ -1,6 +1,21 @@
 CvBuilder
 =========
 
+Blocks
+------
+
++ Personal
+~ Contacts
+Position
+Skills
+~ Experience
+~ Education
+V Trainings
+Languages
+A Additional
+
+
+
 Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 
 Dependencies
