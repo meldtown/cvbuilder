@@ -1,27 +1,68 @@
-<table cellpadding="5" cellspacing="0" border="1">
-	<tr>
-		<th>email</th>
-		<th>phone</th>
-		<th>additional phones</th>
-		<th>skype</th>
-		<th>portfolio</th>
-		<th>socials</th>
-		<th></th>
-	</tr>
-	<tr>
-		<td data-bind="text: email"></td>
-		<td data-bind="text: phone"></td>
-		<td>
+<div class="cvbuilder-view">
+	<div class="row">
+		<div class="col d-2of3">
+			<h3 class="cvbuilder-block-title">Contacts</h3>
+		</div>
+		<div class="col d-1of3 text-right">
+			<a class="rua-p-c-light" href="#" data-bind="click: edit">Edit</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			email
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: email"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			phone
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: phone"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			additionalPhones
+		</div>
+		<div class="col d-2of3">
 			<div data-bind="foreach: additionalPhones">
 				<div data-bind="template: tpl"></div>
 			</div>
 			<button data-bind="click: addAdditionalPhone">add</button>
-		</td>
-		<td data-bind="text: skype"></td>
-		<td data-bind="text: portfolio"></td>
-		<td data-bind="text: socialNetworks"></td>
-		<td>
-			<button data-bind="click: edit">Edit</button>
-		</td>
-	</tr>
-</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			skype
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: skype"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			portfolio
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: portfolio"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			socialNetworks
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: socialNetworks"></span>
+		</div>
+	</div>
+
+</div>
