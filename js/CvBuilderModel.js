@@ -10,7 +10,7 @@ function CvBuilderModel (api, resumeId) {
 	model.experience = ko.observableArray([]);
 
 	model.getExperiences = function () {
-		backend.get(parent.api + '/resume/' + parent.resumeId + '/experience').success(function (data) {
+		backend.get(parent.api + '/resume/' + model.resumeId + '/experience').success(function (data) {
 			data.forEach(function (item) {
 				model.experience.push(new ResumeExperienceModel(model, item));
 			});
@@ -39,18 +39,29 @@ function CvBuilderModel (api, resumeId) {
 		model.contacts.additionalPhones.push('');
 		model.contacts.beginEdit();
 	};
-	model.educationBlockHasAdded = ko.observable(false);
-	model.addEducationBlock = function () {
-		model.educationBlockHasAdded(true);
+
+	model.additional = ko.observableArray();
+
+	model.getAdditional = function () {
+		backend.get(parent.api + '/resume/' + model.resumeId + '/additional').success(function (data) {
+			data.forEach(function (item) {
+				model.additional.push(new ResumeAdditionalModel(model, item));
+			});
+		});
 	};
-	model.removeEducationBlock = function () {
-		model.educationBlockHasAdded(false);
+
+	model.addAdditional = function () {
+		var item = new ResumeAdditionalModel(model);
+		model.additional.push(item);
+		item.beginEdit();
+		return item;
 	};
 
 	model.load = function () {
 		model.getExperiences();
 		model.personalInfo.get();
 		model.contacts.get();
+		model.getAdditional();
 	};
 
 	model.load();
