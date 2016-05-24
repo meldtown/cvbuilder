@@ -1,4 +1,3 @@
-/* global InitEditableModel */
 function ResumeEducationModel (parent, id, typeOptions, selectedType, schoolName, location, speciality, diploma, year) {
 	var model = this;
 

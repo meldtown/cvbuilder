@@ -1,7 +1,3 @@
-/* global ResumePersonalModel */
-/* global ResumeContactsModel */
-/* global ResumeExperienceModel */
-/* global ResumeEducationModel */
 function CvBuilderModel (api, resumeId) {
 	var model = this;
 
@@ -14,19 +10,10 @@ function CvBuilderModel (api, resumeId) {
 	model.experience = ko.observableArray([]);
 
 	model.getExperiences = function () {
-		$.ajax({
-			method: 'GET',
-			url: parent.api + '/resume/' + parent.resumeId + '/experience',
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).success(function (data) {
+		backend.get(parent.api + '/resume/' + parent.resumeId + '/experience').success(function (data) {
 			data.forEach(function (item) {
 				model.experience.push(new ResumeExperienceModel(model, item));
 			});
-		}).fail(function (jqXHR) {
-			console.log(jqXHR);
 		});
 	};
 
@@ -60,7 +47,11 @@ function CvBuilderModel (api, resumeId) {
 		model.educationBlockHasAdded(false);
 	};
 
-	model.getExperiences();
-	model.personalInfo.get();
-	model.contacts.get();
+	model.load = function () {
+		model.getExperiences();
+		model.personalInfo.get();
+		model.contacts.get();
+	};
+
+	model.load();
 }

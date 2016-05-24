@@ -30,15 +30,58 @@ function InitBadRequestResponseHandler (model) {
 	};
 }
 
-function InitSimpleResponseHandler (model) {
-	model.simpleResponseHandler = function (response) {
-		Object.keys(response).filter(function (key) {
-			return model.hasOwnProperty(key) && ko.isObservable(model[key]) && !model[key].push;
-		}).forEach(function (key) {
-			model[key](response[key]);
+var mapper = {
+	isArrayObservable: function (item) {
+		return ko.isObservable(item) && typeof item.push === 'function';
+	},
+	isSimpleType: function (item) {
+		var data = ko.isObservable(item) ? item() : item;
+		// TODO: catch DateTime
+		return ['number', 'string', 'boolean'].indexOf(typeof data) !== -1;
+	},
+	isPluginKey: function (key) {
+		return ['hasChanges', 'inTransaction', 'tpl'].indexOf(key) !== -1;
+	},
+	toJS: function (model) {
+		var keys = Object.keys(model).filter(function (key) {
+			return !mapper.isPluginKey(key);
 		});
-	};
-}
+		var result = {};
+
+		// Simple types
+		keys.filter(function (key) {
+			return !mapper.isArrayObservable(model[key]) && mapper.isSimpleType(model[key]);
+		}).forEach(function (key) {
+			result[key] = ko.isObservable(model[key]) ? model[key]() : model[key];
+		});
+
+		// Observable arrays
+		keys.filter(function (key) {
+			return mapper.isArrayObservable(model[key]);
+		}).forEach(function (key) {
+			if (model[key]().length > 0 && typeof model[key]()[0].toJS === 'function') {
+				result[key] = model[key]().map(function (item) {
+					return item.toJS();
+				});
+			} else {
+				result[key] = model[key]();
+			}
+		});
+
+		return result;
+	},
+	fromJS: function (model, data) {
+		Object.keys(data).filter(function (key) {
+			return model.hasOwnProperty(key) && !mapper.isPluginKey(key) && !mapper.isArrayObservable(model[key]) && mapper.isSimpleType(model[key]);
+		}).forEach(function (key) {
+			if (ko.isObservable(model[key])) {
+				model[key](data[key]);
+			} else {
+				model[key] = data[key];
+			}
+		});
+	}
+};
 
 var backend = {
 	request: function (type, url, data) {

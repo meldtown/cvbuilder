@@ -1,10 +1,5 @@
-/* global InitEditableModel */
-/* global backend */
-
 function ResumeExperienceModel (parent, data) {
 	var model = this;
-
-	InitSimpleResponseHandler (model);
 
 	model.id = ko.observable();
 	model.position = ko.observable().extend({required: true});
@@ -14,17 +9,27 @@ function ResumeExperienceModel (parent, data) {
 	model.notebookCompanyId = ko.observable().extend({required: true});
 	model.startWork = ko.observable().extend({required: true});
 	model.endWork = ko.observable().extend({required: true});
-	model.recommendationList = ko.observableArray(data ? data.recommendationList.map(function (item) {
-		return new RecommendationList(item.id, item.experienceId, item.name, item.position, item.companyName, item.email, item.phone, item.atRequest, parent.resumeId);
-	}) : []);
+	model.recommendationList = ko.observableArray();
 	model.companySite = ko.observable().extend({required: true});
 	model.employeesAmount = ko.observable().extend({required: true});
 
-	model.simpleResponseHandler(data, model);
+	model.toJS = function () {
+		return mapper.toJS(model);
+	};
+
+	model.fromJS = function (data) {
+		mapper.fromJS(model, data);
+
+		model.startWork(data.startWork);
+		model.endWork(data.endWork);
+		model.recommendationList(data.recommendationList.map(function (item) {
+			return new ResumeExperienceRecommendationModel(model, item);
+		}));
+	};
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			backend.post(parent.api + '/resume/' + parent.resumeId + '/experience', model)
+			backend.post(parent.api + '/resume/' + parent.resumeId + '/experience', model.toJS())
 				.success(function (id) {
 					model.id(id);
 					model.commit();
@@ -51,19 +56,31 @@ function ResumeExperienceModel (parent, data) {
 		}
 	};
 
-	function RecommendationList (id, experienceId, name, position, companyName, email, phone, atRequest, resumeId) {
-		var model = this;
-		model.id = ko.observable(id);
-		model.experienceId = ko.observable(experienceId);
-		model.name = ko.observable(name);
-		model.position = ko.observable(position);
-		model.companyName = ko.observable(companyName);
-		model.email = ko.observable(email);
-		model.phone = ko.observable(phone);
-		model.atRequest = ko.observable(atRequest);
-		model.resumeId = ko.observable(resumeId);
-	}
-
 	InitEditableModel(model, 'experience');
 	InitBadRequestResponseHandler(model);
+
+	if (data) model.fromJS(data);
+}
+
+function ResumeExperienceRecommendationModel (parent, data) {
+	var model = this;
+
+	model.id = ko.observable();
+	model.experienceId = ko.observable();
+	model.name = ko.observable();
+	model.position = ko.observable();
+	model.companyName = ko.observable();
+	model.email = ko.observable();
+	model.phone = ko.observable();
+	model.atRequest = ko.observable();
+
+	model.fromJS = function (data) {
+		mapper.fromJS(model, data);
+	};
+
+	model.toJS = function () {
+		mapper.toJS(model);
+	};
+
+	if (data) model.fromJS(data);
 }
