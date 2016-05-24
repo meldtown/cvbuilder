@@ -23,4 +23,12 @@
 		</div>
 		<button data-bind="click: addEducation">Add</button>
 	</div>
+
+	<div>
+		<h3 class="cvbuilder-block-title">Additional</h3>
+		<div data-bind="foreach: additional">
+			<div data-bind="template: tpl"></div>
+		</div>
+		<button data-bind="click: addAdditional">Add</button>
+	</div>
 </div>
