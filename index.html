@@ -28,6 +28,8 @@
 
 	<script src="js/Helpers.js"></script>
 
+	<script src="js/DictionaryModel.js"></script>
+
 	<script src="js/ResumeContactsModel.js"></script>
 	<script src="js/ResumeEducationModel.js"></script>
 	<script src="js/ResumeExperienceModel.js"></script>
@@ -92,7 +94,7 @@
 			jQuery.getJSON(api + '/dictionary/language/skill')
 		).then(function (langauge, experience, city, branch, schedule, resource, activityLevel, languageSkill) {
 			var dictionary = {
-				language: langauge[0],
+				language: langauge[0].map(function (item) {}),
 				experience: experience[0],
 				city: city[0],
 				branch: branch[0],

@@ -11,9 +11,8 @@ function InitEditableModel (model, templatePrefix) {
 }
 
 function InitMultilanguageModel (model, parent) {
-	model._lng = ko.observable(parent._lng());
-	parent._lng.subscribe(function (newValue) {
-		model._lng(newValue);
+	model._lng = ko.computed(function () {
+		return parent._lng();
 	});
 
 	model._dic = function (dic, id) {

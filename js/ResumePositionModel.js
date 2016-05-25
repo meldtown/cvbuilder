@@ -1,7 +1,9 @@
 function ResumePositionModel (parent, data) {
 	var model = this;
 
-	InitMultilanguageModel (model, parent);
+	model._lng = ko.computed(function () {
+		return parent._lng();
+	});
 
 	model.resumeId = parent.resumeId;
 	model.api = parent.api + '/resume/' + parent.resumeId + '/position';
@@ -44,8 +46,26 @@ function ResumePositionModel (parent, data) {
 		}
 	};
 
+	model.experienceOptions = ko.observableArray();
+	jQuery.getJSON(parent.api + '/dictionary/experience', function (data) {
+		model.experienceOptions(data.map(function (item) {
+			return new DictionaryModel(model, item);
+		}));
+	});
+	model.experience = ko.computed({
+		read: function () {
+			return model.experienceOptions().filter(function (item) {
+				return item.id == model.experienceId();
+			}).shift();
+		},
+		write: function (newValue) {
+			model.experienceId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+
 	model.experienceName = ko.computed(function () {
-		return model._dic(parent.dictionary.experience, model.experienceId);
+		var item = model.experience();
+		return item ? item.label() : '';
 	});
 
 	InitEditableModel(model, 'position');
