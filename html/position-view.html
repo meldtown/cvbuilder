@@ -1,7 +1,7 @@
 <div class="cvbuilder-view">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-title">Position</h3>
+			<h3 class="cvbuilder-block-title" data-bind="text: resource.positionRubricNameLabel.label"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
 			<a class="rua-p-c-light" href="#" data-bind="click: beginEdit">Edit</a>
@@ -10,7 +10,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			position
+			<span data-bind="text: resource.positionNameLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: position"></span>
@@ -18,7 +18,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			scheduleId
+			<span data-bind="text: resource.positionTypeLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: scheduleId"></span>
@@ -26,7 +26,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.experienceLabel.label"></span>
+			<span data-bind="text: resource.positionExperienceLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: selectedExperienceName"></span>
@@ -34,7 +34,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			salary
+			<span data-bind="text: resource.positionSalaryLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: salary"></span>

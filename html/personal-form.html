@@ -1,10 +1,10 @@
 <div class="cvbuilder-form">
-	<h3 class="cvbuilder-block-title">Personal info</h3>
+	<h3 class="cvbuilder-block-title" data-bind="text: resource.personalRubricNameLabel.label"></h3>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="name">
-				name
+				<span data-bind="text: resource.personalNameLabel.label" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -15,7 +15,7 @@
 	<div class="row" style="display: none">
 		<div class="col d-1of3">
 			<label for="middleName">
-				middleName
+				<span data-bind="text: resource.personalMiddleNameLabel.label" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="surName">
-				surName
+				<span data-bind="text: resource.personalSurnameLabel.label" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -37,7 +37,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="dateBirth">
-				dateBirth
+				<span data-bind="text: resource.personalDateBirthLabel.label" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -48,7 +48,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="sex">
-				sex
+				<span data-bind="text: resource.personalSexLabel.label" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">

@@ -1,7 +1,7 @@
 <div class="cvbuilder-form">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle">Additioanl info</h3>
+			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.additionalTitleLabel.label"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
 			<a class="rua-p-c-light" href="#" data-bind="click: remove">Remove</a>
@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="title">
-				title
+				<span data-bind="text: resource.additionalTitleLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="description">
-				description
+				<span data-bind="text: resource.additionalDescriptionLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">

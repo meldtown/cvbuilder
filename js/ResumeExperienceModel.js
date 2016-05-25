@@ -16,8 +16,8 @@ function ResumeExperienceModel (parent, data) {
 	model.startWork = ko.observable().extend({required: true});
 	model.endWork = ko.observable().extend({required: true});
 	model.recommendationList = ko.observableArray();
-	model.companySite = ko.observable().extend({required: true});
-	model.employeesAmount = ko.observable().extend({required: true});
+	model.companySite = ko.observable();
+	model.employeesAmount = ko.observable();
 
 	model.toJS = function () {
 		return mapper.toJS(model);

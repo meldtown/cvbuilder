@@ -1,10 +1,10 @@
 <div class="cvbuilder-form">
-	<h3 class="cvbuilder-block-title">Position</h3>
+	<h3 class="cvbuilder-block-title" data-bind="text: resource.positionRubricNameLabel.label"></h3>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="position">
-				position
+				<span data-bind="text: resource.positionNameLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="scheduleId">
-				scheduleId
+				<span data-bind="text: resource.positionTypeLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -26,11 +26,11 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="experienceId">
-				experienceId
+				<span data-bind="text: resource.positionExperienceLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select data-bind="optionsCaption: 'chose...', options: experienceOptions, optionsText: 'label', value: experience"></select>
+			<select data-bind="optionsCaption: 'choose...', options: experienceOptions, optionsText: 'label', value: experience"></select>
 			<input id="experienceId" name="experienceId" data-bind="value: experienceId, valueUpdate: 'keyup'">
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="salary">
-				salary
+				<span data-bind="text: resource.positionExperienceLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">

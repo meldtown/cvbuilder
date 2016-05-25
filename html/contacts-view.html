@@ -1,7 +1,7 @@
 <div class="cvbuilder-view">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-title">Contacts</h3>
+			<h3 class="cvbuilder-block-title" data-bind="text: resource.contactsNameLabel.label"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
 			<a class="rua-p-c-light" href="#" data-bind="click: edit">Edit</a>
@@ -10,7 +10,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			email
+			<span data-bind="text: resource.contactsEmailLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: email"></span>
@@ -19,7 +19,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			phone
+			<span data-bind="text: resource.contactsPhoneLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: phone"></span>
@@ -28,7 +28,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			additionalPhones
+			<span data-bind="text: resource.contactsAdditionalPhonesLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<div data-bind="foreach: additionalPhones">
@@ -40,7 +40,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			skype
+			<span data-bind="text: resource.contactsSkypeLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: skype"></span>
@@ -49,7 +49,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			portfolio
+			<span data-bind="text: resource.contactsPortfolioLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: portfolio"></span>
@@ -58,7 +58,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			socialNetworks
+			<span data-bind="text: resource.contactsSocialNetworksLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: socialNetworks"></span>
