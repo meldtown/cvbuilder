@@ -4,6 +4,8 @@ function ResumeExperienceModel (parent, data) {
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
+
+	model.resource = parent.dictionary.resource;
 	
 	model.id = ko.observable();
 	model.position = ko.observable().extend({required: true});

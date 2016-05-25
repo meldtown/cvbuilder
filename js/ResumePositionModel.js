@@ -5,6 +5,8 @@ function ResumePositionModel (parent, data) {
 		return parent._lng();
 	});
 
+	model.resource = parent.dictionary.resource;
+
 	model.resumeId = parent.resumeId;
 	model.api = parent.api + '/resume/' + parent.resumeId + '/position';
 
@@ -45,8 +47,6 @@ function ResumePositionModel (parent, data) {
 				});
 		}
 	};
-
-	model.resource = parent.dictionary.resource;
 
 	model.experienceOptions = parent.dictionary.experience;
 

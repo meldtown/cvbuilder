@@ -4,6 +4,8 @@ function ResumePersonalModel (parent) {
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
+
+	model.resource = parent.dictionary.resource;
 	
 	model.api = parent.api + '/resume/' + parent.resumeId + '/personal';
 

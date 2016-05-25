@@ -4,6 +4,8 @@ function ResumeAdditionalModel (parent, data) {
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
+
+	model.resource = parent.dictionary.resource;
 	
 	model.resumeId = parent.resumeId;
 
