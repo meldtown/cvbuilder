@@ -46,24 +46,13 @@ function ResumePositionModel (parent, data) {
 		}
 	};
 
+	model.resource = parent.dictionary.resource;
 
-	model.resource = {
-		experience: new DictionaryModel(parent, {
-			ru: 'Опыт',
-			ua: 'Доcвiт',
-			en: 'Experience'
-		})
-	};
+	model.experienceOptions = parent.dictionary.experience;
 
-	model.experienceOptions = ko.observableArray();
-	jQuery.getJSON(parent.api + '/dictionary/experience', function (data) {
-		model.experienceOptions(data.map(function (item) {
-			return new DictionaryModel(model, item);
-		}));
-	});
 	model.experience = ko.computed({
 		read: function () {
-			return model.experienceOptions().filter(function (item) {
+			return model.experienceOptions.filter(function (item) {
 				return item.id == model.experienceId();
 			}).shift();
 		},
@@ -72,9 +61,8 @@ function ResumePositionModel (parent, data) {
 		}
 	}).extend({required: true});
 
-	model.experienceName = ko.computed(function () {
-		var item = model.experience();
-		return item ? item.label() : '';
+	model.selectedExperienceName = ko.computed(function () {
+		return model.experience() ? model.experience().label() : '';
 	});
 
 	InitEditableModel(model, 'position');

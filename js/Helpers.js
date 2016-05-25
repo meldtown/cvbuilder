@@ -48,7 +48,6 @@ function InitBadRequestResponseHandler (model) {
 	};
 }
 
-
 var mapper = {
 	isArrayObservable: function (item) {
 		return ko.isObservable(item) && typeof item.push === 'function';
@@ -59,11 +58,12 @@ var mapper = {
 		return ['number', 'string', 'boolean'].indexOf(typeof data) !== -1;
 	},
 	isPluginKey: function (key) {
-		return ['hasChanges', 'inTransaction', 'tpl', '_lng'].indexOf(key) !== -1;
+		if (key[0] === '_') return true;
+		return ['hasChanges', 'inTransaction', 'tpl', 'api'].indexOf(key) !== -1;
 	},
 	toJS: function (model) {
 		var keys = Object.keys(model).filter(function (key) {
-			return !mapper.isPluginKey(key);
+			return !mapper.isPluginKey(key) && !ko.isComputed(model[key]);
 		});
 
 		var result = {};

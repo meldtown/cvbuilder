@@ -93,6 +93,10 @@
 			jQuery.getJSON(api + '/dictionary/activitylevel'),
 			jQuery.getJSON(api + '/dictionary/language/skill')
 		).then(function (langauge, experience, city, branch, schedule, resource, activityLevel, languageSkill) {
+//			experience = experience[0].reduce(function (dictionary, item) {
+//				dictionary[item.id] = new DictionaryModel(model, item);
+//				return dictionary;
+//			}, {});
 			var dictionary = {
 				language: langauge[0].map(function (item) {}),
 				experience: experience[0],

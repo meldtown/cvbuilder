@@ -3,9 +3,19 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.api = api;
 	model.resumeId = resumeId;
+	model._lng = ko.observable('ru');
+
 	model.dictionary = dictionary;
 
-	model._lng = ko.observable('ru');
+	Object.keys(model.dictionary.resource).forEach(function (key) {
+		model.dictionary.resource[key] = new DictionaryModel(model, model.dictionary.resource[key]);
+	});
+
+	model.dictionary.experience = model.dictionary.experience.map(function (item) {
+		return new DictionaryModel(model, item);
+	});
+
+
 
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);
