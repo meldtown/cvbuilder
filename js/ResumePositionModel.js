@@ -46,6 +46,15 @@ function ResumePositionModel (parent, data) {
 		}
 	};
 
+
+	model.resource = {
+		experience: new DictionaryModel(parent, {
+			ru: 'Опыт',
+			ua: 'Доcвiт',
+			en: 'Experience'
+		})
+	};
+
 	model.experienceOptions = ko.observableArray();
 	jQuery.getJSON(parent.api + '/dictionary/experience', function (data) {
 		model.experienceOptions(data.map(function (item) {
