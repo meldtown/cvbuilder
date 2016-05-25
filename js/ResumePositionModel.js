@@ -53,7 +53,7 @@ function ResumePositionModel (parent, data) {
 	model.experience = ko.computed({
 		read: function () {
 			return model.experienceOptions.filter(function (item) {
-				return item.id.toString() === model.experienceId().toString();
+				return item.id.toString() === (model.experienceId() || '').toString();
 			}).shift();
 		},
 		write: function (newValue) {
