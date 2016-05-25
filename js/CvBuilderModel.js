@@ -11,9 +11,21 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		model.dictionary.resource[key] = new DictionaryModel(model, model.dictionary.resource[key]);
 	});
 
+	model.dictionary.findById = function (dictionary, id) {
+		id = id || '';
+		return dictionary.filter(function (item) {
+			return item.id.toString() === id.toString();
+		}).shift();
+	};
+
 	model.dictionary.experience = model.dictionary.experience.map(function (item) {
 		return new DictionaryModel(model, item);
 	});
+
+	model.dictionary.experience.findById = function (id) {
+		return model.dictionary.findById(model.dictionary.experience, id);
+	};
+
 
 
 
