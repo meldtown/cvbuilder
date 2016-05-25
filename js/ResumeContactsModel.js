@@ -1,6 +1,10 @@
 function ResumeContactsModel (parent) {
 	var model = this;
 
+	model._lng = ko.computed(function () {
+		return parent._lng();
+	});
+	
 	model.resumeId = parent.resumeId;
 
 	model.phone = ko.observable().extend({required: true});

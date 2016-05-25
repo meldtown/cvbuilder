@@ -10,24 +10,6 @@ function InitEditableModel (model, templatePrefix) {
 	});
 }
 
-function InitMultilanguageModel (model, parent) {
-	model._lng = ko.computed(function () {
-		return parent._lng();
-	});
-
-	model._dic = function (dic, id) {
-		var val = ko.isObservable(id) ? id() : id;
-
-		if (!val) return '';
-
-		var res = parent.dictionary.experience.filter(function (item) {
-			return item.id.toString() === val.toString();
-		}).shift();
-
-		return res[model._lng()];
-	};
-}
-
 function InitBadRequestResponseHandler (model) {
 	model.handleBarRequestResponse = function (jqXHR) {
 		if (jqXHR.status === 400) {

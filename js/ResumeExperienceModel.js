@@ -1,6 +1,10 @@
 function ResumeExperienceModel (parent, data) {
 	var model = this;
 
+	model._lng = ko.computed(function () {
+		return parent._lng();
+	});
+	
 	model.id = ko.observable();
 	model.position = ko.observable().extend({required: true});
 	model.company = ko.observable().extend({required: true});

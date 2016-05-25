@@ -1,6 +1,10 @@
 function ResumeSkillModel (parent) {
 	var model = this;
 
+	model._lng = ko.computed(function () {
+		return parent._lng();
+	});
+	
 	model.api = parent.api + '/resume/' + parent.resumeId + '/skill';
 
 	model.resumeId = parent.resumeId;

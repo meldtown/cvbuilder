@@ -1,6 +1,10 @@
 function ResumeAdditionalModel (parent, data) {
 	var model = this;
 
+	model._lng = ko.computed(function () {
+		return parent._lng();
+	});
+	
 	model.resumeId = parent.resumeId;
 
 	model.id = ko.observable();
