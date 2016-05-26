@@ -58,6 +58,17 @@
 
 	<div class="row">
 		<div class="col d-1of3">
+			<label for="cityId">
+				<span data-bind="text: resource.personalCityNameLabel.label" ></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="cityId" name="cityId" data-bind="value: cityId, valueUpdate: 'keyup'">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
