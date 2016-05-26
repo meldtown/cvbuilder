@@ -4,6 +4,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.api = api;
 	model.resumeId = resumeId;
 	model._lng = ko.observable('ru');
+	model._lngOptions = ['ru', 'ua','en'];
 
 	model.dictionary = dictionary;
 
