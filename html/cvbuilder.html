@@ -1,57 +1,74 @@
 <div class="cvbuilder">
-	<div data-bind="with: personalInfo">
-		<div data-bind="template: tpl"></div>
-	</div>
 
-	<div data-bind="with: contacts">
-		<div data-bind="template: tpl"></div>
-	</div>
+	<select data-bind="options: _lngOptions, value: _lng"></select>
 
-	<div data-bind="with: position">
-		<div data-bind="template: tpl"></div>
-	</div>
+	<div class="row">
+		<div class="col d-2of3 d-pr-1of2">
+			<div class="cvbuilder-white-box">
+				<div data-bind="with: personalInfo">
+					<div data-bind="template: tpl"></div>
+				</div>
 
-	<div data-bind="with: skill">
-		<div data-bind="template: tpl"></div>
-	</div>
+				<div data-bind="with: contacts">
+					<div data-bind="template: tpl"></div>
+				</div>
 
-	<div>
-		<h3 class="cvbuilder-block-title" data-bind=""></h3>
-		<div data-bind="foreach: experience">
-			<div data-bind="template: tpl"></div>
+				<div data-bind="with: position">
+					<div data-bind="template: tpl"></div>
+				</div>
+
+				<div data-bind="with: skill">
+					<div data-bind="template: tpl"></div>
+				</div>
+
+				<div>
+					<h3 class="cvbuilder-block-title" data-bind=""></h3>
+					<div data-bind="foreach: experience">
+						<div data-bind="template: tpl"></div>
+					</div>
+					<button data-bind="click: addExperience">Add</button>
+				</div>
+
+				<div>
+					<h3 class="cvbuilder-block-title" data-bind="text: dictionary.resource.educationNameLabel.label"></h3>
+					<div data-bind="foreach: education">
+						<div data-bind="template: tpl"></div>
+					</div>
+					<button data-bind="click: addEducation">Add</button>
+				</div>
+
+				<div>
+					<h3 class="cvbuilder-block-title">Trainig</h3>
+					<div data-bind="foreach: training">
+						<div data-bind="template: tpl"></div>
+					</div>
+					<button data-bind="click: addTraining">Add</button>
+				</div>
+
+				<div>
+					<h3 class="cvbuilder-block-title">Additional</h3>
+					<div data-bind="foreach: additional">
+						<div data-bind="template: tpl"></div>
+					</div>
+					<button data-bind="click: addAdditional">Add</button>
+				</div>
+
+				<div>
+					<h3 class="cvbuilder-block-title">Language</h3>
+					<div data-bind="foreach: language">
+						<div data-bind="template: tpl"></div>
+					</div>
+					<button data-bind="click: addLanguage">Add</button>
+				</div>
+			</div>
 		</div>
-		<button data-bind="click: addExperience">Add</button>
-	</div>
-
-	<div>
-		<h3 class="cvbuilder-block-title" data-bind="text: dictionary.resource.educationNameLabel.label"></h3>
-		<div data-bind="foreach: education">
-			<div data-bind="template: tpl"></div>
+		<div class="col d-1of3 d-pl-1of2">
+			<div class="cvbuilder-white-box">
+				sidebar
+			</div>
+			<div>
+				sidebar
+			</div>
 		</div>
-		<button data-bind="click: addEducation">Add</button>
-	</div>
-
-	<div>
-		<h3 class="cvbuilder-block-title">Trainig</h3>
-		<div data-bind="foreach: training">
-			<div data-bind="template: tpl"></div>
-		</div>
-		<button data-bind="click: addTraining">Add</button>
-	</div>
-
-	<div>
-		<h3 class="cvbuilder-block-title">Additional</h3>
-		<div data-bind="foreach: additional">
-			<div data-bind="template: tpl"></div>
-		</div>
-		<button data-bind="click: addAdditional">Add</button>
-	</div>
-
-	<div>
-		<h3 class="cvbuilder-block-title">Language</h3>
-		<div data-bind="foreach: language">
-			<div data-bind="template: tpl"></div>
-		</div>
-		<button data-bind="click: addLanguage">Add</button>
 	</div>
 </div>

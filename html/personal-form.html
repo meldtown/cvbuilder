@@ -8,7 +8,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="name" name="name" data-bind="value: name, valueUpdate: 'keyup'">
+			<input class="input-block-level" id="name" name="name" data-bind="value: name, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -19,7 +19,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="middleName" name="middleName" data-bind="value: middleName, valueUpdate: 'keyup'">
+			<input class="input-block-level" id="middleName" name="middleName" data-bind="value: middleName, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="surName" name="surName" data-bind="value: surName, valueUpdate: 'keyup'">
+			<input class="input-block-level" id="surName" name="surName" data-bind="value: surName, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -41,7 +41,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="dateBirth" name="dateBirth" data-bind="value: dateBirth, valueUpdate: 'keyup'">
+			<input class="input-block-level" id="dateBirth" name="dateBirth" data-bind="value: dateBirth, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -52,7 +52,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="sex" name="sex" data-bind="value: sex, valueUpdate: 'keyup'">
+			<input class="input-block-level" id="sex" name="sex" data-bind="value: sex, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -64,7 +64,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="cityId" name="cityId" data-bind="value: cityId, valueUpdate: 'keyup'">
+			<select id="cityId" name="cityId" class="input-block-level" data-bind="optionsCaption: 'choose...', options: cityOptions, optionsText: 'label', value: selectedCityOption"></select>
+			<!--<input class="input-block-level" id="cityId" name="cityId" data-bind="value: cityId, valueUpdate: 'keyup'">-->
 		</div>
 	</div>
 

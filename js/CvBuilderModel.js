@@ -4,30 +4,33 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.api = api;
 	model.resumeId = resumeId;
 	model._lng = ko.observable('ru');
+	model._lngOptions = ['ru', 'ua','en'];
 
 	model.dictionary = dictionary;
 
-	Object.keys(model.dictionary.resource).forEach(function (key) {
-		model.dictionary.resource[key] = new DictionaryModel(model, model.dictionary.resource[key]);
+	// Map all resources into DictionaryModel
+	Object.keys(model.dictionary).forEach(function (key) {
+		// We have two kind of dictionaries
+		// Array: [ {id:1, en: 'foo', ru: 'bar'}, ... ] - all except dictionary.resource
+		// Object: { acme: {ru: 'foo', 'bar' } } - dictionary.resource is one of them
+		if (Object.prototype.toString.call(model.dictionary[key]) === '[object Array]') {
+			model.dictionary[key] = model.dictionary[key].map(function (item) {
+				return new DictionaryModel(model, item);
+			});
+
+			// add findById method to dictionary
+			model.dictionary[key].findById = function (id) {
+				id = id || '';
+				return model.dictionary[key].filter(function (item) {
+					return item.id.toString() === id.toString();
+				}).shift();
+			};
+		} else {
+			Object.keys(model.dictionary[key]).forEach(function (innerKey) {
+				model.dictionary[key][innerKey] = new DictionaryModel(model, model.dictionary[key][innerKey]);
+			});
+		}
 	});
-
-	model.dictionary.findById = function (dictionary, id) {
-		id = id || '';
-		return dictionary.filter(function (item) {
-			return item.id.toString() === id.toString();
-		}).shift();
-	};
-
-	model.dictionary.experience = model.dictionary.experience.map(function (item) {
-		return new DictionaryModel(model, item);
-	});
-
-	model.dictionary.experience.findById = function (id) {
-		return model.dictionary.findById(model.dictionary.experience, id);
-	};
-
-
-
 
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);
