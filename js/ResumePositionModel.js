@@ -49,21 +49,16 @@ function ResumePositionModel (parent, data) {
 	};
 
 	model.experienceOptions = parent.dictionary.experience;
-
-	model.experience = ko.computed({
+	model.selectedExperienceOption = ko.computed({
 		read: function () {
-			return parent.dictionary.experience.findById(model.experienceId());
-			// return model.experienceOptions.filter(function (item) {
-			// 	return item.id.toString() === (model.experienceId() || '').toString();
-			// }).shift();
+			return model.experienceOptions.findById(model.experienceId());
 		},
 		write: function (newValue) {
 			model.experienceId(newValue ? newValue.id : undefined);
 		}
 	}).extend({required: true});
-
-	model.selectedExperienceName = ko.computed(function () {
-		return model.experience() ? model.experience().label() : '';
+	model.selectedExperienceOptionLabel = ko.computed(function () {
+		return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
 	});
 
 	InitEditableModel(model, 'position');
