@@ -9,12 +9,21 @@
 	.cvbuilder-view,
 	.cvbuilder-form {
 		border: 1px solid #999;
-		margin: 20px;
+		margin: 20px 0;
 		padding: 20px;
+
+		.row {
+			margin-bottom: 10px;
+		}
 	}
 
 	.cvbuilder-form {
 		background: #ebebeb;
+	}
+
+	.cvbuilder-white-box {
+		background: white;
+		padding: 20px;
 	}
 }
 
