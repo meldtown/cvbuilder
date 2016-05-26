@@ -8,7 +8,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="position" name="position" data-bind="value: position, valueUpdate: 'keyup'">
+			<input id="position" name="position" data-bind="attr: {placeholder: resource.positionAddPositionLabel.label}, value: position, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select class="input-block-level" id="experienceId" name="experienceId" data-bind="optionsCaption: 'choose...', options: experienceOptions, optionsText: 'label', value: selectedExperienceOption"></select>
+			<select class="input-block-level" id="experienceId" name="experienceId" data-bind="optionsCaption: resource.positionAddExperienceLabel.label, options: experienceOptions, optionsText: 'label', value: selectedExperienceOption"></select>
 			<!--<input id="experienceId" name="experienceId" data-bind="value: experienceId, valueUpdate: 'keyup'">-->
 		</div>
 	</div>
@@ -38,11 +38,11 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="salary">
-				<span data-bind="text: resource.positionExperienceLabel.label"></span>
+				<span data-bind="text: resource.positionSalaryLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="salary" name="salary" data-bind="value: salary, valueUpdate: 'keyup'">
+			<input id="salary" name="salary" data-bind="attr: {placeholder: resource.positionAddSalaryLabel.label}, value: salary, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -62,8 +62,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="click: save">Save</button>
-			<button class="btn btn-link rua-p-c-light" data-bind="click: rollback">Cancel</button>
+			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: rollback"></button>
 		</div>
 	</div>
 </div>
