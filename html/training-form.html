@@ -4,7 +4,7 @@
 			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.trainingRubricNameLabel.label"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="click: remove">Remove</a>
+			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
 		</div>
 	</div>
 
@@ -15,7 +15,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="name" name="name" data-bind="value: name, valueUpdate: 'keyup'">
+			<input id="name" name="name" data-bind="attr: {placeholder: resource.trainingAddNameLabel.label}, value: name, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -37,7 +37,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="description" name="description" data-bind="value: description, valueUpdate: 'keyup'">
+			<textarea id="description" cols="70" rows="10" name="description" data-bind="attr: {placeholder: resource.trainingAddDescriptionLabel.label}, value: description, valueUpdate: 'keyup'"></textarea>
 		</div>
 	</div>
 
@@ -46,8 +46,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="click: save">Save</button>
-			<button class="btn btn-link rua-p-c-light" data-bind="click: rollback">Cancel</button>
+			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: rollback">Cancel</button>
 		</div>
 	</div>
 </div>

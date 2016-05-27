@@ -6,7 +6,6 @@ function ResumeAdditionalModel (parent, data) {
 	});
 
 	model.resource = parent.dictionary.resource;
-	
 	model.resumeId = parent.resumeId;
 
 	model.id = ko.observable();

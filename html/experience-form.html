@@ -2,10 +2,11 @@
 
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle">Experience</h3>
+			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.experienceRubricNameLabel.label"></h3>
+			<span data-bind="text: resource.experienceRubricTooltip.label"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="click: remove">Remove</a>
+			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
 		</div>
 	</div>
 
@@ -17,6 +18,17 @@
 		</div>
 		<div class="col d-2of3">
 			<input id="company" name="company" data-bind="value: company, valueUpdate: 'keyup'">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="branchId">
+				<span data-bind="text: resource.experienceAreaLabel.label"></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="branchId" name="branchId" data-bind="value: branchId, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -43,16 +55,6 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col d-1of3">
-			<label for="branchId">
-				branchId
-			</label>
-		</div>
-		<div class="col d-2of3">
-			<input id="branchId" name="branchId" data-bind="value: branchId, valueUpdate: 'keyup'">
-		</div>
-	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
@@ -70,8 +72,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="click: save">Save</button>
-			<button class="btn btn-link rua-p-c-light" data-bind="click: rollback">Cancel</button>
+			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: rollback"></button>
 		</div>
 	</div>
 

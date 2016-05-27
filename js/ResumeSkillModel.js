@@ -13,6 +13,10 @@ function ResumeSkillModel (parent) {
 
 	model.text = ko.observable();
 
+	model.isTextEmpty = ko.computed(function () {
+		return !model.text();
+	});
+
 	model.get = function () {
 		backend.get(model.api).success(function (data) {
 			model.fromJS(data);

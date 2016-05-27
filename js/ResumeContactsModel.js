@@ -80,6 +80,7 @@ function ResumeContactsAdditionalPhoneModel (parent, data) {
 	var model = this;
 
 	model.phone = ko.observable(data);
+	model.resource = parent.resource;
 
 	model.toJS = function () {
 		return model.phone();

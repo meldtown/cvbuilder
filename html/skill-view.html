@@ -4,9 +4,11 @@
 			<h3 class="cvbuilder-block-title" data-bind="text: resource.skillRubricNameLabel.label"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="click: beginEdit">Edit</a>
+			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: beginEdit"></a>
 		</div>
 	</div>
-
+	<div data-bind="if: isTextEmpty">
+		<span data-bind="text: resource.skillExampleLabel.label"></span>
+	</div>
 	<div data-bind="text: text"></div>
 </div>

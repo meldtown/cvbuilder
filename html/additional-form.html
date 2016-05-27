@@ -1,10 +1,11 @@
 <div class="cvbuilder-form">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.additionalTitleLabel.label"></h3>
+			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.additionalNameLabel.label"></h3>
+			<span data-bind="text: resource.additionalRubricTooltip.label"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="click: remove">Remove</a>
+			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
 		</div>
 	</div>
 
@@ -16,7 +17,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="title" name="title" data-bind="value: title, valueUpdate: 'keyup'">
+			<input id="title" name="title" data-bind="attr: {placeholder: resource.additionalAddNameLabel.label}, value: title, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -36,8 +37,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="click: save">Save</button>
-			<button class="btn btn-link rua-p-c-light" data-bind="click: rollback">Cancel</button>
+			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: rollback"></button>
 		</div>
 	</div>
 </div>
