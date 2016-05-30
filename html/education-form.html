@@ -33,12 +33,12 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<label for="location">
+			<label for="cityId">
 				<span data-bind="text: resource.educationLocationLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="location" name="location"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddLocationLabel.label}, value: location, valueUpdate: 'keyup'">
+			<select id="cityId" name="cityId" class="input-block-level" data-bind="optionsCaption: resource.personalChooseCity.label, options: cityOptions, optionsText: 'label', value: selectedCityOption"></select>
 		</div>
 	</div>
 

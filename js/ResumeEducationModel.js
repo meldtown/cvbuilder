@@ -8,6 +8,7 @@ function ResumeEducationModel (parent, data) {
 	model.resource = parent.dictionary.resource;
 	
 	model.resumeId = parent.resumeId;
+	model.cityId = ko.observable();
 
 	model.id = ko.observable();
 	model.typeId = ko.observable();
@@ -36,6 +37,19 @@ function ResumeEducationModel (parent, data) {
 	}).extend({required: true});
 	model.selectedTypeOptionLabel = ko.computed(function () {
 		return model.selectedTypeOption() ? model.selectedTypeOption().label() : '';
+	});
+
+	model.cityOptions = parent.dictionary.city;
+	model.selectedCityOption = ko.computed({
+		read: function () {
+			return model.cityOptions.findById(model.cityId());
+		},
+		write: function (newValue) {
+			model.cityId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedCityOptionLabel = ko.computed(function () {
+		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
 	});
 
 	model.save = function () {
