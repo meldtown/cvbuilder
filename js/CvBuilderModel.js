@@ -65,7 +65,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	};
 
 	model.addEducation = function () {
-		var item = new ResumeEducationModel(model, 5, ['high', 'secondary'], '', '', '', '', [2015, 2014, 2013, 2012, 2011]);
+		var item = new ResumeEducationModel(model);
 		model.education.push(item);
 		item.beginEdit();
 		return item;

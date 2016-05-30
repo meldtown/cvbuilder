@@ -25,6 +25,19 @@ function ResumeEducationModel (parent, data) {
 		mapper.fromJS(model, data);
 	};
 
+	model.typeOptions = parent.dictionary.educationType;
+	model.selectedTypeOption = ko.computed({
+		read: function () {
+			return model.typeOptions.findById(model.typeId());
+		},
+		write: function (newValue) {
+			model.typeId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedTypeOptionLabel = ko.computed(function () {
+		return model.selectedTypeOption() ? model.selectedTypeOption().label() : '';
+	});
+
 	model.save = function () {
 		if (model.errors().length === 0) {
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/education', model.toJS())

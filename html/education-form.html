@@ -16,7 +16,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="typeId" name="typeId" data-bind="value: typeId, valueUpdate: 'keyup'">
+			<select class="input-block-level" id="typeId" name="typeId" class="input-block-level" data-bind="optionsCaption: resource.positionAddTypeLabel.label, options: typeOptions, optionsText: 'label', value: selectedTypeOption"></select>
 		</div>
 	</div>
 
@@ -27,7 +27,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="schoolName" name="schoolName" data-bind="attr: {placeholder: resource.educationAddNameLabel.label}, value: schoolName, valueUpdate: 'keyup'">
+			<input id="schoolName" name="schoolName"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddNameLabel.label}, value: schoolName, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -38,7 +38,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="location" name="location" data-bind="attr: {placeholder: resource.educationAddLocationLabel.label}, value: location, valueUpdate: 'keyup'">
+			<input id="location" name="location"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddLocationLabel.label}, value: location, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -49,7 +49,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="speciality" name="speciality" data-bind="attr: {placeholder: resource.educationAddSpecialityLabel.label}, value: speciality, valueUpdate: 'keyup'">
+			<input id="speciality" name="speciality"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddSpecialityLabel.label}, value: speciality, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -60,7 +60,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="diploma" name="diploma" data-bind="attr: {placeholder: resource.educationAddDiplomaLabel.label}, value: diploma, valueUpdate: 'keyup'">
+			<input id="diploma" name="diploma"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddDiplomaLabel.label}, value: diploma, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -71,7 +71,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="year" name="year" data-bind="value: year, valueUpdate: 'keyup'">
+			<input id="year" name="year"  class="input-block-level" data-bind="value: year, valueUpdate: 'keyup'">
 		</div>
 	</div>
 

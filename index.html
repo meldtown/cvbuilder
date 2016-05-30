@@ -86,13 +86,14 @@
 		jQuery.when(
 			jQuery.getJSON(api + '/dictionary/language'),
 			jQuery.getJSON(api + '/dictionary/experience'),
+			jQuery.getJSON(api + '/dictionary/education'),
 			jQuery.getJSON(api + '/dictionary/city'),
 			jQuery.getJSON(api + '/dictionary/branch'),
 			jQuery.getJSON(api + '/dictionary/schedule'),
 			jQuery.getJSON(api + '/dictionary/resource'),
 			jQuery.getJSON(api + '/dictionary/activitylevel'),
 			jQuery.getJSON(api + '/dictionary/language/skill')
-		).then(function (language, experience, city, branch, schedule, resource, activityLevel, languageSkill) {
+		).then(function (language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill) {
 //			experience = experience[0].reduce(function (dictionary, item) {
 //				dictionary[item.id] = new DictionaryModel(model, item);
 //				return dictionary;
@@ -100,6 +101,7 @@
 			var dictionary = {
 				language: language[0].map(function (item) {}),
 				experience: experience[0],
+				educationType: education[0].slice(1),
 				city: city[0],
 				branch: branch[0],
 				schedule: schedule[0],
