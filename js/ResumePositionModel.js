@@ -17,6 +17,19 @@ function ResumePositionModel (parent, data) {
 	model.salary = ko.observable();
 	model.currencyId = ko.observable();
 
+	model.scheduleOptions = parent.dictionary.schedule;
+	model.selectedScheduleOption = ko.computed({
+		read: function () {
+			return model.scheduleOptions.findById(model.scheduleId());
+		},
+		write: function (newValue) {
+			model.scheduleId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedScheduleOptionLabel = ko.computed(function () {
+		return model.selectedScheduleOption() ? model.selectedScheduleOption().label() : '';
+	});
+
 	model.toJS = function () {
 		return mapper.toJS(model);
 	};

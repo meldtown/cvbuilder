@@ -19,7 +19,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="scheduleId" name="scheduleId" data-bind="value: scheduleId, valueUpdate: 'keyup'">
+			<select id="scheduleId" name="scheduleId" class="input-block-level" data-bind="optionsCaption: resource.positionChooseSchedule.label, options: scheduleOptions, optionsText: 'label', value: selectedScheduleOption"></select>
 		</div>
 	</div>
 
