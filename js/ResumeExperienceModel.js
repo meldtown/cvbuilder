@@ -76,7 +76,8 @@ function ResumeExperienceModel (parent, data) {
 		return model.selectedAreaOption() ? model.selectedAreaOption().label() : '';
 	});
 
-
+	InitEditableModel(model, 'experience');
+	InitBadRequestResponseHandler(model);
 
 	if (data) model.fromJS(data);
 }
