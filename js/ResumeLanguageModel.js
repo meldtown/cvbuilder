@@ -9,6 +9,7 @@ function ResumeLanguageModel (parent, data) {
 	
 	model.resumeId = parent.resumeId;
 
+	model.id = ko.observable();
 	model.languageId = ko.observable(); // languageId here is treated as id and should be unique
 	model.skillsLevel = ko.observable();
 	model.certificate = ko.observable();
@@ -23,6 +24,32 @@ function ResumeLanguageModel (parent, data) {
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);
 	};
+
+	model.languageOptions = parent.dictionary.language;
+	model.selectedLanguageOption = ko.computed({
+		read: function () {
+			return model.languageOptions.findById(model.languageId());
+		},
+		write: function (newValue) {
+			model.languageId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedLanguageOptionLabel = ko.computed(function () {
+		return model.selectedLanguageOption() ? model.selectedLanguageOption().label() : '';
+	});
+
+	model.languageSkillOptions = parent.dictionary.languageSkill;
+	model.selectedLanguageSkillOption = ko.computed({
+		read: function () {
+			return model.languageSkillOptions.findById(model.id());
+		},
+		write: function (newValue) {
+			model.id(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedLanguageSkillOptionLabel = ko.computed(function () {
+		return model.selectedLanguageSkillOption() ? model.selectedLanguageSkillOption().label() : '';
+	});
 
 	model.save = function () {
 		if (model.errors().length === 0) {

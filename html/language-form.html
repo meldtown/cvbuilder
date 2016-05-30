@@ -15,7 +15,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="languageId" name="languageId" data-bind="value: languageId, valueUpdate: 'keyup'">
+			<select id="languageId" name="languageId" class="input-block-level" data-bind="optionsCaption: resource.languageChooseLanguage.label, options: languageOptions, optionsText: 'label', value: selectedLanguageOption"></select>
 		</div>
 	</div>
 
@@ -26,7 +26,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="skillsLevel" name="skillsLevel" data-bind="value: skillsLevel, valueUpdate: 'keyup'">
+			<select id="skillsLevel" name="skillsLevel" class="input-block-level" data-bind="optionsCaption: resource.languageChooseLanguageSkill.label, options: languageSkillOptions, optionsText: 'label', value: selectedLanguageSkillOption"></select>
 		</div>
 	</div>
 
@@ -38,7 +38,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="certificate" name="certificate" data-bind="attr: {placeholder: resource.languageAddCertificateLabel.label}, value: certificate, valueUpdate: 'keyup'">
+			<input id="certificate" name="certificate" class="input-block-level" data-bind="attr: {placeholder: resource.languageAddCertificateLabel.label}, value: certificate, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
