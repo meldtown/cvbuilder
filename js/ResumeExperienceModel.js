@@ -62,18 +62,18 @@ function ResumeExperienceModel (parent, data) {
 		}
 	};
 
-	model.areaOptions = parent.dictionary.branch;
-	model.selectedAreaOption = ko.computed({
+	model.branchOptions = parent.dictionary.branch;
+	model.selectedBranchOption = ko.computed({
 		read: function () {
-			return model.areaOptions.findById(model.branchId());
+			return model.branchOptions.findById(model.branchId());
 		},
 		write: function (newValue) {
 			model.branchId(newValue ? newValue.id : undefined);
 		}
 	});
 
-	model.selectedAreaOptionLabel = ko.computed(function () {
-		return model.selectedAreaOption() ? model.selectedAreaOption().label() : '';
+	model.selectedBranchOptionLabel = ko.computed(function () {
+		return model.selectedBranchOption() ? model.selectedBranchOption().label() : '';
 	});
 
 	InitEditableModel(model, 'experience');
