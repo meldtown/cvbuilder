@@ -19,9 +19,19 @@ function ResumePersonalModel (parent) {
 	model.cityId = ko.observable();
 	model.moving = ko.observableArray();
 
-	model.cityName = ko.computed(function () {
-		return 'TODO: CityName here from CityId';
+	model.cityOptions = parent.dictionary.city;
+	model.selectedCityOption = ko.computed({
+		read: function () {
+			return model.cityOptions.findById(model.cityId());
+		},
+		write: function (newValue) {
+			model.cityId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedCityOptionLabel = ko.computed(function () {
+		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
 	});
+	
 	model.age = ko.computed(function () {
 		return 'TODO: from dateBirth';
 	});
@@ -57,19 +67,6 @@ function ResumePersonalModel (parent) {
 				});
 		}
 	};
-
-	model.cityOptions = parent.dictionary.city;
-	model.selectedCityOption = ko.computed({
-		read: function () {
-			return model.cityOptions.findById(model.cityId());
-		},
-		write: function (newValue) {
-			model.cityId(newValue ? newValue.id : undefined);
-		}
-	}).extend({required: true});
-	model.selectedCityOptionLabel = ko.computed(function () {
-		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
-	});
 
 	InitEditableModel(model, 'personal');
 	InitBadRequestResponseHandler(model);

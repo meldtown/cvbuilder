@@ -19,7 +19,7 @@ function ResumeSkillModel (parent) {
 
 	model.get = function () {
 		backend.get(model.api).success(function (data) {
-			model.fromJS(data);
+			 model.fromJS(data);
 		});
 	};
 

@@ -11,6 +11,7 @@ function ResumeAdditionalModel (parent, data) {
 	model.id = ko.observable();
 	model.title = ko.observable().extend({required: true});
 	model.description = ko.observable().extend({required: true});
+	model.predifinedSections = ko.observableArray([''])
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);

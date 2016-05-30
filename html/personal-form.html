@@ -64,7 +64,9 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="cityId" name="cityId" class="input-block-level" data-bind="optionsCaption: 'choose...', options: cityOptions, optionsText: 'label', value: selectedCityOption"></select>
+			<div >
+				<select id="cityId" name="cityId" class="input-block-level" data-bind="optionsCaption: resource.personalChooseCity.label, options: cityOptions, optionsText: 'label', value: selectedCityOption"></select>
+			</div>
 			<!--<input class="input-block-level" id="cityId" name="cityId" data-bind="value: cityId, valueUpdate: 'keyup'">-->
 		</div>
 	</div>

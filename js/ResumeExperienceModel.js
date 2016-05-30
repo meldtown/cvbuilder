@@ -6,7 +6,7 @@ function ResumeExperienceModel (parent, data) {
 	});
 
 	model.resource = parent.dictionary.resource;
-	
+
 	model.id = ko.observable();
 	model.position = ko.observable().extend({required: true});
 	model.company = ko.observable().extend({required: true});
@@ -62,8 +62,21 @@ function ResumeExperienceModel (parent, data) {
 		}
 	};
 
-	InitEditableModel(model, 'experience');
-	InitBadRequestResponseHandler(model);
+	model.areaOptions = parent.dictionary.branch;
+	model.selectedAreaOption = ko.computed({
+		read: function () {
+			return model.areaOptions.findById(model.branchId());
+		},
+		write: function (newValue) {
+			model.branchId(newValue ? newValue.id : undefined);
+		}
+	});
+
+	model.selectedAreaOptionLabel = ko.computed(function () {
+		return model.selectedAreaOption() ? model.selectedAreaOption().label() : '';
+	});
+
+
 
 	if (data) model.fromJS(data);
 }
