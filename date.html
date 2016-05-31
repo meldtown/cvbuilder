@@ -99,7 +99,7 @@
 				var year = model.selectedYearOption();
 
 				if (date && month && year) {
-					model.value(new Date(year, month, date));
+					model.value(moment(new Date(year, month, date)).format());
 				} else {
 					model.value(undefined);
 				}
