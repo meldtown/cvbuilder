@@ -110,6 +110,19 @@ function ResumePersonalMovingModel (parent, data) {
 		model.cityId(data);
 	};
 
+	model.cityOptions = parent.cityOptions;
+	model.selectedCityOption = ko.computed({
+		read: function () {
+			return model.cityOptions.findById(model.cityId());
+		},
+		write: function (newValue) {
+			model.cityId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedCityOptionLabel = ko.computed(function () {
+		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
+	});
+
 	model.remove = function (item) {
 		parent.moving.remove(item);
 		parent.save();
