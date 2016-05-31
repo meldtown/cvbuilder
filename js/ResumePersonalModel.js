@@ -44,8 +44,11 @@ function ResumePersonalModel (parent) {
 		if (!data) return;
 
 		mapper.fromJS(model, data);
+
 		model.dateBirth(data.dateBirth);
-		model.moving(data.moving);
+		model.moving(data.moving.map(function (item) {
+			return new ResumePersonalMovingModel(model, item);
+		}));
 	};
 
 	model.get = function () {
@@ -68,6 +71,49 @@ function ResumePersonalModel (parent) {
 		}
 	};
 
+	model.edit = function () {
+		model.beginEdit();
+		model.moving().forEach(function (item) {
+			item.beginEdit();
+		});
+	};
+
+	model.cancel = function () {
+		model.rollback();
+		model.moving().forEach(function (item) {
+			item.rollback();
+		});
+	};
+
+	model.addMoving = function () {
+		model.moving.push(new ResumePersonalMovingModel(model));
+		model.edit();
+	};
+
 	InitEditableModel(model, 'personal');
 	InitBadRequestResponseHandler(model);
+}
+
+function ResumePersonalMovingModel (parent, data) {
+	var model = this;
+
+	model.cityId = ko.observable(data);
+	model.resource = parent.resource;
+
+	model.toJS = function () {
+		return model.cityId();
+	};
+
+	model.fromJS = function (data) {
+		if (!data) return;
+
+		model.cityId(data);
+	};
+
+	model.remove = function (item) {
+		parent.moving.remove(item);
+		parent.save();
+	};
+
+	InitEditableModel(model, 'moving');
 }

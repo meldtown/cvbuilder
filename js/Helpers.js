@@ -1,6 +1,21 @@
+ko.bindingHandlers.tinylight = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var property = valueAccessor();
+		jQuery(element).tinylight({height: 200, updateOnKeyUp: true});
+		jQuery(element).on('change', function () {
+			property(jQuery(element).val());
+		});
+	},
+	update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+		// This will be called once when the binding is first applied to an element,
+		// and again whenever any observables/computeds that are accessed change
+		// Update the DOM element based on the supplied values here.
+	}
+};
+
 ko.validation.init({
-	decorateElement: true
-});
+	decorateInputElement: true
+}, true);
 
 function InitEditableModel (model, templatePrefix) {
 	ko.editable(model);

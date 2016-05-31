@@ -8,7 +8,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<textarea name="text" id="text" cols="70" rows="10" data-bind="attr: {placeholder: resource.skillRubricTooltip.label}, value: text, valueUpdate: 'keyup'"></textarea>
+			<textarea name="text" id="text" cols="70" rows="10" data-bind="attr: {placeholder: resource.skillRubricTooltip.label}, tinylight: text, validationElement: text"></textarea>
+			<span class="validationMessage" data-bind="validationMessage: text"></span>
 		</div>
 	</div>
 

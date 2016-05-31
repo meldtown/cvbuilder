@@ -11,7 +11,7 @@ function ResumeSkillModel (parent) {
 
 	model.resumeId = parent.resumeId;
 
-	model.text = ko.observable();
+	model.text = ko.observable().extend({required: true});
 
 	model.isTextEmpty = ko.computed(function () {
 		return !model.text();
