@@ -73,6 +73,9 @@ function ResumePersonalModel (parent) {
 			backend.post(model.api, model.toJS())
 				.success(function () {
 					model.commit();
+					model.moving().forEach(function (item) {
+						item.commit();
+					});
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
