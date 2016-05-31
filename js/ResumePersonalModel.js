@@ -14,7 +14,14 @@ function ResumePersonalModel (parent) {
 	model.name = ko.observable().extend({required: true});
 	model.middleName = ko.observable();
 	model.surName = ko.observable().extend({required: true});
-	model.dateBirth = ko.observable().extend({required: true});
+	model.dateBirth = ko.observable().extend({
+		required: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.requiredMessage.label();
+			}
+		}
+	});
 	model.sex = ko.observable().extend({required: true});
 	model.cityId = ko.observable();
 	model.moving = ko.observableArray();
@@ -31,9 +38,14 @@ function ResumePersonalModel (parent) {
 	model.selectedCityOptionLabel = ko.computed(function () {
 		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
 	});
-	
+
+	model.dateBirthFormatted = ko.computed(function () {
+		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		return moment(model.dateBirth()).format('LL');
+	});
 	model.age = ko.computed(function () {
-		return 'TODO: from dateBirth';
+		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		return moment.duration(moment() - moment(model.dateBirth())).humanize();
 	});
 
 	model.toJS = function () {
@@ -45,7 +57,6 @@ function ResumePersonalModel (parent) {
 
 		mapper.fromJS(model, data);
 
-		model.dateBirth(data.dateBirth);
 		model.moving(data.moving.map(function (item) {
 			return new ResumePersonalMovingModel(model, item);
 		}));

@@ -1,6 +1,7 @@
 ko.bindingHandlers.tinylight = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();
+		element.value = property();
 		jQuery(element).tinylight({height: 200, updateOnKeyUp: function (html, tiny) {
 			property(jQuery(html).text().trim().length > 0 ? html : undefined);
 			if (property.isValid()) {

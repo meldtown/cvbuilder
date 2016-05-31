@@ -25,6 +25,14 @@
 		background: white;
 		padding: 20px;
 	}
+
+	.validationElement, select.input-block-level.validationElement:focus {
+		border-color: red;
+	}
+
+	.validationMessage {
+		color: red;
+	}
 }
 
 label[for=isCanBeInterviewed] {

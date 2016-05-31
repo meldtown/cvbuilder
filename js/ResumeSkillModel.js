@@ -6,20 +6,17 @@ function ResumeSkillModel (parent) {
 	});
 
 	model.resource = parent.dictionary.resource;
-	
+
 	model.api = parent.api + '/resume/' + parent.resumeId + '/skill';
 
 	model.resumeId = parent.resumeId;
 
 	model.text = ko.observable().extend({required: true});
 
-	model.isTextEmpty = ko.computed(function () {
-		return !model.text();
-	});
-
 	model.get = function () {
 		backend.get(model.api).success(function (data) {
-			 model.fromJS(data);
+			model.fromJS(data);
+			model.resumeId = parent.resumeId;
 		});
 	};
 

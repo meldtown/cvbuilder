@@ -23,26 +23,15 @@
 		}
 	</style>
 
+	<script src="node_modules/moment/moment.js"></script>
+	<script src="node_modules/moment/locale/ru.js"></script>
+	<script src="node_modules/moment/locale/uk.js"></script>
 	<script src="node_modules/knockout.validation/dist/knockout.validation.js"></script>
 	<script src="node_modules/ko.editables/ko.editables.js"></script>
 
 	<link rel="stylesheet" href="dist/cvbuilder.css">
 
-	<script src="js/Helpers.js"></script>
 
-	<script src="js/DictionaryModel.js"></script>
-
-	<script src="js/ResumeContactsModel.js"></script>
-	<script src="js/ResumeEducationModel.js"></script>
-	<script src="js/ResumeExperienceModel.js"></script>
-	<script src="js/ResumePersonalModel.js"></script>
-	<script src="js/ResumeAdditionalModel.js"></script>
-	<script src="js/ResumeTrainingModel.js"></script>
-	<script src="js/ResumePositionModel.js"></script>
-	<script src="js/ResumeLanguageModel.js"></script>
-	<script src="js/ResumeSkillModel.js"></script>
-
-	<script src="js/CvBuilderModel.js"></script>
 </head>
 <body class="rua-l-body">
 	<div class="header header-default">
@@ -81,7 +70,26 @@
 		<script id="skill-view" type="text/html"><!--#include file="html/skill-view.html"--></script>
 		<script id="moving-form" type="text/html"><!--#include file="html/moving-form.html"--></script>
 		<script id="moving-view" type="text/html"><!--#include file="html/moving-view.html"--></script>
+		<script id="datepicker-widget" type="text/html"><!--#include file="html/datepicker-widget.html"--></script>
 	</div>
+
+	<script src="js/Helpers.js"></script>
+
+	<script src="js/DatePickerWidget.js"></script>
+
+	<script src="js/DictionaryModel.js"></script>
+
+	<script src="js/ResumeContactsModel.js"></script>
+	<script src="js/ResumeEducationModel.js"></script>
+	<script src="js/ResumeExperienceModel.js"></script>
+	<script src="js/ResumePersonalModel.js"></script>
+	<script src="js/ResumeAdditionalModel.js"></script>
+	<script src="js/ResumeTrainingModel.js"></script>
+	<script src="js/ResumePositionModel.js"></script>
+	<script src="js/ResumeLanguageModel.js"></script>
+	<script src="js/ResumeSkillModel.js"></script>
+
+	<script src="js/CvBuilderModel.js"></script>
 
 	<script>
 		var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
