@@ -11,7 +11,8 @@ function ResumeAdditionalModel (parent, data) {
 	model.id = ko.observable();
 	model.title = ko.observable().extend({required: true});
 	model.description = ko.observable().extend({required: true});
-	model.predifinedSections = ko.observableArray([''])
+	model.predifinedSections = ko.observableArray(['']);
+	model.predefinedTitles = parent.dictionary.additional;
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);
@@ -35,6 +36,11 @@ function ResumeAdditionalModel (parent, data) {
 				});
 		}
 	};
+
+	function PredefinedTitle(data) {
+		var model = this;
+		model.title = ko.observable(data.label);
+	}
 
 	model.remove = function () {
 		backend.remove(parent.api + '/resume/' + parent.resumeId + '/additional/' + model.id())

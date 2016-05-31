@@ -96,8 +96,9 @@
 			jQuery.getJSON(api + '/dictionary/schedule'),
 			jQuery.getJSON(api + '/dictionary/resource'),
 			jQuery.getJSON(api + '/dictionary/activitylevel'),
-			jQuery.getJSON(api + '/dictionary/language/skill')
-		).then(function (language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill) {
+			jQuery.getJSON(api + '/dictionary/language/skill'),
+			jQuery.getJSON(api + '/dictionary/additional')
+		).then(function (language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional) {
 //			experience = experience[0].reduce(function (dictionary, item) {
 //				dictionary[item.id] = new DictionaryModel(model, item);
 //				return dictionary;
@@ -111,7 +112,8 @@
 				schedule: schedule[0],
 				resource: resource[0],
 				activityLevel: activityLevel[0],
-				languageSkill: languageSkill[0]
+				languageSkill: languageSkill[0],
+				additional: additional[0]
 			};
 
 			window.model = new CvBuilderModel(api, resumeId, dictionary);

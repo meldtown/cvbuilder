@@ -9,6 +9,15 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<form data-bind="foreach: predefinedTitles">
+				<label>
+					<input type="radio" name="additional-predefined-title" data-bind="value: label">
+					<span data-bind="text: label"></span>
+				</label>
+		</form>
+	</div>
+
 
 	<div class="row">
 		<div class="col d-1of3">
@@ -17,7 +26,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="title" name="title" data-bind="attr: {placeholder: resource.additionalAddNameLabel.label}, value: title, valueUpdate: 'keyup'">
+			<input id="title" name="title"
+				   data-bind="attr: {placeholder: resource.additionalAddNameLabel.label}, value: title, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -38,7 +48,8 @@
 		</div>
 		<div class="col d-2of3">
 			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: rollback"></button>
+			<button class="btn btn-link rua-p-c-light"
+					data-bind="text: resource.discard.label, click: rollback"></button>
 		</div>
 	</div>
 </div>
