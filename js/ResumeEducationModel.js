@@ -39,19 +39,6 @@ function ResumeEducationModel (parent, data) {
 		return model.selectedTypeOption() ? model.selectedTypeOption().label() : '';
 	});
 
-	model.cityOptions = parent.dictionary.city;
-	model.selectedCityOption = ko.computed({
-		read: function () {
-			return model.cityOptions.findById(model.cityId());
-		},
-		write: function (newValue) {
-			model.cityId(newValue ? newValue.id : undefined);
-		}
-	}).extend({required: true});
-	model.selectedCityOptionLabel = ko.computed(function () {
-		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
-	});
-
 	model.save = function () {
 		if (model.errors().length === 0) {
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/education', model.toJS())

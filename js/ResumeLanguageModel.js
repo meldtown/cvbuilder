@@ -41,10 +41,10 @@ function ResumeLanguageModel (parent, data) {
 	model.languageSkillOptions = parent.dictionary.languageSkill;
 	model.selectedLanguageSkillOption = ko.computed({
 		read: function () {
-			return model.languageSkillOptions.findById(model.id());
+			return model.languageSkillOptions.findById(model.skillsLevel());
 		},
 		write: function (newValue) {
-			model.id(newValue ? newValue.id : undefined);
+			model.skillsLevel(newValue ? newValue.skillsLevel : undefined);
 		}
 	}).extend({required: true});
 	model.selectedLanguageSkillOptionLabel = ko.computed(function () {
