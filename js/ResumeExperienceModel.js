@@ -1,6 +1,8 @@
 function ResumeExperienceModel (parent, data) {
 	var model = this;
 
+	model.resumeId = parent.resumeId;
+
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
@@ -18,6 +20,22 @@ function ResumeExperienceModel (parent, data) {
 	model.recommendationList = ko.observableArray();
 	model.companySite = ko.observable();
 	model.employeesAmount = ko.observable();
+
+	model.startWorkFormatted = ko.computed(function () {
+		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		return moment(model.startWork()).format('LL');
+	});
+
+	model.endWorkFormatted = ko.computed(function () {
+		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		return moment(model.endWork()).format('LL');
+	});
+
+	model.workPeriodFormatted = ko.computed(function () {
+		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		return moment.duration(moment(model.endWork()) - moment(model.startWork())).humanize();
+	});
+
 
 	model.toJS = function () {
 		return mapper.toJS(model);
