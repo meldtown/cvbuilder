@@ -13,7 +13,7 @@ Experience/branchId/view
 Education/type/view
 Education/year
 Training/year
-Language/view
++ Language/view
 
 
 Submodels
