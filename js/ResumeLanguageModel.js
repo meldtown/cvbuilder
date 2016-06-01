@@ -44,7 +44,7 @@ function ResumeLanguageModel (parent, data) {
 			return model.languageSkillOptions.findById(model.skillsLevel());
 		},
 		write: function (newValue) {
-			model.skillsLevel(newValue ? newValue.skillsLevel : undefined);
+			model.skillsLevel(newValue ? newValue.id : undefined);
 		}
 	}).extend({required: true});
 	model.selectedLanguageSkillOptionLabel = ko.computed(function () {

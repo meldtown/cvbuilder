@@ -3,18 +3,23 @@ CvBuilder
 
 Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 
-Blocks
-------
+Dropdowns
+---------
 
-+ Personal
-+ Contacts
-~ Position
-+ Skills
-+ Experience
-+ Education
-+ Trainings
-+ Languages
-+ Additional
+Personal/sex
+Position/schedule/view
+Position/currency
+Experience/branchId/view
+Education/type/view
+Education/year
+Training/year
+Language/view
+
+
+Submodels
+---------
+Contacts/portfolio
+Experience/recommendation
 
 
 Dependencies
