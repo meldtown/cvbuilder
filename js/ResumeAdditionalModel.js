@@ -12,41 +12,17 @@ function ResumeAdditionalModel(parent, data) {
 	model.title = ko.observable().extend({required: true});
 	model.description = ko.observable().extend({required: true});
 
-	model.predefinedTitles = parent.dictionary.additional.map(function (data) {
-		var item = new DictionaryModel(parent, mapper.toJS(data));
-		item.isChecked = ko.observable();
-		item.isChecked.subscribe(function (label) {
-			model.title(label);
-
-			console.table(model.predefinedTitles.map(function (z) {
-				return {label: z.label(), ch: z.isChecked()};
-			}));
-		});
-		item.inputName = ko.computed(function () {
-			return 'additional-predefined-title-' + (model.id() || 0);
-		});
-		return item;
+	model.predefinedTitles = parent.dictionary.additional;
+	model.selectedPredefinedTitle = ko.observable();
+	model.selectedPredefinedTitle.subscribe(function (label) {
+		model.title(label === 'custom' ? '' : label);
+		model.title.isModified(false);
 	});
-	var zzz = new DictionaryModel(parent, {en: 'custom', ru: 'custom', ua: 'custom'});
-	zzz.isChecked = ko.observable();
-	zzz.isChecked.subscribe(function () {
-		model.title('');
-	});
-	zzz.inputName = ko.computed(function () {
-		return 'additional-predefined-title-' + (model.id() || 0);
-	});
-
-	model.predefinedTitles.push(zzz);
 
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);
-
-		model.predefinedTitles.filter(function (item) {
-			return item.label() === model.title();
-		}).forEach(function (item) {
-			item.isChecked(model.title());
-		});
+		model.selectedPredefinedTitle(model.title());
 	};
 
 	model.toJS = function () {
@@ -68,16 +44,15 @@ function ResumeAdditionalModel(parent, data) {
 		}
 	};
 
-	function PredefinedTitle(data) {
-		var model = this;
-		model.title = ko.observable(data.label);
-	}
-
 	model.remove = function () {
-		backend.remove(parent.api + '/resume/' + parent.resumeId + '/additional/' + model.id())
-			.success(function () {
-				parent.additional.remove(model);
-			});
+		if (model.id()) {
+			backend.remove(parent.api + '/resume/' + parent.resumeId + '/additional/' + model.id())
+				.success(function () {
+					parent.additional.remove(model);
+				});
+		} else {
+			parent.additional.remove(model);
+		}
 	};
 
 	InitEditableModel(model, 'additional');

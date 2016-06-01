@@ -12,7 +12,7 @@
 	<div class="row">
 		<div data-bind="foreach: predefinedTitles">
 				<label>
-					<input type="radio" data-bind="attr: {name: inputName}, checked: isChecked, value: label">
+					<input type="radio" data-bind="checked: $parent.selectedPredefinedTitle, value: label">
 					<span data-bind="text: label"></span>
 				</label>
 		</div>

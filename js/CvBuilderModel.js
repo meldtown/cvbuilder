@@ -7,6 +7,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model._lngOptions = ['ru', 'ua', 'en'];
 
 	model.dictionary = dictionary;
+	model.dictionary.additional.push({ru: 'custom', en: 'custom', ua: 'custom'});
 
 	// Map all resources into DictionaryModel
 	Object.keys(model.dictionary).forEach(function (key) {
@@ -104,16 +105,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.addAdditional = function () {
 		var item = new ResumeAdditionalModel(model);
-		item.predefinedTitles.filter(function (item) {
-			return item.label() === 'custom';
-		}).forEach(function (item) {
-			console.log('I am going to check', item);
-			item.isChecked(true);
-		});
-		console.table(item.predefinedTitles.map(function (z) {
-			return {label: z.label(), ch: z.isChecked()};
-		}));
-
+		item.selectedPredefinedTitle(item.predefinedTitles[item.predefinedTitles.length - 1].label());
 		model.additional.push(item);
 		item.beginEdit();
 		return item;
