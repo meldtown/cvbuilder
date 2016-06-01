@@ -71,7 +71,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="year" name="year"  class="input-block-level" data-bind="value: year, valueUpdate: 'keyup'">
+			<select id="year" name="year" class="input-block-level" data-bind="optionsCaption: resource.year.label, options: yearOptions, value: year"></select>
 		</div>
 	</div>
 

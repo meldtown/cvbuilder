@@ -18,6 +18,11 @@ function ResumeEducationModel (parent, data) {
 	model.diploma = ko.observable().extend({required: true});
 	model.year = ko.observable().extend({required: true});
 
+	model.yearOptions = [];
+	for (var year = (new Date()).getFullYear(); year >= (new Date()).getFullYear() - 80; year--) {
+		model.yearOptions.push(year);
+	}
+
 	model.toJS = function () {
 		return mapper.toJS(model);
 	};
