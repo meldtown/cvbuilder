@@ -10,12 +10,12 @@
 	</div>
 
 	<div class="row">
-		<form data-bind="foreach: predefinedTitles">
+		<div data-bind="foreach: predefinedTitles">
 				<label>
-					<input type="radio" name="additional-predefined-title" data-bind="value: label">
+					<input type="radio" data-bind="attr: {name: inputName}, checked: isChecked, value: label">
 					<span data-bind="text: label"></span>
 				</label>
-		</form>
+		</div>
 	</div>
 
 

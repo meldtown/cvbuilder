@@ -104,6 +104,16 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.addAdditional = function () {
 		var item = new ResumeAdditionalModel(model);
+		item.predefinedTitles.filter(function (item) {
+			return item.label() === 'custom';
+		}).forEach(function (item) {
+			console.log('I am going to check', item);
+			item.isChecked(true);
+		});
+		console.table(item.predefinedTitles.map(function (z) {
+			return {label: z.label(), ch: z.isChecked()};
+		}));
+
 		model.additional.push(item);
 		item.beginEdit();
 		return item;
