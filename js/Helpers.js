@@ -45,6 +45,22 @@ function InitBadRequestResponseHandler (model) {
 	};
 }
 
+var utils = {
+	required: function (messageDictionaryModel) {
+		return {
+			params: true,
+			message: function (params, observable) {
+				return messageDictionaryModel.label();
+			}
+		};
+	},
+	requiredOnly: function (messageDictionaryModel) {
+		return {
+			required: utils.required(messageDictionaryModel)
+		};
+	}
+};
+
 var mapper = {
 	isArrayObservable: function (item) {
 		return ko.isObservable(item) && typeof item.push === 'function';

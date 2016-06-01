@@ -1,0 +1,67 @@
+<div class="cvbuilder-form">
+	<h3 class="cvbuilder-block-title" data-bind="text: resource.recommendationRubricNameLabel.label"></h3>
+	<div class="row">
+		<div class="col d-1of3">
+		</div>
+		<div class="col d-2of3">
+			<input type="checkbox" class="input-block-level" name="position" data-bind="checked: atRequest">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="recommendator">
+				<span data-bind="text: resource.recommendationRecommendatorLabel.label"></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="recommendator" class="input-block-level" name="recommendator"
+				   data-bind="attr: {placeholder: resource.addRecommendationRecommendatorLabel.label}, value: name, valueUpdate: 'keyup'">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="position">
+				<span data-bind="text: resource.recommendationPositionLabel.label"></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="position" name="position" class="input-block-level"
+				   data-bind="attr: {placeholder: resource.addRecommendationPositionLabel.label}, value: position">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="company">
+				<span data-bind="text: resource.recommendationCompanyLabel.label"></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input class="input-block-level" id="company" name="company" data-bind="attr: {placeholder: resource.addRecommendationCompanyLabel.label}, value: companyName">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="phone">
+				<span data-bind="text: resource.recommendationPhoneLabel.label"></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input class="input-block-level" id="phone" name="phone" data-bind="attr: {placeholder: resource.addRecommendationPhone.label}, value: phone">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			&nbsp;
+		</div>
+		<div class="col d-2of3">
+			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
+			<button class="btn btn-link rua-p-c-light"
+					data-bind="text: resource.discard.label, click: rollback"></button>
+		</div>
+	</div>
+</div>

@@ -14,14 +14,7 @@ function ResumePersonalModel (parent) {
 	model.name = ko.observable().extend({required: true});
 	model.middleName = ko.observable();
 	model.surName = ko.observable().extend({required: true});
-	model.dateBirth = ko.observable().extend({
-		required: {
-			params: true,
-			message: function (params, observable) {
-				return model.resource.requiredMessage.label();
-			}
-		}
-	});
+	model.dateBirth = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.sex = ko.observable().extend({required: true});
 	model.cityId = ko.observable();
 	model.moving = ko.observableArray();

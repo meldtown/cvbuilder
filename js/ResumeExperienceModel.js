@@ -94,6 +94,11 @@ function ResumeExperienceModel (parent, data) {
 		return model.selectedBranchOption() ? model.selectedBranchOption().label() : '';
 	});
 
+	model.addRecommendation = function () {
+		model.additionalPhones.push(new ResumeExperienceRecommendationModel(model));
+		model.edit();
+	};
+
 	InitEditableModel(model, 'experience');
 	InitBadRequestResponseHandler(model);
 
@@ -111,6 +116,7 @@ function ResumeExperienceRecommendationModel (parent, data) {
 	model.email = ko.observable();
 	model.phone = ko.observable();
 	model.atRequest = ko.observable();
+	model.resumeId = parent.resumeId;
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);
@@ -120,5 +126,12 @@ function ResumeExperienceRecommendationModel (parent, data) {
 		return mapper.toJS(model);
 	};
 
+	model.remove = function (item) {
+		parent.recommendationList.remove(item);
+		parent.save();
+	};
+
 	if (data) model.fromJS(data);
+
+	InitEditableModel(model, 'recommendation');
 }
