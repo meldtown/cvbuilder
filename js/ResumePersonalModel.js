@@ -39,6 +39,19 @@ function ResumePersonalModel (parent) {
 		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
 	});
 
+	model.sexOptions = parent.dictionary.sex;
+	model.selectedSexOption = ko.computed({
+		read: function () {
+			return model.sexOptions.findById(model.sex());
+		},
+		write: function (newValue) {
+			model.sex(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedSexOptionLabel = ko.computed(function () {
+		return model.selectedSexOption() ? model.selectedSexOption().label() : '';
+	});
+
 	model.dateBirthFormatted = ko.computed(function () {
 		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
 		return moment(model.dateBirth()).format('LL');
