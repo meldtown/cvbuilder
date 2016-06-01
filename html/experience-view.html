@@ -33,16 +33,10 @@
 			startWork
 		</div>
 		<div class="col d-2of3">
-			<span data-bind="text: startWork"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			endWork
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: endWork"></span>
+			<span data-bind="text: startWorkFormatted"></span>
+			&mdash;
+			<span data-bind="text: endWorkFormatted"></span>
+			(<span data-bind="text: workPeriodFormatted"></span>)
 		</div>
 	</div>
 
