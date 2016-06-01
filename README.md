@@ -7,7 +7,7 @@ Dropdowns
 ---------
 
 Personal/sex
-Position/schedule/view
++Position/schedule/view
 Position/currency
 + Experience/branchId/view
 + Education/type/view
