@@ -9,9 +9,9 @@ function ResumeContactsModel (parent) {
 
 	model.resumeId = parent.resumeId;
 
-	model.phone = ko.observable().extend({required: true});
+	model.phone = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.additionalPhones = ko.observableArray();
-	model.email = ko.observable().extend({required: true, email: true});
+	model.email = ko.observable().extend({required: utils.required(model.resource.requiredMessage), email: true});
 	model.skype = ko.observable();
 	model.portfolio = ko.observableArray();
 	model.socialNetworks = ko.observableArray();
