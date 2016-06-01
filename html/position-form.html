@@ -43,17 +43,7 @@
 		</div>
 		<div class="col d-2of3">
 			<input id="salary" name="salary" data-bind="attr: {placeholder: resource.positionAddSalaryLabel.label}, value: salary, valueUpdate: 'keyup'">
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<label for="currencyId">
-				currencyId
-			</label>
-		</div>
-		<div class="col d-2of3">
-			<input id="currencyId" name="currencyId" data-bind="value: currencyId, valueUpdate: 'keyup'">
+			<select name="currency" data-bind="optionsCaption: resource.personalChooseCurrency.label, options: currencyOptions, optionsText: 'label', value: selectedCurrencyOption"></select>
 		</div>
 	</div>
 

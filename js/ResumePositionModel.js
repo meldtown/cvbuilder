@@ -1,4 +1,4 @@
-function ResumePositionModel (parent, data) {
+function ResumePositionModel(parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -28,6 +28,19 @@ function ResumePositionModel (parent, data) {
 	}).extend({required: true});
 	model.selectedScheduleOptionLabel = ko.computed(function () {
 		return model.selectedScheduleOption() ? model.selectedScheduleOption().label() : '';
+	});
+
+	model.currencyOptions = parent.dictionary.currency;
+	model.selectedCurrencyOption = ko.computed({
+		read: function () {
+			return model.currencyOptions.findById(model.currencyId());
+		},
+		write: function (newValue) {
+			model.currencyId(newValue ? newValue.id : undefined);
+		}
+	}).extend({required: true});
+	model.selectedCurrencyOptionLabel = ko.computed(function () {
+		return model.selectedCurrencyOption() ? model.selectedCurrencyOption().label() : '';
 	});
 
 	model.toJS = function () {
