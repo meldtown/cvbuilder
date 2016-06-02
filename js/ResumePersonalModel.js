@@ -48,13 +48,17 @@ function ResumePersonalModel (parent) {
 		return model.selectedSexOption() ? model.selectedSexOption().label() : '';
 	});
 
-	model.dateBirthFormatted = ko.computed(function () {
-		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
-		return moment(model.dateBirth()).format('LL');
-	});
+	// model.dateBirthFormatted = ko.computed(function () {
+	// 	moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+	// 	return moment(model.dateBirth()).format('LL');
+	// });
 	model.age = ko.computed(function () {
 		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
 		return moment.duration(moment() - moment(model.dateBirth())).humanize();
+	});
+
+	model.fullName = ko.computed(function () {
+		return model.name() + ' ' + model.surName();
 	});
 
 	model.removeEmptyMoving = function () {
