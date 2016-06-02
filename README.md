@@ -4,6 +4,84 @@ CvBuilder
 Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 
 
+Validation
+------------
+
+Dropdowns - remove placeholder???
+
+Personal/Moving - remove validation, skip empty on save
+Contacts/Phone - add validation, is it required ?
+Contacts/Email - i18n custom message
+Contacts/Additional Phone - custom validation, skip empty on save, without require
+Contacts/Portfolio -  skip empty on save
+Contacts/Social -  skip empty on save
+Position/Salary - custom validation, is it required  ?
+Position/Currency - validate only if salary presents
+Experience/Branch - is it required ?
+Experience/period - custom validation
+Experience/Description - is it required ?
+Experience/recommendation/* - is it required ?
+Education/* - is it required? should diploma and speciality be validated for school education type...
+Trainings/Description - is it required ?
+Trainings/Year - is it required ?
+Additional/Description - is it required ?
+
+Controls
+--------
+
+All top level models - add message property
+
+Personal - add photo
+Personal/City - custom control
+Personal/moving- hide already selected cities or skip them before save
+Personal/moving/add - hide button
+Contacts/Additional phones - show/hide logic
+Contacts/portfolio - add button computed show/hide, force one item, remove button only from second
+Position/Speciality - add autocomplete
+Experience/Company - add autocomplete, fill other fields
+Experience/Position - add autocomplete
+Experience/Description - tiny ?
+Expeince/Recommendation/Name - add placeholder
+Experience/Recommendation/Position - add autocomplete
+Experience/Recommendation/Company - add autocomplete
+Experience/Recommendation/Contacts - computed phone, email
+Experience/Recommmendation - add button logic
+Education/School name - computed from school type
+Education/City - is it dropdown ?
+Education/diploma - show/hide from school type ? (validation ?)
+Training/Description - tiny ?
+Additional/predefined titles - disable other inputs
+Additional/Description - tiny ?
+Language/language name - computed
+Language/checkbox - show/hide from skill ?
+
+All controls - tooltips? cross button? focus? wtf?
+
+Markup
+------
+
+Contacts/portfolio and additional phones - add input-block-level class
+all block/edit mode - check for input-block-level, add grids if needed
+personal
+contacts
+position
+experience
+education
+skill
+training
+additional
+language
+
+Computed
+--------
+
+Footer buttons
+Sidebar percent
+Sidebar buttons
+
+
+
+
 Dependencies
 ------------
 
