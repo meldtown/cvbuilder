@@ -18,7 +18,15 @@ function ResumeContactsModel (parent) {
 		}
 	});
 	model.additionalPhones = ko.observableArray();
-	model.email = ko.observable().extend({required: utils.required(model.resource.requiredMessage), email: true});
+	model.email = ko.observable().extend({
+		required: utils.required(model.resource.requiredMessage),
+		email: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
 	model.skype = ko.observable();
 	model.portfolio = ko.observableArray();
 	model.socialNetworks = ko.observableArray();
