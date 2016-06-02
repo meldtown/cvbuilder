@@ -7,16 +7,6 @@
 			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: edit"></a>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="text: resource.contactsEmailLabel.label"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: email"></span>
-		</div>
-	</div>
-
 	<div class="row">
 		<div class="col d-1of3">
 			<span data-bind="text: resource.contactsPhoneLabel.label"></span>
@@ -25,7 +15,6 @@
 			<span data-bind="text: phone"></span>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col d-1of3">
 			<span data-bind="text: resource.contactsAdditionalPhonesLabel.label"></span>
@@ -36,8 +25,15 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="row">
+		<div class="col d-1of3">
+			<span data-bind="text: resource.contactsEmailLabel.label"></span>
+		</div>
+		<div class="col d-2of3">
+			<span data-bind="text: email"></span>
+		</div>
+	</div>
+	<div class="row" data-bind="if: skype">
 		<div class="col d-1of3">
 			<span data-bind="text: resource.contactsSkypeLabel.label"></span>
 		</div>
@@ -45,8 +41,7 @@
 			<span data-bind="text: skype"></span>
 		</div>
 	</div>
-
-	<div class="row">
+	<div class="row" data-bind="if: portfolio">
 		<div class="col d-1of3">
 			<span data-bind="text: resource.contactsPortfolioLabel.label"></span>
 		</div>
@@ -56,20 +51,14 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
+	<div class="row" data-bind="if: socialNetworks">
 		<div class="col d-1of3">
 			<span data-bind="text: resource.contactsSocialNetworksLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<div data-bind="foreach: socialNetworks">
-				<div>
-					<span data-bind="text: subTypeLabel"></span>
-					&mdash;
-					<span data-bind="text: text"></span>
-				</div>
+				<a data-bind="text: subTypeLabel, attr: { href: text }"></a>
 			</div>
 		</div>
 	</div>
-
 </div>

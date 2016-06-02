@@ -16,19 +16,6 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<label for="email">
-				<span data-bind="text: resource.contactsEmailLabel.label"></span>
-			</label>
-		</div>
-		<div class="col d-2of3">
-			<input id="email" class="input-block-level"  name="email" data-bind="value: email, valueUpdate: 'keyup'">
-		</div>
-	</div>
-
-
-
-	<div class="row">
-		<div class="col d-1of3">
 			<label>
 				<span data-bind="text: resource.contactsAdditionalPhonesLabel.label"></span>
 			</label>
@@ -38,6 +25,17 @@
 				<div data-bind="template: tpl"></div>
 			</div>
 			<button data-bind="text: resource.addPhone.label, click: addAdditionalPhone"></button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="email">
+				<span data-bind="text: resource.contactsEmailLabel.label"></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="email" class="input-block-level"  name="email" data-bind="value: email, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -73,12 +71,12 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<a href="#" data-bind="click: toggleLinkedin, css: linkedinClass">Linkedin</a>
-			<a href="#" data-bind="click: toggleFacebook, css: facebookClass">Facebook</a>
-			<a href="#" data-bind="click: toggleVk, css: vkClass">Vkontakte</a>
-			<a href="#" data-bind="click: toggleTwitter, css: twitterClass">Twitter</a>
-			<a href="#" data-bind="click: toggleGooglePlus, css: googlePlusClass">Google+</a>
-			<a href="#" data-bind="click: toggleOdnoklasniki, css: odnoklasnikiClass">Odnoklasniki</a>
+			<a href="#" data-bind="click: toggleLinkedin, css: linkedinClass">Ln</a>
+			<a href="#" data-bind="click: toggleFacebook, css: facebookClass">Fb</a>
+			<a href="#" data-bind="click: toggleVk, css: vkClass">Vk</a>
+			<a href="#" data-bind="click: toggleTwitter, css: twitterClass">Tw</a>
+			<a href="#" data-bind="click: toggleGooglePlus, css: googlePlusClass">G+</a>
+			<a href="#" data-bind="click: toggleOdnoklasniki, css: odnoklasnikiClass">Ok</a>
 		</div>
 	</div>
 
