@@ -91,6 +91,9 @@ function ResumeContactsModel (parent) {
 		data.socialNetworks = data.socialNetworks.filter(function (item) {
 			return item.text.trim().length > 0;
 		});
+		data.portfolio = data.portfolio.filter(function (item) {
+			return item && item.trim().length > 0;
+		});
 		return data;
 	};
 
@@ -99,6 +102,10 @@ function ResumeContactsModel (parent) {
 
 		model.additionalPhones(data.additionalPhones.map(function (item) {
 			return new ResumeContactsAdditionalPhoneModel(model, item);
+		}));
+
+		model.portfolio(data.portfolio.map(function (item) {
+			return new ResumeContactsPortfolioModel(model, item);
 		}));
 
 		model.socialNetworks(data.socialNetworks.map(function (item) {
@@ -120,6 +127,9 @@ function ResumeContactsModel (parent) {
 					model.additionalPhones().forEach(function (item) {
 						item.commit();
 					});
+					model.portfolio().forEach(function (item) {
+						item.commit();
+					});
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -134,6 +144,9 @@ function ResumeContactsModel (parent) {
 		model.additionalPhones().forEach(function (item) {
 			item.beginEdit();
 		});
+		model.portfolio().forEach(function (item) {
+			item.beginEdit();
+		});
 	};
 
 	model.cancel = function () {
@@ -141,10 +154,18 @@ function ResumeContactsModel (parent) {
 		model.additionalPhones().forEach(function (item) {
 			item.rollback();
 		});
+		model.portfolio().forEach(function (item) {
+			item.rollback();
+		});
 	};
 
 	model.addAdditionalPhone = function () {
 		model.additionalPhones.push(new ResumeContactsAdditionalPhoneModel(model));
+		model.edit();
+	};
+
+	model.addPortfolio = function () {
+		model.portfolio.push(new ResumeContactsPortfolioModel(model));
 		model.edit();
 	};
 
@@ -170,10 +191,32 @@ function ResumeContactsAdditionalPhoneModel (parent, data) {
 
 	model.remove = function (item) {
 		parent.additionalPhones.remove(item);
-		parent.save();
 	};
 
 	InitEditableModel(model, 'phone');
+}
+
+function ResumeContactsPortfolioModel (parent, data) {
+	var model = this;
+
+	model.resource = parent.resource;
+	model.portfolio = ko.observable(data);
+
+	model.toJS = function () {
+		return model.portfolio();
+	};
+
+	model.fromJS = function (data) {
+		if (!data) return;
+
+		model.portfolio(data);
+	};
+
+	model.remove = function (item) {
+		parent.portfolio.remove(item);
+	};
+
+	InitEditableModel(model, 'portfolio');
 }
 
 function ResumeContactsSocialNetworkModel (parent, data) {

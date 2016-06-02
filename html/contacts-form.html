@@ -54,12 +54,15 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<label for="portfolio">
+			<label>
 				<span data-bind="text: resource.contactsPortfolioLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="portfolio" class="input-block-level" name="portfolio" data-bind="attr: {placeholder: resource.contactsAddPortfolioLabel.label}, value: portfolio, valueUpdate: 'keyup'">
+			<div data-bind="foreach: portfolio">
+				<div data-bind="template: tpl"></div>
+			</div>
+			<button data-bind="text: resource.addPortfolio.label, click: addPortfolio"></button>
 		</div>
 	</div>
 

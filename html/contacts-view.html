@@ -34,7 +34,6 @@
 			<div data-bind="foreach: additionalPhones">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="text: resource.addPhone.label, click: addAdditionalPhone"></button>
 		</div>
 	</div>
 
@@ -52,7 +51,9 @@
 			<span data-bind="text: resource.contactsPortfolioLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
-			<span data-bind="text: portfolio"></span>
+			<div data-bind="foreach: portfolio">
+				<div data-bind="template: tpl"></div>
+			</div>
 		</div>
 	</div>
 
