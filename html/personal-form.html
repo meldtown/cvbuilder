@@ -67,12 +67,23 @@
 		<div class="col d-2of3">
 			<div >
 				<select id="cityId" name="cityId" class="input-block-level" data-bind="optionsCaption: resource.personalChooseCity.label, options: cityOptions, optionsText: 'label', value: selectedCityOption"></select>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label>
+				&nbsp;
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<div >
 				<div data-bind="foreach: moving">
 					<div data-bind="template: tpl"></div>
 				</div>
-				<button data-bind="text: resource.addCity.label, click: addMoving"></button>
+				<button class="btn btn-danger" data-bind="text: resource.addCity.label, click: addMoving"></button>
 			</div>
-			<!--<input class="input-block-level" id="cityId" name="cityId" data-bind="value: cityId, valueUpdate: 'keyup'">-->
 		</div>
 	</div>
 

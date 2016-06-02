@@ -10,7 +10,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.personalNameLabel.label" ></span>
+			<span data-bind="text: resource.personalNameLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: name"></span>
@@ -18,7 +18,7 @@
 	</div>
 	<div class="row" style="display: none">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.personalMiddleNameLabel.label" ></span>
+			<span data-bind="text: resource.personalMiddleNameLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: middleName"></span>
@@ -26,7 +26,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.personalSurnameLabel.label" ></span>
+			<span data-bind="text: resource.personalSurnameLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: surName"></span>
@@ -34,7 +34,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.personalDateBirthLabel.label" ></span>
+			<span data-bind="text: resource.personalDateBirthLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: dateBirthFormatted"></span>
@@ -43,7 +43,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.personalSexLabel.label" ></span>
+			<span data-bind="text: resource.personalSexLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: selectedSexOptionLabel"></span>
@@ -52,10 +52,10 @@
 	<div class="row">
 		<div class="col d-1of3"></div>
 		<div class="col d-2of3">
-			<span data-bind="text: selectedCityOptionLabel"></span><div data-bind="foreach: moving">
-			<div data-bind="template: tpl"></div>
-		</div>
-			<button data-bind="text: resource.addCity.label, click: addMoving"></button>
+			<span data-bind="text: selectedCityOptionLabel"></span>
+			<div data-bind="foreach: moving">
+				<div data-bind="template: tpl"></div>
+			</div>
 		</div>
 	</div>
 

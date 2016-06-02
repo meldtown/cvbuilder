@@ -25,6 +25,9 @@ function ResumePersonalModel (parent) {
 			return model.cityOptions.findById(model.cityId());
 		},
 		write: function (newValue) {
+			model.moving(model.moving().filter(function (item) {
+				return item.cityId() !== newValue.id;
+			}));
 			model.cityId(newValue ? newValue.id : undefined);
 		}
 	}).extend(utils.requiredOnly(model.resource.requiredMessage));
@@ -54,6 +57,12 @@ function ResumePersonalModel (parent) {
 		return moment.duration(moment() - moment(model.dateBirth())).humanize();
 	});
 
+	model.removeEmptyMoving = function () {
+		model.moving(model.moving().filter(function (item) {
+			return item.cityId();
+		}));
+	};
+
 	model.toJS = function () {
 		return mapper.toJS(model);
 	};
@@ -76,6 +85,8 @@ function ResumePersonalModel (parent) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
+			model.removeEmptyMoving();
+
 			backend.post(model.api, model.toJS())
 				.success(function () {
 					model.commit();
@@ -131,6 +142,17 @@ function ResumePersonalMovingModel (parent, data) {
 	};
 
 	model.cityOptions = parent.cityOptions;
+	model.computedCityOptions = ko.computed(function () {
+		var otherMovings = parent.moving().map(function (item) {
+			return item.cityId();
+		}).filter(function (cityId) {
+			return cityId && cityId !== model.cityId();
+		});
+
+		return parent.cityOptions.filter(function (item) {
+			return item.id !== parent.cityId() && otherMovings.indexOf(item.id) === -1;
+		});
+	});
 	model.selectedCityOption = ko.computed({
 		read: function () {
 			return model.cityOptions.findById(model.cityId());
@@ -138,7 +160,7 @@ function ResumePersonalMovingModel (parent, data) {
 		write: function (newValue) {
 			model.cityId(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	});
 	model.selectedCityOptionLabel = ko.computed(function () {
 		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
 	});
