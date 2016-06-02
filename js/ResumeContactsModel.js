@@ -9,7 +9,14 @@ function ResumeContactsModel (parent) {
 
 	model.resumeId = parent.resumeId;
 
-	model.phone = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.phone = ko.observable().extend({
+		pattern: {
+			params: '^[0-9\\-\\+\\(\\)\\ ]+.$',
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
 	model.additionalPhones = ko.observableArray();
 	model.email = ko.observable().extend({required: utils.required(model.resource.requiredMessage), email: true});
 	model.skype = ko.observable();
