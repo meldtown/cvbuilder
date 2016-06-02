@@ -5,7 +5,7 @@
 			<h3 class="cvbuilder-block-subtitle" data-bind="text: position"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: beginEdit"></a>
+			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: edit"></a>
 		</div>
 	</div>
 
@@ -73,6 +73,15 @@
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: companySite"></span>
+		</div>
+	</div>
+
+	<div>
+		<div>
+			<div data-bind="foreach: recommendationList">
+				<div data-bind="template: tpl"></div>
+			</div>
+			<button data-bind="text: resource.addRecommendation.label, click: addRecommendation"></button>
 		</div>
 	</div>
 

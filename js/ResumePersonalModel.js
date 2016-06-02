@@ -145,7 +145,6 @@ function ResumePersonalMovingModel (parent, data) {
 
 	model.remove = function (item) {
 		parent.moving.remove(item);
-		parent.save();
 	};
 
 	InitEditableModel(model, 'moving');

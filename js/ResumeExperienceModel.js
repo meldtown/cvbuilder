@@ -57,6 +57,9 @@ function ResumeExperienceModel (parent, data) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
+					model.recommendationList().forEach(function (item) {
+						item.commit();
+					});
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -73,8 +76,18 @@ function ResumeExperienceModel (parent, data) {
 			});
 	};
 
+	model.edit = function () {
+		model.beginEdit();
+		model.recommendationList().forEach(function (item) {
+			item.beginEdit();
+		});
+	};
+
 	model.cancel = function () {
 		model.rollback();
+		model.recommendationList().forEach(function (item) {
+			item.rollback();
+		});
 		if (!model.id()) {
 			model.remove();
 		}
@@ -95,7 +108,7 @@ function ResumeExperienceModel (parent, data) {
 	});
 
 	model.addRecommendation = function () {
-		model.additionalPhones.push(new ResumeExperienceRecommendationModel(model));
+		model.recommendationList.push(new ResumeExperienceRecommendationModel(model));
 		model.edit();
 	};
 
@@ -107,6 +120,8 @@ function ResumeExperienceModel (parent, data) {
 
 function ResumeExperienceRecommendationModel (parent, data) {
 	var model = this;
+
+	model.resource = parent.resource;
 
 	model.id = ko.observable();
 	model.experienceId = ko.observable();
@@ -128,7 +143,6 @@ function ResumeExperienceRecommendationModel (parent, data) {
 
 	model.remove = function (item) {
 		parent.recommendationList.remove(item);
-		parent.save();
 	};
 
 	if (data) model.fromJS(data);

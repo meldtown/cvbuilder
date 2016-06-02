@@ -76,12 +76,21 @@
 	</div>
 
 	<div class="row">
+		<div>
+			<div data-bind="foreach: recommendationList">
+				<div data-bind="template: tpl"></div>
+			</div>
+			<button data-bind="text: resource.addRecommendation.label, click: addRecommendation"></button>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col d-1of3">
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
 			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: rollback"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: cancel"></button>
 		</div>
 	</div>
 

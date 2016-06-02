@@ -1,10 +1,23 @@
 <div class="cvbuilder-form">
-	<h3 class="cvbuilder-block-title" data-bind="text: resource.recommendationRubricNameLabel.label"></h3>
+
+
+	<div class="row">
+		<div class="col d-2of3">
+			<h5 class="cvbuilder-block-title" data-bind="text: resource.recommendationRubricNameLabel.label"></h5>
+		</div>
+		<div class="col d-1of3 text-right">
+			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col d-1of3">
 		</div>
 		<div class="col d-2of3">
-			<input type="checkbox" class="input-block-level" name="position" data-bind="checked: atRequest">
+			<label>
+				<input type="checkbox" name="position" data-bind="checked: atRequest">
+				<b data-bind="text: resource.recommendationAtRequestLabel.label"></b>
+			</label>
 		</div>
 	</div>
 
@@ -39,7 +52,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input class="input-block-level" id="company" name="company" data-bind="attr: {placeholder: resource.addRecommendationCompanyLabel.label}, value: companyName">
+			<input class="input-block-level" id="company" name="company"
+				   data-bind="attr: {placeholder: resource.addRecommendationCompanyLabel.label}, value: companyName">
 		</div>
 	</div>
 
@@ -50,18 +64,21 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input class="input-block-level" id="phone" name="phone" data-bind="attr: {placeholder: resource.addRecommendationPhone.label}, value: phone">
+			<input class="input-block-level" id="phone" name="phone"
+				   data-bind="attr: {placeholder: resource.addRecommendationPhone.label}, value: phone">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
-			&nbsp;
+			<label for="email">
+				<span data-bind="text: resource.recommendationEmailLabel.label"></span>
+			</label>
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light"
-					data-bind="text: resource.discard.label, click: rollback"></button>
+			<input class="input-block-level" id="email" name="email"
+				   data-bind="attr: {placeholder: resource.addRecommendationEmail.label}, value: email">
 		</div>
 	</div>
+
 </div>
