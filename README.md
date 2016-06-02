@@ -9,7 +9,7 @@ Validation
 
 Dropdowns - remove placeholder???
 
-Personal/Moving - remove validation, skip empty on save
++ Personal/Moving - remove validation, skip empty on save
 Contacts/Phone - add validation, is it required ?
 Contacts/Email - i18n custom message
 Contacts/Additional Phone - custom validation, skip empty on save, without require
@@ -33,8 +33,8 @@ All top level models - add message property
 
 Personal - add photo
 Personal/City - custom control
-Personal/moving- hide already selected cities or skip them before save
-Personal/moving/add - hide button
++ Personal/moving- hide already selected cities or skip them before save
+- Personal/moving/add - hide button (not needed there is no chance that there will be cv without cityId defined)
 Contacts/Additional phones - show/hide logic
 Contacts/portfolio - add button computed show/hide, force one item, remove button only from second
 Position/Speciality - add autocomplete
@@ -62,7 +62,7 @@ Markup
 
 Contacts/portfolio and additional phones - add input-block-level class
 all block/edit mode - check for input-block-level, add grids if needed
-personal
+personal/additional cities/view - waiting for desing/ux decision
 contacts
 position
 experience
