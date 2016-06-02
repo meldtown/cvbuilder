@@ -61,6 +61,12 @@ function ResumePersonalModel (parent) {
 		return model.name() + ' ' + model.surName();
 	});
 
+	model.movingLabels = ko.computed(function () {
+		return model.moving().map(function (item) {
+			return item.selectedCityOptionLabel();
+		}).join(', ');
+	});
+
 	model.removeEmptyMoving = function () {
 		model.moving(model.moving().filter(function (item) {
 			return item.cityId();

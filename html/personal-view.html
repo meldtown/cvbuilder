@@ -15,4 +15,8 @@
 	<div class="rua-p-c-light">
 		<span data-bind="text: selectedSexOptionLabel"></span>
 	</div>
+	<div class="rua-p-c-light" data-bind="if: moving">
+		<div data-bind="text: resource.moveAbility.label"></div>
+		<span data-bind="text: movingLabels"></span>
+	</div>
 </div>
