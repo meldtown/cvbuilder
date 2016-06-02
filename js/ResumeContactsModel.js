@@ -23,6 +23,20 @@ function ResumeContactsModel (parent) {
 	model.portfolio = ko.observableArray();
 	model.socialNetworks = ko.observableArray();
 
+	model.isAdditionalPhonesBlockVisibleView = ko.computed(function () {
+		return model.phone() && model.additionalPhones().length > 0;
+	});
+
+	model.isAdditionalPhonesBlockVisibleForm = ko.computed(function () {
+		return model.phone() && model.phone.isValid();
+	});
+
+	model.removeBadOrEmptyAdditionalPhones = function () {
+		model.additionalPhones(model.additionalPhones().filter(function (item) {
+			return item.phone() && item.phone().length > 0 && item.phone.isValid();
+		}));
+	};
+
 	model.getSocialNetworkBySubType = function (subType) {
 		return model.socialNetworks().filter(function (item) {
 			return item.subTypeAsString() === (subType || '').toString();
@@ -128,6 +142,7 @@ function ResumeContactsModel (parent) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
+			model.removeBadOrEmptyAdditionalPhones();
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/contact', model.toJS())
 				.success(function () {
 					model.commit();
@@ -183,7 +198,14 @@ function ResumeContactsModel (parent) {
 function ResumeContactsAdditionalPhoneModel (parent, data) {
 	var model = this;
 
-	model.phone = ko.observable(data);
+	model.phone = ko.observable(data).extend({
+		pattern: {
+			params: '^[0-9\\-\\+\\(\\)\\ ]+.$',
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
 	model.resource = parent.resource;
 
 	model.toJS = function () {

@@ -14,7 +14,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" data-bind="if: isAdditionalPhonesBlockVisibleForm">
 		<div class="col d-1of3">
 			<label>
 				<span data-bind="text: resource.contactsAdditionalPhonesLabel.label"></span>
@@ -24,7 +24,7 @@
 			<div data-bind="foreach: additionalPhones">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="text: resource.addPhone.label, click: addAdditionalPhone"></button>
+			<button class="btn btn-danger" data-bind="text: resource.addPhone.label, click: addAdditionalPhone"></button>
 		</div>
 	</div>
 

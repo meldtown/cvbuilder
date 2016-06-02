@@ -7,7 +7,7 @@
 			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: edit"></a>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" data-bind="if: phone">
 		<div class="col d-1of3">
 			<span data-bind="text: resource.contactsPhoneLabel.label"></span>
 		</div>
@@ -15,7 +15,7 @@
 			<span data-bind="text: phone"></span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" data-bind="if: isAdditionalPhonesBlockVisibleView">
 		<div class="col d-1of3">
 			<span data-bind="text: resource.contactsAdditionalPhonesLabel.label"></span>
 		</div>
