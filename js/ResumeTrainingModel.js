@@ -9,10 +9,10 @@ function ResumeTraininglModel (parent, data) {
 
 	model.resumeId = parent.resumeId;
 	model.id = ko.observable();
-	model.name = ko.observable().extend({required: true});
+	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.location = ko.observable();
-	model.description = ko.observable().extend({required: true});
-	model.year = ko.observable().extend({required: true});
+	model.description = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.yearOptions = [];
 	for (var year = (new Date()).getFullYear(); year >= (new Date()).getFullYear() - 80; year--) {

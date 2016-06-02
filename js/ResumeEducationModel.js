@@ -12,11 +12,11 @@ function ResumeEducationModel (parent, data) {
 
 	model.id = ko.observable();
 	model.typeId = ko.observable();
-	model.schoolName = ko.observable().extend({required: true});
-	model.location = ko.observable().extend({required: true});
-	model.speciality = ko.observable().extend({required: true});
-	model.diploma = ko.observable().extend({required: true});
-	model.year = ko.observable().extend({required: true});
+	model.schoolName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.location = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.speciality = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.diploma = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.yearOptions = [];
 	for (var year = (new Date()).getFullYear(); year >= (new Date()).getFullYear() - 80; year--) {
@@ -39,7 +39,7 @@ function ResumeEducationModel (parent, data) {
 		write: function (newValue) {
 			model.typeId(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedTypeOptionLabel = ko.computed(function () {
 		return model.selectedTypeOption() ? model.selectedTypeOption().label() : '';
 	});

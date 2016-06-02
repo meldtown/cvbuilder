@@ -11,9 +11,9 @@ function ResumePositionModel(parent, data) {
 	model.api = parent.api + '/resume/' + parent.resumeId + '/position';
 
 	model.id = ko.observable();
-	model.position = ko.observable().extend({required: true});
-	model.experienceId = ko.observable().extend({required: true});
-	model.scheduleId = ko.observable().extend({required: true});
+	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.experienceId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.salary = ko.observable();
 	model.currencyId = ko.observable();
 
@@ -25,7 +25,7 @@ function ResumePositionModel(parent, data) {
 		write: function (newValue) {
 			model.scheduleId(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedScheduleOptionLabel = ko.computed(function () {
 		return model.selectedScheduleOption() ? model.selectedScheduleOption().label() : '';
 	});
@@ -38,7 +38,7 @@ function ResumePositionModel(parent, data) {
 		write: function (newValue) {
 			model.currencyId(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedCurrencyOptionLabel = ko.computed(function () {
 		return model.selectedCurrencyOption() ? model.selectedCurrencyOption().label() : '';
 	});
@@ -82,7 +82,7 @@ function ResumePositionModel(parent, data) {
 		write: function (newValue) {
 			model.experienceId(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedExperienceOptionLabel = ko.computed(function () {
 		return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
 	});

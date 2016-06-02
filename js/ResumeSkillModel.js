@@ -11,7 +11,7 @@ function ResumeSkillModel (parent) {
 
 	model.resumeId = parent.resumeId;
 
-	model.text = ko.observable().extend({required: true});
+	model.text = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.get = function () {
 		backend.get(model.api).success(function (data) {

@@ -11,11 +11,11 @@ function ResumePersonalModel (parent) {
 
 	model.resumeId = parent.resumeId;
 
-	model.name = ko.observable().extend({required: true});
+	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.middleName = ko.observable();
-	model.surName = ko.observable().extend({required: true});
+	model.surName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.dateBirth = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.sex = ko.observable().extend({required: true});
+	model.sex = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.cityId = ko.observable();
 	model.moving = ko.observableArray();
 
@@ -27,7 +27,7 @@ function ResumePersonalModel (parent) {
 		write: function (newValue) {
 			model.cityId(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedCityOptionLabel = ko.computed(function () {
 		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
 	});
@@ -40,7 +40,7 @@ function ResumePersonalModel (parent) {
 		write: function (newValue) {
 			model.sex(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedSexOptionLabel = ko.computed(function () {
 		return model.selectedSexOption() ? model.selectedSexOption().label() : '';
 	});
@@ -138,7 +138,7 @@ function ResumePersonalMovingModel (parent, data) {
 		write: function (newValue) {
 			model.cityId(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedCityOptionLabel = ko.computed(function () {
 		return model.selectedCityOption() ? model.selectedCityOption().label() : '';
 	});

@@ -33,7 +33,7 @@ function ResumeLanguageModel (parent, data) {
 		write: function (newValue) {
 			model.languageId(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedLanguageOptionLabel = ko.computed(function () {
 		return model.selectedLanguageOption() ? model.selectedLanguageOption().label() : '';
 	});
@@ -46,7 +46,7 @@ function ResumeLanguageModel (parent, data) {
 		write: function (newValue) {
 			model.skillsLevel(newValue ? newValue.id : undefined);
 		}
-	}).extend({required: true});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedLanguageSkillOptionLabel = ko.computed(function () {
 		return model.selectedLanguageSkillOption() ? model.selectedLanguageSkillOption().label() : '';
 	});

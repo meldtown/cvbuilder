@@ -61,7 +61,13 @@
 			<span data-bind="text: resource.contactsSocialNetworksLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
-			<span data-bind="text: socialNetworks"></span>
+			<div data-bind="foreach: socialNetworks">
+				<div>
+					<span data-bind="text: subTypeLabel"></span>
+					&mdash;
+					<span data-bind="text: text"></span>
+				</div>
+			</div>
 		</div>
 	</div>
 

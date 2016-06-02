@@ -9,8 +9,8 @@ function ResumeAdditionalModel(parent, data) {
 	model.resumeId = parent.resumeId;
 
 	model.id = ko.observable();
-	model.title = ko.observable().extend({required: true});
-	model.description = ko.observable().extend({required: true});
+	model.title = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.description = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.predefinedTitles = parent.dictionary.additional;
 	model.selectedPredefinedTitle = ko.observable();

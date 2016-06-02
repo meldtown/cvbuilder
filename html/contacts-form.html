@@ -65,12 +65,30 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<label for="socialNetworks">
+			<label>
 				<span data-bind="text: resource.contactsSocialNetworksLabel.label"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="socialNetworks" class="input-block-level" name="socialNetworks" data-bind="value: socialNetworks, valueUpdate: 'keyup'">
+			<a href="#" data-bind="click: toggleLinkedin, css: linkedinClass">Linkedin</a>
+			<a href="#" data-bind="click: toggleFacebook, css: facebookClass">Facebook</a>
+			<a href="#" data-bind="click: toggleVk, css: vkClass">Vkontakte</a>
+			<a href="#" data-bind="click: toggleTwitter, css: twitterClass">Twitter</a>
+			<a href="#" data-bind="click: toggleGooglePlus, css: googlePlusClass">Google+</a>
+			<a href="#" data-bind="click: toggleOdnoklasniki, css: odnoklasnikiClass">Odnoklasniki</a>
+		</div>
+	</div>
+
+	<div data-bind="foreach: socialNetworks">
+		<div class="row">
+			<div class="col d-1of3">
+				<label data-bind="attr: {for: subType}">
+					<span data-bind="text: subTypeLabel"></span>
+				</label>
+			</div>
+			<div class="col d-2of3">
+				<input type="text" class="input-block-level" data-bind="value: text, valueUpdate: 'keyup', attr: {id: subType, name: subType}" />
+			</div>
 		</div>
 	</div>
 
