@@ -39,6 +39,10 @@ function ResumeContactsModel (parent) {
 		return model.phone() && model.phone.isValid();
 	});
 
+	model.emailHref = ko.computed(function () {
+		return 'mailto:' + model.email();
+	});
+
 	model.removeBadOrEmptyAdditionalPhones = function () {
 		model.additionalPhones(model.additionalPhones().filter(function (item) {
 			return item.phone() && item.phone().length > 0 && item.phone.isValid();

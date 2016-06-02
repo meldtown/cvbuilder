@@ -30,7 +30,7 @@
 			<span data-bind="text: resource.contactsEmailLabel.label"></span>
 		</div>
 		<div class="col d-2of3">
-			<span data-bind="text: email"></span>
+			<a data-bind="text: email, attr: { href: emailHref }"></a>
 		</div>
 	</div>
 	<div class="row" data-bind="if: skype">
