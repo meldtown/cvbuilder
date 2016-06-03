@@ -5,6 +5,10 @@ function ResumePositionModel(parent, data) {
 		return parent._lng();
 	});
 
+	model._keywordsApiUrl = ko.computed(function () {
+		return parent.api + '/autocomplete/keyword';
+	});
+
 	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;
