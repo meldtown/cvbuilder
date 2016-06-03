@@ -65,8 +65,8 @@ function ResumePositionModel (parent, data) {
 		validation: {
 			validator: function (val) {
 				if (!model.salary()) return true;
-				
-				return model.salary() && model.salary.isValid() && model.currencyId();
+
+				return model.salary() && model.salary.isValid() && val;
 			},
 			message: function (params, observable) {
 				return model.resource.requiredMessage.label();
