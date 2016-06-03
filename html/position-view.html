@@ -32,13 +32,12 @@
 			<span data-bind="text: selectedExperienceOptionLabel"></span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" data-bind="visible: salary">
 		<div class="col d-1of3">
 			<span data-bind="label: resource.positionSalaryLabel"></span>
 		</div>
 		<div class="col d-2of3">
-			<span data-bind="text: salary"></span>
-			<span data-bind="text: selectedCurrencyOptionLabel"></span>
+			<span data-bind="text: formattedSalary"></span>
 		</div>
 	</div>
 

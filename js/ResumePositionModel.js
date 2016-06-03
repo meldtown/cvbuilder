@@ -77,6 +77,21 @@ function ResumePositionModel (parent, data) {
 		return model.selectedCurrencyOption() ? model.selectedCurrencyOption().label() : '';
 	});
 
+	model.formattedSalary = ko.computed(function () {
+		if (!model.salary()) return '';
+		if (isNaN(parseInt(model.salary()))) return '';
+
+		var result = parseInt(model.salary()).toLocaleString(model._lng() === 'en' ? 'us' : 'ru');
+
+		if (model.currencyId() === 2) {
+			result = '$' + result;
+		} else {
+			result = result + ' ' + model.selectedCurrencyOptionLabel();
+		}
+
+		return model.resource.from.label() + ' ' + result;
+	});
+
 	model.toJS = function () {
 		return mapper.toJS(model);
 	};
