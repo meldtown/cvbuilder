@@ -54,3 +54,19 @@ textarea {
 	resize: vertical;
 }
 
+.company-autocomplete-right {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.company-autocomplete-left {
+	@extend .company-autocomplete-right;
+	width: 95px;
+	text-align: center;
+	margin-right: 20px;
+}
+
+img.company-logo-autocomplete {
+	vertical-align: middle;
+}
+

@@ -15,14 +15,16 @@ ko.bindingHandlers.tinylight = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();
 		element.value = property();
-		jQuery(element).tinylight({height: 200, updateOnKeyUp: function (html, tiny) {
-			property(jQuery(html).text().trim().length > 0 ? html : undefined);
-			if (property.isValid()) {
-				tiny.holder.removeClass('validationElement');
-			} else {
-				tiny.holder.addClass('validationElement');
+		jQuery(element).tinylight({
+			height: 200, updateOnKeyUp: function (html, tiny) {
+				property(jQuery(html).text().trim().length > 0 ? html : undefined);
+				if (property.isValid()) {
+					tiny.holder.removeClass('validationElement');
+				} else {
+					tiny.holder.addClass('validationElement');
+				}
 			}
-		}});
+		});
 	}
 };
 
@@ -56,11 +58,51 @@ ko.bindingHandlers.keywords = {
 	}
 };
 
+ko.bindingHandlers.company = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var property = valueAccessor();
+
+		if (element.nodeName.toLowerCase() !== 'input') return;
+		if (element.getAttribute('type') !== 'text') return;
+		if (!viewModel || !viewModel._companyApiUrl || !ko.isObservable(viewModel._companyApiUrl)) return;
+		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) return;
+		if (!viewModel || !viewModel._branch) return;
+
+		jQuery(element).autocomplete({
+			source: viewModel._companyApiUrl(),
+			minLength: 2,
+			select: function (event, ui) {
+				property(ui.item.companyName);
+				return false;
+			}
+		}).data('ui-autocomplete')._renderItem = function (ul, item) {
+			var imageSource = 'http://img1.rabota.com.ua/Data/cImg/' + item.logo;
+			var branchName = viewModel._branch.findById(item.branchId);
+
+
+			var containerRight = document.createElement('DIV');
+			containerRight.setAttribute('class', 'company-autocomplete-right');
+			var img = document.createElement('IMG');
+			img.src = imageSource;
+			img.setAttribute('class', 'company-logo-autocomplete');
+			$(containerRight).append('<span class="autocomplete-company-name">' + item.companyName + '</span><br><span class="autocomplete-company-branch">' + branchName.label() + '</span>');
+
+			var a = document.createElement('A');
+			var containerLeft = document.createElement('DIV');
+			containerLeft.setAttribute('class', 'company-autocomplete-left');
+			$(containerLeft).append(img);
+			$(a).append(containerLeft);
+			$(a).append(containerRight);
+			return $('<li>').append(a).appendTo(ul);
+		};
+	}
+};
+
 ko.validation.init({
 	decorateInputElement: true
 }, true);
 
-function InitEditableModel (model, templatePrefix) {
+function InitEditableModel(model, templatePrefix) {
 	ko.editable(model);
 	model.errors = ko.validation.group(model);
 	model.tpl = ko.computed(function () {
@@ -68,7 +110,7 @@ function InitEditableModel (model, templatePrefix) {
 	});
 }
 
-function InitBadRequestResponseHandler (model) {
+function InitBadRequestResponseHandler(model) {
 	model.handleBarRequestResponse = function (jqXHR) {
 		if (jqXHR.status === 400) {
 			var data = JSON.parse(jqXHR.responseText);
