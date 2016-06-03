@@ -7,7 +7,7 @@
 			<a class="rua-p-c-light" href="#" data-bind="label: resource.edit, click: edit"></a>
 		</div>
 	</div>
-	<div class="row" data-bind="if: phone">
+	<div class="row" data-bind="visible: phone">
 		<div class="col d-1of3">
 			<span data-bind="label: resource.contactsPhoneLabel"></span>
 		</div>
@@ -15,7 +15,7 @@
 			<span data-bind="text: phone"></span>
 		</div>
 	</div>
-	<div class="row" data-bind="if: isAdditionalPhonesBlockVisibleView">
+	<div class="row" data-bind="visible: isAdditionalPhonesBlockVisibleView">
 		<div class="col d-1of3">
 			<span data-bind="label: resource.contactsAdditionalPhonesLabel"></span>
 		</div>
@@ -33,7 +33,7 @@
 			<a data-bind="text: email, attr: { href: emailHref }"></a>
 		</div>
 	</div>
-	<div class="row" data-bind="if: skype">
+	<div class="row" data-bind="visible: skype">
 		<div class="col d-1of3">
 			<span data-bind="label: resource.contactsSkypeLabel"></span>
 		</div>
@@ -41,17 +41,17 @@
 			<span data-bind="text: skype"></span>
 		</div>
 	</div>
-	<div class="row" data-bind="if: portfolio">
+	<div class="row" data-bind="visible: isPortfoliodBlockVisible">
 		<div class="col d-1of3">
 			<span data-bind="label: resource.contactsPortfolioLabel"></span>
 		</div>
 		<div class="col d-2of3">
-			<div data-bind="foreach: portfolio">
+			<div data-bind="foreach: nonEmptyPortfolio">
 				<div data-bind="template: tpl"></div>
 			</div>
 		</div>
 	</div>
-	<div class="row" data-bind="if: socialNetworks">
+	<div class="row" data-bind="visible: isSocialNetworksBlockVisible">
 		<div class="col d-1of3">
 			<span data-bind="label: resource.contactsSocialNetworksLabel"></span>
 		</div>

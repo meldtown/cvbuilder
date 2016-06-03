@@ -43,6 +43,26 @@ function ResumeContactsModel (parent) {
 		return 'mailto:' + model.email();
 	});
 
+	model.nonEmptyPortfolio = ko.computed(function () {
+		return model.portfolio().filter(function (item) {
+			return item.portfolio() && item.portfolio().length > 0;
+		});
+	});
+
+	model.isPortfoliodBlockVisible = ko.computed(function () {
+		return model.nonEmptyPortfolio().length > 0;
+	});
+
+	model.nonEmptySocialNetworks = ko.computed(function () {
+		return model.socialNetworks().filter(function (item) {
+			return item.text() && item.text().length > 0;
+		});
+	});
+
+	model.isSocialNetworksBlockVisible = ko.computed(function () {
+		return model.nonEmptySocialNetworks().length > 0;
+	});
+
 	model.removeBadOrEmptyAdditionalPhones = function () {
 		model.additionalPhones(model.additionalPhones().filter(function (item) {
 			return item.phone() && item.phone().length > 0 && item.phone.isValid();
@@ -50,9 +70,11 @@ function ResumeContactsModel (parent) {
 	};
 
 	model.removeEmptyPortfolio = function () {
-		model.portfolio(model.portfolio().filter(function (item) {
-			return item.portfolio() && item.portfolio().length > 0;
-		}));
+		model.portfolio(model.nonEmptyPortfolio());
+	};
+
+	model.removeEmptySocialNetworks = function () {
+		model.socialNetworks(model.nonEmptySocialNetworks());
 	};
 
 	model.getSocialNetworkBySubType = function (subType) {
@@ -126,14 +148,7 @@ function ResumeContactsModel (parent) {
 	});
 
 	model.toJS = function () {
-		var data = mapper.toJS(model);
-		data.socialNetworks = data.socialNetworks.filter(function (item) {
-			return item.text.trim().length > 0;
-		});
-		data.portfolio = data.portfolio.filter(function (item) {
-			return item && item.trim().length > 0;
-		});
-		return data;
+		return mapper.toJS(model);
 	};
 
 	model.fromJS = function (data) {
@@ -166,6 +181,7 @@ function ResumeContactsModel (parent) {
 		if (model.errors().length === 0) {
 			model.removeBadOrEmptyAdditionalPhones();
 			model.removeEmptyPortfolio();
+			model.removeEmptySocialNetworks();
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/contact', model.toJS())
 				.success(function () {
 					model.commit();
@@ -262,6 +278,10 @@ function ResumeContactsPortfolioModel (parent, data) {
 
 	model.isRemoveButtonVisible = ko.computed(function () {
 		return parent.portfolio.indexOf(model) > 0;
+	});
+
+	model.formRowLabel = ko.computed(function () {
+		return parent.portfolio.indexOf(model) > 0 ? '' : model.resource.contactsPortfolioLabel.label();
 	});
 
 	model.isLink = ko.computed(function () {
