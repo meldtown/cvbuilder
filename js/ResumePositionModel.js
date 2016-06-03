@@ -1,4 +1,4 @@
-function ResumePositionModel(parent, data) {
+function ResumePositionModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -61,7 +61,18 @@ function ResumePositionModel(parent, data) {
 		write: function (newValue) {
 			model.currencyId(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	}).extend({
+		validation: {
+			validator: function (val) {
+				if (!model.salary()) return true;
+				
+				return model.salary() && model.salary.isValid() && model.currencyId();
+			},
+			message: function (params, observable) {
+				return model.resource.requiredMessage.label();
+			}
+		}
+	});
 	model.selectedCurrencyOptionLabel = ko.computed(function () {
 		return model.selectedCurrencyOption() ? model.selectedCurrencyOption().label() : '';
 	});
