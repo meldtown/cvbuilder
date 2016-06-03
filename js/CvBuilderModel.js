@@ -7,7 +7,6 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model._lngOptions = ['ru', 'ua', 'en'];
 
 	model.dictionary = dictionary;
-	model.dictionary.additional.push({ru: 'custom', en: 'custom', ua: 'custom'});
 
 	// Map all resources into DictionaryModel
 	Object.keys(model.dictionary).forEach(function (key) {

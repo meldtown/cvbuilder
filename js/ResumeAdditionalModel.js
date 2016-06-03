@@ -15,8 +15,12 @@ function ResumeAdditionalModel(parent, data) {
 	model.predefinedTitles = parent.dictionary.additional;
 	model.selectedPredefinedTitle = ko.observable();
 	model.selectedPredefinedTitle.subscribe(function (label) {
-		model.title(label === 'custom' ? '' : label);
+		model.title(label === 'Custom section' ? '' : label);
 		model.title.isModified(false);
+	});
+
+	model.isCustomTitleSelected = ko.computed(function () {
+		return model.selectedPredefinedTitle() === model.predefinedTitles[model.predefinedTitles.length - 1].label();
 	});
 
 
