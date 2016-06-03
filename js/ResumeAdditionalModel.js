@@ -59,6 +59,11 @@ function ResumeAdditionalModel(parent, data) {
 		}
 	};
 
+	model.cancel = function () {
+		model.rollback();
+		parent.additional.remove(model);
+	};
+
 	InitEditableModel(model, 'additional');
 	InitBadRequestResponseHandler(model);
 
