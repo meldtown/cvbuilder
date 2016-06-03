@@ -1,3 +1,5 @@
+
+
 function ResumePersonalModel (parent) {
 	var model = this;
 
@@ -25,9 +27,11 @@ function ResumePersonalModel (parent) {
 			return model.cityOptions.findById(model.cityId());
 		},
 		write: function (newValue) {
-			model.moving(model.moving().filter(function (item) {
-				return item.cityId() !== newValue.id;
-			}));
+			if (newValue && newValue.id) {
+				model.moving(model.moving().filter(function (item) {
+					return item.cityId() !== newValue.id;
+				}));
+			}
 			model.cityId(newValue ? newValue.id : undefined);
 		}
 	}).extend(utils.requiredOnly(model.resource.requiredMessage));

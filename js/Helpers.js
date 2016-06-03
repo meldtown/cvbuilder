@@ -28,7 +28,7 @@ ko.bindingHandlers.tinylight = {
 	}
 };
 
-ko.bindingHandlers.keywords = {
+ko.bindingHandlers.autocompleteKeyword = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();
 
@@ -58,7 +58,7 @@ ko.bindingHandlers.keywords = {
 	}
 };
 
-ko.bindingHandlers.company = {
+ko.bindingHandlers.autocompleteCompany = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();
 
@@ -94,6 +94,46 @@ ko.bindingHandlers.company = {
 			$(a).append(containerLeft);
 			$(a).append(containerRight);
 			return $('<li>').append(a).appendTo(ul);
+		};
+	}
+};
+
+ko.bindingHandlers.autocompleteCity = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var params = valueAccessor();
+
+		jQuery(element).val(params.value() ? params.value().label() : '');
+
+		jQuery(element).autocomplete({
+			source: function (request, response) {
+				var term = (request.term || '').toLowerCase().trim();
+
+				if (!term) {
+					response(params.options.slice(0, 10));
+				} else {
+					response(params.options.filter(function (item) {
+						return item.label().toLowerCase().indexOf(term) === 0;
+					}));
+				}
+			},
+			minLength: 0,
+			select: function (event, ui) {
+				event.preventDefault();
+				jQuery(event.target).val(ui.item.label());
+				params.value(ui.item);
+			},
+			change: function (event, ui) {
+				if (!ui.item) {
+					params.value(undefined);
+					jQuery(event.target).val('');
+				}
+			}
+		}).on('focus', function () {
+			if (!$(this).val()) {
+				$(this).autocomplete('search', '');
+			}
+		}).data('ui-autocomplete')._renderItem = function (ul, item) {
+			return $('<li>').append('<a>' + item.label() + '</a>').appendTo(ul);
 		};
 	}
 };
