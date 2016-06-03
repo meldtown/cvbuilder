@@ -2,17 +2,17 @@
 
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.educationNameLabel.label"></h3>
+			<h3 class="cvbuilder-block-subtitle" data-bind="label: resource.educationNameLabel"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="typeId">
-				<span data-bind="text: resource.educationTypeLabel.label"></span>
+				<span data-bind="label: resource.educationTypeLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="schoolName">
-				<span data-bind="text: resource.educationSchoolNameLabel.label"></span>
+				<span data-bind="label: resource.educationSchoolNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -34,7 +34,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="location">
-				<span data-bind="text: resource.educationLocationLabel.label"></span>
+				<span data-bind="label: resource.educationLocationLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -45,7 +45,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="speciality">
-				<span data-bind="text: resource.educationSpecialityLabel.label"></span>
+				<span data-bind="label: resource.educationSpecialityLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -56,7 +56,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="diploma">
-				<span data-bind="text: resource.educationDiplomaLabel.label"></span>
+				<span data-bind="label: resource.educationDiplomaLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -67,7 +67,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="year">
-				<span data-bind="text: resource.year.label"></span>
+				<span data-bind="label: resource.year"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -80,8 +80,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: cancel"></button>
+			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
 		</div>
 	</div>
 

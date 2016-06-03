@@ -1,3 +1,16 @@
+ko.bindingHandlers.label = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var property = valueAccessor();
+
+		if (property && property.label && ko.isObservable(property.label)) {
+			element.innerHTML = property.label();
+		} else {
+			console.error('RESX', element, valueAccessor);
+			element.innerHTML = 'NOT FOUND'; // TODO: before production make empty string here
+		}
+	}
+};
+
 ko.bindingHandlers.tinylight = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();

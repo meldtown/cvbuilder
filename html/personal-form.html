@@ -1,10 +1,10 @@
 <div class="cvbuilder-form">
-	<h3 class="cvbuilder-block-title" data-bind="text: resource.personalRubricNameLabel.label"></h3>
-	<span data-bind="text: resource.personalRubricTooltip.label"></span>
+	<h3 class="cvbuilder-block-title" data-bind="label: resource.personalRubricNameLabel"></h3>
+	<span data-bind="label: resource.personalRubricTooltip"></span>
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="name">
-				<span data-bind="text: resource.personalNameLabel.label" ></span>
+				<span data-bind="label: resource.personalNameLabel" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -15,7 +15,7 @@
 	<div class="row" style="display: none">
 		<div class="col d-1of3">
 			<label for="middleName">
-				<span data-bind="text: resource.personalMiddleNameLabel.label" ></span>
+				<span data-bind="label: resource.personalMiddleNameLabel" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="surName">
-				<span data-bind="text: resource.personalSurnameLabel.label" ></span>
+				<span data-bind="label: resource.personalSurnameLabel" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -37,7 +37,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label>
-				<span data-bind="text: resource.personalDateBirthLabel.label" ></span>
+				<span data-bind="label: resource.personalDateBirthLabel" ></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -49,7 +49,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="sex">
-				<span data-bind="text: resource.personalSexLabel.label"></span>
+				<span data-bind="label: resource.personalSexLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -60,8 +60,8 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="cityId">
-				<span data-bind="text: resource.personalCityNameLabel.label" ></span><br>
-				<span data-bind="text: resource.personalCityTooltip.label"></span>
+				<span data-bind="label: resource.personalCityNameLabel" ></span><br>
+				<span data-bind="label: resource.personalCityTooltip"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -82,7 +82,7 @@
 				<div data-bind="foreach: moving">
 					<div data-bind="template: tpl"></div>
 				</div>
-				<button class="btn btn-danger" data-bind="text: resource.addCity.label, click: addMoving"></button>
+				<button class="btn btn-danger" data-bind="label: resource.addCity, click: addMoving"></button>
 			</div>
 		</div>
 	</div>
@@ -93,8 +93,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: cancel"></button>
+			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
 		</div>
 	</div>
 </div>

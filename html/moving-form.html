@@ -1,7 +1,7 @@
 <div>
 	<div class="media">
 		<div class="pull-right">
-			<a class="btn btn-danger" href="#" data-bind="text: resource.delete.label, click: remove"></a>
+			<a class="btn btn-danger" href="#" data-bind="label: resource.delete, click: remove"></a>
 		</div>
 		<div class="media-body">
 			<select id="cityId" name="cityId" class="input-block-level" data-bind="optionsCaption: resource.personalChooseCity.label, options: computedCityOptions, optionsText: 'label', value: selectedCityOption"></select>

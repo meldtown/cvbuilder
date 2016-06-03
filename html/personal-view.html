@@ -4,7 +4,7 @@
 			<h3 class="cvbuilder-block-title" data-bind="text: fullName"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: edit"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.edit, click: edit"></a>
 		</div>
 	</div>
 	<div class="rua-p-c-light">
@@ -16,7 +16,7 @@
 		<span data-bind="text: selectedSexOptionLabel"></span>
 	</div>
 	<div class="rua-p-c-light" data-bind="if: moving">
-		<div data-bind="text: resource.moveAbility.label"></div>
+		<div data-bind="label: resource.moveAbility"></div>
 		<span data-bind="text: movingLabels"></span>
 	</div>
 </div>

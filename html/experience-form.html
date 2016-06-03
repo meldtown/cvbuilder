@@ -2,18 +2,18 @@
 
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.experienceRubricNameLabel.label"></h3>
-			<span data-bind="text: resource.experienceRubricTooltip.label"></span>
+			<h3 class="cvbuilder-block-subtitle" data-bind="label: resource.experienceRubricNameLabel"></h3>
+			<span data-bind="label: resource.experienceRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="company">
-				<span data-bind="text: resource.experienceCompanyLabel.label"></span>
+				<span data-bind="label: resource.experienceCompanyLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -24,7 +24,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="branchId">
-				<span data-bind="text: resource.experienceAreaLabel.label"></span>
+				<span data-bind="label: resource.experienceAreaLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -35,7 +35,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="position">
-				<span data-bind="text: resource.experiencePositionLabel.label"></span>
+				<span data-bind="label: resource.experiencePositionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -46,7 +46,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="startWork">
-				<span data-bind="text: resource.experiencePeriodLabel.label"></span>
+				<span data-bind="label: resource.experiencePeriodLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -67,7 +67,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="description">
-				<span data-bind="text: resource.experienceDescriptionLabel.label"></span>
+				<span data-bind="label: resource.experienceDescriptionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -80,7 +80,7 @@
 			<div data-bind="foreach: recommendationList">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="text: resource.addRecommendation.label, click: addRecommendation"></button>
+			<button data-bind="label: resource.addRecommendation, click: addRecommendation"></button>
 		</div>
 	</div>
 
@@ -89,8 +89,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: cancel"></button>
+			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
 		</div>
 	</div>
 

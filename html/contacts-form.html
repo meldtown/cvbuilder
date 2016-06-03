@@ -1,12 +1,12 @@
 <div class="cvbuilder-form">
-	<h3 class="cvbuilder-block-title" data-bind="text: resource.contactsNameLabel.label"></h3>
-	<span data-bind="text: resource.contactsRubricTooltip.label"></span>
+	<h3 class="cvbuilder-block-title" data-bind="label: resource.contactsNameLabel"></h3>
+	<span data-bind="label: resource.contactsRubricTooltip"></span>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="phone">
-				<span data-bind="text: resource.contactsPhoneLabel.label"></span><br>
-				<span data-bind="text: resource.contactsPhoneTooltip.label"></span>
+				<span data-bind="label: resource.contactsPhoneLabel"></span><br>
+				<span data-bind="label: resource.contactsPhoneTooltip"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -30,7 +30,7 @@
 				<label>&nbsp;</label>
 			</div>
 			<div class="col d-2of3">
-				<button class="btn btn-danger" data-bind="text: resource.addPhone.label, click: addAdditionalPhone"></button>
+				<button class="btn btn-danger" data-bind="label: resource.addPhone, click: addAdditionalPhone"></button>
 			</div>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="email">
-				<span data-bind="text: resource.contactsEmailLabel.label"></span>
+				<span data-bind="label: resource.contactsEmailLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -49,7 +49,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="skype">
-				<span data-bind="text: resource.contactsSkypeLabel.label"></span>
+				<span data-bind="label: resource.contactsSkypeLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -60,21 +60,21 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label>
-				<span data-bind="text: resource.contactsPortfolioLabel.label"></span>
+				<span data-bind="label: resource.contactsPortfolioLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
 			<div data-bind="foreach: portfolio">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="text: resource.addPortfolio.label, click: addPortfolio"></button>
+			<button data-bind="label: resource.addPortfolio, click: addPortfolio"></button>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label>
-				<span data-bind="text: resource.contactsSocialNetworksLabel.label"></span>
+				<span data-bind="label: resource.contactsSocialNetworksLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -105,8 +105,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: cancel"></button>
+			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
 		</div>
 	</div>
 

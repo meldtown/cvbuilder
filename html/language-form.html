@@ -1,17 +1,17 @@
 <div class="cvbuilder-form">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.languageRubricNameLabel.label"></h3>
+			<h3 class="cvbuilder-block-subtitle" data-bind="label: resource.languageRubricNameLabel"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="languageId">
-				<span data-bind="text: resource.languageNameLabel.label"></span>
+				<span data-bind="label: resource.languageNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="skillsLevel">
-				<span data-bind="text: resource.languageSkillLevelLabel.label"></span>
+				<span data-bind="label: resource.languageSkillLevelLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -33,8 +33,8 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="certificate">
-				<span data-bind="text: resource.languageCertificateLabel.label"></span><br>
-				<span data-bind="text: resource.languageCertificateTooltip.label"></span>
+				<span data-bind="label: resource.languageCertificateLabel"></span><br>
+				<span data-bind="label: resource.languageCertificateTooltip"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -46,7 +46,7 @@
 		<div class="col d-2of3 pull-right">
 			<input id="isCanBeInterviewed" type="checkbox" name="isCanBeInterviewed" data-bind="checked: isCanBeInterviewed, valueUpdate: 'keyup'">
 			<label class="control-label" for="isCanBeInterviewed">
-				<span data-bind="text: resource.languageIsCanBeInterviewedLabel.label"></span>
+				<span data-bind="label: resource.languageIsCanBeInterviewedLabel"></span>
 			</label>
 		</div>
 	</div>
@@ -56,8 +56,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="text: resource.discard.label, click: cancel"></button>
+			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
+			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
 		</div>
 	</div>
 

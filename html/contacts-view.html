@@ -1,15 +1,15 @@
 <div class="cvbuilder-view">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-title" data-bind="text: resource.contactsNameLabel.label"></h3>
+			<h3 class="cvbuilder-block-title" data-bind="label: resource.contactsNameLabel"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: edit"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.edit, click: edit"></a>
 		</div>
 	</div>
 	<div class="row" data-bind="if: phone">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.contactsPhoneLabel.label"></span>
+			<span data-bind="label: resource.contactsPhoneLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: phone"></span>
@@ -17,7 +17,7 @@
 	</div>
 	<div class="row" data-bind="if: isAdditionalPhonesBlockVisibleView">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.contactsAdditionalPhonesLabel.label"></span>
+			<span data-bind="label: resource.contactsAdditionalPhonesLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<div data-bind="foreach: additionalPhones">
@@ -27,7 +27,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.contactsEmailLabel.label"></span>
+			<span data-bind="label: resource.contactsEmailLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<a data-bind="text: email, attr: { href: emailHref }"></a>
@@ -35,7 +35,7 @@
 	</div>
 	<div class="row" data-bind="if: skype">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.contactsSkypeLabel.label"></span>
+			<span data-bind="label: resource.contactsSkypeLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: skype"></span>
@@ -43,7 +43,7 @@
 	</div>
 	<div class="row" data-bind="if: portfolio">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.contactsPortfolioLabel.label"></span>
+			<span data-bind="label: resource.contactsPortfolioLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<div data-bind="foreach: portfolio">
@@ -53,7 +53,7 @@
 	</div>
 	<div class="row" data-bind="if: socialNetworks">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.contactsSocialNetworksLabel.label"></span>
+			<span data-bind="label: resource.contactsSocialNetworksLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<div data-bind="foreach: socialNetworks">

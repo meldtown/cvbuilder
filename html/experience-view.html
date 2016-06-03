@@ -5,14 +5,14 @@
 			<h3 class="cvbuilder-block-subtitle" data-bind="text: position"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.edit.label, click: edit"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.edit, click: edit"></a>
 		</div>
 	</div>
 
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.experienceCompanyLabel.label"></span>
+			<span data-bind="label: resource.experienceCompanyLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: company"></span>
@@ -21,7 +21,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.experiencePositionLabel.label"></span>
+			<span data-bind="label: resource.experiencePositionLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: position"></span>
@@ -60,7 +60,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="text: resource.experienceDescriptionLabel.label"></span>
+			<span data-bind="label: resource.experienceDescriptionLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: description"></span>
@@ -81,7 +81,7 @@
 			<div data-bind="foreach: recommendationList">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="text: resource.addRecommendation.label, click: addRecommendation"></button>
+			<button data-bind="label: resource.addRecommendation, click: addRecommendation"></button>
 		</div>
 	</div>
 

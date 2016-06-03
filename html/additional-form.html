@@ -1,11 +1,11 @@
 <div class="cvbuilder-form">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle" data-bind="text: resource.additionalNameLabel.label"></h3>
-			<span data-bind="text: resource.additionalRubricTooltip.label"></span>
+			<h3 class="cvbuilder-block-subtitle" data-bind="label: resource.additionalNameLabel"></h3>
+			<span data-bind="label: resource.additionalRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="text: resource.delete.label, click: remove"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
 		</div>
 	</div>
 
@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="title">
-				<span data-bind="text: resource.additionalTitleLabel.label"></span>
+				<span data-bind="label: resource.additionalTitleLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -34,7 +34,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="description">
-				<span data-bind="text: resource.additionalDescriptionLabel.label"></span>
+				<span data-bind="label: resource.additionalDescriptionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -47,9 +47,9 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="text: resource.save.label, click: save"></button>
+			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
 			<button class="btn btn-link rua-p-c-light"
-					data-bind="text: resource.discard.label, click: rollback"></button>
+					data-bind="label: resource.discard, click: rollback"></button>
 		</div>
 	</div>
 </div>
