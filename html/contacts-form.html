@@ -57,6 +57,8 @@
 		</div>
 	</div>
 
+
+
 	<div class="row">
 		<div class="col d-1of3">
 			<label>
@@ -67,7 +69,14 @@
 			<div data-bind="foreach: portfolio">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="label: resource.addPortfolio, click: addPortfolio"></button>
+		</div>
+	</div>
+	<div class="row" data-bind="if: isAddPortfolioButtonVisible">
+		<div class="col d-1of3">
+			<label>&nbsp;</label>
+		</div>
+		<div class="col d-2of3">
+			<button class="btn btn-danger" data-bind="label: resource.addPortfolio, click: addPortfolio"></button>
 		</div>
 	</div>
 

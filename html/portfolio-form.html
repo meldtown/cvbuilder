@@ -1,10 +1,10 @@
 <div>
 	<div class="media">
-		<div class="pull-right">
+		<div class="pull-right" data-bind="if: isRemoveButtonVisible">
 			<a class="btn btn-danger" href="#" data-bind="label: resource.delete, click: remove"></a>
 		</div>
 		<div class="media-body">
-			<input class="input-block-level" id="portfolio" data-bind="attr: {placeholder: resource.contactsAddPortfolio.label}, value: portfolio">
+			<input class="input-block-level" id="portfolio" data-bind="attr: {placeholder: resource.contactsAddPortfolio.label}, value: portfolio, valueUpdate: 'keyup'">
 		</div>
 	</div>
 </div>
