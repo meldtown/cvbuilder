@@ -15,8 +15,12 @@ function ResumeAdditionalModel(parent, data) {
 	model.predefinedTitles = parent.dictionary.additional;
 	model.selectedPredefinedTitle = ko.observable();
 	model.selectedPredefinedTitle.subscribe(function (label) {
-		model.title(label === 'custom' ? '' : label);
+		model.title(label === model.predefinedTitles[model.predefinedTitles.length - 1].label() ? '' : label);
 		model.title.isModified(false);
+	});
+
+	model.isCustomTitleSelected = ko.computed(function () {
+		return model.selectedPredefinedTitle() === model.predefinedTitles[model.predefinedTitles.length - 1].label();
 	});
 
 
@@ -53,6 +57,11 @@ function ResumeAdditionalModel(parent, data) {
 		} else {
 			parent.additional.remove(model);
 		}
+	};
+
+	model.cancel = function () {
+		model.rollback();
+		parent.additional.remove(model);
 	};
 
 	InitEditableModel(model, 'additional');

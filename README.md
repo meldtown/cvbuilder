@@ -23,7 +23,6 @@ Experience/recommendation/* - is it required ?
 Education/* - is it required? should diploma and speciality be validated for school education type...
 Trainings/Description - is it required ?
 Trainings/Year - is it required ?
-Additional/Description - is it required ?
 
 Controls
 --------
@@ -47,8 +46,6 @@ Education/School name - computed from school type
 Education/City - is it dropdown ?
 Education/diploma - show/hide from school type ? (validation ?)
 Training/Description - tiny ?
-Additional/predefined titles - disable other inputs
-Additional/Description - tiny ?
 
 
 All controls - tooltips? cross button? focus? wtf?

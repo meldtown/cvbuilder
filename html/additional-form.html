@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col d-2of3">
 			<h3 class="cvbuilder-block-subtitle" data-bind="label: resource.additionalNameLabel"></h3>
-			<span data-bind="label: resource.additionalRubricTooltip"></span>
+			<span class="rua-p-c-light" data-bind="label: resource.additionalRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
 			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
@@ -10,12 +10,14 @@
 	</div>
 
 	<div class="row">
-		<div data-bind="foreach: predefinedTitles">
+		<ul class="list-2-cols" data-bind="foreach: predefinedTitles">
+			<li>
 				<label>
 					<input type="radio" data-bind="checked: $parent.selectedPredefinedTitle, value: label">
 					<span data-bind="text: label"></span>
 				</label>
-		</div>
+			</li>
+		</ul>
 	</div>
 
 
@@ -26,8 +28,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input class="input-block-level" id="title" name="title"
-				   data-bind="attr: {placeholder: resource.additionalAddNameLabel.label}, value: title, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="title" name="title"
+				   data-bind="enable: isCustomTitleSelected, attr: {placeholder: resource.additionalAddNameLabel.label}, value: title, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -38,7 +40,10 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input class="input-block-level" id="description" name="description" data-bind="value: description, valueUpdate: 'keyup'">
+			<textarea class="input-block-level" id="description" name="description"
+					  data-bind="value: description, valueUpdate: 'keyup'">
+
+			</textarea>
 		</div>
 	</div>
 
@@ -49,7 +54,7 @@
 		<div class="col d-2of3">
 			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
 			<button class="btn btn-link rua-p-c-light"
-					data-bind="label: resource.discard, click: rollback"></button>
+					data-bind="label: resource.discard, click: cancel"></button>
 		</div>
 	</div>
 </div>
