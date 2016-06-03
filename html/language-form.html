@@ -15,7 +15,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="languageId" name="languageId" class="input-block-level" data-bind="optionsCaption: resource.languageChooseLanguage.label, options: languageOptions, optionsText: 'label', value: selectedLanguageOption"></select>
+			<select id="languageId" name="languageId" class="input-block-level" data-bind="optionsCaption: resource.languageChooseLanguage.label, options: computedLanguageOptions, optionsText: 'label', value: selectedLanguageOption, disable: _savedOrFromBackend"></select>
 		</div>
 	</div>
 

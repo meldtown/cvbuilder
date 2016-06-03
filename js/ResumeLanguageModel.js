@@ -26,6 +26,15 @@ function ResumeLanguageModel (parent, data) {
 	};
 
 	model.languageOptions = parent.dictionary.language;
+	model.computedLanguageOptions = ko.computed(function () {
+		var alreadySelectedLanguages = parent.language().map(function (item) {
+			return item.languageId();
+		});
+
+		return parent.dictionary.language.filter(function (item) {
+			return model.languageId() === item.id || alreadySelectedLanguages.indexOf(item.id) === -1;
+		});
+	});
 	model.selectedLanguageOption = ko.computed({
 		read: function () {
 			return model.languageOptions.findById(model.languageId());
