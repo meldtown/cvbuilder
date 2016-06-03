@@ -1,4 +1,10 @@
 <div>
-	<input id="portfolio" data-bind="attr: {placeholder: resource.contactsAddPortfolio.label}, value: portfolio">
-	<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
+	<div class="media">
+		<div class="pull-right">
+			<a class="btn btn-danger" href="#" data-bind="label: resource.delete, click: remove"></a>
+		</div>
+		<div class="media-body">
+			<input class="input-block-level" id="portfolio" data-bind="attr: {placeholder: resource.contactsAddPortfolio.label}, value: portfolio">
+		</div>
+	</div>
 </div>
