@@ -18,7 +18,26 @@ function ResumePositionModel(parent, data) {
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.experienceId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.salary = ko.observable();
+	model.salary = ko.observable().extend({
+		digit: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		},
+		min: {
+			params: 1,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		},
+		max: {
+			params: 200000,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
 	model.currencyId = ko.observable();
 
 	model.scheduleOptions = parent.dictionary.schedule;
