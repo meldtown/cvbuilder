@@ -38,7 +38,7 @@
 			<span data-bind="label: resource.contactsSkypeLabel"></span>
 		</div>
 		<div class="col d-2of3">
-			<span data-bind="text: skype"></span>
+			<a data-bind="text: skype, attr: { href: skypeHref }"></a>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: isPortfoliodBlockVisible">

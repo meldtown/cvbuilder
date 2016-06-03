@@ -43,6 +43,10 @@ function ResumeContactsModel (parent) {
 		return 'mailto:' + model.email();
 	});
 
+	model.skypeHref = ko.computed(function () {
+		return 'skype:' + model.skype();
+	});
+
 	model.nonEmptyPortfolio = ko.computed(function () {
 		return model.portfolio().filter(function (item) {
 			return item.portfolio() && item.portfolio().length > 0;
