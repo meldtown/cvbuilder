@@ -21,8 +21,6 @@ Experience/period - custom validation
 Experience/Description - is it required ?
 Experience/recommendation/* - is it required ?
 Education/* - is it required? should diploma and speciality be validated for school education type...
-Trainings/Description - is it required ?
-Trainings/Year - is it required ?
 
 Controls
 --------
@@ -45,7 +43,6 @@ Experience/Recommmendation - add button logic
 Education/School name - computed from school type
 Education/City - is it dropdown ?
 Education/diploma - show/hide from school type ? (validation ?)
-Training/Description - tiny ?
 
 
 All controls - tooltips? cross button? focus? wtf?
@@ -60,8 +57,6 @@ position
 experience
 education
 skill
-training
-additional
 
 Computed
 --------
