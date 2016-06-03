@@ -37,7 +37,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<textarea class="input-block-level" id="description" cols="70" rows="10" name="description" data-bind="attr: {placeholder: resource.trainingAddDescriptionLabel.label}, value: description, valueUpdate: 'keyup'"></textarea>
+			<textarea class="input-block-level" id="description" cols="70" rows="10" name="description" data-bind="attr: {placeholder: resource.trainingAddDescriptionLabel.label}, value: description, valueUpdate: 'keyup', tinylight: description, validationElement: description"></textarea>
+			<span class="validationMessage" data-bind="validationMessage: description"></span>
 		</div>
 	</div>
 

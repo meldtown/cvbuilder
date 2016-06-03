@@ -1,4 +1,4 @@
-function ResumePositionModel(parent, data) {
+function ResumePositionModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -18,7 +18,26 @@ function ResumePositionModel(parent, data) {
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.experienceId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.salary = ko.observable();
+	model.salary = ko.observable().extend({
+		digit: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		},
+		min: {
+			params: 1,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		},
+		max: {
+			params: 200000,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
 	model.currencyId = ko.observable();
 
 	model.scheduleOptions = parent.dictionary.schedule;
@@ -42,9 +61,35 @@ function ResumePositionModel(parent, data) {
 		write: function (newValue) {
 			model.currencyId(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	}).extend({
+		validation: {
+			validator: function (val) {
+				if (!model.salary()) return true;
+
+				return model.salary() && model.salary.isValid() && val;
+			},
+			message: function (params, observable) {
+				return model.resource.requiredMessage.label();
+			}
+		}
+	});
 	model.selectedCurrencyOptionLabel = ko.computed(function () {
 		return model.selectedCurrencyOption() ? model.selectedCurrencyOption().label() : '';
+	});
+
+	model.formattedSalary = ko.computed(function () {
+		if (!model.salary()) return '';
+		if (isNaN(parseInt(model.salary()))) return '';
+
+		var result = parseInt(model.salary()).toLocaleString(model._lng() === 'en' ? 'us' : 'ru');
+
+		if (model.currencyId() === 2) {
+			result = '$' + result;
+		} else {
+			result = result + ' ' + model.selectedCurrencyOptionLabel();
+		}
+
+		return model.resource.from.label() + ' ' + result;
 	});
 
 	model.toJS = function () {
