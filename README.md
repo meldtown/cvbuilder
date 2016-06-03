@@ -31,7 +31,6 @@ All top level models - add message property
 
 Personal - add photo
 Personal/City - custom control
-Position/Speciality - add autocomplete
 Experience/Company - add autocomplete, fill other fields
 Experience/Position - add autocomplete
 Experience/Description - tiny ?
@@ -52,7 +51,6 @@ Markup
 ------
 
 all block/edit mode - check for input-block-level, add grids if needed
-position
 experience
 education
 skill
