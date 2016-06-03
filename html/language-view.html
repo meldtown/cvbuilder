@@ -3,8 +3,14 @@
 		<div class="col d-2of3">
 			<h3 class="cvbuilder-block-subtitle">
 				<span data-bind="text: selectedLanguageOptionLabel"></span>
-				(<span data-bind="text: selectedLanguageSkillOptionLabel"></span>)
+				<small class="rua-p-c-light">
+					(<span data-bind="text: selectedLanguageSkillOptionLabel"></span>)
+				</small>
 			</h3>
+			<div class="rua-p-c-light" data-bind="text: certificate"></div>
+			<div data-bind="if: isCanBeInterviewed">
+				<div data-bind="label: resource.languageIsCanBeInterviewedLabel"></div>
+			</div>
 		</div>
 		<div class="col d-1of3 text-right">
 			<a class="rua-p-c-light" href="#" data-bind="label: resource.edit, click: beginEdit"></a>

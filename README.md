@@ -49,8 +49,7 @@ Education/diploma - show/hide from school type ? (validation ?)
 Training/Description - tiny ?
 Additional/predefined titles - disable other inputs
 Additional/Description - tiny ?
-Language/language name - computed
-Language/checkbox - show/hide from skill ?
+
 
 All controls - tooltips? cross button? focus? wtf?
 
@@ -66,7 +65,6 @@ education
 skill
 training
 additional
-language
 
 Computed
 --------
