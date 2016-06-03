@@ -29,8 +29,6 @@ All top level models - add message property
 
 Personal - add photo
 Personal/City - custom control
-Contacts/Additional phones - show/hide logic
-Contacts/portfolio - add button computed show/hide, force one item, remove button only from second
 Position/Speciality - add autocomplete
 Experience/Company - add autocomplete, fill other fields
 Experience/Position - add autocomplete
@@ -50,9 +48,7 @@ All controls - tooltips? cross button? focus? wtf?
 Markup
 ------
 
-Contacts/portfolio and additional phones - add input-block-level class
 all block/edit mode - check for input-block-level, add grids if needed
-contacts
 position
 experience
 education

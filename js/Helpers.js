@@ -26,6 +26,36 @@ ko.bindingHandlers.tinylight = {
 	}
 };
 
+ko.bindingHandlers.keywords = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var property = valueAccessor();
+
+		if (element.nodeName.toLowerCase() !== 'input') return;
+		if (element.getAttribute('type') !== 'text') return;
+		if (!viewModel || !viewModel._keywordsApiUrl || !ko.isObservable(viewModel._keywordsApiUrl)) return;
+		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) return;
+
+		jQuery(element).autocomplete({
+			source: function (request, response) {
+				var lng = viewModel._lng();
+
+				if (lng === 'ru') lng = 'russian';
+				else if (lng === 'ua') lng = 'ukrainian';
+				else if (lng === 'en') lng = 'english';
+
+				jQuery.getJSON(viewModel._keywordsApiUrl(), {
+					term: request.term,
+					language: lng
+				}, response);
+			},
+			minLength: 2,
+			select: function (event, ui) {
+				property(ui.item.value);
+			}
+		});
+	}
+};
+
 ko.validation.init({
 	decorateInputElement: true
 }, true);

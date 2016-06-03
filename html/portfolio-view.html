@@ -1,3 +1,8 @@
 <div>
-	<a data-bind="text: portfolio, attr: { href: portfolio }"></a>
+	<div data-bind="if: isLink">
+		<a data-bind="text: portfolio, attr: { href: portfolio }"></a>
+	</div>
+	<div data-bind="ifnot: isLink">
+		<span data-bind="text: portfolio"></span>
+	</div>
 </div>

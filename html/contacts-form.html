@@ -42,7 +42,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="email" class="input-block-level"  name="email" data-bind="value: email, valueUpdate: 'keyup'">
+			<input id="email" class="input-block-level" name="email" data-bind="value: email, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -57,17 +57,24 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col d-1of3">
-			<label>
-				<span data-bind="label: resource.contactsPortfolioLabel"></span>
-			</label>
-		</div>
-		<div class="col d-2of3">
-			<div data-bind="foreach: portfolio">
+	<div data-bind="foreach: portfolio">
+		<div class="row">
+			<div class="col d-1of3">
+				<label>
+					<span data-bind="text: formRowLabel"></span>
+				</label>
+			</div>
+			<div class="col d-2of3">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="label: resource.addPortfolio, click: addPortfolio"></button>
+		</div>
+	</div>
+	<div class="row" data-bind="if: isAddPortfolioButtonVisible">
+		<div class="col d-1of3">
+			<label>&nbsp;</label>
+		</div>
+		<div class="col d-2of3">
+			<button class="btn btn-danger" data-bind="label: resource.addPortfolio, click: addPortfolio"></button>
 		</div>
 	</div>
 
@@ -95,7 +102,7 @@
 				</label>
 			</div>
 			<div class="col d-2of3">
-				<input type="text" class="input-block-level" data-bind="value: text, valueUpdate: 'keyup', attr: {id: subType, name: subType}" />
+				<input type="text" class="input-block-level" data-bind="value: text, valueUpdate: 'keyup', attr: {id: subType, name: subType}"/>
 			</div>
 		</div>
 	</div>

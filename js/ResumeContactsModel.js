@@ -43,10 +43,42 @@ function ResumeContactsModel (parent) {
 		return 'mailto:' + model.email();
 	});
 
+	model.skypeHref = ko.computed(function () {
+		return 'skype:' + model.skype();
+	});
+
+	model.nonEmptyPortfolio = ko.computed(function () {
+		return model.portfolio().filter(function (item) {
+			return item.portfolio() && item.portfolio().length > 0;
+		});
+	});
+
+	model.isPortfoliodBlockVisible = ko.computed(function () {
+		return model.nonEmptyPortfolio().length > 0;
+	});
+
+	model.nonEmptySocialNetworks = ko.computed(function () {
+		return model.socialNetworks().filter(function (item) {
+			return item.text() && item.text().length > 0;
+		});
+	});
+
+	model.isSocialNetworksBlockVisible = ko.computed(function () {
+		return model.nonEmptySocialNetworks().length > 0;
+	});
+
 	model.removeBadOrEmptyAdditionalPhones = function () {
 		model.additionalPhones(model.additionalPhones().filter(function (item) {
 			return item.phone() && item.phone().length > 0 && item.phone.isValid();
 		}));
+	};
+
+	model.removeEmptyPortfolio = function () {
+		model.portfolio(model.nonEmptyPortfolio());
+	};
+
+	model.removeEmptySocialNetworks = function () {
+		model.socialNetworks(model.nonEmptySocialNetworks());
 	};
 
 	model.getSocialNetworkBySubType = function (subType) {
@@ -120,14 +152,7 @@ function ResumeContactsModel (parent) {
 	});
 
 	model.toJS = function () {
-		var data = mapper.toJS(model);
-		data.socialNetworks = data.socialNetworks.filter(function (item) {
-			return item.text.trim().length > 0;
-		});
-		data.portfolio = data.portfolio.filter(function (item) {
-			return item && item.trim().length > 0;
-		});
-		return data;
+		return mapper.toJS(model);
 	};
 
 	model.fromJS = function (data) {
@@ -149,12 +174,18 @@ function ResumeContactsModel (parent) {
 	model.get = function () {
 		backend.get(parent.api + '/resume/' + parent.resumeId + '/contact').success(function (data) {
 			model.fromJS(data);
+
+			if (model.portfolio().length === 0) {
+				model.portfolio.push(new ResumeContactsPortfolioModel(model));
+			}
 		});
 	};
 
 	model.save = function () {
 		if (model.errors().length === 0) {
 			model.removeBadOrEmptyAdditionalPhones();
+			model.removeEmptyPortfolio();
+			model.removeEmptySocialNetworks();
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/contact', model.toJS())
 				.success(function () {
 					model.commit();
@@ -203,6 +234,12 @@ function ResumeContactsModel (parent) {
 		model.edit();
 	};
 
+	model.isAddPortfolioButtonVisible = ko.computed(function () {
+		return model.portfolio().filter(function (item) {
+			return item.portfolio() && item.portfolio().length > 0;
+		}).length > 0;
+	});
+
 	InitEditableModel(model, 'contacts');
 	InitBadRequestResponseHandler(model);
 }
@@ -242,6 +279,18 @@ function ResumeContactsPortfolioModel (parent, data) {
 
 	model.resource = parent.resource;
 	model.portfolio = ko.observable(data);
+
+	model.isRemoveButtonVisible = ko.computed(function () {
+		return parent.portfolio.indexOf(model) > 0;
+	});
+
+	model.formRowLabel = ko.computed(function () {
+		return parent.portfolio.indexOf(model) > 0 ? '' : model.resource.contactsPortfolioLabel.label();
+	});
+
+	model.isLink = ko.computed(function () {
+		return model.portfolio() && (model.portfolio().indexOf('http://') === 0 || model.portfolio().indexOf('https://') === 0);
+	});
 
 	model.toJS = function () {
 		return model.portfolio();
