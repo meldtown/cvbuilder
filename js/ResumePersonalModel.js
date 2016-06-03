@@ -1,5 +1,3 @@
-
-
 function ResumePersonalModel (parent) {
 	var model = this;
 
@@ -8,7 +6,7 @@ function ResumePersonalModel (parent) {
 	});
 
 	model.resource = parent.dictionary.resource;
-	
+
 	model.api = parent.api + '/resume/' + parent.resumeId + '/personal';
 
 	model.resumeId = parent.resumeId;

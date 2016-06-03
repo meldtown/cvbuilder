@@ -129,9 +129,7 @@ ko.bindingHandlers.autocompleteCity = {
 				}
 			}
 		}).on('focus', function () {
-			if (!$(this).val()) {
-				$(this).autocomplete('search', '');
-			}
+			$(this).autocomplete('search', '');
 		}).data('ui-autocomplete')._renderItem = function (ul, item) {
 			return $('<li>').append('<a>' + item.label() + '</a>').appendTo(ul);
 		};
