@@ -39,10 +39,10 @@ Experience/Recommendation/Position - add autocomplete
 Experience/Recommendation/Company - add autocomplete
 Experience/Recommendation/Contacts - computed phone, email
 Experience/Recommmendation - add button logic
-Education/School name - computed from school type
-Education/City - is it dropdown ?
-Education/diploma - show/hide from school type ? (validation ?)
-Training/Description - tiny ?
+Education/School name label - computed from school type
+Education/Speciality - disable from type
+Education/City - autocomplete
+Education/diploma - display:none
 
 
 All controls - tooltips? cross button? focus? wtf?
@@ -50,12 +50,8 @@ All controls - tooltips? cross button? focus? wtf?
 Markup
 ------
 
-all block/edit mode - check for input-block-level, add grids if needed
 experience
 education
-skill
-training
-additional
 
 Computed
 --------
