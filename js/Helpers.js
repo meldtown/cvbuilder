@@ -106,12 +106,20 @@ ko.bindingHandlers.autocompleteCity = {
 
 		jQuery(element).autocomplete({
 			source: function (request, response) {
+				// jQuery.getJSON('http://api.mac.rabota.ua/autocomplete/city', {
+				// 	term: request.term
+				// }, function (data) {
+				// 	response(data.map(function (item) {
+				// 		return new DictionaryModel(viewModel, item);
+				// 	}));
+				// });
 				var term = (request.term || '').toLowerCase().trim();
+				var options = ko.isObservable(params.options) ? params.options() : params.options;
 
 				if (!term) {
-					response(params.options.slice(0, 10));
+					response(options.slice(0, 10));
 				} else {
-					response(params.options.filter(function (item) {
+					response(options.filter(function (item) {
 						return item.label().toLowerCase().indexOf(term) === 0;
 					}));
 				}
