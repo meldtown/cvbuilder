@@ -96,6 +96,7 @@
 	<script src="js/CvBuilderModel.js"></script>
 
 	<script>
+		jQuery.support.cors = true;
 		var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
 		var resumeId = 3496188; //TODO: readme from query string, e.g. (window.location.toString().split('?').pop().match(/resumeId=\d+/) || 'resumeId=0').replace('resumeId=', '')
 
@@ -113,10 +114,6 @@
 			jQuery.getJSON(api + '/dictionary/sex'),
 			jQuery.getJSON(api + '/dictionary/currency')
 		).then(function (language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency) {
-//			experience = experience[0].reduce(function (dictionary, item) {
-//				dictionary[item.id] = new DictionaryModel(model, item);
-//				return dictionary;
-//			}, {});
 			var dictionary = {
 				language: language[0],
 				experience: experience[0],
