@@ -7,6 +7,7 @@
     "eslint": "eslint js spec"
   },
   "dependencies": {
+    "croppie": "^2.1.1",
     "jquery": "^2.2.3",
     "knockout": "^3.4.0",
     "knockout.validation": "^2.0.3",
