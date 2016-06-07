@@ -143,9 +143,9 @@ function ResumeExperienceRecommendationModel (parent, data) {
 
 	model.id = ko.observable();
 	model.experienceId = ko.observable();
-	model.name = ko.observable();
-	model.position = ko.observable();
-	model.companyName = ko.observable();
+	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.companyName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.email = ko.observable();
 	model.phone = ko.observable();
 	model.atRequest = ko.observable();
