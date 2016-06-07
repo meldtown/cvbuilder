@@ -22,11 +22,11 @@
 				</div>
 
 				<div>
-					<h3 class="cvbuilder-block-title" data-bind=""></h3>
+					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.experienceRubricNameLabel"></h3>
 					<div data-bind="foreach: experience">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button data-bind="label: dictionary.resource.addExperience, click: addExperience"></button>
+					<button class="btn btn-danger" data-bind="label: dictionary.resource.addExperience, click: addExperience"></button>
 				</div>
 
 				<div data-bind="if: isEducationBlockAdded">
