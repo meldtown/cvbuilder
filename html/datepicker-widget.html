@@ -1,12 +1,12 @@
 <div class="row">
 	<div class="col d-1of4">
-		<select data-bind="optionsCaption: 'date', options: dateOptions, value: selectedDateOption, validationElement: validationElement" class="input-block-level"></select>
+		<select data-bind="optionsCaption: resource.date.label, options: dateOptions, value: selectedDateOption, validationElement: validationElement" class="input-block-level"></select>
 	</div>
 	<div class="col d-2of4 d-pl-1of2 d-pr-1of2">
-		<select data-bind="optionsCaption: 'month', options: monthOptions, value: selectedMonthOption, optionsText: 'label', validationElement: validationElement" class="input-block-level"></select>
+		<select data-bind="optionsCaption: resource.month.label, options: monthOptions, value: selectedMonthOption, optionsText: 'label', validationElement: validationElement" class="input-block-level"></select>
 	</div>
 	<div class="col d-1of4">
-		<select data-bind="optionsCaption: 'year', options: yearOptions, value: selectedYearOption, validationElement: validationElement" class="input-block-level"></select>
+		<select data-bind="optionsCaption: resource.year.label, options: yearOptions, value: selectedYearOption, validationElement: validationElement" class="input-block-level"></select>
 	</div>
 </div>
 <span class="validationMessage" data-bind="validationMessage: value"></span>
