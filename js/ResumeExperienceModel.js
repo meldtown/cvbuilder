@@ -16,13 +16,13 @@ function ResumeExperienceModel (parent, data) {
 	model.resource = parent.dictionary.resource;
 
 	model.id = ko.observable();
-	model.position = ko.observable().extend({required: true});
-	model.company = ko.observable().extend({required: true});
+	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.company = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.branchId = ko.observable();
-	model.description = ko.observable().extend({required: true});
-	model.notebookCompanyId = ko.observable().extend({required: true});
-	model.startWork = ko.observable().extend({required: true});
-	model.endWork = ko.observable().extend({required: true});
+	model.description = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.notebookCompanyId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.endWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.recommendationList = ko.observableArray();
 	model.companySite = ko.observable();
 	model.employeesAmount = ko.observable();

@@ -9,7 +9,6 @@ Validation
 
 Dropdowns - remove placeholder???
 
-Experience/Branch - is it required ?
 Experience/period - custom validation
 Experience/Description - is it required ?
 Experience/recommendation/* - is it required ?
