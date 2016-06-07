@@ -1,4 +1,4 @@
-function CvBuilderModel (api, resumeId, dictionary) {
+function CvBuilderModel(api, resumeId, dictionary) {
 	var model = this;
 
 	model.api = api;
@@ -125,6 +125,48 @@ function CvBuilderModel (api, resumeId, dictionary) {
 				model.training.push(new ResumeTraininglModel(model, item));
 			});
 		});
+	};
+
+	model.isFooterEducationBlockAdded = ko.computed(function () {
+		return !!model.education().length;
+	});
+
+	model.addFooterEducationBlock = function () {
+		if (!model.isFooterEducationBlockAdded()) {
+			model.addEducation();
+		}
+		;
+	};
+
+	model.isFooterLanguageBlockAdded = ko.computed(function () {
+		return !!model.language().length;
+	});
+
+	model.addFooterLanguageBlock = function () {
+		if (!model.isFooterLanguageBlockAdded()) {
+			model.addLanguage();
+		}
+		;
+	};
+
+	model.isFooterTrainingBlockAdded = ko.computed(function () {
+		return !!model.training().length;
+	});
+
+	model.addFooterTrainingBlock = function () {
+		if (!model.isFooterTrainingBlockAdded()) {
+			model.addTraining();
+		};
+	};
+
+	model.isFooterAdditionalBlockAdded = ko.computed(function () {
+		return !!model.additional().length;
+	});
+
+	model.addFooterAdditionalBlock = function () {
+		if (!model.isFooterAdditionalBlockAdded()) {
+			model.addAdditional();
+		};
 	};
 
 	model.load = function () {

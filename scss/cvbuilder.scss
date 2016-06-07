@@ -70,3 +70,15 @@ img.company-logo-autocomplete {
 	vertical-align: middle;
 }
 
+.footer-blocks {
+	font-size: 14px;
+	.block-container > div > div {
+		border: 1px #ccc solid;
+		border-radius: 3px;
+		border-radius: 3px;
+		margin: 10px;
+		padding: 10px;
+		cursor: pointer;
+	}
+}
+

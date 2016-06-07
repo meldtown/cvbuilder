@@ -29,38 +29,74 @@
 					<button data-bind="label: dictionary.resource.addExperience, click: addExperience"></button>
 				</div>
 
-				<div>
+				<div data-bind="if: isFooterEducationBlockAdded">
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.educationNameLabel"></h3>
 					<div data-bind="foreach: education">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger" data-bind="label: dictionary.resource.addEducation, click: addEducation"></button>
+					<button class="btn btn-danger"
+							data-bind="label: dictionary.resource.addEducation, click: addEducation"></button>
 				</div>
 
-				<div>
-					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.trainingRubricNameLabel"></h3>
+				<div data-bind="if: isFooterTrainingBlockAdded">
+					<h3 class="cvbuilder-block-title"
+						data-bind="label: dictionary.resource.trainingRubricNameLabel"></h3>
 					<div data-bind="foreach: training">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger" data-bind="label: dictionary.resource.addTraining, click: addTraining"></button>
+					<button class="btn btn-danger"
+							data-bind="label: dictionary.resource.addTraining, click: addTraining"></button>
 				</div>
 
-				<div>
+				<div data-bind="if: isFooterAdditionalBlockAdded">
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.additionalNameLabel"></h3>
 					<div data-bind="foreach: additional">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger" data-bind="label: dictionary.resource.addAdditional, click: addAdditional"></button>
+					<button class="btn btn-danger"
+							data-bind="label: dictionary.resource.addAdditional, click: addAdditional"></button>
 				</div>
 
-				<div>
-					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.languageRubricNameLabel"></h3>
+				<div data-bind="if: isFooterLanguageBlockAdded">
+					<h3 class="cvbuilder-block-title"
+						data-bind="label: dictionary.resource.languageRubricNameLabel"></h3>
 					<div data-bind="foreach: language">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger" data-bind="label: dictionary.resource.addLanguage, click: addLanguage"></button>
+					<button class="btn btn-danger"
+							data-bind="label: dictionary.resource.addLanguage, click: addLanguage"></button>
+				</div>
+				<div class="footer-blocks">
+					<hr>
+					<div class="hints rua-p-c-light">
+						<span data-bind="label: dictionary.resource.footerBlockHint1"></span><br>
+						<span data-bind="label: dictionary.resource.footerBlockHint2"></span>
+					</div>
+					<div class="block-container rua-p-c-light row">
+						<div class="col d-1of2 d-pr-1of2">
+							<div data-bind="click: addFooterEducationBlock, visible: !isFooterEducationBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.educationNameLabel"></p></div>
+						</div>
+						<div class="col d-1of2 d-pl-1of2">
+							<div data-bind="click: addFooterLanguageBlock, visible: !isFooterLanguageBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.languageRubricNameLabel"></p></div>
+						</div>
+						<div class="col d-1of2 d-pr-1of2">
+							<div data-bind="click: addFooterTrainingBlock, visible: !isFooterTrainingBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.footerBlockTraining"></p></div>
+						</div>
+						<div class="col d-1of2 d-pl-1of2">
+							<div data-bind="click: addFooterAdditionalBlock, visible: !isFooterAdditionalBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.additionalNameLabel"></p></div>
+						</div>
+					</div>
 				</div>
 			</div>
+
 		</div>
 		<div class="col d-1of3 d-pl-1of2 m-1of1">
 			<div class="cvbuilder-white-box">
@@ -70,5 +106,6 @@
 				sidebar
 			</div>
 		</div>
+
 	</div>
 </div>
