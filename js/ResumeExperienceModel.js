@@ -3,6 +3,10 @@ function ResumeExperienceModel (parent, data) {
 
 	model.resumeId = parent.resumeId;
 
+	model._api = ko.computed(function () {
+		return parent.api;
+	});
+
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
@@ -31,7 +35,8 @@ function ResumeExperienceModel (parent, data) {
 			validator: function (val) {
 				//if (!model.salary()) return true;
 
-				return val ? true : false;
+				//return val ? true : false;
+				return true;
 			},
 			message: function (params, observable) {
 				return model.resource.requiredMessage.label();
@@ -198,7 +203,14 @@ function ResumeExperienceRecommendationModel (parent, data) {
 	};
 
 	model.remove = function (item) {
-		parent.recommendationList.remove(item);
+		if (model.id()) {
+			backend.remove(parent._api() + '/resume/' + parent.resumeId + '/experience/' + parent.id() + '/recommendation/' + model.id())
+				.success(function () {
+					parent.recommendationList.remove(item);
+				});
+		} else {
+			parent.recommendationList.remove(item);
+		}
 	};
 
 	if (data) model.fromJS(data);

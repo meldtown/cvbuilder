@@ -11,10 +11,15 @@ ko.components.register('yearmonth-widget', {
 
 		model.updateValue = function () {
 			if (!model._initialized) return;
+
 			var month = model.selectedMonthOption() ? model.selectedMonthOption().id : null;
 			var year = model.selectedYearOption();
 			if (month && year) {
-				model.value(moment(new Date(year, month, 1)).format());
+				if (model.showTillNowOption && month === -1) {
+					model.value(undefined);
+				} else {
+					model.value(moment(new Date(year, month, 1)).format());
+				}
 			} else {
 				model.value(undefined);
 			}
@@ -46,6 +51,9 @@ ko.components.register('yearmonth-widget', {
 
 		model.selectedMonthOption = ko.observable();
 		model.selectedMonthOption.subscribe(function (newValue) {
+			if (newValue.id === -1 && model.showTillNowOption) {
+				model.selectedYearOption((new Date()).getFullYear());
+			}
 			model.updateValue();
 		});
 
@@ -68,8 +76,13 @@ ko.components.register('yearmonth-widget', {
 
 		// if there is initial value - set dropdown values
 		if (model.value()) {
-			model.selectedMonthOption(model.monthOptions[moment(model.value()).month()]);
-			model.selectedYearOption(moment(model.value()).year());
+			if (model.showTillNowOption && model.value() === '1900-01-01T00:00:00') {
+				model.selectedMonthOption(model.monthOptions[0]);
+				model.selectedYearOption((new Date()).getFullYear());
+			} else {
+				model.selectedMonthOption(model.monthOptions[moment(model.value()).month()]);
+				model.selectedYearOption(moment(model.value()).year());
+			}
 			model._initialized = true; // without that updateValue will be called few times and wrong date will be set
 		}
 	},
