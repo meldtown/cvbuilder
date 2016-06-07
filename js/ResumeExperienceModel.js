@@ -26,7 +26,14 @@ function ResumeExperienceModel (parent, data) {
 	model.description = ko.observable();
 	model.notebookCompanyId = ko.observable();
 	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.endWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.endWork = ko.observable().extend({
+		required: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.requiredMessage.label();
+			}
+		}
+	});
 	model.recommendationList = ko.observableArray();
 	model.companySite = ko.observable();
 	model.employeesAmount = ko.observable();
@@ -54,8 +61,6 @@ function ResumeExperienceModel (parent, data) {
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);
 
-		model.startWork(data.startWork);
-		model.endWork(data.endWork);
 		model.recommendationList(data.recommendationList.map(function (item) {
 			return new ResumeExperienceRecommendationModel(model, item);
 		}));
