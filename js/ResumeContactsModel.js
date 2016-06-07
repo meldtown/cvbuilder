@@ -201,6 +201,8 @@ function ResumeContactsModel (parent) {
 						model.handleBarRequestResponse(jqXHR);
 					}
 				});
+		} else {
+			model.errors.showAllMessages(true);
 		}
 	};
 

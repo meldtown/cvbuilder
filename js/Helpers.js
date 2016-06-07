@@ -108,10 +108,10 @@ ko.bindingHandlers.autocompleteCity = {
 	findById: function (options, value) {
 		var str = (ko.unwrap(value) || '').toString();
 		return ko.unwrap(options).filter(function (item) {
-			return item.id.toString() === str;
-		}).map(function (item) {
-			return item.label();
-		}).shift() || '';
+				return item.id.toString() === str;
+			}).map(function (item) {
+				return item.label();
+			}).shift() || '';
 	},
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var params = valueAccessor();
@@ -169,7 +169,7 @@ function InitEditableModel (model, templatePrefix) {
 	});
 }
 
-function InitBadRequestResponseHandler(model) {
+function InitBadRequestResponseHandler (model) {
 	model.handleBarRequestResponse = function (jqXHR) {
 		if (jqXHR.status === 400) {
 			var data = JSON.parse(jqXHR.responseText);

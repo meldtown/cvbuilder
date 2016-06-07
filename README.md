@@ -18,6 +18,7 @@ Experience/recommendation/* - is it required ?
 Education/* - is it required? should diploma and speciality be validated for school education type...
 Trainings/Description - is it required ?
 Trainings/Year - is it required ?
+Experience/save - add else case showing all error messages
 
 Controls
 --------

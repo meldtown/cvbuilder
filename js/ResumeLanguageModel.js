@@ -72,6 +72,8 @@ function ResumeLanguageModel (parent, data) {
 						model.handleBarRequestResponse(jqXHR);
 					}
 				});
+		} else {
+			model.errors.showAllMessages(true);
 		}
 	};
 
