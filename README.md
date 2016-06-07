@@ -34,7 +34,6 @@ Experience/Recommendation/Contacts - computed phone, email
 Experience/Recommmendation - add button logic
 Education/School name label - computed from school type
 Education/Speciality - disable from type
-Education/diploma - display:none
 
 
 All controls - tooltips? cross button? focus? wtf?

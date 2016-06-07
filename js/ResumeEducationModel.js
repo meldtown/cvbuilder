@@ -16,7 +16,7 @@ function ResumeEducationModel (parent, data) {
 	model.schoolName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.location = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.speciality = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.diploma = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.diploma = ko.observable();
 	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.yearOptions = [];
