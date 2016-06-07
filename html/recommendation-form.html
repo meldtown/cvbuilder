@@ -3,7 +3,7 @@
 
 	<div class="row">
 		<div class="col d-2of3">
-			<h5 class="cvbuilder-block-title" data-bind="label: resource.recommendationRubricNameLabel"></h5>
+			<h5 class="cvbuilder-block-title" data-bind="text: blockTitleLabel"></h5>
 		</div>
 		<div class="col d-1of3 text-right">
 			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
@@ -14,9 +14,9 @@
 		<div class="col d-1of3">
 		</div>
 		<div class="col d-2of3">
-			<label>
+			<label class="checkbox">
 				<input type="checkbox" name="position" data-bind="checked: atRequest">
-				<b data-bind="label: resource.recommendationAtRequestLabel"></b>
+				<span data-bind="label: resource.recommendationAtRequestLabel"></span>
 			</label>
 		</div>
 	</div>

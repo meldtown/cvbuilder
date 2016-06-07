@@ -53,6 +53,9 @@ function ResumeExperienceModel (parent, data) {
 		return moment.duration(moment(model.endWork()) - moment(model.startWork())).humanize();
 	});
 
+	model.isAddRecomendationButtonVisible = ko.computed(function () {
+		return model.recommendationList().length < 3;
+	});
 
 	model.toJS = function () {
 		return mapper.toJS(model);
@@ -177,6 +180,10 @@ function ResumeExperienceRecommendationModel (parent, data) {
 	});
 	model.atRequest = ko.observable();
 	model.resumeId = parent.resumeId;
+
+	model.blockTitleLabel = ko.computed(function () {
+		return parent.resource.recommendationRubricNameLabel.label().replace('1', (parent.recommendationList.indexOf(model) + 1));
+	});
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);

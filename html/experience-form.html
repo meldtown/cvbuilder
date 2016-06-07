@@ -81,7 +81,9 @@
 			<div data-bind="foreach: recommendationList">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="label: resource.addRecommendation, click: addRecommendation"></button>
+			<div data-bind="if: isAddRecomendationButtonVisible">
+				<button class="btn btn-danger" data-bind="label: resource.addRecommendation, click: addRecommendation"></button>
+			</div>
 		</div>
 	</div>
 

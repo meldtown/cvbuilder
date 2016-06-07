@@ -17,7 +17,6 @@ All top level models - add message property
 
 Personal - add photo
 Experience/Company - fill other fields
-Experience/Recommendation - add button logic 1 of 3
 
 All controls - tooltips? cross button? focus? wtf?
 
