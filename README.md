@@ -8,7 +8,6 @@ Validation
 ------------
 
 Dropdowns - remove placeholder???
-Experience/period - custom validation
 
 Controls
 --------
