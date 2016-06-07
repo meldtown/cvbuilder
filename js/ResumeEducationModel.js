@@ -15,7 +15,7 @@ function ResumeEducationModel (parent, data) {
 	model.typeId = ko.observable();
 	model.schoolName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.location = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.speciality = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.speciality = ko.observable();
 	model.diploma = ko.observable();
 	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
@@ -23,6 +23,10 @@ function ResumeEducationModel (parent, data) {
 	for (var year = (new Date()).getFullYear(); year >= (new Date()).getFullYear() - 80; year--) {
 		model.yearOptions.push(year);
 	}
+
+	model.isSpecialityEnabled = ko.computed(function () {
+		return model.typeId() !== 4;
+	});
 
 	model.toJS = function () {
 		return mapper.toJS(model);
@@ -39,6 +43,10 @@ function ResumeEducationModel (parent, data) {
 		},
 		write: function (newValue) {
 			model.typeId(newValue ? newValue.id : undefined);
+
+			if (model.typeId() === 4) {
+				model.speciality('');
+			}
 		}
 	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedTypeOptionLabel = ko.computed(function () {
