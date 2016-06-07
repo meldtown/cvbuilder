@@ -11,7 +11,7 @@ function ResumeTraininglModel (parent, data) {
 	model.id = ko.observable();
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.location = ko.observable();
-	model.description = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.description = ko.observable();
 	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.yearOptions = [];

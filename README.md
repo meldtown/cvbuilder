@@ -13,8 +13,6 @@ Experience/Branch - is it required ?
 Experience/period - custom validation
 Experience/Description - is it required ?
 Experience/recommendation/* - is it required ?
-Trainings/Description - is it required ?
-Trainings/Year - is it required ?
 Experience/save - add else case showing all error messages
 
 Controls
