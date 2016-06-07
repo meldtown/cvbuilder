@@ -34,7 +34,6 @@ Experience/Recommendation/Contacts - computed phone, email
 Experience/Recommmendation - add button logic
 Education/School name label - computed from school type
 Education/Speciality - disable from type
-Education/City - autocomplete
 Education/diploma - display:none
 
 
