@@ -27,8 +27,12 @@ function ResumeExperienceModel (parent, data) {
 	model.notebookCompanyId = ko.observable();
 	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.endWork = ko.observable().extend({
-		required: {
-			params: true,
+		validation: {
+			validator: function (val) {
+				//if (!model.salary()) return true;
+
+				return val ? true : false;
+			},
 			message: function (params, observable) {
 				return model.resource.requiredMessage.label();
 			}

@@ -29,7 +29,7 @@
 					<button data-bind="label: dictionary.resource.addExperience, click: addExperience"></button>
 				</div>
 
-				<div data-bind="if: isFooterEducationBlockAdded">
+				<div data-bind="if: isEducationBlockAdded">
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.educationNameLabel"></h3>
 					<div data-bind="foreach: education">
 						<div data-bind="template: tpl"></div>
@@ -38,7 +38,7 @@
 							data-bind="label: dictionary.resource.addEducation, click: addEducation"></button>
 				</div>
 
-				<div data-bind="if: isFooterTrainingBlockAdded">
+				<div data-bind="if: isTrainingBlockAdded">
 					<h3 class="cvbuilder-block-title"
 						data-bind="label: dictionary.resource.trainingRubricNameLabel"></h3>
 					<div data-bind="foreach: training">
@@ -48,7 +48,7 @@
 							data-bind="label: dictionary.resource.addTraining, click: addTraining"></button>
 				</div>
 
-				<div data-bind="if: isFooterAdditionalBlockAdded">
+				<div data-bind="if: isAdditionalBlockAdded">
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.additionalNameLabel"></h3>
 					<div data-bind="foreach: additional">
 						<div data-bind="template: tpl"></div>
@@ -57,7 +57,7 @@
 							data-bind="label: dictionary.resource.addAdditional, click: addAdditional"></button>
 				</div>
 
-				<div data-bind="if: isFooterLanguageBlockAdded">
+				<div data-bind="if: isLanguageBlockAdded">
 					<h3 class="cvbuilder-block-title"
 						data-bind="label: dictionary.resource.languageRubricNameLabel"></h3>
 					<div data-bind="foreach: language">
@@ -74,22 +74,22 @@
 					</div>
 					<div class="block-container rua-p-c-light row">
 						<div class="col d-1of2 d-pr-1of2">
-							<div data-bind="click: addFooterEducationBlock, visible: !isFooterEducationBlockAdded()">
+							<div data-bind="click: addEducation, visible: !isEducationBlockAdded()">
 								<p data-bind="label: dictionary.resource.add"></p>
 								<p data-bind="label: dictionary.resource.educationNameLabel"></p></div>
 						</div>
 						<div class="col d-1of2 d-pl-1of2">
-							<div data-bind="click: addFooterLanguageBlock, visible: !isFooterLanguageBlockAdded()">
+							<div data-bind="click: addLanguage, visible: !isLanguageBlockAdded()">
 								<p data-bind="label: dictionary.resource.add"></p>
 								<p data-bind="label: dictionary.resource.languageRubricNameLabel"></p></div>
 						</div>
 						<div class="col d-1of2 d-pr-1of2">
-							<div data-bind="click: addFooterTrainingBlock, visible: !isFooterTrainingBlockAdded()">
+							<div data-bind="click: addTraining, visible: !isTrainingBlockAdded()">
 								<p data-bind="label: dictionary.resource.add"></p>
 								<p data-bind="label: dictionary.resource.footerBlockTraining"></p></div>
 						</div>
 						<div class="col d-1of2 d-pl-1of2">
-							<div data-bind="click: addFooterAdditionalBlock, visible: !isFooterAdditionalBlockAdded()">
+							<div data-bind="click: addAdditional, visible: !isAdditionalBlockAdded()">
 								<p data-bind="label: dictionary.resource.add"></p>
 								<p data-bind="label: dictionary.resource.additionalNameLabel"></p></div>
 						</div>
