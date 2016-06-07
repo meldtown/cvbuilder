@@ -104,7 +104,7 @@ ko.bindingHandlers.autocompleteCompany = {
 	}
 };
 
-ko.bindingHandlers.autocompleteCity = {
+ko.bindingHandlers.autocompleteCityId = {
 	findById: function (options, value) {
 		var str = (ko.unwrap(value) || '').toString();
 		return ko.unwrap(options).filter(function (item) {
@@ -118,7 +118,7 @@ ko.bindingHandlers.autocompleteCity = {
 		var value = params.value;
 		var options = params.options;
 
-		jQuery(element).val(ko.bindingHandlers.autocompleteCity.findById(options, value));
+		jQuery(element).val(ko.bindingHandlers.autocompleteCityId.findById(options, value));
 
 		jQuery(element).autocomplete({
 			source: function (request, response) {
@@ -153,7 +153,7 @@ ko.bindingHandlers.autocompleteCity = {
 	},
 	update: function (element, valueAccessor) {
 		var params = valueAccessor();
-		jQuery(element).val(ko.bindingHandlers.autocompleteCity.findById(params.options, params.value));
+		jQuery(element).val(ko.bindingHandlers.autocompleteCityId.findById(params.options, params.value));
 	}
 };
 
