@@ -7,6 +7,10 @@ function ResumeExperienceModel (parent, data) {
 		return parent._lng();
 	});
 
+	model._keywordsApiUrl = ko.computed(function () {
+		return parent.api + '/autocomplete/keyword';
+	});
+
 	model._companyApiUrl = ko.computed(function () {
 		return parent.api + '/autocomplete/company';
 	});
