@@ -13,7 +13,6 @@ Experience/Branch - is it required ?
 Experience/period - custom validation
 Experience/Description - is it required ?
 Experience/recommendation/* - is it required ?
-Education/* - is it required? should diploma and speciality be validated for school education type...
 Trainings/Description - is it required ?
 Trainings/Year - is it required ?
 Experience/save - add else case showing all error messages
@@ -32,8 +31,6 @@ Experience/Recommendation/Position - add autocomplete
 Experience/Recommendation/Company - add autocomplete
 Experience/Recommendation/Contacts - computed phone, email
 Experience/Recommmendation - add button logic
-Education/School name label - computed from school type
-Education/Speciality - disable from type
 
 
 All controls - tooltips? cross button? focus? wtf?

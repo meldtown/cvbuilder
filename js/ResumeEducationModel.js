@@ -28,6 +28,12 @@ function ResumeEducationModel (parent, data) {
 		return model.typeId() !== 4;
 	});
 
+	model.schoolNameLabel = ko.computed(function () {
+		return model.typeId() === 4
+			? model.resource.educationSchoolNameLabel.label()
+			: model.resource.educationUniversityNameLabel.label();
+	});
+
 	model.toJS = function () {
 		return mapper.toJS(model);
 	};
