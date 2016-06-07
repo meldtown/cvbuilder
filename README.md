@@ -13,6 +13,8 @@ Experience/period - custom validation
 Controls
 --------
 
+Personal/BirthDate - placeholders
+Experience/Work period - placeholders
 All top level models - add message property
 Personal - add photo
 All controls - tooltips? cross button? focus? wtf?
