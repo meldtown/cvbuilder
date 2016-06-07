@@ -159,8 +159,22 @@ function ResumeExperienceRecommendationModel (parent, data) {
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.companyName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.email = ko.observable();
-	model.phone = ko.observable();
+	model.email = ko.observable().extend({
+		email: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
+	model.phone = ko.observable().extend({
+		pattern: {
+			params: '^[0-9\\-\\+\\(\\)\\ ]+.$',
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
 	model.atRequest = ko.observable();
 	model.resumeId = parent.resumeId;
 
