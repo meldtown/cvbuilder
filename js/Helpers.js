@@ -1,5 +1,5 @@
 ko.bindingHandlers.label = {
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+	handle: function (element, valueAccessor) {
 		var property = valueAccessor();
 
 		if (property && property.label && ko.isObservable(property.label)) {
@@ -8,6 +8,12 @@ ko.bindingHandlers.label = {
 			console.error('RESX', element, valueAccessor);
 			element.innerHTML = 'NOT FOUND'; // TODO: before production make empty string here
 		}
+	},
+	init: function (element, valueAccessor) {
+		ko.bindingHandlers.label.handle(element, valueAccessor);
+	},
+	update: function (element, valueAccessor) {
+		ko.bindingHandlers.label.handle(element, valueAccessor);
 	}
 };
 
@@ -99,27 +105,29 @@ ko.bindingHandlers.autocompleteCompany = {
 };
 
 ko.bindingHandlers.autocompleteCity = {
+	findById: function (options, value) {
+		var str = (ko.unwrap(value) || '').toString();
+		return ko.unwrap(options).filter(function (item) {
+			return item.id.toString() === str;
+		}).map(function (item) {
+			return item.label();
+		}).shift() || '';
+	},
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var params = valueAccessor();
+		var value = params.value;
+		var options = params.options;
 
-		jQuery(element).val(params.value() ? params.value().label() : '');
+		jQuery(element).val(ko.bindingHandlers.autocompleteCity.findById(options, value));
 
 		jQuery(element).autocomplete({
 			source: function (request, response) {
-				// jQuery.getJSON('http://api.mac.rabota.ua/autocomplete/city', {
-				// 	term: request.term
-				// }, function (data) {
-				// 	response(data.map(function (item) {
-				// 		return new DictionaryModel(viewModel, item);
-				// 	}));
-				// });
 				var term = (request.term || '').toLowerCase().trim();
-				var options = ko.isObservable(params.options) ? params.options() : params.options;
 
 				if (!term) {
-					response(options.slice(0, 10));
+					response(ko.unwrap(options).slice(0, 10));
 				} else {
-					response(options.filter(function (item) {
+					response(ko.unwrap(options).filter(function (item) {
 						return item.label().toLowerCase().indexOf(term) === 0;
 					}));
 				}
@@ -127,20 +135,25 @@ ko.bindingHandlers.autocompleteCity = {
 			minLength: 0,
 			select: function (event, ui) {
 				event.preventDefault();
-				jQuery(event.target).val(ui.item.label());
-				params.value(ui.item);
+				params.value(ui.item.id);
 			},
 			change: function (event, ui) {
 				if (!ui.item) {
 					params.value(undefined);
-					jQuery(event.target).val('');
+					jQuery(element).val('');
 				}
 			}
+		}).on('click', function () {
+			$(this).select(); // on click select all text in input (e.g. ctrl+a)
 		}).on('focus', function () {
-			$(this).autocomplete('search', '');
+			$(this).autocomplete('search', ''); // on focus run search
 		}).data('ui-autocomplete')._renderItem = function (ul, item) {
 			return $('<li>').append('<a>' + item.label() + '</a>').appendTo(ul);
 		};
+	},
+	update: function (element, valueAccessor) {
+		var params = valueAccessor();
+		jQuery(element).val(ko.bindingHandlers.autocompleteCity.findById(params.options, params.value));
 	}
 };
 
@@ -148,7 +161,7 @@ ko.validation.init({
 	decorateInputElement: true
 }, true);
 
-function InitEditableModel(model, templatePrefix) {
+function InitEditableModel (model, templatePrefix) {
 	ko.editable(model);
 	model.errors = ko.validation.group(model);
 	model.tpl = ko.computed(function () {

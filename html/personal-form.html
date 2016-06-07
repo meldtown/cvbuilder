@@ -66,8 +66,8 @@
 		</div>
 		<div class="col d-2of3">
 			<div >
-				<input id="cityId" name="cityId" type="text" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCity: { value: selectedCityOption, options: cityOptions }, validationElement: selectedCityOption">
-				<span class="validationMessage" data-bind="validationMessage: selectedCityOption"></span>
+				<input id="cityId" name="cityId" type="text" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCity: { value: cityId, options: cityOptions }, validationElement: cityId">
+				<span class="validationMessage" data-bind="validationMessage: cityId"></span>
 			</div>
 		</div>
 	</div>
@@ -81,7 +81,14 @@
 		<div class="col d-2of3">
 			<div >
 				<div data-bind="foreach: moving">
-					<div data-bind="template: tpl"></div>
+					<div class="media">
+						<div class="pull-right">
+							<a class="btn btn-danger" href="#" data-bind="label: resource.delete, click: remove"></a>
+						</div>
+						<div class="media-body">
+							<input type="text" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCity: { value: cityId, options: cityOptions }">
+						</div>
+					</div>
 				</div>
 				<button class="btn btn-danger" data-bind="label: resource.addCity, click: addMoving"></button>
 			</div>

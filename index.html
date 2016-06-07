@@ -66,8 +66,6 @@
 		<script id="language-view" type="text/html"><!--#include file="html/language-view.html"--></script>
 		<script id="skill-form" type="text/html"><!--#include file="html/skill-form.html"--></script>
 		<script id="skill-view" type="text/html"><!--#include file="html/skill-view.html"--></script>
-		<script id="moving-form" type="text/html"><!--#include file="html/moving-form.html"--></script>
-		<script id="moving-view" type="text/html"><!--#include file="html/moving-view.html"--></script>
 		<script id="datepicker-widget" type="text/html"><!--#include file="html/datepicker-widget.html"--></script>
 		<script id="yearmonth-widget" type="text/html"><!--#include file="html/yearmonth-widget.html"--></script>
 		<script id="recommendation-view" type="text/html"><!--#include file="html/recommendation-view.html"--></script>
@@ -136,6 +134,6 @@
 	</script>
 
 	<!--suppress JSUnresolvedLibraryURL -->
-	<script id="__bs_script__">document.write('<script async src="http://HOST:3000/browser-sync/browser-sync-client.2.12.8.js"><\/script>'.replace('HOST', location.hostname))</script>
+	<script id="__bs_script__">if (location.hostname !== 'cvbuilder.mac.rabota.ua') document.write('<script async src="http://HOST:3000/browser-sync/browser-sync-client.2.12.8.js"><\/script>'.replace('HOST', location.hostname))</script>
 </body>
 </html>
