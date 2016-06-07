@@ -33,13 +33,14 @@ function ResumeExperienceModel (parent, data) {
 	model.endWork = ko.observable().extend({
 		validation: {
 			validator: function (val) {
-				//if (!model.salary()) return true;
-
-				//return val ? true : false;
-				return true;
+				if (val && val !== '1900-01-01T00:00:00') {
+					return moment(val).isAfter(moment(model.startWork()));
+				} else {
+					return true;
+				}
 			},
 			message: function (params, observable) {
-				return model.resource.requiredMessage.label();
+				return model.resource.wrongFormat.label();
 			}
 		}
 	});
