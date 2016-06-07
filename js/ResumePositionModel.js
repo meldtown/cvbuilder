@@ -26,7 +26,7 @@ function ResumePositionModel (parent, data) {
 			}
 		},
 		min: {
-			params: 1,
+			params: 0,
 			message: function (params, observable) {
 				return model.resource.wrongFormat.label();
 			}
