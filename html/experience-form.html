@@ -71,7 +71,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="description" name="description" class="input-block-level" data-bind="value: description, valueUpdate: 'keyup'">
+			<textarea name="description" id="description" cols="70" rows="10" data-bind="tinylight: description, validationElement: description"></textarea>
+			<span class="validationMessage" data-bind="validationMessage: description"></span>
 		</div>
 	</div>
 

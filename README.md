@@ -20,9 +20,7 @@ Controls
 All top level models - add message property
 
 Personal - add photo
-Experience/Company - add autocomplete, fill other fields
-Experience/Position - add autocomplete
-Experience/Description - tiny ?
+Experience/Company - fill other fields
 Experience/Recommendation/Name - add placeholder
 Experience/Recommendation/Position - add autocomplete
 Experience/Recommendation/Company - add autocomplete
