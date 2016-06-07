@@ -17,7 +17,6 @@ All top level models - add message property
 
 Personal - add photo
 Experience/Company - fill other fields
-Experience/Recommendation/Company - add autocomplete
 Experience/Recommendation/Contacts - computed phone, email
 Experience/Recommendation - add button logic 1 of 3
 
