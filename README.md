@@ -9,11 +9,6 @@ Validation
 
 Dropdowns - remove placeholder???
 
-Contacts/Phone - add validation, is it required ?
-Contacts/Email - i18n custom message
-Contacts/Additional Phone - custom validation, skip empty on save, without require
-Contacts/Portfolio -  skip empty on save
-Contacts/Social -  skip empty on save
 Position/Salary - custom validation, is it required  ?
 Position/Currency - validate only if salary presents
 Experience/Branch - is it required ?
@@ -30,7 +25,6 @@ Controls
 All top level models - add message property
 
 Personal - add photo
-Personal/City - custom control
 Experience/Company - add autocomplete, fill other fields
 Experience/Position - add autocomplete
 Experience/Description - tiny ?
