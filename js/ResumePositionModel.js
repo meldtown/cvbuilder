@@ -93,7 +93,9 @@ function ResumePositionModel (parent, data) {
 	});
 
 	model.toJS = function () {
-		return mapper.toJS(model);
+		var data = mapper.toJS(model);
+		data.salary = data.salary || 0;
+		return data;
 	};
 
 	model.fromJS = function (data) {

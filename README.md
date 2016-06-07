@@ -9,7 +9,6 @@ Validation
 
 Dropdowns - remove placeholder???
 
-Position/Salary - custom validation, is it required  ?
 Position/Currency - validate only if salary presents
 Experience/Branch - is it required ?
 Experience/period - custom validation
