@@ -11,7 +11,6 @@ Dropdowns - remove placeholder???
 
 Experience/period - custom validation
 Experience/Description - is it required ?
-Experience/save - add else case showing all error messages
 
 Controls
 --------
@@ -24,7 +23,6 @@ Experience/Recommendation/Name - add placeholder
 Experience/Recommendation/Company - add autocomplete
 Experience/Recommendation/Contacts - computed phone, email
 Experience/Recommendation - add button logic 1 of 3
-Experience/save - add else logic to show all error messages
 
 All controls - tooltips? cross button? focus? wtf?
 
