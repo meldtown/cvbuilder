@@ -108,10 +108,10 @@ ko.bindingHandlers.autocompleteCityId = {
 	findById: function (options, value) {
 		var str = (ko.unwrap(value) || '').toString();
 		return ko.unwrap(options).filter(function (item) {
-				return item.id.toString() === str;
-			}).map(function (item) {
-				return item.label();
-			}).shift() || '';
+			return item.id.toString() === str;
+		}).map(function (item) {
+			return item.label();
+		}).shift() || '';
 	},
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var params = valueAccessor();
@@ -154,6 +154,46 @@ ko.bindingHandlers.autocompleteCityId = {
 	update: function (element, valueAccessor) {
 		var params = valueAccessor();
 		jQuery(element).val(ko.bindingHandlers.autocompleteCityId.findById(params.options, params.value));
+	}
+};
+
+ko.bindingHandlers.autocompleteCity = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var params = valueAccessor();
+		var value = params.value;
+		var options = params.options;
+		jQuery(element).val(ko.unwrap(value));
+
+		jQuery(element).autocomplete({
+			source: function (request, response) {
+				var term = (request.term || '').toLowerCase().trim();
+
+				if (!term) {
+					response(ko.unwrap(options).slice(0, 10));
+				} else {
+					response(ko.unwrap(options).filter(function (item) {
+						return item.label().toLowerCase().indexOf(term) === 0;
+					}));
+				}
+			},
+			minLength: 0,
+			select: function (event, ui) {
+				event.preventDefault();
+				params.value(ui.item.label());
+			}
+		}).on('click', function () {
+			$(this).select();
+		}).on('focus', function () {
+			$(this).autocomplete('search', '');
+		}).on('input', function () {
+			params.value($(this).val());
+		}).data('ui-autocomplete')._renderItem = function (ul, item) {
+			return $('<li>').append('<a>' + item.label() + '</a>').appendTo(ul);
+		};
+	},
+	update: function (element, valueAccessor) {
+		var params = valueAccessor();
+		jQuery(element).val(ko.unwrap(params.value));
 	}
 };
 

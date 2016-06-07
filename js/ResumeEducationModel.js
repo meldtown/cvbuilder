@@ -6,6 +6,7 @@ function ResumeEducationModel (parent, data) {
 	});
 
 	model.resource = parent.dictionary.resource;
+	model.cityOptions = parent.dictionary.city;
 
 	model.resumeId = parent.resumeId;
 	model.cityId = ko.observable();
