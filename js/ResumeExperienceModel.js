@@ -23,8 +23,8 @@ function ResumeExperienceModel (parent, data) {
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.company = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.branchId = ko.observable();
-	model.description = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.notebookCompanyId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.description = ko.observable();
+	model.notebookCompanyId = ko.observable();
 	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.endWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.recommendationList = ko.observableArray();
