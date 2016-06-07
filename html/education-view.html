@@ -1,64 +1,20 @@
 <div class="cvbuilder-view">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-title" data-bind="text: speciality"></h3>
+			<h3 class="cvbuilder-block-title">
+				<span data-bind="text: schoolName"></span>
+				<small data-bind="visible: location">(<span data-bind="text: location"></span>)</small>
+			</h3>
 		</div>
 		<div class="col d-1of3 text-right">
 			<a class="rua-p-c-light" href="#" data-bind="label: resource.edit, click: beginEdit"></a>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.educationTypeLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: selectedTypeOptionLabel"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="text: schoolNameLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: schoolName"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.educationLocationLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: location"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.educationSpecialityLabel"></span>
-		</div>
-		<div class="col d-2of3">
+	<div>
+		<span data-bind="visible: speciality">
 			<span data-bind="text: speciality"></span>
-		</div>
-	</div>
-
-	<div class="row" style="display: none">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.educationDiplomaLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: diploma"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.educationYearLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: year"></span>
-		</div>
+		</span>
+		<span class="rua-p-c-light" data-bind="text: year"></span>
 	</div>
 </div>

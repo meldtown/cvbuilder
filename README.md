@@ -26,12 +26,12 @@ Personal - add photo
 Experience/Company - add autocomplete, fill other fields
 Experience/Position - add autocomplete
 Experience/Description - tiny ?
-Expeince/Recommendation/Name - add placeholder
+Experience/Recommendation/Name - add placeholder
 Experience/Recommendation/Position - add autocomplete
 Experience/Recommendation/Company - add autocomplete
 Experience/Recommendation/Contacts - computed phone, email
-Experience/Recommmendation - add button logic
-
+Experience/Recommendation - add button logic
+Experience/save - add else logic to show all error messages
 
 All controls - tooltips? cross button? focus? wtf?
 
@@ -39,7 +39,6 @@ Markup
 ------
 
 experience
-education
 
 Computed
 --------
