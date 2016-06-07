@@ -22,14 +22,14 @@
 				</div>
 
 				<div>
-					<h3 class="cvbuilder-block-title" data-bind=""></h3>
+					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.experienceRubricNameLabel"></h3>
 					<div data-bind="foreach: experience">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button data-bind="label: dictionary.resource.addExperience, click: addExperience"></button>
+					<button class="btn btn-danger" data-bind="label: dictionary.resource.addExperience, click: addExperience"></button>
 				</div>
 
-				<div data-bind="if: isFooterEducationBlockAdded">
+				<div data-bind="if: isEducationBlockAdded">
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.educationNameLabel"></h3>
 					<div data-bind="foreach: education">
 						<div data-bind="template: tpl"></div>
@@ -38,7 +38,7 @@
 							data-bind="label: dictionary.resource.addEducation, click: addEducation"></button>
 				</div>
 
-				<div data-bind="if: isFooterTrainingBlockAdded">
+				<div data-bind="if: isTrainingBlockAdded">
 					<h3 class="cvbuilder-block-title"
 						data-bind="label: dictionary.resource.trainingRubricNameLabel"></h3>
 					<div data-bind="foreach: training">
@@ -48,7 +48,7 @@
 							data-bind="label: dictionary.resource.addTraining, click: addTraining"></button>
 				</div>
 
-				<div data-bind="if: isFooterAdditionalBlockAdded">
+				<div data-bind="if: isAdditionalBlockAdded">
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.additionalNameLabel"></h3>
 					<div data-bind="foreach: additional">
 						<div data-bind="template: tpl"></div>
@@ -57,7 +57,7 @@
 							data-bind="label: dictionary.resource.addAdditional, click: addAdditional"></button>
 				</div>
 
-				<div data-bind="if: isFooterLanguageBlockAdded">
+				<div data-bind="if: isLanguageBlockAdded">
 					<h3 class="cvbuilder-block-title"
 						data-bind="label: dictionary.resource.languageRubricNameLabel"></h3>
 					<div data-bind="foreach: language">
@@ -73,6 +73,7 @@
 						<span data-bind="label: dictionary.resource.footerBlockHint2"></span>
 					</div>
 					<div class="block-container rua-p-c-light row">
+<<<<<<< HEAD
 						<div data-bind="click: addFooterEducationBlock, visible: !isFooterEducationBlockAdded()">
 							<p>
 								<span data-bind="label: dictionary.resource.add"></span>
@@ -103,6 +104,27 @@
 						<div data-bind="click: addFooterAdditionalBlock, visible: !isFooterAdditionalBlockAdded()">
 							<p data-bind="label: dictionary.resource.add"></p>
 							<p data-bind="label: dictionary.resource.additionalNameLabel"></p>
+=======
+						<div class="col d-1of2 d-pr-1of2">
+							<div data-bind="click: addEducation, visible: !isEducationBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.educationNameLabel"></p></div>
+						</div>
+						<div class="col d-1of2 d-pl-1of2">
+							<div data-bind="click: addLanguage, visible: !isLanguageBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.languageRubricNameLabel"></p></div>
+						</div>
+						<div class="col d-1of2 d-pr-1of2">
+							<div data-bind="click: addTraining, visible: !isTrainingBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.footerBlockTraining"></p></div>
+						</div>
+						<div class="col d-1of2 d-pl-1of2">
+							<div data-bind="click: addAdditional, visible: !isAdditionalBlockAdded()">
+								<p data-bind="label: dictionary.resource.add"></p>
+								<p data-bind="label: dictionary.resource.additionalNameLabel"></p></div>
+>>>>>>> e8d939a77ffcbb9f3dd0664866e07c1aea0a544b
 						</div>
 					</div>
 				</div>

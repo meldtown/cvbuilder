@@ -133,47 +133,21 @@ function CvBuilderModel(api, resumeId, dictionary) {
 		});
 	};
 
-	model.isFooterEducationBlockAdded = ko.computed(function () {
+	model.isEducationBlockAdded = ko.computed(function () {
 		return !!model.education().length;
 	});
 
-	model.addFooterEducationBlock = function () {
-		if (!model.isFooterEducationBlockAdded()) {
-			model.addEducation();
-		}
-		;
-	};
-
-	model.isFooterLanguageBlockAdded = ko.computed(function () {
+	model.isLanguageBlockAdded = ko.computed(function () {
 		return !!model.language().length;
 	});
 
-	model.addFooterLanguageBlock = function () {
-		if (!model.isFooterLanguageBlockAdded()) {
-			model.addLanguage();
-		}
-		;
-	};
-
-	model.isFooterTrainingBlockAdded = ko.computed(function () {
+	model.isTrainingBlockAdded = ko.computed(function () {
 		return !!model.training().length;
 	});
 
-	model.addFooterTrainingBlock = function () {
-		if (!model.isFooterTrainingBlockAdded()) {
-			model.addTraining();
-		};
-	};
-
-	model.isFooterAdditionalBlockAdded = ko.computed(function () {
+	model.isAdditionalBlockAdded = ko.computed(function () {
 		return !!model.additional().length;
 	});
-
-	model.addFooterAdditionalBlock = function () {
-		if (!model.isFooterAdditionalBlockAdded()) {
-			model.addAdditional();
-		};
-	};
 
 	model.load = function () {
 		model.personalInfo.get();

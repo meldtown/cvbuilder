@@ -3,7 +3,7 @@
 		<select data-bind="optionsCaption: resource.month.label, options: monthOptions, value: selectedMonthOption, optionsText: 'label', validationElement: validationElement" class="input-block-level"></select>
 	</div>
 	<div class="col d-1of2 d-pl-1of2">
-		<select data-bind="optionsCaption: resource.year.label, options: yearOptions, value: selectedYearOption, validationElement: validationElement" class="input-block-level"></select>
+		<select data-bind="optionsCaption: resource.year.label, options: yearOptions, value: selectedYearOption, validationElement: validationElement, enable: isYearEnabled" class="input-block-level"></select>
 	</div>
 </div>
 <span class="validationMessage" data-bind="validationMessage: value"></span>

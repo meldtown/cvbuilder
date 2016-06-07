@@ -3,6 +3,10 @@ function ResumeExperienceModel (parent, data) {
 
 	model.resumeId = parent.resumeId;
 
+	model._api = ko.computed(function () {
+		return parent.api;
+	});
+
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
@@ -27,10 +31,16 @@ function ResumeExperienceModel (parent, data) {
 	model.notebookCompanyId = ko.observable();
 	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.endWork = ko.observable().extend({
-		required: {
-			params: true,
+		validation: {
+			validator: function (val) {
+				if (val && val !== '1900-01-01T00:00:00') {
+					return moment(val).isAfter(moment(model.startWork()));
+				} else {
+					return true;
+				}
+			},
 			message: function (params, observable) {
-				return model.resource.requiredMessage.label();
+				return model.resource.wrongFormat.label();
 			}
 		}
 	});
@@ -194,7 +204,14 @@ function ResumeExperienceRecommendationModel (parent, data) {
 	};
 
 	model.remove = function (item) {
-		parent.recommendationList.remove(item);
+		if (model.id()) {
+			backend.remove(parent._api() + '/resume/' + parent.resumeId + '/experience/' + parent.id() + '/recommendation/' + model.id())
+				.success(function () {
+					parent.recommendationList.remove(item);
+				});
+		} else {
+			parent.recommendationList.remove(item);
+		}
 	};
 
 	if (data) model.fromJS(data);
