@@ -28,8 +28,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="recommendator" class="input-block-level" name="recommendator"
-				   data-bind="attr: {placeholder: resource.addRecommendationRecommendatorLabel.label}, value: name, valueUpdate: 'keyup'">
+			<input id="recommendator" class="input-block-level" name="recommendator" data-bind="attr: {placeholder: resource.addRecommendationRecommendatorLabel.label}, value: name, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -40,8 +39,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="position" name="position" class="input-block-level"
-				   data-bind="attr: {placeholder: resource.addRecommendationPositionLabel.label}, value: position">
+			<input id="position" name="position" class="input-block-level" type="text" data-bind="attr: {placeholder: resource.addRecommendationPositionLabel.label}, value: position, , autocompleteKeyword: position">
 		</div>
 	</div>
 
@@ -52,8 +50,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input class="input-block-level" id="company" name="company"
-				   data-bind="attr: {placeholder: resource.addRecommendationCompanyLabel.label}, value: companyName">
+			<input class="input-block-level" id="company" name="company" data-bind="attr: {placeholder: resource.addRecommendationCompanyLabel.label}, value: companyName">
 		</div>
 	</div>
 
@@ -64,8 +61,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input class="input-block-level" id="phone" name="phone"
-				   data-bind="attr: {placeholder: resource.addRecommendationPhone.label}, value: phone">
+			<input class="input-block-level" id="phone" name="phone" data-bind="attr: {placeholder: resource.addRecommendationPhone.label}, value: phone">
 		</div>
 	</div>
 

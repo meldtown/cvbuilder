@@ -43,10 +43,10 @@ ko.bindingHandlers.autocompleteKeyword = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();
 
-		if (element.nodeName.toLowerCase() !== 'input') return;
-		if (element.getAttribute('type') !== 'text') return;
-		if (!viewModel || !viewModel._keywordsApiUrl || !ko.isObservable(viewModel._keywordsApiUrl)) return;
-		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) return;
+		if (element.nodeName.toLowerCase() !== 'input') { console.log('autocompleteKeyword skip non input', element, valueAccessor); return; }
+		if (element.getAttribute('type') !== 'text') { console.log('autocompleteKeyword skip non text input', element, valueAccessor); return; }
+		if (!viewModel || !viewModel._keywordsApiUrl || !ko.isObservable(viewModel._keywordsApiUrl)) { console.log('autocompleteKeyword skip model without keywords api url', element, valueAccessor); return; }
+		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) { console.log('autocompleteKeyword skip model without lng', element, valueAccessor); return; }
 
 		jQuery(element).autocomplete({
 			source: function (request, response) {

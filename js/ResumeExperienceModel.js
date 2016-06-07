@@ -131,6 +131,14 @@ function ResumeExperienceModel (parent, data) {
 function ResumeExperienceRecommendationModel (parent, data) {
 	var model = this;
 
+	model._lng = ko.computed(function () {
+		return parent._lng();
+	});
+
+	model._keywordsApiUrl = ko.computed(function () {
+		return parent._keywordsApiUrl();
+	});
+
 	model.resource = parent.resource;
 
 	model.id = ko.observable();
