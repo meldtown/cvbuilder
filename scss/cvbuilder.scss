@@ -69,10 +69,10 @@ textarea {
 img.company-logo-autocomplete {
 	vertical-align: middle;
 }
-
-.footer-blocks {
-	font-size: 14px;
-	.block-container > div > div {
+	.block-container > div {
+		width: 40%;
+		float: left;
+		font-size: 14px;
 		border: 1px #ccc solid;
 		border-radius: 3px;
 		border-radius: 3px;
@@ -80,5 +80,10 @@ img.company-logo-autocomplete {
 		padding: 10px;
 		cursor: pointer;
 	}
+
+.sidebar .block-container > div {
+	float: none;
+	width: initial;
 }
+
 

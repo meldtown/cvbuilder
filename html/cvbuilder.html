@@ -73,37 +73,78 @@
 						<span data-bind="label: dictionary.resource.footerBlockHint2"></span>
 					</div>
 					<div class="block-container rua-p-c-light row">
-						<div class="col d-1of2 d-pr-1of2">
-							<div data-bind="click: addFooterEducationBlock, visible: !isFooterEducationBlockAdded()">
-								<p data-bind="label: dictionary.resource.add"></p>
-								<p data-bind="label: dictionary.resource.educationNameLabel"></p></div>
+						<div data-bind="click: addFooterEducationBlock, visible: !isFooterEducationBlockAdded()">
+							<p>
+								<span data-bind="label: dictionary.resource.add"></span>
+								<span data-bind="text: percentForBlock.education"></span>
+							</p>
+							<p data-bind="label: dictionary.resource.educationNameLabel"></p>
 						</div>
-						<div class="col d-1of2 d-pl-1of2">
-							<div data-bind="click: addFooterLanguageBlock, visible: !isFooterLanguageBlockAdded()">
-								<p data-bind="label: dictionary.resource.add"></p>
-								<p data-bind="label: dictionary.resource.languageRubricNameLabel"></p></div>
+
+
+						<div data-bind="click: addFooterLanguageBlock, visible: !isFooterLanguageBlockAdded()">
+							<p>
+								<span data-bind="label: dictionary.resource.add"></span>
+								<span data-bind="text: percentForBlock.language"></span>
+							</p>
+							<p data-bind="label: dictionary.resource.languageRubricNameLabel"></p>
 						</div>
-						<div class="col d-1of2 d-pr-1of2">
-							<div data-bind="click: addFooterTrainingBlock, visible: !isFooterTrainingBlockAdded()">
-								<p data-bind="label: dictionary.resource.add"></p>
-								<p data-bind="label: dictionary.resource.footerBlockTraining"></p></div>
+
+
+						<div data-bind="click: addFooterTrainingBlock, visible: !isFooterTrainingBlockAdded()">
+							<p>
+								<span data-bind="label: dictionary.resource.add"></span>
+								<span data-bind="text: percentForBlock.training"></span>
+							</p>
+							<p data-bind="label: dictionary.resource.footerBlockTraining"></p>
 						</div>
-						<div class="col d-1of2 d-pl-1of2">
-							<div data-bind="click: addFooterAdditionalBlock, visible: !isFooterAdditionalBlockAdded()">
-								<p data-bind="label: dictionary.resource.add"></p>
-								<p data-bind="label: dictionary.resource.additionalNameLabel"></p></div>
+
+
+						<div data-bind="click: addFooterAdditionalBlock, visible: !isFooterAdditionalBlockAdded()">
+							<p data-bind="label: dictionary.resource.add"></p>
+							<p data-bind="label: dictionary.resource.additionalNameLabel"></p>
 						</div>
 					</div>
 				</div>
 			</div>
 
 		</div>
-		<div class="col d-1of3 d-pl-1of2 m-1of1">
+		<div class="col d-1of3 d-pl-1of2 m-1of1 sidebar">
 			<div class="cvbuilder-white-box">
 				sidebar
 			</div>
-			<div>
-				sidebar
+			<div class="block-container">
+				<div data-bind="click: addFooterEducationBlock, visible: !isFooterEducationBlockAdded()">
+					<p>
+						<span data-bind="label: dictionary.resource.add"></span>
+						<span data-bind="text: percentForBlock.education"></span>
+					</p>
+					<p data-bind="label: dictionary.resource.educationNameLabel"></p>
+				</div>
+
+
+				<div data-bind="click: addFooterLanguageBlock, visible: !isFooterLanguageBlockAdded()">
+					<p>
+						<span data-bind="label: dictionary.resource.add"></span>
+						<span data-bind="text: percentForBlock.language"></span>
+					</p>
+					<p data-bind="label: dictionary.resource.languageRubricNameLabel"></p>
+				</div>
+
+
+				<div data-bind="click: addFooterTrainingBlock, visible: !isFooterTrainingBlockAdded()">
+					<p>
+						<span data-bind="label: dictionary.resource.add"></span>
+						<span data-bind="text: percentForBlock.training"></span>
+					</p>
+					<p data-bind="label: dictionary.resource.footerBlockTraining"></p>
+				</div>
+
+
+				<div data-bind="click: addFooterAdditionalBlock, visible: !isFooterAdditionalBlockAdded()">
+					<p data-bind="label: dictionary.resource.add"></p>
+					<p data-bind="label: dictionary.resource.additionalNameLabel"></p>
+				</div>
 			</div>
 		</div>
 

@@ -32,6 +32,12 @@ function CvBuilderModel(api, resumeId, dictionary) {
 		}
 	});
 
+	model.percentForBlock = {
+		education: '+10',
+		language: '+5',
+		training: '+5'
+	};
+
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);
 	model.contacts = new ResumeContactsModel(model);
