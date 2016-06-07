@@ -4,6 +4,7 @@ ko.components.register('yearmonth-widget', {
 
 		model._initialized = false;
 		model._lng = params._lng;
+		model.resource = params.resource;
 		model.value = params.value;
 		model.validationElement = params.validationElement;
 

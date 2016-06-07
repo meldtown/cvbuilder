@@ -7,6 +7,10 @@ function ResumeExperienceModel (parent, data) {
 		return parent._lng();
 	});
 
+	model._keywordsApiUrl = ko.computed(function () {
+		return parent.api + '/autocomplete/keyword';
+	});
+
 	model._companyApiUrl = ko.computed(function () {
 		return parent.api + '/autocomplete/company';
 	});
@@ -16,13 +20,20 @@ function ResumeExperienceModel (parent, data) {
 	model.resource = parent.dictionary.resource;
 
 	model.id = ko.observable();
-	model.position = ko.observable().extend({required: true});
-	model.company = ko.observable().extend({required: true});
-	model.branchId = ko.observable().extend({required: true});
-	model.description = ko.observable().extend({required: true});
-	model.notebookCompanyId = ko.observable().extend({required: true});
-	model.startWork = ko.observable().extend({required: true});
-	model.endWork = ko.observable().extend({required: true});
+	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.company = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.branchId = ko.observable();
+	model.description = ko.observable();
+	model.notebookCompanyId = ko.observable();
+	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.endWork = ko.observable().extend({
+		required: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.requiredMessage.label();
+			}
+		}
+	});
 	model.recommendationList = ko.observableArray();
 	model.companySite = ko.observable();
 	model.employeesAmount = ko.observable();
@@ -42,6 +53,9 @@ function ResumeExperienceModel (parent, data) {
 		return moment.duration(moment(model.endWork()) - moment(model.startWork())).humanize();
 	});
 
+	model.isAddRecomendationButtonVisible = ko.computed(function () {
+		return model.recommendationList().length < 3;
+	});
 
 	model.toJS = function () {
 		return mapper.toJS(model);
@@ -50,8 +64,6 @@ function ResumeExperienceModel (parent, data) {
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);
 
-		model.startWork(data.startWork);
-		model.endWork(data.endWork);
 		model.recommendationList(data.recommendationList.map(function (item) {
 			return new ResumeExperienceRecommendationModel(model, item);
 		}));
@@ -72,6 +84,8 @@ function ResumeExperienceModel (parent, data) {
 						model.handleBarRequestResponse(jqXHR);
 					}
 				});
+		} else {
+			model.errors.showAllMessages(true);
 		}
 	};
 
@@ -107,7 +121,7 @@ function ResumeExperienceModel (parent, data) {
 		write: function (newValue) {
 			model.branchId(newValue ? newValue.id : undefined);
 		}
-	});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.selectedBranchOptionLabel = ko.computed(function () {
 		return model.selectedBranchOption() ? model.selectedBranchOption().label() : '';
@@ -127,17 +141,49 @@ function ResumeExperienceModel (parent, data) {
 function ResumeExperienceRecommendationModel (parent, data) {
 	var model = this;
 
+	model._branch = parent._branch;
+
+	model._lng = ko.computed(function () {
+		return parent._lng();
+	});
+
+	model._companyApiUrl = ko.computed(function () {
+		return parent._companyApiUrl();
+	});
+
+	model._keywordsApiUrl = ko.computed(function () {
+		return parent._keywordsApiUrl();
+	});
+
 	model.resource = parent.resource;
 
 	model.id = ko.observable();
 	model.experienceId = ko.observable();
-	model.name = ko.observable();
-	model.position = ko.observable();
-	model.companyName = ko.observable();
-	model.email = ko.observable();
-	model.phone = ko.observable();
+	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.companyName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.email = ko.observable().extend({
+		email: {
+			params: true,
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
+	model.phone = ko.observable().extend({
+		pattern: {
+			params: '^[0-9\\-\\+\\(\\)\\ ]+.$',
+			message: function (params, observable) {
+				return model.resource.wrongFormat.label();
+			}
+		}
+	});
 	model.atRequest = ko.observable();
 	model.resumeId = parent.resumeId;
+
+	model.blockTitleLabel = ko.computed(function () {
+		return parent.resource.recommendationRubricNameLabel.label().replace('1', (parent.recommendationList.indexOf(model) + 1));
+	});
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);

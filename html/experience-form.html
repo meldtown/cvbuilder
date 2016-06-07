@@ -39,23 +39,23 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="position" name="position" class="input-block-level" data-bind="value: position, valueUpdate: 'keyup'">
+			<input id="position" name="position" type="text" class="input-block-level" data-bind="value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
-			<label for="startWork">
+			<label>
 				<span data-bind="label: resource.experiencePeriodLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
 			<div class="row">
 				<div class="col d-1of2 d-pr-1of2">
-					<yearmonth-widget params="value: startWork, _lng: _lng, validationElement: startWork"></yearmonth-widget>
+					<yearmonth-widget params="value: startWork, _lng: _lng, resource: resource, validationElement: startWork"></yearmonth-widget>
 				</div>
 				<div class="col d-1of2 d-pl-1of2">
-					<yearmonth-widget params="value: endWork, _lng: _lng, validationElement: endWork"></yearmonth-widget>
+					<yearmonth-widget params="value: endWork, _lng: _lng, resource: resource, validationElement: endWork"></yearmonth-widget>
 				</div>
 			</div>
 			<!--<input id="startWork" name="startWork" class="input-block-level" data-bind="value: startWork, valueUpdate: 'keyup'">-->
@@ -71,7 +71,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="description" name="description" class="input-block-level" data-bind="value: description, valueUpdate: 'keyup'">
+			<textarea name="description" id="description" cols="70" rows="10" data-bind="tinylight: description, validationElement: description"></textarea>
+			<span class="validationMessage" data-bind="validationMessage: description"></span>
 		</div>
 	</div>
 
@@ -80,7 +81,9 @@
 			<div data-bind="foreach: recommendationList">
 				<div data-bind="template: tpl"></div>
 			</div>
-			<button data-bind="label: resource.addRecommendation, click: addRecommendation"></button>
+			<div data-bind="if: isAddRecomendationButtonVisible">
+				<button class="btn btn-danger" data-bind="label: resource.addRecommendation, click: addRecommendation"></button>
+			</div>
 		</div>
 	</div>
 

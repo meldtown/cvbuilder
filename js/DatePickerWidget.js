@@ -4,6 +4,7 @@ ko.components.register('datepicker-widget', {
 
 		model._initialized = false;
 		model._lng = params._lng; // grab language from parent model (it will be used by inner DictionaryModels)
+		model.resource = params.resource;
 		model.value = params.value; // date value that we are going to modify with our widget
 		model.validationElement = params.validationElement; // validation element is used by ko.validation to mark elements as invalid
 

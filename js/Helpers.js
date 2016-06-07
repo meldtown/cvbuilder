@@ -43,10 +43,22 @@ ko.bindingHandlers.autocompleteKeyword = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();
 
-		if (element.nodeName.toLowerCase() !== 'input') return;
-		if (element.getAttribute('type') !== 'text') return;
-		if (!viewModel || !viewModel._keywordsApiUrl || !ko.isObservable(viewModel._keywordsApiUrl)) return;
-		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) return;
+		if (element.nodeName.toLowerCase() !== 'input') {
+			console.log('autocompleteKeyword skip non input', element, valueAccessor);
+			return;
+		}
+		if (element.getAttribute('type') !== 'text') {
+			console.log('autocompleteKeyword skip non text input', element, valueAccessor);
+			return;
+		}
+		if (!viewModel || !viewModel._keywordsApiUrl || !ko.isObservable(viewModel._keywordsApiUrl)) {
+			console.log('autocompleteKeyword skip model without keywords api url', element, valueAccessor);
+			return;
+		}
+		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) {
+			console.log('autocompleteKeyword skip model without lng', element, valueAccessor);
+			return;
+		}
 
 		jQuery(element).autocomplete({
 			source: function (request, response) {
@@ -73,23 +85,70 @@ ko.bindingHandlers.autocompleteCompany = {
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var property = valueAccessor();
 
-		if (element.nodeName.toLowerCase() !== 'input') return;
-		if (element.getAttribute('type') !== 'text') return;
-		if (!viewModel || !viewModel._companyApiUrl || !ko.isObservable(viewModel._companyApiUrl)) return;
-		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) return;
-		if (!viewModel || !viewModel._branch) return;
+		if (element.nodeName.toLowerCase() !== 'input') {
+			console.log('autocompleteCompany skip non input', element, valueAccessor);
+			return;
+		}
+		if (element.getAttribute('type') !== 'text') {
+			console.log('autocompleteCompany skip non text input', element, valueAccessor);
+			return;
+		}
+		if (!viewModel || !viewModel._companyApiUrl || !ko.isObservable(viewModel._companyApiUrl)) {
+			console.log('autocompleteCompany skip model without _companyApiUrl', element, valueAccessor);
+			return;
+		}
+		if (!viewModel || !viewModel._lng || !ko.isObservable(viewModel._lng)) {
+			console.log('autocompleteCompany skip model without _lng', element, valueAccessor);
+			return;
+		}
+
+		if (!viewModel || !viewModel._branch) {
+			console.log('autocompleteCompany skip model without _branch', element, valueAccessor);
+			return;
+		}
 
 		jQuery(element).autocomplete({
 			source: viewModel._companyApiUrl(),
 			minLength: 2,
 			select: function (event, ui) {
 				property(ui.item.companyName);
+
+				if (ko.isObservable(viewModel.selectedBranchOption)) {
+					viewModel.selectedBranchOption({id: ui.item.branchId});
+				}
+
+				if (ko.isObservable(viewModel.notebookCompanyId)) {
+					viewModel.notebookCompanyId(ui.item.notebookId);
+				}
+
+				if (ko.isObservable(viewModel.companySite)) {
+					viewModel.companySite(ui.item.companySite);
+				}
+
+				if (ko.isObservable(viewModel.employeesAmount)) {
+					viewModel.employeesAmount(ui.item.employeeCountId);
+				}
+
 				return false;
+			},
+			change: function (event, ui) {
+				if (!ui.item) {
+					if (ko.isObservable(viewModel.notebookCompanyId)) {
+						viewModel.notebookCompanyId(undefined);
+					}
+
+					if (ko.isObservable(viewModel.companySite)) {
+						viewModel.companySite(undefined);
+					}
+
+					if (ko.isObservable(viewModel.employeesAmount)) {
+						viewModel.employeesAmount(undefined);
+					}
+				}
 			}
 		}).data('ui-autocomplete')._renderItem = function (ul, item) {
 			var imageSource = 'http://img1.rabota.com.ua/Data/cImg/' + item.logo;
 			var branchName = viewModel._branch.findById(item.branchId);
-
 
 			var containerRight = document.createElement('DIV');
 			containerRight.setAttribute('class', 'company-autocomplete-right');
@@ -113,10 +172,10 @@ ko.bindingHandlers.autocompleteCityId = {
 	findById: function (options, value) {
 		var str = (ko.unwrap(value) || '').toString();
 		return ko.unwrap(options).filter(function (item) {
-			return item.id.toString() === str;
-		}).map(function (item) {
-			return item.label();
-		}).shift() || '';
+				return item.id.toString() === str;
+			}).map(function (item) {
+				return item.label();
+			}).shift() || '';
 	},
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var params = valueAccessor();
