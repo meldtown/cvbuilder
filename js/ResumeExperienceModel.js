@@ -18,7 +18,7 @@ function ResumeExperienceModel (parent, data) {
 	model.id = ko.observable();
 	model.position = ko.observable().extend({required: true});
 	model.company = ko.observable().extend({required: true});
-	model.branchId = ko.observable().extend({required: true});
+	model.branchId = ko.observable();
 	model.description = ko.observable().extend({required: true});
 	model.notebookCompanyId = ko.observable().extend({required: true});
 	model.startWork = ko.observable().extend({required: true});
@@ -107,7 +107,7 @@ function ResumeExperienceModel (parent, data) {
 		write: function (newValue) {
 			model.branchId(newValue ? newValue.id : undefined);
 		}
-	});
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 
 	model.selectedBranchOptionLabel = ko.computed(function () {
 		return model.selectedBranchOption() ? model.selectedBranchOption().label() : '';
