@@ -14,10 +14,7 @@ Controls
 --------
 
 All top level models - add message property
-
 Personal - add photo
-Experience/Company - fill other fields
-
 All controls - tooltips? cross button? focus? wtf?
 
 Markup

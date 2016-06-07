@@ -112,12 +112,43 @@ ko.bindingHandlers.autocompleteCompany = {
 			minLength: 2,
 			select: function (event, ui) {
 				property(ui.item.companyName);
+
+				if (ko.isObservable(viewModel.selectedBranchOption)) {
+					viewModel.selectedBranchOption({id: ui.item.branchId});
+				}
+
+				if (ko.isObservable(viewModel.notebookCompanyId)) {
+					viewModel.notebookCompanyId(ui.item.notebookId);
+				}
+
+				if (ko.isObservable(viewModel.companySite)) {
+					viewModel.companySite(ui.item.companySite);
+				}
+
+				if (ko.isObservable(viewModel.employeesAmount)) {
+					viewModel.employeesAmount(ui.item.employeeCountId);
+				}
+
 				return false;
+			},
+			change: function (event, ui) {
+				if (!ui.item) {
+					if (ko.isObservable(viewModel.notebookCompanyId)) {
+						viewModel.notebookCompanyId(undefined);
+					}
+
+					if (ko.isObservable(viewModel.companySite)) {
+						viewModel.companySite(undefined);
+					}
+
+					if (ko.isObservable(viewModel.employeesAmount)) {
+						viewModel.employeesAmount(undefined);
+					}
+				}
 			}
 		}).data('ui-autocomplete')._renderItem = function (ul, item) {
 			var imageSource = 'http://img1.rabota.com.ua/Data/cImg/' + item.logo;
 			var branchName = viewModel._branch.findById(item.branchId);
-
 
 			var containerRight = document.createElement('DIV');
 			containerRight.setAttribute('class', 'company-autocomplete-right');
@@ -141,10 +172,10 @@ ko.bindingHandlers.autocompleteCityId = {
 	findById: function (options, value) {
 		var str = (ko.unwrap(value) || '').toString();
 		return ko.unwrap(options).filter(function (item) {
-			return item.id.toString() === str;
-		}).map(function (item) {
-			return item.label();
-		}).shift() || '';
+				return item.id.toString() === str;
+			}).map(function (item) {
+				return item.label();
+			}).shift() || '';
 	},
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var params = valueAccessor();
