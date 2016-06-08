@@ -19,10 +19,7 @@ All controls - tooltips? cross button? focus? wtf?
 Computed
 --------
 
-Sidebar percent
-Sidebar buttons
-
-
+Expose isPhotoAdded somehow for percent calculation
 
 
 Dependencies
