@@ -68,7 +68,9 @@ function ResumeExperienceModel (parent, data) {
 	});
 
 	model.toJS = function () {
-		return mapper.toJS(model);
+		var data = mapper.toJS(model);
+		data.description = data.description || '';
+		return data;
 	};
 
 	model.fromJS = function (data) {
