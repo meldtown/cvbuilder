@@ -1,5 +1,4 @@
 <div class="cvbuilder-view">
-
 	<div class="row">
 		<div class="col d-2of3">
 			<h3 class="cvbuilder-block-subtitle" data-bind="text: position"></h3>
@@ -9,78 +8,26 @@
 		</div>
 	</div>
 
-	<p>
-		<span  data-bind="text: company"></span>
+	<p class="rua-p-c-light">
+		<span data-bind="if: companySite">
+			<a href="#" data-bind="text: company, attr: {href: companySite}"></a>
+		</span>
+		<span data-bind="ifnot: companySite">
+			<span  data-bind="text: company"></span>
+		</span>
+
 		<span data-bind="if: branchId">
 			(<span data-bind="text: branch"></span>)
 		</span>
-	</p>
 
-
-
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.experiencePositionLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: position"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			startWork
-		</div>
-		<div class="col d-2of3">
+		<small>
 			<span data-bind="text: startWorkFormatted"></span>
 			&mdash;
 			<span data-bind="text: endWorkFormatted"></span>
-			(<span data-bind="text: workPeriodFormatted"></span>)
-		</div>
-	</div>
+		</small>
+	</p>
 
-	<div class="row">
-		<div class="col d-1of3">
-			branchId
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: selectedBranchOptionLabel"></span>
-		</div>
+	<div data-bind="if: description">
+		<div data-bind="html: description"></div>
 	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			notebookCompanyId
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: notebookCompanyId"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.experienceDescriptionLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: description"></span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			companySite
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: companySite"></span>
-		</div>
-	</div>
-
-	<div>
-		<div>
-			<div data-bind="foreach: recommendationList">
-				<div data-bind="template: tpl"></div>
-			</div>
-		</div>
-	</div>
-
 </div>

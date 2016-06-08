@@ -15,10 +15,6 @@ Controls
 All top level models - add message property
 All controls - tooltips? cross button? focus? wtf?
 
-Markup
-------
-
-experience
 
 Computed
 --------
