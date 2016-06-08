@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="http://css.rabota.com.ua/theme/rua/css/masterpage.css" />
-	<link rel="stylesheet" href="http://css.rabota.com.ua/theme/rua/css/blocks/select2.css" />
+	<link rel="stylesheet" href="http://css.rabota.com.ua/theme/rua/css/masterpage.css"/>
+	<link rel="stylesheet" href="http://css.rabota.com.ua/theme/rua/css/blocks/select2.css"/>
 	<link rel="stylesheet" href="http://css.rabota.com.ua/Theme/css/jquery.mac.tinylight.css">
 	<script src="node_modules/jquery/dist/jquery.js"></script>
 	<script src="http://js.rabota.com.ua/src/js/tooltips.js"></script>
@@ -12,7 +12,8 @@
 	<script src="http://js.rabota.com.ua/js/jquery.ui.tooltips.js"></script>
 	<script src="http://css.rabota.com.ua/js/jquery.lazyload.min.js"></script>
 	<script src="http://js.rabota.com.ua/src/js/controls/templates/header.js"></script>
-	<script src="node_modules/knockout/build/output/knockout-latest.debug.js"></script><!--<script src="http://js.rabota.com.ua/js/knockout-3.3.0.js"></script>-->
+	<script src="node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+	<!--<script src="http://js.rabota.com.ua/js/knockout-3.3.0.js"></script>-->
 	<script src="http://js.rabota.com.ua/js/bootstrap-2.3.2/js/bootstrap-carousel.js"></script>
 	<script src="http://js.rabota.com.ua/js/select2-4.0.0/dist/js/select2.full.js"></script>
 	<script src="http://js.rabota.com.ua/js/select2-4.0.0/dist/js/i18n/ru.js"></script>
@@ -28,112 +29,126 @@
 	<script src="node_modules/moment/locale/uk.js"></script>
 	<script src="node_modules/knockout.validation/dist/knockout.validation.js"></script>
 	<script src="node_modules/ko.editables/ko.editables.js"></script>
+	<script src="node_modules/croppie/croppie.js"></script>
 
+	<link rel="stylesheet" href="node_modules/croppie/croppie.css">
 	<link rel="stylesheet" href="dist/cvbuilder.css">
 
 
 </head>
 <body class="rua-l-body">
-	<div class="header header-default">
-		<ul class="header-inner">
-			<li class="header-item header-item-logo"><a class="header-link" href="/"><i class="ri_logo" style="padding-right: 0;"></i></a></li>
-		</ul>
-	</div>
+<div class="header header-default">
+	<ul class="header-inner">
+		<li class="header-item header-item-logo">
+			<a class="header-link" href="/"><i class="ri_logo" style="padding-right: 0;"></i></a></li>
+	</ul>
+</div>
 
-	<div class="rua-l-wrapper2">
-		<div data-bind="template: 'cvbuilder'"></div>
-	</div>
+<div class="rua-l-wrapper2">
+	<div data-bind="template: 'cvbuilder'"></div>
+</div>
 
-	<div id="templates">
-		<script id="cvbuilder" type="text/html"><!--#include file="html/cvbuilder.html"--></script>
-		<script id="contacts-form" type="text/html"><!--#include file="html/contacts-form.html"--></script>
-		<script id="contacts-view" type="text/html"><!--#include file="html/contacts-view.html"--></script>
-		<script id="education-form" type="text/html"><!--#include file="html/education-form.html"--></script>
-		<script id="education-view" type="text/html"><!--#include file="html/education-view.html"--></script>
-		<script id="experience-form" type="text/html"><!--#include file="html/experience-form.html"--></script>
-		<script id="experience-view" type="text/html"><!--#include file="html/experience-view.html"--></script>
-		<script id="personal-form" type="text/html"><!--#include file="html/personal-form.html"--></script>
-		<script id="personal-view" type="text/html"><!--#include file="html/personal-view.html"--></script>
-		<script id="phone-form" type="text/html"><!--#include file="html/phone-form.html"--></script>
-		<script id="phone-view" type="text/html"><!--#include file="html/phone-view.html"--></script>
-		<script id="additional-form" type="text/html"><!--#include file="html/additional-form.html"--></script>
-		<script id="additional-view" type="text/html"><!--#include file="html/additional-view.html"--></script>
-		<script id="training-form" type="text/html"><!--#include file="html/training-form.html"--></script>
-		<script id="training-view" type="text/html"><!--#include file="html/training-view.html"--></script>
-		<script id="position-form" type="text/html"><!--#include file="html/position-form.html"--></script>
-		<script id="position-view" type="text/html"><!--#include file="html/position-view.html"--></script>
-		<script id="language-form" type="text/html"><!--#include file="html/language-form.html"--></script>
-		<script id="language-view" type="text/html"><!--#include file="html/language-view.html"--></script>
-		<script id="skill-form" type="text/html"><!--#include file="html/skill-form.html"--></script>
-		<script id="skill-view" type="text/html"><!--#include file="html/skill-view.html"--></script>
-		<script id="datepicker-widget" type="text/html"><!--#include file="html/datepicker-widget.html"--></script>
-		<script id="yearmonth-widget" type="text/html"><!--#include file="html/yearmonth-widget.html"--></script>
-		<script id="recommendation-view" type="text/html"><!--#include file="html/recommendation-view.html"--></script>
-		<script id="recommendation-form" type="text/html"><!--#include file="html/recommendation-form.html"--></script>
-		<script id="portfolio-form" type="text/html"><!--#include file="html/portfolio-form.html"--></script>
-		<script id="portfolio-view" type="text/html"><!--#include file="html/portfolio-view.html"--></script>
-	</div>
+<div id="templates">
+	<script id="cvbuilder" type="text/html"><!--#include file="html/cvbuilder.html"--></script>
+	<script id="contacts-form" type="text/html"><!--#include file="html/contacts-form.html"--></script>
+	<script id="contacts-view" type="text/html"><!--#include file="html/contacts-view.html"--></script>
+	<script id="education-form" type="text/html"><!--#include file="html/education-form.html"--></script>
+	<script id="education-view" type="text/html"><!--#include file="html/education-view.html"--></script>
+	<script id="experience-form" type="text/html"><!--#include file="html/experience-form.html"--></script>
+	<script id="experience-view" type="text/html"><!--#include file="html/experience-view.html"--></script>
+	<script id="personal-form" type="text/html"><!--#include file="html/personal-form.html"--></script>
+	<script id="personal-view" type="text/html"><!--#include file="html/personal-view.html"--></script>
+	<script id="phone-form" type="text/html"><!--#include file="html/phone-form.html"--></script>
+	<script id="phone-view" type="text/html"><!--#include file="html/phone-view.html"--></script>
+	<script id="additional-form" type="text/html"><!--#include file="html/additional-form.html"--></script>
+	<script id="additional-view" type="text/html"><!--#include file="html/additional-view.html"--></script>
+	<script id="training-form" type="text/html"><!--#include file="html/training-form.html"--></script>
+	<script id="training-view" type="text/html"><!--#include file="html/training-view.html"--></script>
+	<script id="position-form" type="text/html"><!--#include file="html/position-form.html"--></script>
+	<script id="position-view" type="text/html"><!--#include file="html/position-view.html"--></script>
+	<script id="language-form" type="text/html"><!--#include file="html/language-form.html"--></script>
+	<script id="language-view" type="text/html"><!--#include file="html/language-view.html"--></script>
+	<script id="skill-form" type="text/html"><!--#include file="html/skill-form.html"--></script>
+	<script id="skill-view" type="text/html"><!--#include file="html/skill-view.html"--></script>
+	<script id="datepicker-widget" type="text/html"><!--#include file="html/datepicker-widget.html"--></script>
+	<script id="yearmonth-widget" type="text/html"><!--#include file="html/yearmonth-widget.html"--></script>
+	<script id="recommendation-view" type="text/html"><!--#include file="html/recommendation-view.html"--></script>
+	<script id="recommendation-form" type="text/html"><!--#include file="html/recommendation-form.html"--></script>
+	<script id="portfolio-form" type="text/html"><!--#include file="html/portfolio-form.html"--></script>
+	<script id="portfolio-view" type="text/html"><!--#include file="html/portfolio-view.html"--></script>
+</div>
 
-	<script src="js/Helpers.js"></script>
+<script src="js/Helpers.js"></script>
 
-	<script src="js/DatePickerWidget.js"></script>
-	<script src="js/YearMonthWidget.js"></script>
+<script src="js/DatePickerWidget.js"></script>
+<script src="js/YearMonthWidget.js"></script>
 
-	<script src="js/DictionaryModel.js"></script>
+<script src="js/DictionaryModel.js"></script>
 
-	<script src="js/ResumeContactsModel.js"></script>
-	<script src="js/ResumeEducationModel.js"></script>
-	<script src="js/ResumeExperienceModel.js"></script>
-	<script src="js/ResumePersonalModel.js"></script>
-	<script src="js/ResumeAdditionalModel.js"></script>
-	<script src="js/ResumeTrainingModel.js"></script>
-	<script src="js/ResumePositionModel.js"></script>
-	<script src="js/ResumeLanguageModel.js"></script>
-	<script src="js/ResumeSkillModel.js"></script>
+<script src="js/ResumeContactsModel.js"></script>
+<script src="js/ResumeEducationModel.js"></script>
+<script src="js/ResumeExperienceModel.js"></script>
+<script src="js/ResumePersonalModel.js"></script>
+<script src="js/ResumeAdditionalModel.js"></script>
+<script src="js/ResumeTrainingModel.js"></script>
+<script src="js/ResumePositionModel.js"></script>
+<script src="js/ResumeLanguageModel.js"></script>
+<script src="js/ResumeSkillModel.js"></script>
 
-	<script src="js/CvBuilderModel.js"></script>
+<script src="js/CvBuilderModel.js"></script>
 
-	<script>
-		jQuery.support.cors = true;
-		var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
-		var resumeId = 3496188; //TODO: readme from query string, e.g. (window.location.toString().split('?').pop().match(/resumeId=\d+/) || 'resumeId=0').replace('resumeId=', '')
+<script>
+	jQuery.extend(jQuery.ui.dialog.prototype.options, {
+		//appendTo: 'form',
+		dialogClass: 'without-title',
+		autoOpen: false,
+		closeOnEscape: true,
+		draggable: false,
+		modal: true,
+		resizable: false
+	});
+</script>
 
-		jQuery.when(
-			jQuery.getJSON(api + '/dictionary/language'),
-			jQuery.getJSON(api + '/dictionary/experience'),
-			jQuery.getJSON(api + '/dictionary/education'),
-			jQuery.getJSON(api + '/dictionary/city'),
-			jQuery.getJSON(api + '/dictionary/branch'),
-			jQuery.getJSON(api + '/dictionary/schedule'),
-			jQuery.getJSON(api + '/dictionary/resource'),
-			jQuery.getJSON(api + '/dictionary/activitylevel'),
-			jQuery.getJSON(api + '/dictionary/language/skill'),
-			jQuery.getJSON(api + '/dictionary/additional'),
-			jQuery.getJSON(api + '/dictionary/sex'),
-			jQuery.getJSON(api + '/dictionary/currency')
-		).then(function (language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency) {
-			var dictionary = {
-				language: language[0],
-				experience: experience[0],
-				educationType: education[0].slice(1),
-				city: city[0],
-				branch: branch[0],
-				schedule: schedule[0],
-				resource: resource[0],
-				activityLevel: activityLevel[0],
-				languageSkill: languageSkill[0],
-				additional: additional[0],
-				sex: sex[0],
-				currency: currency[0]
+<script>
+	jQuery.support.cors = true;
+	var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
+	var resumeId = 3496188; //TODO: readme from query string, e.g. (window.location.toString().split('?').pop().match(/resumeId=\d+/) || 'resumeId=0').replace('resumeId=', '')
 
-			};
+	jQuery.when(
+		jQuery.getJSON(api + '/dictionary/language'),
+		jQuery.getJSON(api + '/dictionary/experience'),
+		jQuery.getJSON(api + '/dictionary/education'),
+		jQuery.getJSON(api + '/dictionary/city'),
+		jQuery.getJSON(api + '/dictionary/branch'),
+		jQuery.getJSON(api + '/dictionary/schedule'),
+		jQuery.getJSON(api + '/dictionary/resource'),
+		jQuery.getJSON(api + '/dictionary/activitylevel'),
+		jQuery.getJSON(api + '/dictionary/language/skill'),
+		jQuery.getJSON(api + '/dictionary/additional'),
+		jQuery.getJSON(api + '/dictionary/sex'),
+		jQuery.getJSON(api + '/dictionary/currency')
+	).then(function (language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency) {
+		var dictionary = {
+			language: language[0],
+			experience: experience[0],
+			educationType: education[0].slice(1),
+			city: city[0],
+			branch: branch[0],
+			schedule: schedule[0],
+			resource: resource[0],
+			activityLevel: activityLevel[0],
+			languageSkill: languageSkill[0],
+			additional: additional[0],
+			sex: sex[0],
+			currency: currency[0]
+		};
 
-			window.model = new CvBuilderModel(api, resumeId, dictionary);
-			ko.applyBindings(model);
-		});
-	</script>
+		window.model = new CvBuilderModel(api, resumeId, dictionary);
+		ko.applyBindings(model);
+	});
+</script>
 
-	<!--suppress JSUnresolvedLibraryURL -->
-	<script id="__bs_script__">if (location.hostname !== 'cvbuilder.mac.rabota.ua') document.write('<script async src="http://HOST:3000/browser-sync/browser-sync-client.2.12.8.js"><\/script>'.replace('HOST', location.hostname))</script>
+<!--suppress JSUnresolvedLibraryURL -->
+<script id="__bs_script__">if (location.hostname !== 'cvbuilder.mac.rabota.ua') document.write('<script async src="http://HOST:3000/browser-sync/browser-sync-client.2.12.8.js"><\/script>'.replace('HOST', location.hostname))</script>
 </body>
 </html>
