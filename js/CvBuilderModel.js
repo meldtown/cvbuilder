@@ -33,9 +33,9 @@ function CvBuilderModel(api, resumeId, dictionary) {
 	});
 
 	model.percentForBlock = {
-		education: '+10',
-		language: '+5',
-		training: '+5'
+		education: 10,
+		language: 5,
+		training: 5
 	};
 
 	model.position = new ResumePositionModel(model);
@@ -133,6 +133,10 @@ function CvBuilderModel(api, resumeId, dictionary) {
 		});
 	};
 
+	model.isExperienceBlockAdded = ko.computed(function () {
+		return !!model.education().length;
+	});
+
 	model.isEducationBlockAdded = ko.computed(function () {
 		return !!model.education().length;
 	});
@@ -147,6 +151,22 @@ function CvBuilderModel(api, resumeId, dictionary) {
 
 	model.isAdditionalBlockAdded = ko.computed(function () {
 		return !!model.additional().length;
+	});
+
+	model.percent = ko.computed(function () {
+		var result = 30;
+
+		if (model.personalInfo.phone()) result += 10;
+		if (model.skill.text()) result += 10;
+
+		if (model.isExperienceBlockAdded()) result += 10;
+		if (model.experience().length > 1) result += 10; // TODO: ask for this
+
+		if (model.isEducationBlockAdded()) result += 5;
+		if (model.isLanguageBlockAdded()) result += 5;
+		if (model.position.salary()) result += 5;
+
+		return result;
 	});
 
 	model.load = function () {
