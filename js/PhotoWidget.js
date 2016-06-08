@@ -20,7 +20,6 @@ ko.components.register('photo-widget', {
 		model.defaultPhoto = 'http://img1.rabota.com.ua/static/2013/11/img/nophoto.png';
 		model.value = ko.observable(model.defaultPhoto);
 
-
 		model.isPhotoAdded = ko.computed(function () {
 			return model.value().indexOf('nophoto.png') === -1;
 		});
