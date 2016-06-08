@@ -14,6 +14,7 @@ ko.components.register('yearmonth-widget', {
 
 			var month = model.selectedMonthOption() ? model.selectedMonthOption().id : null;
 			var year = model.selectedYearOption();
+
 			if (month && year) {
 				if (model.showTillNowOption && month === -1) {
 					model.value(undefined);
@@ -51,7 +52,7 @@ ko.components.register('yearmonth-widget', {
 
 		model.selectedMonthOption = ko.observable();
 		model.selectedMonthOption.subscribe(function (newValue) {
-			if (newValue.id === -1 && model.showTillNowOption) {
+			if (newValue && newValue.id === -1 && model.showTillNowOption) {
 				model.selectedYearOption((new Date()).getFullYear());
 			}
 			model.updateValue();
@@ -83,8 +84,8 @@ ko.components.register('yearmonth-widget', {
 				model.selectedMonthOption(model.monthOptions[moment(model.value()).month()]);
 				model.selectedYearOption(moment(model.value()).year());
 			}
-			model._initialized = true; // without that updateValue will be called few times and wrong date will be set
 		}
+		model._initialized = true; // without that updateValue will be called few times and wrong date will be set
 	},
 	template: document.getElementById('yearmonth-widget').innerHTML
 });
