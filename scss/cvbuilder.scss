@@ -11,6 +11,10 @@
 		border-top: 1px solid #eee;
 		padding: 20px;
 
+		&.personal {
+			border-top: none;
+		}
+
 		.row {
 			margin-bottom: 10px;
 		}
