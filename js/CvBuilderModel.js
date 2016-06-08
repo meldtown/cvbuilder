@@ -156,7 +156,7 @@ function CvBuilderModel(api, resumeId, dictionary) {
 	model.percent = ko.computed(function () {
 		var result = 30;
 
-		if (model.personalInfo.phone()) result += 10;
+		if (model.contacts.phone()) result += 10;
 		if (model.skill.text()) result += 10;
 
 		if (model.isExperienceBlockAdded()) result += 10;
