@@ -1,4 +1,4 @@
-function ResumeAdditionalModel(parent, data) {
+function ResumeAdditionalModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -22,7 +22,6 @@ function ResumeAdditionalModel(parent, data) {
 	model.isCustomTitleSelected = ko.computed(function () {
 		return model.selectedPredefinedTitle() === model.predefinedTitles[model.predefinedTitles.length - 1].label();
 	});
-
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);

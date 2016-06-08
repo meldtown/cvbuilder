@@ -171,11 +171,14 @@ ko.bindingHandlers.autocompleteCompany = {
 ko.bindingHandlers.autocompleteCityId = {
 	findById: function (options, value) {
 		var str = (ko.unwrap(value) || '').toString();
-		return ko.unwrap(options).filter(function (item) {
-				return item.id.toString() === str;
-			}).map(function (item) {
-				return item.label();
-			}).shift() || '';
+		return ko.unwrap(options)
+				.filter(function (item) {
+					return item.id.toString() === str;
+				})
+				.map(function (item) {
+					return item.label();
+				})
+				.shift() || '';
 	},
 	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 		var params = valueAccessor();

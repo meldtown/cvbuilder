@@ -1,6 +1,16 @@
-<div class="cvbuilder-form">
+<div class="cvbuilder-form personal">
+	<div class="row">
+		<div class="col d-1of3">
+			<div data-bind="component: { name: 'photo-widget', params: { api: api, resumeId: resumeId, resource: resource }}"></div>
+		</div>
+		<div class="col d-2of3">
+			TODO: photo tip here
+		</div>
+	</div>
+
 	<h3 class="cvbuilder-block-title" data-bind="label: resource.personalRubricNameLabel"></h3>
 	<span data-bind="label: resource.personalRubricTooltip"></span>
+
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="name">

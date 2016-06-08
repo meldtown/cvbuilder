@@ -1,0 +1,15 @@
+<p>
+	<img id="photo" src="http://img1.rabota.com.ua/static/2013/11/img/nophoto.png" width="112" height="150" alt="photo" data-bind="attr: { src: value }"/>
+</p>
+<span class="btn btn-danger btn-file">
+	<span data-bind="text: addOrChangePhotoButtonLabel"></span>
+	<input type="file" accept="image/*" data-bind="event: { change: change }" />
+</span>
+
+<div class="croppie-dialog" style="display: none" data-bind="element: dialog">
+	<div class="croppie-container"></div>
+	<div class="actions">
+		<a href="#" class="btn btn-primary" data-bind="label: resource.save, click: submit"></a>
+		<a href="#" class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></a>
+	</div>
+</div>

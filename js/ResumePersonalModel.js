@@ -6,9 +6,7 @@ function ResumePersonalModel (parent) {
 	});
 
 	model.resource = parent.dictionary.resource;
-
-	model.api = parent.api + '/resume/' + parent.resumeId + '/personal';
-
+	model.api = parent.api;
 	model.resumeId = parent.resumeId;
 
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
@@ -83,7 +81,7 @@ function ResumePersonalModel (parent) {
 	};
 
 	model.get = function () {
-		backend.get(model.api).success(function (data) {
+		backend.get(parent.api + '/resume/' + parent.resumeId + '/personal').success(function (data) {
 			model.fromJS(data);
 		});
 	};
@@ -92,7 +90,7 @@ function ResumePersonalModel (parent) {
 		if (model.errors().length === 0) {
 			model.removeEmptyMoving();
 
-			backend.post(model.api, model.toJS())
+			backend.post(parent.api + '/resume/' + parent.resumeId + '/personal', model.toJS())
 				.success(function () {
 					model.commit();
 				})

@@ -27,6 +27,10 @@ function ResumeExperienceModel (parent, data) {
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.company = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.branchId = ko.observable();
+	model.branch = ko.computed(function () {
+		var data = parent.dictionary.branch.findById(model.branchId());
+		return data ? data.label() : '';
+	});
 	model.description = ko.observable();
 	model.notebookCompanyId = ko.observable();
 	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
@@ -54,6 +58,7 @@ function ResumeExperienceModel (parent, data) {
 	});
 
 	model.endWorkFormatted = ko.computed(function () {
+		if (model.endWork() === '1900-01-01T00:00:00') return model.resource.tillNow.label();
 		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
 		return moment(model.endWork()).format('LL');
 	});
@@ -68,7 +73,9 @@ function ResumeExperienceModel (parent, data) {
 	});
 
 	model.toJS = function () {
-		return mapper.toJS(model);
+		var data = mapper.toJS(model);
+		data.description = data.description || '';
+		return data;
 	};
 
 	model.fromJS = function (data) {
