@@ -24,7 +24,6 @@ experience
 Computed
 --------
 
-Footer buttons
 Sidebar percent
 Sidebar buttons
 
