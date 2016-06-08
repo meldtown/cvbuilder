@@ -37,21 +37,7 @@
 		color: red;
 	}
 
-	.company-autocomplete-right {
-		display: inline-block;
-		vertical-align: middle;
-	}
 
-	.company-autocomplete-left {
-		@extend .company-autocomplete-right;
-		width: 95px;
-		text-align: center;
-		margin-right: 20px;
-	}
-
-	img.company-logo-autocomplete {
-		vertical-align: middle;
-	}
 
 	.block-container > div {
 		width: 40%;
@@ -81,4 +67,18 @@
 			opacity: 0;
 		}
 	}
+}
+
+
+.company-autocomplete-right,
+.company-autocomplete-left,
+img.company-logo-autocomplete {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.company-autocomplete-left {
+	width: 95px;
+	text-align: center;
+	margin-right: 20px;
 }
