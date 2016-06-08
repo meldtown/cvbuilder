@@ -13,7 +13,6 @@ Controls
 --------
 
 All top level models - add message property
-Personal - add photo
 All controls - tooltips? cross button? focus? wtf?
 
 Markup
