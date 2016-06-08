@@ -100,10 +100,14 @@ function ResumeExperienceModel (parent, data) {
 	};
 
 	model.remove = function () {
-		backend.remove(parent.api + '/resume/' + parent.resumeId + '/experience/' + model.id())
-			.success(function () {
-				parent.experience.remove(model);
-			});
+		if (model.id()) {
+			backend.remove(parent.api + '/resume/' + parent.resumeId + '/experience/' + model.id())
+				.success(function () {
+					parent.experience.remove(model);
+				});
+		} else {
+			parent.experience.remove(model);
+		}
 	};
 
 	model.edit = function () {

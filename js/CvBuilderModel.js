@@ -33,9 +33,13 @@ function CvBuilderModel(api, resumeId, dictionary) {
 	});
 
 	model.percentForBlock = {
+		phone: 10,
+		experience: 10,
 		education: 10,
 		language: 5,
-		training: 5
+		photo: 5,
+		training: 5,
+		additionalContacts: 5
 	};
 
 	model.position = new ResumePositionModel(model);
@@ -134,7 +138,7 @@ function CvBuilderModel(api, resumeId, dictionary) {
 	};
 
 	model.isExperienceBlockAdded = ko.computed(function () {
-		return !!model.education().length;
+		return !!model.experience().length;
 	});
 
 	model.isEducationBlockAdded = ko.computed(function () {
@@ -153,20 +157,35 @@ function CvBuilderModel(api, resumeId, dictionary) {
 		return !!model.additional().length;
 	});
 
+	model.isAdditionalContactsAdded = ko.computed(function () {
+		return !!(model.contacts.additionalPhones().length || model.contacts.socialNetworks().length || model.contacts.portfolio().length || model.contacts.skype());
+	});
+
+	model.isPhoneAdded = ko.computed(function () {
+		return !!model.contacts.phone();
+	});
+
 	model.percent = ko.computed(function () {
 		var result = 30;
 
-		if (model.personalInfo.phone()) result += 10;
+		if (model.contacts.phone()) result += 10;
 		if (model.skill.text()) result += 10;
-
-		if (model.isExperienceBlockAdded()) result += 10;
-		if (model.experience().length > 1) result += 10; // TODO: ask for this
-
+		if (model.isExperienceBlockAdded()) result += 5;
+		if (model.experience().length > 1) result += 5;
 		if (model.isEducationBlockAdded()) result += 5;
 		if (model.isLanguageBlockAdded()) result += 5;
+		if (model.isTrainingBlockAdded()) result += 5;
 		if (model.position.salary()) result += 5;
+		if (model.isAdditionalContactsAdded()) result += 5;
+		if (model.skill.text()) result += 10;
+		if (result > 100) return 100;
+		//TODO: add photo;
 
 		return result;
+	});
+
+	model.isCvCompleted = ko.computed(function () {
+		return model.percent() === 100;
 	});
 
 	model.load = function () {
