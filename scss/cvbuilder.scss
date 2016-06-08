@@ -34,25 +34,6 @@
 		color: red;
 	}
 
-	label[for=isCanBeInterviewed] {
-		margin-top: 0;
-		display: inline-block;
-		line-height: 1;
-		margin-bottom: 0;
-	}
-
-	input[type=checkbox] {
-		margin-top: 0;
-	}
-
-	label[for=isCanBeInterviewed], input[type=checkbox] {
-		vertical-align: middle;
-	}
-
-	textarea {
-		resize: vertical;
-	}
-
 	.company-autocomplete-right {
 		display: inline-block;
 		vertical-align: middle;
