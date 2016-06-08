@@ -2,7 +2,7 @@
 
 .cvbuilder {
 	.cvbuilder-block-title,
-	.cvbuilder-block-subtitle{
+	.cvbuilder-block-subtitle {
 		margin: 0;
 	}
 
@@ -33,57 +33,56 @@
 	.validationMessage {
 		color: red;
 	}
-}
 
-label[for=isCanBeInterviewed] {
-	margin-top: 0;
-	display: inline-block;
-	line-height: 1;
-	margin-bottom: 0;
-}
+	label[for=isCanBeInterviewed] {
+		margin-top: 0;
+		display: inline-block;
+		line-height: 1;
+		margin-bottom: 0;
+	}
 
-input[type=checkbox] {
-	margin-top: 0;
-}
+	input[type=checkbox] {
+		margin-top: 0;
+	}
 
-label[for=isCanBeInterviewed], input[type=checkbox] {
-	vertical-align: middle;
-}
+	label[for=isCanBeInterviewed], input[type=checkbox] {
+		vertical-align: middle;
+	}
 
-textarea {
-	resize: vertical;
-}
+	textarea {
+		resize: vertical;
+	}
 
-.company-autocomplete-right {
-	display: inline-block;
-	vertical-align: middle;
-}
+	.company-autocomplete-right {
+		display: inline-block;
+		vertical-align: middle;
+	}
 
-.company-autocomplete-left {
-	@extend .company-autocomplete-right;
-	width: 95px;
-	text-align: center;
-	margin-right: 20px;
-}
+	.company-autocomplete-left {
+		@extend .company-autocomplete-right;
+		width: 95px;
+		text-align: center;
+		margin-right: 20px;
+	}
 
-img.company-logo-autocomplete {
-	vertical-align: middle;
-}
+	img.company-logo-autocomplete {
+		vertical-align: middle;
+	}
+
 	.block-container > div {
 		width: 40%;
 		float: left;
 		font-size: 14px;
 		border: 1px #ccc solid;
 		border-radius: 3px;
-		border-radius: 3px;
 		margin: 10px;
 		padding: 10px;
 		cursor: pointer;
 	}
 
-.sidebar .block-container > div {
-	float: none;
-	width: initial;
+	.sidebar .block-container > div {
+		float: none;
+		width: initial;
+	}
+
 }
-
-
