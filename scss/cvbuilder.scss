@@ -1,6 +1,10 @@
 @import 'typo';
-
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700&subset=latin,cyrillic,cyrillic-ext);
 .cvbuilder {
+	&, h1, h2, h3 {
+		font-family: 'Roboto', sans-serif;
+	}
+
 	.cvbuilder-block-title,
 	.cvbuilder-block-subtitle {
 		margin: 0;
