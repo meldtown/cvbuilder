@@ -50,10 +50,6 @@ function ResumePersonalModel (parent) {
 		return moment.duration(moment() - moment(model.dateBirth())).humanize();
 	});
 
-	model.fullName = ko.computed(function () {
-		return model.name() + ' ' + model.surName();
-	});
-
 	model.movingLabels = ko.computed(function () {
 		return model.moving().map(function (item) {
 			return item.label();

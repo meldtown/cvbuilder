@@ -124,8 +124,8 @@ function ResumeContactsModel (parent) {
 		model.toggleSocialNetwork('6');
 	};
 
-	model.socialNetworksActiveClass = 'btn btn-primary btn-small';
-	model.socialNetworksDefaultClass = 'btn btn-danger btn-small';
+	model.socialNetworksActiveClass = 'socialnetwork socialnetwork-active ';
+	model.socialNetworksDefaultClass = 'socialnetwork';
 
 	model.linkedinClass = ko.computed(function () {
 		return model.getSocialNetworkBySubType('1') ? model.socialNetworksActiveClass : model.socialNetworksDefaultClass;
@@ -336,6 +336,17 @@ function ResumeContactsSocialNetworkModel (parent, data) {
 		else if (model.subTypeAsString() === '6') return 'Odnoklasniki';
 		return '';
 	});
+
+	model.subTypeIcon = ko.computed(function () {
+		if (model.subTypeAsString() === '1') return '<i class="fa fa-linkedin">';
+		else if (model.subTypeAsString() === '2') return '<i class="fa fa-facebook">';
+		else if (model.subTypeAsString() === '3') return '<i class="fa fa-vk">';
+		else if (model.subTypeAsString() === '4') return '<i class="fa fa-twitter">';
+		else if (model.subTypeAsString() === '5') return '<i class="fa fa-google-plus">';
+		else if (model.subTypeAsString() === '6') return '<i class="fa fa-odnoklassniki">';
+		return '';
+	});
+
 
 	model.text = ko.observable().extend({
 		required: {

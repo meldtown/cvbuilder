@@ -1,63 +1,63 @@
 <div class="cvbuilder-view">
 	<div class="row">
-		<div class="col d-2of3">
+		<div class="col d-9of12 m-1of1">
 			<h3 class="cvbuilder-block-title" data-bind="label: resource.contactsNameLabel"></h3>
 		</div>
-		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="label: resource.edit, click: edit"></a>
+		<div class="col d-3of12 m-1of1 text-right">
+			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: resource.edit, click: edit"></a>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: phone">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.contactsPhoneLabel"></span>
+		<div class="col d-3of12 m-1of1">
+			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsPhoneLabel"></span>
 		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: phone"></span>
+		<div class="col view-input-value d-9of12 m-1of1">
+			<span class="rua-p-c-light" data-bind="text: phone"></span>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: isAdditionalPhonesBlockVisibleView">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.contactsAdditionalPhonesLabel"></span>
+		<div class="col d-3of12 m-1of1">
+			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsAdditionalPhonesLabel"></span>
 		</div>
-		<div class="col d-2of3">
+		<div class="col view-input-value d-9of12 m-1of1">
 			<div data-bind="foreach: additionalPhones">
-				<div data-bind="template: tpl"></div>
+				<div class="rua-p-c-light" data-bind="template: tpl"></div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.contactsEmailLabel"></span>
+		<div class="col d-3of12 m-1of1">
+			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsEmailLabel"></span>
 		</div>
-		<div class="col d-2of3">
-			<a data-bind="text: email, attr: { href: emailHref }"></a>
+		<div class="col view-input-value d-9of12 m-1of1">
+			<a class="rua-p-c-light" data-bind="text: email, attr: { href: emailHref }"></a>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: skype">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.contactsSkypeLabel"></span>
+		<div class="col d-3of12 m-1of1">
+			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsSkypeLabel"></span>
 		</div>
-		<div class="col d-2of3">
-			<a data-bind="text: skype, attr: { href: skypeHref }"></a>
+		<div class="col view-input-value d-9of12 m-1of1">
+			<a class="rua-p-c-light" data-bind="text: skype, attr: { href: skypeHref }"></a>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: isPortfoliodBlockVisible">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.contactsPortfolioLabel"></span>
+		<div class="col d-3of12 m-1of1">
+			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsPortfolioLabel"></span>
 		</div>
-		<div class="col d-2of3">
+		<div class="col view-input-value d-9of12 m-1of1">
 			<div data-bind="foreach: nonEmptyPortfolio">
-				<div data-bind="template: tpl"></div>
+				<div class="rua-p-c-light" data-bind="template: tpl"></div>
 			</div>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: isSocialNetworksBlockVisible">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.contactsSocialNetworksLabel"></span>
+		<div class="col d-3of12 m-1of1">
+			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsSocialNetworksLabel"></span>
 		</div>
-		<div class="col d-2of3">
+		<div class="col view-input-value d-9of12 m-1of1">
 			<div data-bind="foreach: socialNetworks">
-				<a data-bind="text: subTypeLabel, attr: { href: text }"></a>
+				<a class="socialnetwork-view" data-bind="html: subTypeIcon, attr: { href: text }"></a>
 			</div>
 		</div>
 	</div>

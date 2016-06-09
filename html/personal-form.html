@@ -1,58 +1,72 @@
 <div class="cvbuilder-form personal">
 	<div class="row">
 		<div class="col d-1of3">
-			<div data-bind="component: { name: 'photo-widget', params: { api: api, resumeId: resumeId, resource: resource }}"></div>
+			<div
+				data-bind="component: { name: 'photo-widget', params: { api: api, resumeId: resumeId, resource: resource }}"></div>
 		</div>
 		<div class="col d-2of3">
-			TODO: photo tip here
+			<span class="personal-name">
+				<span data-bind="text: name"></span>&nbsp;
+				<span data-bind="text: surName"></span>
+			</span>
+			<div class="personal-photo-hint rua-p-c-light">
+				<p data-bind="label: resource.personalPhotoHintHeader"></p>
+				<p data-bind="label: resource.personalPhotoHint"></p>
+			</div>
 		</div>
 	</div>
 
-	<h3 class="cvbuilder-block-title" data-bind="label: resource.personalRubricNameLabel"></h3>
-	<span data-bind="label: resource.personalRubricTooltip"></span>
+	<hr>
+
+	<h3 class="cvbuilder-block-title rua-p-c-light" data-bind="label: resource.personalRubricNameLabel"></h3>
+	<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.personalRubricTooltip"></span>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="name">
-				<span data-bind="label: resource.personalNameLabel" ></span>
+				<span data-bind="label: resource.personalNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" class="input-block-level" id="name" name="name" data-bind="value: name, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="name" name="name"
+				   data-bind="value: name, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row" style="display: none">
 		<div class="col d-1of3">
 			<label for="middleName">
-				<span data-bind="label: resource.personalMiddleNameLabel" ></span>
+				<span data-bind="label: resource.personalMiddleNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" class="input-block-level" id="middleName" name="middleName" data-bind="value: middleName, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="middleName" name="middleName"
+				   data-bind="value: middleName, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="surName">
-				<span data-bind="label: resource.personalSurnameLabel" ></span>
+				<span data-bind="label: resource.personalSurnameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" class="input-block-level" id="surName" name="surName" data-bind="value: surName, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="surName" name="surName"
+				   data-bind="value: surName, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label>
-				<span data-bind="label: resource.personalDateBirthLabel" ></span>
+				<span data-bind="label: resource.personalDateBirthLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
 			<!--<input class="input-block-level" id="dateBirth" name="dateBirth" data-bind="value: dateBirth, valueUpdate: 'keyup'">-->
-			<datepicker-widget params="value: dateBirth, _lng: _lng, validationElement: dateBirth, resource: resource"></datepicker-widget>
+			<datepicker-widget
+				params="value: dateBirth, _lng: _lng, validationElement: dateBirth, resource: resource"></datepicker-widget>
 		</div>
 	</div>
 
@@ -63,20 +77,22 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="sex" name="sex" class="input-block-level" data-bind="optionsCaption: resource.personalChooseSex.label, options: sexOptions, optionsText: 'label', value: selectedSexOption"></select>
+			<select id="sex" name="sex" class="input-block-level"
+					data-bind="optionsCaption: resource.personalChooseSex.label, options: sexOptions, optionsText: 'label', value: selectedSexOption"></select>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="cityId">
-				<span data-bind="label: resource.personalCityNameLabel" ></span><br>
-				<span data-bind="label: resource.personalCityTooltip"></span>
+				<span data-bind="label: resource.personalCityNameLabel"></span><br>
+				<span class=" rua-p-c-light" data-bind="label: resource.personalCityTooltip"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<div >
-				<input id="cityId" name="cityId" type="text" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }, validationElement: cityId">
+			<div>
+				<input id="cityId" name="cityId" type="text" class="input-block-level"
+					   data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }, validationElement: cityId">
 				<span class="validationMessage" data-bind="validationMessage: cityId"></span>
 			</div>
 		</div>
@@ -89,18 +105,22 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<div >
+			<div>
 				<div data-bind="foreach: moving">
 					<div class="media">
 						<div class="pull-right">
-							<a class="btn btn-danger" href="#" data-bind="label: resource.delete, click: remove"></a>
+							<a class="btn btn-link rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
 						</div>
 						<div class="media-body">
-							<input type="text" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }">
+							<input type="text" class="input-block-level"
+								   data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }">
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-danger" data-bind="label: resource.addCity, click: addMoving"></button>
+				<button class="add-button" data-bind="click: addMoving">
+					<i class="fa fa-plus-circle"></i>
+					<span data-bind="label: resource.addCity"></span>
+				</button>
 			</div>
 		</div>
 	</div>
@@ -112,7 +132,7 @@
 		</div>
 		<div class="col d-2of3">
 			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
+			<a class="rua-p-c-light cancel"  data-bind="label: resource.discard, click: cancel"></a>
 		</div>
 	</div>
 </div>

@@ -1,16 +1,17 @@
 <div class="cvbuilder-form">
-	<h3 class="cvbuilder-block-title" data-bind="label: resource.contactsNameLabel"></h3>
-	<span data-bind="label: resource.contactsRubricTooltip"></span>
+	<h3 class="cvbuilder-block-title rua-p-c-light" data-bind="label: resource.contactsNameLabel"></h3>
+	<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.contactsRubricTooltip"></span>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="phone">
 				<span data-bind="label: resource.contactsPhoneLabel"></span><br>
-				<span data-bind="label: resource.contactsPhoneTooltip"></span>
+				<span class="rua-p-c-light" data-bind="label: resource.contactsPhoneTooltip"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="phone" class="input-block-level" name="phone" data-bind="value: phone, valueUpdate: 'keyup'">
+			<input type="text" id="phone" class="input-block-level" name="phone"
+				   data-bind="value: phone, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -30,7 +31,10 @@
 				<label>&nbsp;</label>
 			</div>
 			<div class="col d-2of3">
-				<button class="btn btn-danger" data-bind="label: resource.addPhone, click: addAdditionalPhone"></button>
+				<button class="add-phone-button" data-bind="click: addAdditionalPhone">
+					<i class="fa fa-plus-circle"></i>
+					<span data-bind="label: resource.addPhone"></span>
+				</button>
 			</div>
 		</div>
 	</div>
@@ -42,7 +46,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="email" class="input-block-level" name="email" data-bind="value: email, valueUpdate: 'keyup'">
+			<input type="text" id="email" class="input-block-level" name="email"
+				   data-bind="value: email, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -53,7 +58,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="skype" class="input-block-level" name="skype" data-bind="attr: {placeholder: resource.contactsAddSkypeLabel.label}, value: skype, valueUpdate: 'keyup'">
+			<input type="text" id="skype" class="input-block-level" name="skype"
+				   data-bind="attr: {placeholder: resource.contactsAddSkypeLabel.label}, value: skype, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -74,7 +80,11 @@
 			<label>&nbsp;</label>
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-danger" data-bind="label: resource.addPortfolio, click: addPortfolio"></button>
+			<button class="add-phone-button" data-bind="click: addPortfolio">
+				<i class="fa fa-plus-circle"></i>
+				<span data-bind="label: resource.addPortfolio"></span>
+			</button>
+
 		</div>
 	</div>
 
@@ -85,12 +95,12 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<a href="#" data-bind="click: toggleLinkedin, css: linkedinClass">Ln</a>
-			<a href="#" data-bind="click: toggleFacebook, css: facebookClass">Fb</a>
-			<a href="#" data-bind="click: toggleVk, css: vkClass">Vk</a>
-			<a href="#" data-bind="click: toggleTwitter, css: twitterClass">Tw</a>
-			<a href="#" data-bind="click: toggleGooglePlus, css: googlePlusClass">G+</a>
-			<a href="#" data-bind="click: toggleOdnoklasniki, css: odnoklasnikiClass">Ok</a>
+			<a href="#" data-bind="click: toggleLinkedin, css: linkedinClass"><i class="fa fa-linkedin"></i></a>
+			<a href="#" data-bind="click: toggleFacebook, css: facebookClass"><i class="fa fa-facebook"></i></a>
+			<a href="#" data-bind="click: toggleVk, css: vkClass"><i class="fa fa-vk"></i></a>
+			<a href="#" data-bind="click: toggleTwitter, css: twitterClass"><i class="fa fa-twitter"></i></a>
+			<a href="#" data-bind="click: toggleGooglePlus, css: googlePlusClass"><i class="fa fa-google-plus"></i></a>
+			<a href="#" data-bind="click: toggleOdnoklasniki, css: odnoklasnikiClass"><i class="fa fa-odnoklassniki"></i></a>
 		</div>
 	</div>
 
@@ -102,7 +112,8 @@
 				</label>
 			</div>
 			<div class="col d-2of3">
-				<input type="text" class="input-block-level" data-bind="value: text, valueUpdate: 'keyup', attr: {id: subType, name: subType}"/>
+				<input type="text" class="input-block-level"
+					   data-bind="value: text, valueUpdate: 'keyup', attr: {id: subType, name: subType}"/>
 			</div>
 		</div>
 	</div>
@@ -113,7 +124,7 @@
 		</div>
 		<div class="col d-2of3">
 			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
+			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel"></a>
 		</div>
 	</div>
 
