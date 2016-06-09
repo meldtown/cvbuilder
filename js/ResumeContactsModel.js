@@ -347,7 +347,6 @@ function ResumeContactsSocialNetworkModel (parent, data) {
 		return '';
 	});
 
-
 	model.text = ko.observable().extend({
 		required: {
 			params: true,
