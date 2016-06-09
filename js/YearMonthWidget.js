@@ -87,5 +87,5 @@ ko.components.register('yearmonth-widget', {
 		}
 		model._initialized = true; // without that updateValue will be called few times and wrong date will be set
 	},
-	template: document.getElementById('yearmonth-widget').innerHTML
+	template: '<div class="row">\n\t<div class="col d-1of2">\n\t\t<select data-bind="optionsCaption: resource.month.label, options: monthOptions, value: selectedMonthOption, optionsText: \'label\', validationElement: validationElement" class="input-block-level"></select>\n\t</div>\n\t<div class="col d-1of2 d-pl-1of2">\n\t\t<select data-bind="optionsCaption: resource.year.label, options: yearOptions, value: selectedYearOption, validationElement: validationElement, enable: isYearEnabled" class="input-block-level"></select>\n\t</div>\n</div>\n<span class="validationMessage" data-bind="validationMessage: value"></span>'
 });

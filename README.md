@@ -3,6 +3,10 @@ CvBuilder
 
 Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 
+TODO
+----
+
+Fix/remove broken widgets
 
 Validation
 ------------

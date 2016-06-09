@@ -1,4 +1,4 @@
-function CvBuilderModel(api, resumeId, dictionary) {
+function CvBuilderModel (api, resumeId, dictionary) {
 	var model = this;
 
 	model.api = api;
@@ -179,7 +179,7 @@ function CvBuilderModel(api, resumeId, dictionary) {
 		if (model.isAdditionalContactsAdded()) result += 5;
 		if (model.skill.text()) result += 10;
 		if (result > 100) return 100;
-		//TODO: add photo;
+		// TODO: add photo;
 
 		return result;
 	});

@@ -129,6 +129,6 @@ ko.components.register('photo-widget', {
 
 		model.get();
 	},
-	template: document.getElementById('photo-widget').innerHTML
+	template: '<p>\n\t<img id="photo" src="http://img1.rabota.com.ua/static/2013/11/img/nophoto.png" width="112" height="150" alt="photo" data-bind="attr: { src: value }"/>\n</p>\n<span class="btn btn-danger btn-file">\n\t<span data-bind="text: addOrChangePhotoButtonLabel"></span>\n\t<input type="file" accept="image/*" data-bind="event: { change: change }" />\n</span>\n\n<div class="croppie-dialog" style="display: none" data-bind="element: dialog">\n\t<div class="croppie-container"></div>\n\t<div class="actions">\n\t\t<a href="#" class="btn btn-primary" data-bind="label: resource.save, click: submit"></a>\n\t\t<a href="#" class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></a>\n\t</div>\n</div>'
 });
 
