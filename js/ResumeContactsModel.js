@@ -338,12 +338,12 @@ function ResumeContactsSocialNetworkModel (parent, data) {
 	});
 
 	model.subTypeIcon = ko.computed(function () {
-		if (model.subTypeAsString() === '1') return '<i class="fa fa-linkedin">';
-		else if (model.subTypeAsString() === '2') return '<i class="fa fa-facebook">';
-		else if (model.subTypeAsString() === '3') return '<i class="fa fa-vk">';
-		else if (model.subTypeAsString() === '4') return '<i class="fa fa-twitter">';
-		else if (model.subTypeAsString() === '5') return '<i class="fa fa-google-plus">';
-		else if (model.subTypeAsString() === '6') return '<i class="fa fa-odnoklassniki">';
+		if (model.subTypeAsString() === '1') return '<i class="fa fa-linkedin"></i>';
+		else if (model.subTypeAsString() === '2') return '<i class="fa fa-facebook"></i>';
+		else if (model.subTypeAsString() === '3') return '<i class="fa fa-vk"></i>';
+		else if (model.subTypeAsString() === '4') return '<i class="fa fa-twitter"></i>';
+		else if (model.subTypeAsString() === '5') return '<i class="fa fa-google-plus"></i>';
+		else if (model.subTypeAsString() === '6') return '<i class="fa fa-odnoklassniki"></i>';
 		return '';
 	});
 
