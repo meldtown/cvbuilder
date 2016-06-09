@@ -1,4 +1,4 @@
-function ResumeTraininglModel (parent, data) {
+function ResumeTraininglModel(parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -47,10 +47,14 @@ function ResumeTraininglModel (parent, data) {
 	};
 
 	model.remove = function () {
-		backend.remove(parent.api + '/resume/' + parent.resumeId + '/training/' + model.id())
-			.success(function () {
-				parent.training.remove(model);
-			});
+		if (model.id()) {
+			backend.remove(parent.api + '/resume/' + parent.resumeId + '/training/' + model.id())
+				.success(function () {
+					parent.training.remove(model);
+				});
+		} else {
+			parent.training.remove(model);
+		}
 	};
 
 	model.cancel = function () {

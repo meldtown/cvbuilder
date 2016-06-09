@@ -1,4 +1,4 @@
-function ResumeLanguageModel (parent, data) {
+function ResumeLanguageModel(parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -78,10 +78,14 @@ function ResumeLanguageModel (parent, data) {
 	};
 
 	model.remove = function () {
-		backend.remove(parent.api + '/resume/' + parent.resumeId + '/language/' + model.languageId())
-			.success(function () {
-				parent.language.remove(model);
-			});
+		if (model._savedOrFromBackend()) {
+			backend.remove(parent.api + '/resume/' + parent.resumeId + '/language/' + model.languageId())
+				.success(function () {
+					parent.language.remove(model);
+				});
+		} else {
+			parent.language.remove(model);
+		}
 	};
 
 	model.cancel = function () {
