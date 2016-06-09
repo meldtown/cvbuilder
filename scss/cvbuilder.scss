@@ -241,7 +241,36 @@ input:-moz-placeholder {
 			margin-left: 0;
 		}
 	}
+	.personal {
 
+	}
+
+	.add-block-button {
+		@extend .add-button;
+		height: 36px;
+		line-height: 36px;
+		border: 1px solid #d8d8d8;
+		border-radius: 2px;
+		padding: 0 12px;
+		margin-top: 20px;
+
+		span:first-of-type {
+			margin: 0 10px;
+		}
+
+		span:last-of-type {
+			color: #b70004;
+		}
+
+	}
+
+	.mac-tinylight {
+		margin-bottom: 20px;
+	}
+
+	//.recommendation-block {
+	//	background-color: #eee;
+	//}
 }
 
 .company-autocomplete-right,

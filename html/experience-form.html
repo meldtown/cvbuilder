@@ -17,7 +17,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="company" name="company" class="input-block-level" data-bind="value: company, valueUpdate: 'keyup', autocompleteCompany: company">
+			<input type="text" id="company" name="company" class="input-block-level"
+				   data-bind="value: company, valueUpdate: 'keyup', autocompleteCompany: company">
 		</div>
 	</div>
 
@@ -28,7 +29,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select name="area" id="branchId" class="input-block-level" data-bind="optionsCaption: resource.experienceChooseArea.label, options: branchOptions, value: selectedBranchOption, optionsText: 'label'"></select>
+			<select name="area" id="branchId" class="input-block-level"
+					data-bind="optionsCaption: resource.experienceChooseArea.label, options: branchOptions, value: selectedBranchOption, optionsText: 'label'"></select>
 		</div>
 	</div>
 
@@ -39,7 +41,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="position" name="position" type="text" class="input-block-level" data-bind="value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
+			<input id="position" name="position" type="text" class="input-block-level"
+				   data-bind="value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
 		</div>
 	</div>
 
@@ -52,10 +55,12 @@
 		<div class="col d-2of3">
 			<div class="row">
 				<div class="col d-1of2 d-pr-1of2">
-					<yearmonth-widget params="value: startWork, _lng: _lng, resource: resource, validationElement: startWork"></yearmonth-widget>
+					<yearmonth-widget
+						params="value: startWork, _lng: _lng, resource: resource, validationElement: startWork"></yearmonth-widget>
 				</div>
 				<div class="col d-1of2 d-pl-1of2">
-					<yearmonth-widget params="value: endWork, _lng: _lng, resource: resource, showTillNowOption: true, validationElement: endWork"></yearmonth-widget>
+					<yearmonth-widget
+						params="value: endWork, _lng: _lng, resource: resource, showTillNowOption: true, validationElement: endWork"></yearmonth-widget>
 				</div>
 			</div>
 			<!--<input id="startWork" name="startWork" class="input-block-level" data-bind="value: startWork, valueUpdate: 'keyup'">-->
@@ -71,18 +76,32 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<textarea name="description" id="description" cols="70" rows="10" data-bind="tinylight: description, validationElement: description"></textarea>
+			<textarea name="description" id="description" cols="70" rows="10"
+					  data-bind="tinylight: description, validationElement: description"></textarea>
 			<span class="validationMessage" data-bind="validationMessage: description"></span>
 		</div>
 	</div>
 
 	<div class="row">
+
+
 		<div>
 			<div data-bind="foreach: recommendationList">
-				<div data-bind="template: tpl"></div>
+				<div  data-bind="template: tpl"></div>
 			</div>
+
+		</div>
+
+
+	</div>
+	<div class="row">
+		<div class="col d-1of3"></div>
+		<div class="col d-2of3">
 			<div data-bind="if: isAddRecomendationButtonVisible">
-				<button class="btn btn-danger" data-bind="label: resource.addRecommendation, click: addRecommendation"></button>
+				<button class="add-phone-button" data-bind="click: addRecommendation">
+					<i class="fa fa-plus-circle"></i>
+					<span data-bind="label: resource.addRecommendation"></span>
+				</button>
 			</div>
 		</div>
 	</div>
@@ -93,7 +112,7 @@
 		</div>
 		<div class="col d-2of3">
 			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<button class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: cancel"></button>
+			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel"></a>
 		</div>
 	</div>
 

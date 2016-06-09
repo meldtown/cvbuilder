@@ -27,8 +27,11 @@
 					<div data-bind="foreach: experience">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger"
-							data-bind="label: dictionary.resource.addExperience, click: addExperience"></button>
+					<button class="add-block-button" data-bind="click: addExperience">
+						<i class="fa fa-plus-circle "></i>
+						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addExperience"></span>
+						+<span data-bind="text: percentForBlock.experience"></span>%
+					</button>
 				</div>
 
 				<div data-bind="if: isEducationBlockAdded">
@@ -36,8 +39,11 @@
 					<div data-bind="foreach: education">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger"
-							data-bind="label: dictionary.resource.addEducation, click: addEducation"></button>
+					<button class="add-block-button" data-bind="click: addEducation">
+						<i class="fa fa-plus-circle "></i>
+						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addEducation"></span>
+						+<span data-bind="text: percentForBlock.education"></span>%
+					</button>
 				</div>
 
 				<div data-bind="if: isTrainingBlockAdded">
@@ -46,8 +52,11 @@
 					<div data-bind="foreach: training">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger"
-							data-bind="label: dictionary.resource.addTraining, click: addTraining"></button>
+					<button class="add-block-button" data-bind="click: addTraining">
+						<i class="fa fa-plus-circle "></i>
+						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addTraining"></span>
+						+<span data-bind="text: percentForBlock.training"></span>%
+					</button>
 				</div>
 
 				<div data-bind="if: isAdditionalBlockAdded">
@@ -55,8 +64,11 @@
 					<div data-bind="foreach: additional">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger"
-							data-bind="label: dictionary.resource.addAdditional, click: addAdditional"></button>
+					<button class="add-block-button" data-bind="click: addAdditional">
+						<i class="fa fa-plus-circle "></i>
+						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addAdditional"></span>
+						<span></span>
+					</button>
 				</div>
 
 				<div data-bind="if: isLanguageBlockAdded">
@@ -65,8 +77,12 @@
 					<div data-bind="foreach: language">
 						<div data-bind="template: tpl"></div>
 					</div>
-					<button class="btn btn-danger"
-							data-bind="label: dictionary.resource.addLanguage, click: addLanguage"></button>
+
+					<button class="add-block-button" data-bind="click: addLanguage">
+						<i class="fa fa-plus-circle "></i>
+						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addLanguage"></span>
+						+<span data-bind="text: percentForBlock.language"></span>%
+					</button>
 				</div>
 				<div class="footer-blocks" data-bind="ifnot: isCvCompleted">
 					<div class="rua-p-c-light">
