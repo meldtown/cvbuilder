@@ -71,5 +71,5 @@ ko.components.register('datepicker-widget', {
 			model._initialized = true; // without that updateValue will be called few times and wrong date will be set
 		}
 	},
-	template: document.getElementById('datepicker-widget').innerHTML
+	template: '<div class="row">\n\t<div class="col d-1of4">\n\t\t<select data-bind="optionsCaption: resource.date.label, options: dateOptions, value: selectedDateOption, validationElement: validationElement" class="input-block-level"></select>\n\t</div>\n\t<div class="col d-2of4 d-pl-1of2 d-pr-1of2">\n\t\t<select data-bind="optionsCaption: resource.month.label, options: monthOptions, value: selectedMonthOption, optionsText: \'label\', validationElement: validationElement" class="input-block-level"></select>\n\t</div>\n\t<div class="col d-1of4">\n\t\t<select data-bind="optionsCaption: resource.year.label, options: yearOptions, value: selectedYearOption, validationElement: validationElement" class="input-block-level"></select>\n\t</div>\n</div>\n<span class="validationMessage" data-bind="validationMessage: value"></span>'
 });

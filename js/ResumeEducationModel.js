@@ -77,10 +77,14 @@ function ResumeEducationModel (parent, data) {
 	};
 
 	model.remove = function () {
-		backend.remove(parent.api + '/resume/' + parent.resumeId + '/education/' + model.id())
-			.success(function () {
-				parent.education.remove(model);
-			});
+		if (model.id()) {
+			backend.remove(parent.api + '/resume/' + parent.resumeId + '/education/' + model.id())
+				.success(function () {
+					parent.education.remove(model);
+				});
+		} else {
+			parent.education.remove(model);
+		}
 	};
 
 	model.cancel = function () {

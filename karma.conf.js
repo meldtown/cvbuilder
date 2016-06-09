@@ -7,6 +7,7 @@ module.exports = function (config) {
 			'node_modules/knockout/build/output/knockout-latest.debug.js',
 			'node_modules/knockout.validation/dist/knockout.validation.js',
 			'node_modules/ko.editables/ko.editables.js',
+			'node_modules/moment/moment.js',
 			'js/**/*.js',
 			'spec/**/*.js'
 		],

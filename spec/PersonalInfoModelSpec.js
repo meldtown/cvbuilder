@@ -11,7 +11,123 @@ describe('PersonalInfoModel', function () {
 	};
 
 	beforeEach(function () {
-		model = new CvBuilderModel(api, resumeId);
+		model = new CvBuilderModel('http://api.example.com', 123, {
+			schedule: [
+				{
+					id: 1,
+					ru: 'schedule 1',
+					en: 'schedule 1',
+					ua: 'schedule 1'
+				},
+				{
+					id: 2,
+					ru: 'schedule 2',
+					en: 'schedule 2',
+					ua: 'schedule 2'
+				}
+			],
+			branch: [
+				{
+					id: 1,
+					ru: 'branch 1',
+					en: 'branch 1',
+					ua: 'branch 1'
+				},
+				{
+					id: 2,
+					ru: 'branch 2',
+					en: 'branch 2',
+					ua: 'branch 2'
+				}
+			],
+			experience: [
+				{
+					id: 1,
+					ru: 'experience 1',
+					en: 'experience 1',
+					ua: 'experience 1'
+				},
+				{
+					id: 2,
+					ru: 'experience 2',
+					en: 'experience 2',
+					ua: 'experience 2'
+				}
+			],
+			city: [
+				{
+					id: 1,
+					ru: 'city 1',
+					en: 'city 1',
+					ua: 'city 1'
+				},
+				{
+					id: 2,
+					ru: 'city 2',
+					en: 'city 2',
+					ua: 'city 2'
+				}
+			],
+			educationType: [
+				{
+					id: 1,
+					ru: 'education 1',
+					en: 'education 1',
+					ua: 'education 1'
+				},
+				{
+					id: 2,
+					ru: 'education 2',
+					en: 'education 2',
+					ua: 'education 2'
+				}
+			],
+			currency: [
+				{
+					id: 1,
+					ru: 'uah',
+					en: 'uah',
+					ua: 'uah'
+				},
+				{
+					id: 2,
+					ru: 'usd',
+					en: 'usd',
+					ua: 'usd'
+				}
+			],
+			sex: [
+				{
+					id: 0,
+					ru: 'female',
+					ua: 'female',
+					en: 'female'
+				},
+				{
+					id: 1,
+					ru: 'male',
+					ua: 'male',
+					en: 'male'
+				}
+			],
+			resource: {
+				requiredMessage: {
+					ru: 'requiredMessage',
+					en: 'requiredMessage',
+					ua: 'requiredMessage'
+				},
+				wrongFormat: {
+					ru: 'wrongFormat',
+					en: 'wrongFormat',
+					ua: 'wrongFormat'
+				},
+				educationUniversityNameLabel: {
+					ru: 'educationUniversityNameLabel',
+					en: 'educationUniversityNameLabel',
+					ua: 'educationUniversityNameLabel'
+				}
+			}
+		});
 	});
 
 	describe('Validation', function () {
@@ -19,7 +135,7 @@ describe('PersonalInfoModel', function () {
 			model.personalInfo.beginEdit();
 			model.personalInfo.name('');
 			expect(model.personalInfo.name.isValid()).toBeFalsy();
-			expect(model.personalInfo.name.error()).toBe('This field is required.');
+			expect(model.personalInfo.name.error()).toBe('requiredMessage');
 			model.personalInfo.name('acme');
 			expect(model.personalInfo.name.isValid()).toBeTruthy();
 		});
@@ -27,7 +143,7 @@ describe('PersonalInfoModel', function () {
 			model.personalInfo.beginEdit();
 			model.personalInfo.surName('');
 			expect(model.personalInfo.surName.isValid()).toBeFalsy();
-			expect(model.personalInfo.surName.error()).toBe('This field is required.');
+			expect(model.personalInfo.surName.error()).toBe('requiredMessage');
 			model.personalInfo.surName('acme');
 			expect(model.personalInfo.surName.isValid()).toBeTruthy();
 		});
@@ -35,7 +151,7 @@ describe('PersonalInfoModel', function () {
 			model.personalInfo.beginEdit();
 			model.personalInfo.dateBirth('');
 			expect(model.personalInfo.dateBirth.isValid()).toBeFalsy();
-			expect(model.personalInfo.dateBirth.error()).toBe('This field is required.');
+			expect(model.personalInfo.dateBirth.error()).toBe('requiredMessage');
 			model.personalInfo.dateBirth('acme');
 			expect(model.personalInfo.dateBirth.isValid()).toBeTruthy();
 		});
@@ -44,7 +160,7 @@ describe('PersonalInfoModel', function () {
 			model.personalInfo.beginEdit();
 			model.personalInfo.sex('');
 			expect(model.personalInfo.sex.isValid()).toBeFalsy();
-			expect(model.personalInfo.sex.error()).toBe('This field is required.');
+			expect(model.personalInfo.sex.error()).toBe('requiredMessage');
 			model.personalInfo.sex('acme');
 			expect(model.personalInfo.sex.isValid()).toBeTruthy();
 		});
