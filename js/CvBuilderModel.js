@@ -34,7 +34,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.percentForBlock = {
 		phone: 10,
-		experience: 10,
+		experience: 5,
 		education: 10,
 		language: 5,
 		photo: 5,

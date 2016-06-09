@@ -10,34 +10,34 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.positionNameLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: resource.positionNameLabel"></span>
 		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: position"></span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col d-1of3">
-			<span data-bind="label: resource.positionTypeLabel"></span>
-		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: selectedScheduleOptionLabel"></span>
+		<div class="col d-2of3 view-input-value">
+			<span class="rua-p-c-light" data-bind="text: position"></span>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.positionExperienceLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: resource.positionTypeLabel"></span>
 		</div>
-		<div class="col d-2of3">
-			<span data-bind="text: selectedExperienceOptionLabel"></span>
+		<div class="col d-2of3 view-input-value">
+			<span class="rua-p-c-light" data-bind="text: selectedScheduleOptionLabel"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col d-1of3">
+			<span class="rua-p-c-light view-label" data-bind="label: resource.positionExperienceLabel"></span>
+		</div>
+		<div class="col d-2of3 view-input-value">
+			<span class="rua-p-c-light" data-bind="text: selectedExperienceOptionLabel"></span>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: salary">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.positionSalaryLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: resource.positionSalaryLabel"></span>
 		</div>
 		<div class="col d-2of3">
-			<span data-bind="text: formattedSalary"></span>
+			<span class="rua-p-c-light view-input-value" data-bind="text: formattedSalary"></span>
 		</div>
 	</div>
 

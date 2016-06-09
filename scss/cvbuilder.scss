@@ -37,6 +37,12 @@ input:-moz-placeholder {
 	color: #7e7e7e;;
 }
 
+.fa-calendar {
+	@extend .fa-pencil;
+	margin: 0 7px 0 5px;
+}
+
+
 .rua-p-c-light {
 	color: #7e7e7e;
 }
