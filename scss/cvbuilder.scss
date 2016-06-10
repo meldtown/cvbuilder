@@ -364,6 +364,15 @@ input:-moz-placeholder {
 		padding: 20px;
 		font-size: 13px;
 	}
+
+	div:not(.col) > .cvbuilder-block-title {
+		padding-left: 20px;
+	}
+
+	.footer-blocks-header {
+		padding-left: 20px;
+	}
+
 }
 
 .company-autocomplete-right,
