@@ -31,10 +31,6 @@ function ResumeStateModel (parent) {
 	model.get = function () {
 		backend.get(model.api).success(function (data) {
 			model.fromJS(data);
-
-			model.searchState.subscribe(function (newValue) {
-				model.save();
-			});
 		});
 	};
 
