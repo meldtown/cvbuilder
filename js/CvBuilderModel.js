@@ -216,7 +216,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	});
 
 	model.percent = ko.computed(function () {
-		var result = 30;
+		var result = 35;
 		var isThereDescription = model.experience()
 			.some(function (item) {
 				return item.description();
