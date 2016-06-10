@@ -141,6 +141,8 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		});
 	};
 
+	model.state = new ResumeStateModel(model);
+
 	model.getUiLanguage = function () {
 		backend.get(parent.api + '/resume/' + model.resumeId + '/uilanguage').success(function (data) {
 			if (data) {
@@ -208,6 +210,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.load = function () {
 		model.getUiLanguage();
+		model.state.get();
 		model.personalInfo.get();
 		model.contacts.get();
 		model.skill.get();
