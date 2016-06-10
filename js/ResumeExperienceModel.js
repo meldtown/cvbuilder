@@ -53,18 +53,18 @@ function ResumeExperienceModel (parent, data) {
 	model.employeesAmount = ko.observable();
 
 	model.startWorkFormatted = ko.computed(function () {
-		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		moment.locale(model._lng().moment);
 		return moment(model.startWork()).format('LL');
 	});
 
 	model.endWorkFormatted = ko.computed(function () {
 		if (model.endWork() === '1900-01-01T00:00:00') return model.resource.tillNow.label();
-		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		moment.locale(model._lng().moment);
 		return moment(model.endWork()).format('LL');
 	});
 
 	model.workPeriodFormatted = ko.computed(function () {
-		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		moment.locale(model._lng().moment);
 		return moment.duration(moment(model.endWork()) - moment(model.startWork())).humanize();
 	});
 
