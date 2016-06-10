@@ -7,7 +7,7 @@ Controls
 --------
 
 All top level models - add message property
-All controls - tooltips? cross button? focus? wtf?
+All controls - add tooltip, show/hide on focus, without scripts, plain css
 
 
 Dependencies
