@@ -217,6 +217,10 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.percent = ko.computed(function () {
 		var result = 30;
+		var isThereDescription = model.experience()
+			.some(function (item) {
+				return item.description();
+			});
 
 		if (model.contacts.phone()) result += 10;
 		if (model.skill.text()) result += 10;
@@ -227,8 +231,9 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		if (model.isTrainingBlockAdded()) result += 5;
 		if (model.position.salary()) result += 5;
 		if (model.isAdditionalContactsAdded()) result += 5;
+		if (model.personalInfo.isPhotoAdded()) result += 5;
+		if (isThereDescription) result += 5;
 		if (result > 100) return 100;
-		// TODO: add photo;
 
 		return result;
 	});
