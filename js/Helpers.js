@@ -72,13 +72,9 @@ ko.bindingHandlers.autocompleteKeyword = {
 			source: function (request, response) {
 				var lng = viewModel._lng();
 
-				if (lng === 'ru') lng = 'russian';
-				else if (lng === 'ua') lng = 'ukrainian';
-				else if (lng === 'en') lng = 'english';
-
 				jQuery.getJSON(viewModel._keywordsApiUrl(), {
 					term: request.term,
-					language: lng
+					language: lng.enum
 				}, response);
 			},
 			minLength: 2,

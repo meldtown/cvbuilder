@@ -147,7 +147,7 @@ function ResumePersonalModel (parent) {
 	// 	return moment(model.dateBirth()).format('LL');
 	// });
 	model.age = ko.computed(function () {
-		moment.locale(model._lng() === 'ua' ? 'uk' : model._lng());
+		moment.locale(model._lng().moment);
 		return moment.duration(moment() - moment(model.dateBirth())).humanize();
 	});
 

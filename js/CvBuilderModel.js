@@ -3,12 +3,12 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.api = api;
 	model.resumeId = resumeId;
-	model._lng = ko.observable('ru');
 	model._lngOptions = [
-		'ru', // {id: 1, label: 'Русский'},
-		'ua', // {id: 3, label: 'Українська'},
-		'en' // {id: 2, label: 'English'}
+		{id: 1, label: 'Русский', moment: 'ru', dictionary: 'ru', enum: 'Russian'},
+		{id: 3, label: 'Українська', moment: 'uk', dictionary: 'ua', enum: 'Ukrainian'},
+		{id: 2, label: 'English', moment: 'us', dictionary: 'en', enum: 'English'}
 	];
+	model._lng = ko.observable(model._lngOptions[0]);
 
 	model.dictionary = dictionary;
 
