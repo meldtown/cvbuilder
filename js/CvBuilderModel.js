@@ -183,7 +183,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	});
 
 	model.isPhoneAdded = ko.computed(function () {
-		return !!model.contacts.phone();
+		return model.contacts.inTransaction() || !!model.contacts.phone();
 	});
 
 	model.percent = ko.computed(function () {
