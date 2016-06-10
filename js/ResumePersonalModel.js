@@ -17,6 +17,107 @@ function ResumePersonalModel (parent) {
 	model.cityId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.moving = ko.observableArray();
 
+	model._defaultPhoto = 'http://img1.rabota.com.ua/static/2013/11/img/nophoto.png';
+	model._photo = ko.observable(model._defaultPhoto);
+	model._photoCroppie = null;
+	model._photoDialog = ko.observable();
+	model.isPhotoAdded = ko.computed(function () {
+		return model._photo().indexOf('nophoto.png') === -1;
+	});
+	model.addOrChangePhotoButtonLabel = ko.computed(function () {
+		return model.isPhotoAdded()
+			? model.resource.changePhoto.label()
+			: model.resource.addPhoto.label();
+	});
+
+	model.dataURItoBlob = function (dataURI) {
+		var byteString;
+		if (dataURI.split(',').shift().indexOf('base64') >= 0) {
+			byteString = atob(dataURI.split(',').pop());
+		} else {
+			byteString = unescape(dataURI.split(',').pop());
+		}
+
+		var mimeString = dataURI.split(',').shift().split(':').pop().split(';').shift();
+
+		var ia = new Uint8Array(byteString.length);
+		for (var i = 0; i < byteString.length; i++) {
+			ia[i] = byteString.charCodeAt(i);
+		}
+
+		return new Blob([ia], {type: mimeString});
+	};
+
+	model.onPhotoChange = function (instance, event) {
+		if (!model._photoDialog()) return;
+
+		if (!model._photoCroppie) {
+			model._photoCroppie = $(model._photoDialog()).find('.croppie-container').croppie({
+				viewport: {
+					width: 112,
+					height: 150
+				},
+				boundary: {
+					width: 300,
+					height: 300
+				}
+			});
+		}
+
+		if (event.target.files && event.target.files[0] && event.target.files[0].type.match('image.*')) {
+			var reader = new FileReader();
+
+			reader.onload = function (event) {
+				$(model._photoDialog()).dialog({
+					autoOpen: true,
+					width: 400,
+					open: function () {
+						model._photoCroppie.croppie('bind', {
+							url: event.target.result
+						});
+					}
+				});
+			};
+
+			reader.readAsDataURL(event.target.files[0]);
+		} else {
+			alert('Only images allowed');
+		}
+	};
+	model.onPhotoSubmit = function () {
+		model._photoCroppie.croppie('result', {
+			type: 'canvas',
+			size: 'viewport'
+		}).then(function (respponse) {
+			var formData = new FormData();
+			var xhr = new XMLHttpRequest();
+
+			formData.append('blob', model.dataURItoBlob(respponse));
+
+			xhr.open('POST', parent.api + '/resume/' + parent.resumeId + '/photo', true);
+			xhr.onload = function () {
+				if (xhr.status === 200) {
+					model._photo(JSON.parse(this.response));
+					jQuery(model._photoDialog()).dialog('close');
+				} else {
+					console.log('ERROR', xhr);
+					model.getPhoto();
+				}
+			};
+			xhr.onerror = function () {
+				console.log('ERROR', xhr);
+				model.getPhoto();
+			};
+			xhr.withCredentials = true;
+			xhr.send(formData);
+		});
+	};
+
+	model.onPhotoCancel = function () {
+		if (!model._photoDialog()) return;
+		jQuery(model._photoDialog()).dialog('close');
+	};
+
 	model.cityOptions = parent.dictionary.city;
 	model.city = ko.computed(function () {
 		var data = model.cityOptions.findById(model.cityId());
@@ -79,6 +180,13 @@ function ResumePersonalModel (parent) {
 	model.get = function () {
 		backend.get(parent.api + '/resume/' + parent.resumeId + '/personal').success(function (data) {
 			model.fromJS(data);
+		});
+		model.getPhoto();
+	};
+
+	model.getPhoto = function () {
+		backend.get(parent.api + '/resume/' + parent.resumeId + '/photo').success(function (data) {
+			model._photo(data);
 		});
 	};
 

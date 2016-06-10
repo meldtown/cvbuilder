@@ -1,3 +1,11 @@
+ko.bindingHandlers.element = {
+	init: function (element, valueAccessor) {
+		var target = valueAccessor();
+
+		target(element);
+	}
+};
+
 ko.bindingHandlers.label = {
 	handle: function (element, valueAccessor) {
 		var property = valueAccessor();
