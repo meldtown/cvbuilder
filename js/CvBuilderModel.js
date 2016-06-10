@@ -141,6 +141,21 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		});
 	};
 
+	model.getUiLanguage = function () {
+		backend.get(parent.api + '/resume/' + model.resumeId + '/uilanguage').success(function (data) {
+			if (data) {
+				var option = model._lngOptions.filter(function (item) {
+					return item.id === data;
+				}).shift();
+				model._lng(option || model._lngOptions[0]);
+			}
+
+			model._lng.subscribe(function (newValue) {
+				backend.post(parent.api + '/resume/' + model.resumeId + '/uilanguage?language=' + model._lng().id);
+			});
+		});
+	};
+
 	model.isExperienceBlockAdded = ko.computed(function () {
 		return !!model.experience().length;
 	});
@@ -192,6 +207,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	});
 
 	model.load = function () {
+		model.getUiLanguage();
 		model.personalInfo.get();
 		model.contacts.get();
 		model.skill.get();
