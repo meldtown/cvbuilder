@@ -1,4 +1,4 @@
-function ResumeLanguageModel(parent, data) {
+function ResumeLanguageModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {

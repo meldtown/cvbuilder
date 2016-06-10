@@ -1,4 +1,4 @@
-function ResumeTraininglModel(parent, data) {
+function ResumeTraininglModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
