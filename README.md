@@ -3,27 +3,11 @@ CvBuilder
 
 Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 
-TODO
-----
-
-Fix/remove broken widgets
-
-Validation
-------------
-
-Dropdowns - remove placeholder???
-
 Controls
 --------
 
 All top level models - add message property
 All controls - tooltips? cross button? focus? wtf?
-
-
-Computed
---------
-
-Expose isPhotoAdded somehow for percent calculation
 
 
 Dependencies
