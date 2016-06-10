@@ -141,6 +141,19 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		});
 	};
 
+	model.date = ko.observable();
+	model.dateFormatted = ko.computed(function () {
+		if (!model.date()) return '';
+
+		moment.locale(model._lng().moment);
+		return moment(model.date()).format('LL');
+	});
+	model.updateDate = function () {
+		backend.post(model.api + '/resume/' + model.resumeId + '/date').success(function () {
+			model.date(moment().format());
+		});
+	};
+
 	model.state = new ResumeStateModel(model);
 
 	model.searchState = ko.observable(1);
@@ -231,6 +244,10 @@ function CvBuilderModel (api, resumeId, dictionary) {
 			model.searchState.subscribe(function (newValue) {
 				backend.post(model.api + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
 			});
+		});
+
+		backend.get(model.api + '/resume/' + model.resumeId + '/date').success(function (data) {
+			model.date(data);
 		});
 
 		model.getUiLanguage();
