@@ -2,11 +2,9 @@
 	<div class="col d-2of3">
 		<h1>
 			<span>Ваше резюме</span>
-		<span data-bind="if: position.position">
-			&quot;<span data-bind="text: position.position"></span>&quot;
-		</span>
+			<span data-bind="if: position.position">&quot;<span data-bind="text: position.position"></span>&quot;</span>
 		</h1>
-		<p class="rua-p-c-light">tips</p>
+		<div class="rua-p-c-light">tips</div>
 	</div>
 	<div class="col d-1of3" style="vertical-align: bottom">
 		<div class="form-inline">
@@ -27,4 +25,8 @@
 
 	<i class="fa fa-clock-o rua-p-c-light" style="margin-left: 20px"></i>
 	<select data-bind="options: searchStateOptions, optionsText: 'label', optionsValue: 'id', value: searchState"></select>
+
+	<span data-bind="with: state">
+		<select data-bind="options: levelOptions, optionsText: 'label', value: selectedLevelOption"></select>
+	</span>
 </div>
