@@ -197,10 +197,14 @@ function ResumePersonalModel (parent) {
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/personal', model.toJS())
 				.success(function () {
 					model.commit();
+					model.successMessage('SUCCESS');
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
 						model.handleBarRequestResponse(jqXHR);
+						model.errorMessage('ERROR');
+					} else {
+						model.errorMessage('ERROR');
 					}
 				});
 		} else {
@@ -222,6 +226,7 @@ function ResumePersonalModel (parent) {
 
 	InitEditableModel(model, 'personal');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 }
 
 function ResumePersonalMovingModel (parent, data) {

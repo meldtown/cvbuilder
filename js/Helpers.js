@@ -304,6 +304,63 @@ function InitBadRequestResponseHandler (model) {
 	};
 }
 
+function InitResultMessage (model) {
+	model._successMessageClass = 'alert alert-success';
+	model._errorMessageClass = 'alert alert-danger';
+	model.message = ko.observable();
+	model.messageClass = ko.observable(model._successMessageClass);
+
+	model.computedMessageClass = ko.computed(function () {
+		return model.message()
+			? model.messageClass() + ' active'
+			: model.messageClass() + ' hidden';
+	});
+
+	model.successMessage = ko.computed({
+		read: function () {
+			return model.message();
+		},
+		write: function (newValue) {
+			model.message(newValue);
+			if (newValue) {
+				model.messageClass(model._successMessageClass);
+			} else {
+				model.messageClass(model._successMessageClass);
+			}
+		}
+	});
+
+	model.errorMessage = ko.computed({
+		read: function () {
+			return model.message();
+		},
+		write: function (newValue) {
+			model.message(newValue);
+			if (newValue) {
+				model.messageClass(model._errorMessageClass);
+			} else {
+				model.messageClass(model._errorMessageClass);
+			}
+		}
+	});
+
+	model.closeMessage = function () {
+		model.message(undefined);
+		model.messageClass(model._successMessageClass);
+	};
+
+	model.messageTimer = null;
+	model.message.subscribe(function () {
+		if (model.messageTimer) {
+			clearTimeout(model.messageTimer);
+		}
+
+		model.messageTimer = setTimeout(function () {
+			model.closeMessage();
+		}, 3000);
+	});
+}
+
 var utils = {
 	required: function (messageDictionaryModel) {
 		return {

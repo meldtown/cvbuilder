@@ -6,7 +6,7 @@ Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 Controls
 --------
 
-All top level models - add message property
+All top level models - add message property, add resources for general success and error messages
 All controls - add tooltip, show/hide on focus, without scripts, plain css
 
 
