@@ -168,8 +168,15 @@ input:-moz-placeholder {
 	}
 
 	.sidebar .block-container > div {
+		border: none;
+	}
+
+	.sidebar .block-container > div {
 		float: none;
 		width: initial;
+		& > div:last-child {
+			margin-top: 2px;
+		}
 	}
 
 	.btn-file {
@@ -286,6 +293,10 @@ input:-moz-placeholder {
 			padding-right: 5px;
 		}
 
+		& > div:first-child {
+			margin-bottom: 27px;
+		}
+
 	}
 
 	.footer-block {
@@ -341,6 +352,11 @@ input:-moz-placeholder {
 
 	.recommendation-block {
 		background-color: #eee;
+	}
+
+	.remove-button {
+		height: 37px;
+		line-height: 37px;
 	}
 }
 
