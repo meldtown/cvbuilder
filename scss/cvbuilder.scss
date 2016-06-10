@@ -288,8 +288,6 @@ input:-moz-placeholder {
 
 	}
 
-
-
 	.footer-block {
 		text-align: left;
 		font-size: 14px;
@@ -301,6 +299,22 @@ input:-moz-placeholder {
 			margin-right: 14px;
 			vertical-align: middle;
 		}
+	}
+
+	.footer-block.additional {
+		& > div:first-child span {
+			opacity: .7;
+			margin-right: 65px;
+			vertical-align: middle;
+		}
+		& > div:last-child {
+			margin-top: 6px;
+			padding-left: 30px;
+		}
+	}
+
+	.footer-block:not(.additional) {
+
 		& > div:first-child {
 			& > span:last-of-type {
 				color: $buttonColor;
