@@ -15,10 +15,18 @@ function ResumeStateModel (parent) {
 	model.branchIds = ko.observableArray();
 	model.companyIds = ko.observableArray();
 
-	model.levelOptions = [
-		new DictionaryModel(model, {id: 1, ru: 'Активно ищу работу', ua: 'Активно шукаю роботу', en: 'Actively seeking employment'}),
-		new DictionaryModel(model, {id: 2, ru: 'Работаю, но открыт для предложений', ua: 'Працюю, але розгляну пропозиції', en: 'Employed but open to new opportunities'})
-	];
+	model.levelOptions = parent.dictionary.activityLevel;
+	model.selectedLevelOption = ko.computed({
+		read: function () {
+			return model.levelOptions.findById(model.level());
+		},
+		write: function (newValue) {
+			model.level(newValue ? newValue.id : undefined);
+		}
+	});
+	model.selectedLevelOptionLabel = ko.computed(function () {
+		return model.selectedLevelOption() ? model.selectedLevelOption().label() : '';
+	});
 
 	model.get = function () {
 		backend.get(model.api).success(function (data) {
