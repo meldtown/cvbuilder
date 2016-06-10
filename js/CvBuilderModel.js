@@ -179,7 +179,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	});
 
 	model.isAdditionalContactsAdded = ko.computed(function () {
-		return !!(model.contacts.additionalPhones().length || model.contacts.socialNetworks().length || model.contacts.portfolio().length || model.contacts.skype());
+		return model.contacts.inTransaction() || (!!(model.contacts.additionalPhones().length || model.contacts.socialNetworks().length || model.contacts.isAddPortfolioButtonVisible() || model.contacts.skype()));
 	});
 
 	model.isPhoneAdded = ko.computed(function () {
