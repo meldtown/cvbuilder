@@ -84,6 +84,7 @@
 						+<span data-bind="text: percentForBlock.language"></span>%
 					</button>
 				</div>
+				<hr>
 				<div class="footer-blocks" data-bind="ifnot: isCvCompleted">
 					<div class="rua-p-c-light">
 						<span data-bind="label: dictionary.resource.footerBlockHint1"></span><br>
@@ -152,7 +153,7 @@
 								<div class="rua-p-c-light">
 									<i class="fa fa-plus-circle"></i><span data-bind="label: dictionary.resource.add"></span>
 								</div>
-							 	<div class="rua-p-c-light" data-bind="label: dictionary.resource.additionalNameLabel"></div>
+								<div class="rua-p-c-light" data-bind="label: dictionary.resource.additionalNameLabel"></div>
 							</div>
 						</li>
 						<!-- /ko -->
@@ -169,51 +170,54 @@
 				</div>
 				<hr>
 				<div class="block-container">
-					<div data-bind="click: contacts.beginEdit, visible: !isPhoneAdded()">
-						<p>
-							<span data-bind="label: dictionary.resource.add"></span>
-							+<span data-bind="text: percentForBlock.phone"></span>
-						</p>
-						<div data-bind="label: dictionary.resource.footerPhone"></div>
+					<div class="btn btn-block footer-block" data-bind="visible: !isPhoneAdded(), click: contacts.beginEdit">
+						<div>
+							<i class="fa fa-plus-circle"></i><span class="rua-p-c-light" data-bind="label: dictionary.resource.add"></span>
+							<span>+<span data-bind="text: percentForBlock.phone"></span>%</span>
+						</div>
+						<div class="rua-p-c-light" data-bind="label: dictionary.resource.footerPhone"></div>
 					</div>
-					<div data-bind="click: contacts.beginEdit, visible: !isAdditionalContactsAdded()">
-						<p>
-							<span data-bind="label: dictionary.resource.add"></span>
-							+<span data-bind="text: percentForBlock.additionalContacts"></span>
-						</p>
-						<div data-bind="label: dictionary.resource.footerBlockContacts"></div>
+					<div class="btn btn-block footer-block" data-bind="visible: !isAdditionalContactsAdded(), click: contacts.beginEdit">
+						<div>
+							<i class="fa fa-plus-circle"></i><span class="rua-p-c-light" data-bind="label: dictionary.resource.add"></span>
+							<span>+<span data-bind="text: percentForBlock.additionalContacts"></span>%</span>
+						</div>
+						<div class="rua-p-c-light" data-bind="label: dictionary.resource.footerBlockContacts"></div>
 					</div>
-					<div data-bind="click: addExperience, visible: !isExperienceBlockAdded()">
-						<p>
-							<span data-bind="label: dictionary.resource.add"></span>
-							+<span data-bind="text: percentForBlock.experience"></span>
-						</p>
-						<div data-bind="label: dictionary.resource.experienceRubricNameLabel"></div>
+
+					<div class="btn btn-block footer-block"  data-bind="visible: !isExperienceBlockAdded(),click: addExperience">
+						<div class="rua-p-c-light">
+							<i class="fa fa-plus-circle"></i><span data-bind="label: dictionary.resource.add"></span>
+							<span>+<span data-bind="text: percentForBlock.experience"></span>%</span>
+						</div>
+						<div class="rua-p-c-light" data-bind="label: dictionary.resource.experienceRubricNameLabel"></div>
 					</div>
-					<div data-bind="click: addEducation, visible: !isEducationBlockAdded()">
-						<p>
-							<span data-bind="label: dictionary.resource.add"></span>
-							+<span data-bind="text: percentForBlock.education"></span>
-						</p>
-						<div data-bind="label: dictionary.resource.educationNameLabel"></div>
+					<div class="btn btn-block footer-block" data-bind="visible: !isEducationBlockAdded(), click: addEducation">
+						<div>
+							<i class="fa fa-plus-circle"></i><span class="rua-p-c-light" data-bind="label: dictionary.resource.add"></span>
+							<span>+<span data-bind="text: percentForBlock.education"></span>%</span>
+						</div>
+						<div class="rua-p-c-light" data-bind="label: dictionary.resource.educationNameLabel"></div>
 					</div>
-					<div data-bind="click: addLanguage, visible: !isLanguageBlockAdded()">
-						<p>
-							<span data-bind="label: dictionary.resource.add"></span>
-							+<span data-bind="text: percentForBlock.language"></span>
-						</p>
-						<div data-bind="label: dictionary.resource.languageRubricNameLabel"></div>
+					<div class="btn btn-block footer-block" data-bind="visible: !isLanguageBlockAdded(), click: addLanguage">
+						<div>
+							<i class="fa fa-plus-circle"></i><span class="rua-p-c-light" data-bind="label: dictionary.resource.add"></span>
+							<span>+<span data-bind="text: percentForBlock.language"></span>%</span>
+						</div>
+						<div class="rua-p-c-light" data-bind="label: dictionary.resource.languageRubricNameLabel"></div>
 					</div>
-					<div data-bind="click: addTraining, visible: !isTrainingBlockAdded()">
-						<p>
-							<span data-bind="label: dictionary.resource.add"></span>
-							+<span data-bind="text: percentForBlock.training"></span>
-						</p>
-						<div data-bind="label: dictionary.resource.footerBlockTraining"></div>
+					<div class="btn btn-block footer-block" data-bind="visible: !isTrainingBlockAdded(), click: addTraining">
+						<div>
+							<i class="fa fa-plus-circle"></i><span class="rua-p-c-light" data-bind="label: dictionary.resource.add"></span>
+							<span>+<span data-bind="text: percentForBlock.training"></span>%</span>
+						</div>
+						<div class="rua-p-c-light" data-bind="label: dictionary.resource.footerBlockTraining"></div>
 					</div>
-					<div data-bind="click: addAdditional, visible: !isAdditionalBlockAdded()">
-						<p data-bind="label: dictionary.resource.add"></p>
-						<div data-bind="label: dictionary.resource.additionalNameLabel"></div>
+					<div class="btn btn-block footer-block additional" data-bind="visible: !isAdditionalBlockAdded(), click: addAdditional">
+						<div class="rua-p-c-light">
+							<i class="fa fa-plus-circle"></i><span data-bind="label: dictionary.resource.add"></span>
+						</div>
+						<div class="rua-p-c-light" data-bind="label: dictionary.resource.additionalNameLabel"></div>
 					</div>
 				</div>
 			</div>
