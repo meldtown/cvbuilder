@@ -125,6 +125,11 @@ describe('PersonalInfoModel', function () {
 					ru: 'educationUniversityNameLabel',
 					en: 'educationUniversityNameLabel',
 					ua: 'educationUniversityNameLabel'
+				},
+				addPhoto: {
+					ru: 'addPhoto',
+					en: 'addPhoto',
+					ua: 'addPhoto'
 				}
 			}
 		});

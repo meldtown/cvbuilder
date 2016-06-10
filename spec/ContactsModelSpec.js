@@ -85,6 +85,11 @@ describe('ContactsModel', function () {
 					ru: 'wrongFormat',
 					en: 'wrongFormat',
 					ua: 'wrongFormat'
+				},
+				addPhoto: {
+					ru: 'addPhoto',
+					en: 'addPhoto',
+					ua: 'addPhoto'
 				}
 			}
 		});
