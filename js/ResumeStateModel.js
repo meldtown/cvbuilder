@@ -9,8 +9,8 @@ function ResumeStateModel (parent) {
 	model.resumeId = parent.resumeId;
 	model.api = parent.api + '/resume/' + parent.resumeId + '/state';
 
+	model.viewCount = ko.observable();
 	model.level = ko.observable();
-	model.searchState = ko.observable();
 	model.anonymous = ko.observable();
 	model.branchIds = ko.observableArray();
 	model.companyIds = ko.observableArray();
