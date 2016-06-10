@@ -1,7 +1,30 @@
-<select data-bind="options: _lngOptions, optionsText: 'label', value: _lng"></select>
+<div class="row">
+	<div class="col d-2of3">
+		<h1>
+			<span>Ваше резюме</span>
+		<span data-bind="if: position.position">
+			&quot;<span data-bind="text: position.position"></span>&quot;
+		</span>
+		</h1>
+		<p class="rua-p-c-light">tips</p>
+	</div>
+	<div class="col d-1of3" style="vertical-align: bottom">
+		<div class="form-inline">
+			<label for="uilanguage">Язык резюме</label>
+			<select id="uilanguage" data-bind="options: _lngOptions, optionsText: 'label', value: _lng"></select>
+		</div>
+	</div>
+</div>
+<div class="cvbuilder-white-box" style="margin: 20px 0;">
+	<span data-bind="with: state">
+		<i class="fa fa-eye rua-p-c-light"></i>
+		<span data-bind="text: viewCount"></span>
+	</span>
 
-<span data-bind="text: dateFormatted"></span>
-<button class="btn btn-danger" data-bind="click: updateDate">Update</button>
+	<i class="fa fa-calendar rua-p-c-light"></i>
+	<span data-bind="text: dateFormatted"></span>
+	<button class="btn btn-danger" data-bind="click: updateDate">Update</button>
 
-<select data-bind="options: searchStateOptions, optionsText: 'label', optionsValue: 'id', value: searchState"></select>
-
+	<i class="fa fa-clock-o rua-p-c-light"></i>
+	<select data-bind="options: searchStateOptions, optionsText: 'label', optionsValue: 'id', value: searchState"></select>
+</div>
