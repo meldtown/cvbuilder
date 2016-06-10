@@ -143,6 +143,22 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.state = new ResumeStateModel(model);
 
+	model.searchState = ko.observable(1);
+	model.searchStateOptions = [
+		new DictionaryModel(model, {
+			id: 1,
+			ru: 'Активно ищу работу',
+			ua: 'Активно шукаю роботу',
+			en: 'Actively seeking employment'
+		}),
+		new DictionaryModel(model, {
+			id: 2,
+			ru: 'Работаю, но открыт для предложений',
+			ua: 'Працюю, але розгляну пропозиції',
+			en: 'Employed but open to new opportunities'
+		})
+	];
+
 	model.getUiLanguage = function () {
 		backend.get(parent.api + '/resume/' + model.resumeId + '/uilanguage').success(function (data) {
 			if (data) {
@@ -209,6 +225,14 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	});
 
 	model.load = function () {
+		backend.get(model.api + '/resume/' + model.resumeId + '/searchstate').success(function (data) {
+			model.searchState(data || 1);
+
+			model.searchState.subscribe(function (newValue) {
+				backend.post(model.api + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
+			});
+		});
+
 		model.getUiLanguage();
 		model.state.get();
 		model.personalInfo.get();
