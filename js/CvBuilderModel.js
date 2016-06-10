@@ -4,7 +4,13 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.api = api;
 	model.resumeId = resumeId;
 	model._lng = ko.observable('ru');
-	model._lngOptions = ['ru', 'ua', 'en'];
+	model._lngOptions = [
+		{id: ''}
+		'ru', 'ua', 'en'
+	];
+	// Russian = 1,
+	// 	English = 2,
+	// 	Ukrainian = 3
 
 	model.dictionary = dictionary;
 
@@ -177,7 +183,6 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		if (model.isTrainingBlockAdded()) result += 5;
 		if (model.position.salary()) result += 5;
 		if (model.isAdditionalContactsAdded()) result += 5;
-		if (model.skill.text()) result += 10;
 		if (result > 100) return 100;
 		// TODO: add photo;
 
