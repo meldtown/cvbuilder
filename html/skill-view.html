@@ -7,8 +7,11 @@
 			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: resource.edit, click: beginEdit"></a>
 		</div>
 	</div>
-	<div class="skill-hint rua-p-c-light" data-bind="ifnot: text">
-		<span data-bind="label: resource.skillExampleLabel"></span>
+	<div data-bind="ifnot: text">
+		<div class="skill-hint rua-p-c-light">
+			<span data-bind="label: resource.skillExampleLabel"></span>
+		</div>
+
 	</div>
 	<div data-bind="html: text"></div>
 </div>
