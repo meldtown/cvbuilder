@@ -18,19 +18,23 @@
 //Variables
 
 $buttonColor: #b70004;
+$ruaPcLight: #7e7e7e;
 
 input::-webkit-input-placeholder {
 	@extend .rua-p-c-light;
 	opacity: .7;
 }
+
 input::-moz-placeholder {
 	@extend .rua-p-c-light;
 	opacity: .7;
 }
+
 input:-ms-input-placeholder {
 	@extend .rua-p-c-light;
 	opacity: .7;
 }
+
 input:-moz-placeholder {
 	@extend .rua-p-c-light;
 	opacity: .7;
@@ -44,7 +48,6 @@ input:-moz-placeholder {
 	@extend .fa-pencil;
 	margin: 0 7px 0 5px;
 }
-
 
 .rua-p-c-light {
 	color: #7e7e7e;
@@ -276,7 +279,7 @@ input:-moz-placeholder {
 			padding-left: 5px;
 		}
 
-		.list-2-cols>li:nth-child(2n+1) {
+		.list-2-cols > li:nth-child(2n+1) {
 			padding-right: 5px;
 		}
 
@@ -292,7 +295,7 @@ input:-moz-placeholder {
 		margin: 8px 0;
 		padding: 16px;
 		i {
-			color:  rgba(183, 0, 4, .5);
+			color: rgba(183, 0, 4, .5);
 			font-size: 20px;
 			margin-right: 14px;
 			vertical-align: middle;
@@ -366,6 +369,84 @@ input:-moz-placeholder {
 
 	.footer-blocks-header {
 		padding-left: 20px;
+	}
+
+	.resume-tooltip {
+		font-size: 12px;
+	}
+
+	.percent {
+		h3 {
+			font-size: 16px;
+			line-height: 1.5;
+			a {
+				border-bottom: 1px dashed $ruaPcLight;
+				&:hover {
+					text-decoration: none;
+					cursor: pointer;
+				}
+
+			}
+		}
+
+		.percent-active {
+			font-weight: bold;
+		}
+		.percent-block {
+			width: 44px;
+			height: 150px;
+			position: relative;
+			background-color: #f5f5f5;
+			margin: 22px 0 0 37px;
+			border-radius: 2px;
+			hr {
+				border: none;
+				border-bottom: .5px solid #fff;
+				margin: 0;
+				position: absolute;
+				width: 100%;
+				z-index: 2;
+				&:first-child {
+					top: 16.5%;
+				}
+				&:nth-child(2) {
+					top: 49.5%;
+				}
+				&:nth-child(3) {
+					top: 83.5%;
+				}
+			}
+			.percent-tooltip {
+				width: 150px;
+				position: absolute;
+				left: calc(100% + 20px);
+				&:first-of-type {
+					top: 76%;
+				}
+				&:nth-of-type(2) {
+					top: 42%;
+				}
+				&:nth-of-type(3) {
+					top: 9%;
+				}
+			}
+			.percent-fill {
+				width: 100%;
+				position: absolute;
+				background-color: #dcedc8;
+				bottom: 0;
+			}
+			.percent-indicator {
+				height: 31px;
+				position: absolute;
+				right: calc(100% + 5px);
+				text-align: right;
+				line-height: 1;
+				span {
+					font-size: 18px;
+				}
+			}
+		}
 	}
 
 }

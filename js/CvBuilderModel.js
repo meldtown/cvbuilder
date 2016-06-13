@@ -1,4 +1,4 @@
-function CvBuilderModel (api, resumeId, dictionary) {
+function CvBuilderModel(api, resumeId, dictionary) {
 	var model = this;
 
 	model.api = api;
@@ -236,6 +236,19 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		if (result > 100) return 100;
 
 		return result;
+	});
+
+	model.more = ko.observable(false);
+
+	model.toggleMore = function () {
+		model.more(!model.more());
+	};
+
+	model.toggleMoreText = ko.computed(function () {
+		return model.more() ? dictionary.resource.percentMoreHide.label() : dictionary.resource.percentMore.label();
+	});
+	model.percentIndicator = ko.computed(function () {
+		return (1 - model.percent() / 100) * 150 - 6 + 'px';
 	});
 
 	model.isCvCompleted = ko.computed(function () {

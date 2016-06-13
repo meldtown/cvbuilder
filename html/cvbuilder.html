@@ -164,9 +164,25 @@
 		<div class="col d-5of12 d-pl-1of2 m-1of1 sidebar">
 			<div class="cvbuilder-white-box">
 				<div class="percent">
+					<h5 class="rua-p-c-light" data-bind="text: dictionary.resource.percentHeader.label"></h5>
 					<h3>
-						<span data-bind="text: percent"></span> %
+						<span data-bind="text: dictionary.resource.percentHeaderTooltip.label"></span>&nbsp;
+						<a class="rua-p-c-light" data-bind="text: toggleMoreText, click: toggleMore"></a>
 					</h3>
+					<div class="rua-p-c-light" data-bind="text: dictionary.resource.percentMoreHeaderTooltip.label, visible: more, css: {'active-more': more()}"></div>
+					<div class="percent-block">
+						<hr>
+						<hr>
+						<hr>
+						<div class="percent-tooltip" data-bind="css: {'percent-active': percent() < 50}, text: dictionary.resource.percentResumeBasicType.label"></div>
+						<div class="percent-tooltip" data-bind="css: {'percent-active': percent() >= 50 && percent() < 80}, text: dictionary.resource.percentResumeAdvancedType.label"></div>
+						<div class="percent-tooltip" data-bind="css: {'percent-active': percent() >= 80}, text: dictionary.resource.percentResumeExpertType.label"></div>
+						<div data-bind="style: {height: percent() + '%'}" class="percent-fill"></div>
+						<div data-bind="style: {top: percentIndicator()}" class="percent-indicator rua-p-c-light">
+							<i class="fa fa-caret-right"></i><br>
+							<span data-bind="text: percent"></span>%
+						</div>
+					</div>
 				</div>
 				<hr>
 				<div class="block-container">

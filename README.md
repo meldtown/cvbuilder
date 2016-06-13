@@ -9,6 +9,8 @@ Controls
 All top level models - add message property, add resources for general success and error messages
 All controls - add tooltip, show/hide on focus, without scripts, plain css
 Computed for add experience/language etc buttons text, first time "Add experience", second "Add more experience"
+API url should be computed from selected language everywhere
+
 
 Dependencies
 ------------
