@@ -12,6 +12,20 @@ describe('PersonalInfoModel', function () {
 
 	beforeEach(function () {
 		model = new CvBuilderModel('http://api.example.com', 123, {
+			activityLevel: [
+				{
+					id: 1,
+					ru: 'activity level 1',
+					en: 'activity level 1',
+					ua: 'activity level 1'
+				},
+				{
+					id: 2,
+					ru: 'activity level 2',
+					en: 'activity level 2',
+					ua: 'activity level 2'
+				}
+			],
 			schedule: [
 				{
 					id: 1,
@@ -130,6 +144,11 @@ describe('PersonalInfoModel', function () {
 					ru: 'addPhoto',
 					en: 'addPhoto',
 					ua: 'addPhoto'
+				},
+				percentMore: {
+					ru: 'percentMore',
+					en: 'percentMore',
+					ua: 'percentMore'
 				}
 			}
 		});

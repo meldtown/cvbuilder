@@ -1,4 +1,4 @@
-function CvBuilderModel(api, resumeId, dictionary) {
+function CvBuilderModel (api, resumeId, dictionary) {
 	var model = this;
 
 	model.api = api;
