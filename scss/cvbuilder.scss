@@ -247,9 +247,6 @@ input:-moz-placeholder {
 			margin-left: 0;
 		}
 	}
-	.personal {
-
-	}
 
 	.add-block-button {
 		@extend .add-button;
@@ -342,6 +339,10 @@ input:-moz-placeholder {
 
 	.recommendation-block {
 		background-color: #eee;
+	}
+
+	.recommendation-list {
+		margin-top: 20px;
 	}
 
 	.remove-button {
