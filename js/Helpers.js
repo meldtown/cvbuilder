@@ -26,7 +26,7 @@ ko.bindingHandlers.label = {
 };
 
 ko.bindingHandlers.tinylight = {
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+	init: function (element, valueAccessor) {
 		var property = valueAccessor();
 
 		jQuery(element).tinylight({
@@ -48,7 +48,7 @@ ko.bindingHandlers.tinylight = {
 };
 
 ko.bindingHandlers.autocompleteKeyword = {
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+	init: function (element, valueAccessor, allBindings, viewModel) {
 		var property = valueAccessor();
 
 		if (element.nodeName.toLowerCase() !== 'input') {
@@ -86,7 +86,7 @@ ko.bindingHandlers.autocompleteKeyword = {
 };
 
 ko.bindingHandlers.autocompleteCompany = {
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+	init: function (element, valueAccessor, allBindings, viewModel) {
 		var property = valueAccessor();
 
 		if (element.nodeName.toLowerCase() !== 'input') {
@@ -151,23 +151,113 @@ ko.bindingHandlers.autocompleteCompany = {
 				}
 			}
 		}).data('ui-autocomplete')._renderItem = function (ul, item) {
-			var imageSource = 'http://img1.rabota.com.ua/Data/cImg/' + item.logo;
-			var branchName = viewModel._branch.findById(item.branchId);
+			var img = $('<span>').css('background-image', 'url("http://img1.rabota.com.ua/Data/cImg/' + item.logo + '")');
 
-			var containerRight = document.createElement('DIV');
-			containerRight.setAttribute('class', 'company-autocomplete-right');
-			var img = document.createElement('IMG');
-			img.src = imageSource;
-			img.setAttribute('class', 'company-logo-autocomplete');
-			$(containerRight).append('<span class="autocomplete-company-name">' + item.companyName + '</span><br><span class="autocomplete-company-branch">' + branchName.label() + '</span>');
+			var label = $('<span>').append([
+				$('<span>').text(item.companyName),
+				$('<small>').text(item.branchName)
+			]);
 
-			var a = document.createElement('A');
-			var containerLeft = document.createElement('DIV');
-			containerLeft.setAttribute('class', 'company-autocomplete-left');
-			$(containerLeft).append(img);
-			$(a).append(containerLeft);
-			$(a).append(containerRight);
+			var a = $('<a>').addClass('autocomplete-company').append([img, label]);
+
 			return $('<li>').append(a).appendTo(ul);
+		};
+	}
+};
+
+ko.bindingHandlers.autocompleteCompanies = {
+	init: function (element, valueAccessor) {
+		var property = valueAccessor();
+		var value = property.value;
+		var api = ko.unwrap(property.api);
+
+		jQuery(element).autocomplete({
+			source: api + '/autocomplete/company',
+			minLength: 2,
+			select: function (event, ui) {
+				var alreadySelected = ko.unwrap(value).some(function (item) {
+					return item.notebookId === ui.item.notebookId;
+				});
+
+				if (!alreadySelected) {
+					value.push(ui.item);
+				}
+
+				jQuery(element).val('');
+				return false;
+			},
+			change: function (event, ui) {
+				if (!ui.item) {
+					jQuery(element).val('');
+				}
+			}
+		}).data('ui-autocomplete')._renderItem = function (ul, item) {
+			var img = $('<span>').css('background-image', 'url("http://img1.rabota.com.ua/Data/cImg/' + item.logo + '")');
+
+			var label = $('<span>').append([
+				$('<span>').text(item.companyName),
+				$('<small>').text(item.branchName)
+			]);
+
+			var a = $('<a>').addClass('autocomplete-company').append([img, label]);
+
+			return $('<li>').append(a).appendTo(ul);
+		};
+	}
+};
+
+ko.bindingHandlers.autocompleteBranches = {
+	init: function (element, valueAccessor) {
+		var property = valueAccessor();
+		var options = property.options;
+		var value = property.value;
+
+		jQuery(element).autocomplete({
+			source: function (request, response) {
+				var term = (request.term || '').toLowerCase();
+
+				var alreadySelectedIds = ko.unwrap(value).map(function (item) {
+					return item.id;
+				});
+
+				var optionsExceptAlreadySelectedIds = ko.unwrap(options).filter(function (item) {
+					return alreadySelectedIds.indexOf(item.id) === -1;
+				});
+
+				if (term) {
+					var filteredOptions = optionsExceptAlreadySelectedIds.filter(function (item) {
+						return ko.unwrap(item.label).toLowerCase().indexOf(term) === 0;
+					});
+					response(filteredOptions);
+				} else {
+					response(optionsExceptAlreadySelectedIds);
+				}
+			},
+			minLength: 0,
+			select: function (event, ui) {
+				var alreadySelected = ko.unwrap(value).some(function (item) {
+					return item.id === ui.item.id;
+				});
+
+				if (!alreadySelected) {
+					value.push(ui.item);
+				}
+
+				jQuery(element).val('');
+				return false;
+			},
+			change: function (event, ui) {
+				if (!ui.item) {
+					jQuery(element).val('');
+				}
+			}
+		}).on('click', function () {
+			$(this).select();
+			$(this).autocomplete('search', '');
+		}).on('focus', function () {
+			$(this).autocomplete('search', '');
+		}).data('ui-autocomplete')._renderItem = function (ul, item) {
+			return $('<li>').append($('<a>').text(ko.unwrap(item.label))).appendTo(ul);
 		};
 	}
 };
@@ -184,7 +274,7 @@ ko.bindingHandlers.autocompleteCityId = {
 				})
 				.shift() || '';
 	},
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+	init: function (element, valueAccessor) {
 		var params = valueAccessor();
 		var value = params.value;
 		var options = params.options;
@@ -229,7 +319,7 @@ ko.bindingHandlers.autocompleteCityId = {
 };
 
 ko.bindingHandlers.autocompleteCity = {
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+	init: function (element, valueAccessor) {
 		var params = valueAccessor();
 		var value = params.value;
 		var options = params.options;

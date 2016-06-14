@@ -32,3 +32,68 @@
 		</span>
 	</div>
 </div>
+
+<!--
+<div data-bind="with: state">
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="branchIdsReadonly">branchIds:</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="branchIdsReadonly" name="branchIdsReadonly" type="text" data-bind="value: branchIds" readonly />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="input">input:</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="input" name="input" type="text" data-bind="autocompleteBranches: { value: branches, options: branchOptions }" />
+			<div>
+				<span data-bind="foreach: computedBranches">
+					<span class="label label-default">
+						<span data-bind="text: label"></span>
+						<a href="#" class="rua-p-c-light rua-b-none" data-bind="click: $parent.removeBranch">&times;</a>
+					</span>
+				</span>
+				<span data-bind="if: isMoreBranchesTogglerVisible">
+					<span class="label label-default" data-bind="click: toggleMoreBranches">
+						<span data-bind="label: resource.all"></span>
+						<i class="fa fa-angle-down" data-bind="css: toggleMoreBranchesIconClass"></i>
+					</span>
+				</span>
+			</div>
+
+		</div>
+	</div>
+</div>
+-->
+
+<!--
+<div data-bind="with: state">
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="companyIdsReadonly">companyIds:</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="companyIdsReadonly" name="companyIdsReadonly" type="text" data-bind="value: companyIds" readonly />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
+			<label for="input">input:</label>
+		</div>
+		<div class="col d-2of3">
+			<input id="input" name="input" type="text" data-bind="autocompleteCompanies: { value: companies, api: api }" />
+			<div data-bind="foreach: companies">
+					<span class="label label-default">
+						<span data-bind="text: companyName"></span>
+						<a href="#" class="rua-p-c-light rua-b-none" data-bind="click: $parent.removeCompany">&times;</a>
+					</span>
+			</div>
+		</div>
+	</div>
+</div>
+-->

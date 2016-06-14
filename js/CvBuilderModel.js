@@ -181,7 +181,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 				model._lng(option || model._lngOptions[0]);
 			}
 
-			model._lng.subscribe(function (newValue) {
+			model._lng.subscribe(function () {
 				backend.post(parent.api + '/resume/' + model.resumeId + '/uilanguage?language=' + model._lng().id);
 			});
 		});
@@ -226,7 +226,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		if (model.skill.text()) result += 10;
 		if (model.isExperienceBlockAdded()) result += 5;
 		if (model.experience().length > 1) result += 5;
-		if (model.isEducationBlockAdded()) result += 5;
+		if (model.isEducationBlockAdded()) result += 10;
 		if (model.isLanguageBlockAdded()) result += 5;
 		if (model.isTrainingBlockAdded()) result += 5;
 		if (model.position.salary()) result += 5;
@@ -259,7 +259,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		backend.get(model.api + '/resume/' + model.resumeId + '/searchstate').success(function (data) {
 			model.searchState(data || 1);
 
-			model.searchState.subscribe(function (newValue) {
+			model.searchState.subscribe(function () {
 				backend.post(model.api + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
 			});
 		});
