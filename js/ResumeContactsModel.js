@@ -195,7 +195,7 @@ function ResumeContactsModel (parent) {
 					model.portfolio().forEach(function (item) {
 						item.commit();
 					});
-
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
