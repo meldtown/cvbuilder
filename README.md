@@ -13,7 +13,6 @@ Header / SearchState / Control
 
 All / Validation errors - orange (plus make orange message)
 Personal info / Photo / add button markup and styles
-Personal info / sex - make separate computed
 Training / Location - uncomment
 
 

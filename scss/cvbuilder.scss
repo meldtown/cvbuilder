@@ -149,11 +149,19 @@ input:-moz-placeholder {
 	}
 
 	.validationElement, select.input-block-level.validationElement:focus {
-		border-color: red;
+		border-color: #ffa000;
+		background-color: #ffd54f;
+	}
+
+	.validationElement:hover, .validationElement:focus {
+		border-color: #ffa000 !important;
 	}
 
 	.validationMessage {
-		color: red;
+		color: #ffa000;
+		display: block;
+		margin-top: -10px;
+		margin-bottom: 10px;
 	}
 
 	.cvbuilder-white-box {
