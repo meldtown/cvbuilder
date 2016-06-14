@@ -27,8 +27,12 @@
 				<span data-bind="text: schoolNameLabel"></span>
 			</label>
 		</div>
-		<div class="col d-2of3">
+		<div class="col d-2of3 tooltip-container">
 			<input type="text" id="schoolName" name="schoolName"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddNameLabel.label}, value: schoolName, valueUpdate: 'keyup'">
+			<div class="input-tooltip">
+				<p data-bind="text: resource.tooltipAdvice.label"></p>
+				<p class="rua-p-c-light" data-bind="text: resource.tooltipEducationSchoolName.label"></p>
+			</div>
 		</div>
 	</div>
 

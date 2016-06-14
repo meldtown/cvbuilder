@@ -9,9 +9,13 @@
 				<span class="rua-p-c-light" data-bind="label: resource.contactsPhoneTooltip"></span>
 			</label>
 		</div>
-		<div class="col d-2of3">
+		<div class="col d-2of3 tooltip-container">
 			<input type="text" id="phone" class="input-block-level" name="phone"
 				   data-bind="value: phone, valueUpdate: 'keyup'">
+			<div class="input-tooltip">
+				<p data-bind="text: resource.tooltipAdvice.label"></p>
+				<p class="rua-p-c-light" data-bind="text: resource.tooltipContactsPhone.label"></p>
+			</div>
 		</div>
 	</div>
 
