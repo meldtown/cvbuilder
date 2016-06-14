@@ -10,19 +10,19 @@ Header - makrup
 Header / SearchState / Companies control
 Header / SearchState / Branches control
 Header / SearchState / Control
+
 All / Validation errors - orange (plus make orange message)
 Personal info / Photo / add button markup and styles
 Personal info / sex - make separate computed
-All / Tooltip - show/hide on focus, without scripts, plain css
 Training / Location - uncomment
-Contacts / SocialNetworks - ask for validation rules (skype)
-Experience / Period - make 2 rows
-Sidebar / links - markup, backend?
-Computed for add experience/language etc buttons text, first time "Add experience", second "Add more experience"
+
 
 API url should be computed from selected language everywhere
 
 
+Computed for add experience/language etc buttons text, first time "Add experience", second "Add more experience"
+Sidebar / links - markup, backend?
+Contacts / SocialNetworks - ask for validation rules (skype)
 
 
 Dependencies
