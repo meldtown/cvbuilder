@@ -139,7 +139,12 @@ function ResumePersonalModel (parent) {
 		}
 	}).extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedSexOptionLabel = ko.computed(function () {
-		return model.selectedSexOption() ? model.selectedSexOption().label() : '';
+		if (model.selectedSexOption()) {
+			if (model.selectedSexOption()._lng().dictionary === 'en') return model.selectedSexOption().label();
+			else return model.selectedSexOption().label() + ' ' + model.resource.personalSexLabel.label().toLocaleLowerCase();
+		} else {
+			return model.selectedSexOption() ? model.selectedSexOption().label() : '';
+		}
 	});
 
 	// model.dateBirthFormatted = ko.computed(function () {
