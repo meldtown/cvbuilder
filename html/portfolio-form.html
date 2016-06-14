@@ -1,14 +1,14 @@
-<div>
-	<div class="media">
-		<div class="pull-right" data-bind="if: isRemoveButtonVisible">
-			<a class="rua-p-c-light remove-button" href="#" data-bind="label: resource.delete, click: remove"></a>
-		</div>
-		<div class="media-body tooltip-container">
+<div class="tooltip-container">
+	<div class="t top">
+		<div class="f d-pr-1of2">
 			<input type="text" class="input-block-level" id="portfolio" data-bind="attr: {placeholder: resource.contactsAddPortfolio.label}, value: portfolio, valueUpdate: 'keyup'">
 			<div class="input-tooltip">
 				<p data-bind="text: resource.tooltipAdvice.label"></p>
 				<p class="rua-p-c-light" data-bind="text: resource.tooltipContactsPortfolio.label"></p>
 			</div>
+		</div>
+		<div class="m" data-bind="if: isRemoveButtonVisible">
+			<a class="rua-p-c-light remove-button" href="#" data-bind="label: resource.delete, click: remove"></a>
 		</div>
 	</div>
 </div>
