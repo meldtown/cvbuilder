@@ -12,7 +12,42 @@ function ResumeStateModel (parent) {
 	model.viewCount = ko.observable();
 	model.level = ko.observable();
 	model.anonymous = ko.observable();
+
 	model.branchIds = ko.observableArray();
+	model.branchesLimit = 2;
+	model.branchOptions = parent.dictionary.branch;
+	model.branches = ko.observableArray();
+	model.isShowAllBranchesToggled = ko.observable(false);
+	model.isMoreBranchesTogglerVisible = ko.computed(function () {
+		return model.branches().length > model.branchesLimit;
+	});
+	model.branches.subscribe(function (newValue) {
+		var ids = newValue.map(function (item) {
+			return item.id;
+		});
+
+		var uniqueIds = ids.reduce(function (result, item) {
+			if (result.indexOf(item) === -1) result.push(item);
+			return result;
+		}, []);
+
+		model.branchIds(uniqueIds);
+	});
+	model.computedBranches = ko.computed(function () {
+		var items = model.branches();
+		return model.isShowAllBranchesToggled()
+			? items
+			: items.slice(Math.max(0, items.length - model.branchesLimit));
+	});
+	model.toggleMoreBranchesIconClass = ko.computed(function () {
+		return model.isShowAllBranchesToggled() ? 'fa fa fa-angle-up' : 'fa fa fa-angle-down';
+	});
+	model.removeBranch = function (item) {
+		model.branches.remove(item);
+	};
+	model.toggleMoreBranches = function () {
+		model.isShowAllBranchesToggled(!model.isShowAllBranchesToggled());
+	};
 
 	model.companyIds = ko.observableArray();
 	model.companies = ko.observableArray();

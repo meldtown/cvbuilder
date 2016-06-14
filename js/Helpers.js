@@ -206,6 +206,62 @@ ko.bindingHandlers.autocompleteCompanies = {
 	}
 };
 
+ko.bindingHandlers.autocompleteBranches = {
+	init: function (element, valueAccessor) {
+		var property = valueAccessor();
+		var options = property.options;
+		var value = property.value;
+
+		jQuery(element).autocomplete({
+			source: function (request, response) {
+				var term = (request.term || '').toLowerCase();
+
+				var alreadySelectedIds = ko.unwrap(value).map(function (item) {
+					return item.id;
+				});
+
+				var optionsExceptAlreadySelectedIds = ko.unwrap(options).filter(function (item) {
+					return alreadySelectedIds.indexOf(item.id) === -1;
+				});
+
+				if (term) {
+					var filteredOptions = optionsExceptAlreadySelectedIds.filter(function (item) {
+						return ko.unwrap(item.label).toLowerCase().indexOf(term) === 0;
+					});
+					response(filteredOptions);
+				} else {
+					response(optionsExceptAlreadySelectedIds);
+				}
+			},
+			minLength: 0,
+			select: function (event, ui) {
+				var alreadySelected = ko.unwrap(value).some(function (item) {
+					return item.id === ui.item.id;
+				});
+
+				if (!alreadySelected) {
+					value.push(ui.item);
+				}
+
+				jQuery(element).val('');
+				return false;
+			},
+			change: function (event, ui) {
+				if (!ui.item) {
+					jQuery(element).val('');
+				}
+			}
+		}).on('click', function () {
+			$(this).select();
+			$(this).autocomplete('search', '');
+		}).on('focus', function () {
+			$(this).autocomplete('search', '');
+		}).data('ui-autocomplete')._renderItem = function (ul, item) {
+			return $('<li>').append($('<a>').text(ko.unwrap(item.label))).appendTo(ul);
+		};
+	}
+};
+
 ko.bindingHandlers.autocompleteCityId = {
 	findById: function (options, value) {
 		var str = (ko.unwrap(value) || '').toString();
