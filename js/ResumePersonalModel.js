@@ -197,7 +197,7 @@ function ResumePersonalModel (parent) {
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/personal', model.toJS())
 				.success(function () {
 					model.commit();
-					model.successMessage('SUCCESS');
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {

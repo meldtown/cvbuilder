@@ -195,6 +195,7 @@ function ResumeContactsModel (parent) {
 					model.portfolio().forEach(function (item) {
 						item.commit();
 					});
+
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -244,6 +245,7 @@ function ResumeContactsModel (parent) {
 
 	InitEditableModel(model, 'contacts');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 }
 
 function ResumeContactsAdditionalPhoneModel (parent, data) {

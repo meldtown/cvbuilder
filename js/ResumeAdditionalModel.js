@@ -1,4 +1,4 @@
-function ResumeAdditionalModel (parent, data) {
+function ResumeAdditionalModel(parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -38,6 +38,7 @@ function ResumeAdditionalModel (parent, data) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -67,6 +68,7 @@ function ResumeAdditionalModel (parent, data) {
 
 	InitEditableModel(model, 'additional');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 
 	if (data) model.fromJS(data);
 }

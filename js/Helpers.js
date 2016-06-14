@@ -301,8 +301,8 @@ function InitBadRequestResponseHandler (model) {
 }
 
 function InitResultMessage (model) {
-	model._successMessageClass = 'alert alert-success';
-	model._errorMessageClass = 'alert alert-danger';
+	model._successMessageClass = 'alert-message alert-message-success';
+	model._errorMessageClass = 'alert-message alert-message-danger';
 	model.message = ko.observable();
 	model.messageClass = ko.observable(model._successMessageClass);
 

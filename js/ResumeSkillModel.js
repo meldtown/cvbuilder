@@ -25,6 +25,7 @@ function ResumeSkillModel (parent) {
 			backend.post(model.api, model.toJS())
 				.success(function () {
 					model.commit();
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -46,4 +47,5 @@ function ResumeSkillModel (parent) {
 
 	InitEditableModel(model, 'skill');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 }

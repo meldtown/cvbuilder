@@ -64,6 +64,7 @@ input:-moz-placeholder {
 	}
 
 	.cvbuilder-view {
+		position: relative;
 		.cvbuilder-block-title {
 			margin-bottom: 25px;
 		}
@@ -448,6 +449,52 @@ input:-moz-placeholder {
 			}
 		}
 	}
+
+	.message-container {
+		position: absolute;
+		bottom: 20px;
+		left: calc(100% + 40px);
+		z-index: 999;
+	}
+
+	.alert-message{
+		min-width: 400px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 18px;
+		background-color: #dcedc8;
+		border: 2px solid #9ccc65;
+		border-radius: 2px;
+		box-shadow: 0 2px 4px 0 rgba(126, 126, 126, .5);
+		&::after {
+			content: '';
+			display: table;
+			clear: both;
+		}
+		.checkmark {
+			width: 50px;
+			height: 100%;
+			float: left;
+			margin-right: 10px;
+			background-color: #9ccc65;
+			line-height: 50px;
+			text-align: center;
+			i {
+				font-size: 35px;
+				color: #fff;
+				vertical-align: middle;
+			}
+		}
+		& > i {
+			font-size: 25px;
+			position: absolute;
+			right: 13px;
+			top: 50%;
+			transform: translateY(-50%);
+			cursor: pointer;
+		}
+	}
+
 
 }
 

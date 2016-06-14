@@ -1,4 +1,4 @@
-function ResumeExperienceModel (parent, data) {
+function ResumeExperienceModel(parent, data) {
 	var model = this;
 
 	model.resumeId = parent.resumeId;
@@ -95,6 +95,7 @@ function ResumeExperienceModel (parent, data) {
 					model.recommendationList().forEach(function (item) {
 						item.commit();
 					});
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -155,11 +156,12 @@ function ResumeExperienceModel (parent, data) {
 
 	InitEditableModel(model, 'experience');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 
 	if (data) model.fromJS(data);
 }
 
-function ResumeExperienceRecommendationModel (parent, data) {
+function ResumeExperienceRecommendationModel(parent, data) {
 	var model = this;
 
 	model._branch = parent._branch;

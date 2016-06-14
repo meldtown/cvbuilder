@@ -35,6 +35,7 @@ function ResumeTraininglModel (parent, data) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -64,6 +65,7 @@ function ResumeTraininglModel (parent, data) {
 
 	InitEditableModel(model, 'training');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 
 	if (data) model.fromJS(data);
 }

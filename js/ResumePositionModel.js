@@ -116,6 +116,7 @@ function ResumePositionModel (parent, data) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -142,6 +143,7 @@ function ResumePositionModel (parent, data) {
 
 	InitEditableModel(model, 'position');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 
 	if (data) model.fromJS(data);
 }

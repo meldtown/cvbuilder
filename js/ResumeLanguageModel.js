@@ -66,6 +66,7 @@ function ResumeLanguageModel (parent, data) {
 				.success(function () {
 					model._savedOrFromBackend(true);
 					model.commit();
+					model.successMessage(model.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -97,6 +98,7 @@ function ResumeLanguageModel (parent, data) {
 
 	InitEditableModel(model, 'language');
 	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 
 	if (data) {
 		model.fromJS(data);
