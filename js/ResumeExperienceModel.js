@@ -1,4 +1,4 @@
-function ResumeExperienceModel(parent, data) {
+function ResumeExperienceModel (parent, data) {
 	var model = this;
 
 	model.resumeId = parent.resumeId;
@@ -161,7 +161,7 @@ function ResumeExperienceModel(parent, data) {
 	if (data) model.fromJS(data);
 }
 
-function ResumeExperienceRecommendationModel(parent, data) {
+function ResumeExperienceRecommendationModel (parent, data) {
 	var model = this;
 
 	model._branch = parent._branch;

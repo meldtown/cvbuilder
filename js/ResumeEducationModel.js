@@ -1,4 +1,4 @@
-function ResumeEducationModel(parent, data) {
+function ResumeEducationModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
