@@ -30,7 +30,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" class="input-block-level" id="name" name="name" data-bind="value: name, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="name" maxlength="255" name="name" data-bind="value: name, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -41,7 +41,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" class="input-block-level" id="middleName" name="middleName" data-bind="value: middleName, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="middleName" maxlength="255" name="middleName" data-bind="value: middleName, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -52,7 +52,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" class="input-block-level" id="surName" name="surName" data-bind="value: surName, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="surName" maxlength="255" name="surName" data-bind="value: surName, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -88,7 +88,7 @@
 		</div>
 		<div class="col d-2of3">
 			<div>
-				<input id="cityId" name="cityId" type="text" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }, validationElement: cityId">
+				<input id="cityId" name="cityId" type="text" maxlength="255" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }, validationElement: cityId">
 				<span class="validationMessage" data-bind="validationMessage: cityId"></span>
 			</div>
 		</div>
@@ -106,7 +106,7 @@
 							<a class="btn btn-link rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
 						</div>
 						<div class="media-body">
-							<input type="text" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }">
+							<input type="text" maxlength="255" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }">
 						</div>
 					</div>
 				</div>

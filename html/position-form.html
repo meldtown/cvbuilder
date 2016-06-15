@@ -9,7 +9,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
-			<input id="position" class="input-block-level" name="position" type="text" data-bind="attr: {placeholder: resource.positionAddPositionLabel.label}, value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
+			<input id="position" class="input-block-level" name="position" maxlength="255" type="text" data-bind="attr: {placeholder: resource.positionAddPositionLabel.label}, value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
 			<div class="input-tooltip">
 				<p data-bind="text: resource.tooltipAdvice.label"></p>
 				<p class="rua-p-c-light" data-bind="text: resource.tooltipPositionPosition.label"></p>
@@ -53,7 +53,7 @@
 		<div class="col d-2of3">
 			<div class="row">
 				<div class="col d-2of3">
-					<input type="text" id="salary" name="salary" class="input-block-level" data-bind="attr: {placeholder: resource.positionAddSalaryLabel.label}, value: salary, valueUpdate: 'keyup'">
+					<input type="text" id="salary" maxlength="255" name="salary" class="input-block-level" data-bind="attr: {placeholder: resource.positionAddSalaryLabel.label}, value: salary, valueUpdate: 'keyup'">
 				</div>
 				<div class="col d-1of3 d-pl-1of2">
 					<select class="input-block-level" name="currency" data-bind="optionsCaption: resource.personalChooseCurrency.label, options: currencyOptions, optionsText: 'label', value: selectedCurrencyOption"></select>

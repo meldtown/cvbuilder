@@ -17,7 +17,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
-			<input type="text" id="company" name="company" class="input-block-level" data-bind="value: company, valueUpdate: 'keyup', autocompleteCompany: company">
+			<input type="text" id="company" name="company" maxlength="255" class="input-block-level" data-bind="value: company, valueUpdate: 'keyup', autocompleteCompany: company">
 			<div class="input-tooltip">
 				<p data-bind="text: resource.tooltipAdvice.label"></p>
 				<p class="rua-p-c-light" data-bind="text: resource.tooltipExperienceCompany.label"></p>
@@ -43,7 +43,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
-			<input id="position" name="position" type="text" class="input-block-level"
+			<input id="position" name="position" type="text" maxlength="255" class="input-block-level"
 				   data-bind="value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
 			<div class="input-tooltip">
 				<p data-bind="text: resource.tooltipAdvice.label"></p>

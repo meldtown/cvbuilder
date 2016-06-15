@@ -10,7 +10,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
-			<input type="text" id="phone" class="input-block-level" name="phone"
+			<input type="text" id="phone" class="input-block-level" name="phone" maxlength="255"
 				   data-bind="value: phone, valueUpdate: 'keyup'">
 			<div class="input-tooltip">
 				<p data-bind="text: resource.tooltipAdvice.label"></p>
@@ -50,7 +50,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="email" class="input-block-level" name="email"
+			<input type="text" id="email" class="input-block-level" maxlength="255" name="email"
 				   data-bind="value: email, valueUpdate: 'keyup'">
 		</div>
 	</div>
@@ -62,7 +62,7 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="skype" class="input-block-level" name="skype"
+			<input type="text" id="skype" class="input-block-level" name="skype" maxlength="255"
 				   data-bind="attr: {placeholder: resource.contactsAddSkypeLabel.label}, value: skype, valueUpdate: 'keyup'">
 		</div>
 	</div>
@@ -116,7 +116,7 @@
 				</label>
 			</div>
 			<div class="col d-2of3">
-				<input type="text" class="input-block-level"
+				<input type="text" class="input-block-level" maxlength="255"
 					   data-bind="value: text, valueUpdate: 'keyup', attr: {id: subType, name: subType}"/>
 			</div>
 		</div>
