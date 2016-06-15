@@ -536,6 +536,18 @@ input:-moz-placeholder {
 		}
 	}
 
+	.add-photo {
+		width: 112px;
+		box-sizing: border-box;
+		background-color: #e2e2e2;
+		cursor: pointer;
+		padding: 6px 13px 7px 9px;
+		font-size: 12px;
+		i {
+			font-size: 13px;
+		}
+	}
+
 }
 
 .ui-autocomplete .ui-menu-item a.autocomplete-company {
