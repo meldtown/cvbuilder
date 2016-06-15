@@ -6,13 +6,14 @@ function ResumeTraininglModel (parent, data) {
 	});
 
 	model.resource = parent.dictionary.resource;
-
+	model.cityOptions = parent.dictionary.city;
 	model.resumeId = parent.resumeId;
 	model.id = ko.observable();
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.location = ko.observable();
 	model.description = ko.observable();
 	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.location = ko.observable();
 
 	model.yearOptions = [];
 	for (var year = (new Date()).getFullYear(); year >= (new Date()).getFullYear() - 80; year--) {

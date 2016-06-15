@@ -22,6 +22,17 @@
 
 	<div class="row">
 		<div class="col d-1of3">
+			<label for="location">
+				<span data-bind="label: resource.personalCityNameLabel"></span>
+			</label>
+		</div>
+		<div class="col d-2of3">
+			<input type="text" class="input-block-level" id="location" name="location" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: location, options: cityOptions }, validationElement: location">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col d-1of3">
 			<label for="year">
 				<span data-bind="label: resource.trainingYearLabel"></span>
 			</label>

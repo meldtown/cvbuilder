@@ -11,10 +11,8 @@ Header / SearchState / Companies control
 Header / SearchState / Branches control
 Header / SearchState / Control
 
-All / Validation errors - orange (plus make orange message)
-Personal info / Photo / add button markup and styles
-Training / Location - uncomment
 
+Personal info / Photo / add button markup and styles
 
 API url should be computed from selected language everywhere
 
