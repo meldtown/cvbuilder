@@ -30,7 +30,7 @@
 					<button class="add-block-button" data-bind="click: addExperience">
 						<i class="fa fa-plus-circle "></i>
 						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addExperience"></span>
-						+<span data-bind="text: percentForBlock.experience"></span>%
+						<span data-bind="if: isOneExperienceAdded"><span data-bind="text: percentExperienceFormatted"></span></span>
 					</button>
 				</div>
 
@@ -42,7 +42,6 @@
 					<button class="add-block-button" data-bind="click: addEducation">
 						<i class="fa fa-plus-circle "></i>
 						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addEducation"></span>
-						+<span data-bind="text: percentForBlock.education"></span>%
 					</button>
 				</div>
 
@@ -55,7 +54,6 @@
 					<button class="add-block-button" data-bind="click: addTraining">
 						<i class="fa fa-plus-circle "></i>
 						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addTraining"></span>
-						+<span data-bind="text: percentForBlock.training"></span>%
 					</button>
 				</div>
 
@@ -81,7 +79,6 @@
 					<button class="add-block-button" data-bind="click: addLanguage">
 						<i class="fa fa-plus-circle "></i>
 						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addLanguage"></span>
-						+<span data-bind="text: percentForBlock.language"></span>%
 					</button>
 				</div>
 				<hr>
@@ -201,12 +198,12 @@
 						<div class="rua-p-c-light" data-bind="label: dictionary.resource.footerBlockContacts"></div>
 					</div>
 
-					<div class="btn btn-block footer-block"  data-bind="visible: !isExperienceBlockAdded(),click: addExperience">
+					<div class="btn btn-block footer-block" data-bind="visible: !isExperienceBlockAdded(),click: addExperience">
 						<div class="rua-p-c-light">
 							<i class="fa fa-plus-circle"></i><span data-bind="label: dictionary.resource.add"></span>
 							<span>+<span data-bind="text: percentForBlock.experience"></span>%</span>
 						</div>
-						<div class="rua-p-c-light" data-bind="label: dictionary.resource.experienceRubricNameLabel"></div>
+						<div class="rua-p-c-light" data-bind="text: addExperienceText"></div>
 					</div>
 					<div class="btn btn-block footer-block" data-bind="visible: !isEducationBlockAdded(), click: addEducation">
 						<div>

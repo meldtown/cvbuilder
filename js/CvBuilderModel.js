@@ -46,6 +46,10 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		additionalContacts: 5
 	};
 
+	model.percentExperienceFormatted = ko.computed(function () {
+		return '+' + model.percentForBlock.experience + '%';
+	})
+
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);
 	model.contacts = new ResumeContactsModel(model);
@@ -188,7 +192,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	};
 
 	model.isExperienceBlockAdded = ko.computed(function () {
-		return !!model.experience().length;
+		return model.experience().length >= 2;
 	});
 
 	model.isEducationBlockAdded = ko.computed(function () {
@@ -253,6 +257,17 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.isAllFooterBlocksAdded = ko.computed(function () {
 		return model.isEducationBlockAdded() && model.isTrainingBlockAdded() && model.isAdditionalBlockAdded() && model.isLanguageBlockAdded() && model.isAdditionalContactsAdded();
+	});
+
+	model.isOneExperienceAdded = ko.computed(function () {
+		return model.experience().length === 1;
+	});
+
+	model.addExperienceText = ko.computed(function () {
+		if (model.isOneExperienceAdded()) {
+			return model.dictionary.resource.addElseExperience.label();
+		}
+		return model.dictionary.resource.addExperience.label();
 	});
 
 	model.load = function () {
