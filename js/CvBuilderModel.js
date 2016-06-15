@@ -48,7 +48,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 	model.percentExperienceFormatted = ko.computed(function () {
 		return '+' + model.percentForBlock.experience + '%';
-	})
+	});
 
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);
