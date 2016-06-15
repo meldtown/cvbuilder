@@ -251,8 +251,8 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		return (1 - model.percent() / 100) * 150 - 6 + 'px';
 	});
 
-	model.isCvCompleted = ko.computed(function () {
-		return model.percent() === 100;
+	model.isAllFooterBlocksAdded = ko.computed(function () {
+		return model.isEducationBlockAdded() && model.isTrainingBlockAdded() && model.isAdditionalBlockAdded() && model.isLanguageBlockAdded() && model.isAdditionalContactsAdded();
 	});
 
 	model.load = function () {
