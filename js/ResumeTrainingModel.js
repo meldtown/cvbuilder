@@ -61,7 +61,9 @@ function ResumeTraininglModel (parent, data) {
 
 	model.cancel = function () {
 		model.rollback();
-		parent.training.remove(model);
+		if (!model.id()) {
+			parent.training.remove(model);
+		}
 	};
 
 	InitEditableModel(model, 'training');
