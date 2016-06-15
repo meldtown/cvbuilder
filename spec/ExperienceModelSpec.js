@@ -142,6 +142,16 @@ describe('ExperienceModel', function () {
 					ru: 'percentMore',
 					en: 'percentMore',
 					ua: 'percentMore'
+				},
+				addExperience: {
+					ru: 'addExperience',
+					en: 'addExperience',
+					ua: 'addExperience'
+				},
+				addElseExperience: {
+					ru: 'addElseExperience',
+					en: 'addElseExperience',
+					ua: 'addElseExperience'
 				}
 			}
 		});

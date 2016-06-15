@@ -109,6 +109,11 @@ describe('ContactsModel', function () {
 					ru: 'percentMore',
 					en: 'percentMore',
 					ua: 'percentMore'
+				},
+				addExperience: {
+					ru: 'addExperience',
+					en: 'addExperience',
+					ua: 'addExperience'
 				}
 			}
 		});
