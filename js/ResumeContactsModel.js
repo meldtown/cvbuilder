@@ -57,14 +57,14 @@ function ResumeContactsModel (parent) {
 		return model.nonEmptyPortfolio().length > 0;
 	});
 
-	model.nonEmptySocialNetworks = ko.computed(function () {
+	model.nonEmptyAndValidSocialNetworks = ko.computed(function () {
 		return model.socialNetworks().filter(function (item) {
-			return item.text() && item.text().length > 0;
+			return item.text() && item.text().length > 0 && item.text.isValid();
 		});
 	});
 
 	model.isSocialNetworksBlockVisible = ko.computed(function () {
-		return model.nonEmptySocialNetworks().length > 0;
+		return model.nonEmptyAndValidSocialNetworks().length > 0;
 	});
 
 	model.removeBadOrEmptyAdditionalPhones = function () {
@@ -77,8 +77,14 @@ function ResumeContactsModel (parent) {
 		model.portfolio(model.nonEmptyPortfolio());
 	};
 
-	model.removeEmptySocialNetworks = function () {
-		model.socialNetworks(model.nonEmptySocialNetworks());
+	model.removeEmptyAndInvalidSocialNetworks = function () {
+		var filtered = model.nonEmptyAndValidSocialNetworks().map(function (item) {
+			if (item.text().indexOf('http://') === -1 || item.text().indexOf('https://') === -1) {
+				item.text('http://' + item.text());
+			}
+			return item;
+		});
+		model.socialNetworks(filtered);
 	};
 
 	model.getSocialNetworkBySubType = function (subType) {
@@ -185,7 +191,7 @@ function ResumeContactsModel (parent) {
 		if (model.errors().length === 0) {
 			model.removeBadOrEmptyAdditionalPhones();
 			model.removeEmptyPortfolio();
-			model.removeEmptySocialNetworks();
+			model.removeEmptyAndInvalidSocialNetworks();
 			backend.post(parent.api + '/resume/' + parent.resumeId + '/contact', model.toJS())
 				.success(function () {
 					model.commit();
@@ -239,8 +245,8 @@ function ResumeContactsModel (parent) {
 
 	model.isAddPortfolioButtonVisible = ko.computed(function () {
 		return model.portfolio().filter(function (item) {
-			return item.portfolio() && item.portfolio().length > 0;
-		}).length > 0;
+				return item.portfolio() && item.portfolio().length > 0;
+			}).length > 0;
 	});
 
 	InitEditableModel(model, 'contacts');
@@ -358,16 +364,16 @@ function ResumeContactsSocialNetworkModel (parent, data) {
 		},
 		validation: {
 			validator: function (val) {
-				var text = val.replace('http://', '').replace('https://', '');
+				var text = val.replace('http://', '').replace('https://', '').replace('www.', '');
 				var domain = '';
-				if (model.subTypeAsString() === '1') domain = 'linkedin.com';
-				else if (model.subTypeAsString() === '2') domain = 'facebook.com';
-				else if (model.subTypeAsString() === '3') domain = 'vk.com';
-				else if (model.subTypeAsString() === '4') domain = 'twitter.com';
-				else if (model.subTypeAsString() === '5') domain = 'plus.google.com';
-				else if (model.subTypeAsString() === '6') domain = 'ok.ru';
+				if (model.subTypeAsString() === '1') return text.indexOf('linkedin.com') === 0;
+				else if (model.subTypeAsString() === '2') return text.indexOf('facebook.com') === 0;
+				else if (model.subTypeAsString() === '3') return text.indexOf('vk.com') === 0 || text.indexOf('vkontakte.com') === 0;
+				else if (model.subTypeAsString() === '4') return text.indexOf('twitter.com') === 0;
+				else if (model.subTypeAsString() === '5') return text.indexOf('plus.google.com') === 0;
+				else if (model.subTypeAsString() === '6') return text.indexOf('ok.ru') === 0;
 
-				return text.indexOf(domain) === 0;
+				///return text.indexOf(domain) === 0;
 			},
 			message: function (params, observable) {
 				return model.resource.wrongFormat.label();
