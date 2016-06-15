@@ -129,6 +129,10 @@ function ResumePersonalModel (parent) {
 		});
 	});
 
+	model.isMovingAble = ko.computed(function () {
+		return !!model.moving().length;
+	});
+
 	model.sexOptions = parent.dictionary.sex;
 	model.selectedSexOption = ko.computed({
 		read: function () {
