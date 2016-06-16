@@ -277,7 +277,8 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	};
 
 	model.toggleActionsText = ko.computed(function () {
-		return model.isAllActionsVisible() ? model.dictionary.resource.turnActions.label() : model.dictionary.resource.allActions.label();
+		var item = model.isAllActionsVisible() ? model.dictionary.resource.turnActions : model.dictionary.resource.allActions;
+		return item ? item.label() : '';
 	});
 
 	model.toggleActionsClass = ko.computed(function () {

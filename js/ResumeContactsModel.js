@@ -79,7 +79,7 @@ function ResumeContactsModel (parent) {
 
 	model.removeEmptyAndInvalidSocialNetworks = function () {
 		var filtered = model.nonEmptyAndValidSocialNetworks().map(function (item) {
-			if (item.text().indexOf('http://') === -1 || item.text().indexOf('https://') === -1) {
+			if (item.text().indexOf('http://') === -1 && item.text().indexOf('https://') === -1) {
 				item.text('http://' + item.text());
 			}
 			return item;

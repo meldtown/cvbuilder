@@ -1,3 +1,50 @@
+ko.bindingHandlers.clickTogglerFor = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var value = valueAccessor();
+		var valueUnwrapped = ko.unwrap(value);
+
+		if (typeof valueUnwrapped !== 'string') {
+			console.error('clickTogglerFor valueAccessor should be string', element, valueAccessor);
+		}
+
+		if (!viewModel.hasOwnProperty(valueUnwrapped)) {
+			viewModel[valueUnwrapped] = ko.observable(false);
+		}
+
+		jQuery(element).on('click', function (event) {
+			event.preventDefault();
+			event.stopPropagation();
+			viewModel[valueUnwrapped](!viewModel[valueUnwrapped]());
+		});
+	}
+};
+
+ko.bindingHandlers.visibleByToggler = {
+	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+		var value = valueAccessor();
+		var valueUnwrapped = ko.unwrap(value);
+
+		if (typeof valueUnwrapped !== 'string') {
+			console.error('visibleByToggler valueAccessor should be string', element, valueAccessor);
+		}
+
+		if (!viewModel.hasOwnProperty(valueUnwrapped)) {
+			viewModel[valueUnwrapped] = ko.observable(false);
+		}
+
+		jQuery(element).toggle(viewModel[valueUnwrapped]());
+
+		jQuery(element).closest('body').on('click', function (event) {
+
+		});
+		element.addEventListener('click', function (event) {
+			event.preventDefault();
+
+			viewModel[valueUnwrapped](!viewModel[valueUnwrapped]());
+		});
+	}
+};
+
 function ResumeStateModel (parent) {
 	var model = this;
 
