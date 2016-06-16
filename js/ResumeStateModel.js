@@ -11,89 +11,106 @@ function ResumeStateModel (parent) {
 
 	model.viewCount = ko.observable();
 	model.level = ko.observable();
+	model.selectedLevelOptionLabel = ko.computed(function () {
+		var item = parent.dictionary.activityLevel.findById(model.level());
+		return item ? item.label() : '';
+	});
+	model.isLevelPopupVisible = ko.observable(false);
+	model.previousLevel = ko.observable();
+	model.previousBranchIds = ko.observableArray();
+	model.previousCompanyIds = ko.observableArray();
+	model.toggleLevelPopup = function () {
+		model.previousLevel(model.level());
+		model.previousBranchIds(model.branchIds());
+		model.previousCompanyIds(model.companyIds());
+		model.isLevelPopupVisible(!model.isLevelPopupVisible());
+	};
+	model.cancelLevel = function () {
+		model.level(model.previousLevel());
+		model.branchIds(model.previousBranchIds());
+		model.companyIds(model.previousCompanyIds());
+		model.isLevelPopupVisible(false);
+	};
+
 	model.anonymous = ko.observable();
 
 	model.branchIds = ko.observableArray();
-	model.branchesLimit = 2;
-	model.branchOptions = parent.dictionary.branch;
-	model.branches = ko.observableArray();
-	model.isShowAllBranchesToggled = ko.observable(false);
-	model.isMoreBranchesTogglerVisible = ko.computed(function () {
-		return model.branches().length > model.branchesLimit;
-	});
-	model.branches.subscribe(function (newValue) {
-		var ids = newValue.map(function (item) {
-			return item.id;
-		});
-
-		var uniqueIds = ids.reduce(function (result, item) {
-			if (result.indexOf(item) === -1) result.push(item);
-			return result;
-		}, []);
-
-		model.branchIds(uniqueIds);
-	});
-	model.computedBranches = ko.computed(function () {
-		var items = model.branches();
-		return model.isShowAllBranchesToggled()
-			? items
-			: items.slice(Math.max(0, items.length - model.branchesLimit));
-	});
-	model.toggleMoreBranchesIconClass = ko.computed(function () {
-		return model.isShowAllBranchesToggled() ? 'fa fa fa-angle-up' : 'fa fa fa-angle-down';
-	});
-	model.removeBranch = function (item) {
-		model.branches.remove(item);
-	};
-	model.toggleMoreBranches = function () {
-		model.isShowAllBranchesToggled(!model.isShowAllBranchesToggled());
-	};
-
 	model.companyIds = ko.observableArray();
-	model.companies = ko.observableArray();
-	model.companies.subscribe(function (newValue) {
-		var ids = newValue.map(function (item) {
-			return item.notebookId;
-		});
-
-		var uniqueIds = ids.reduce(function (result, item) {
-			if (result.indexOf(item) === -1) result.push(item);
-			return result;
-		}, []);
-
-		model.companyIds(uniqueIds);
-	});
-	model.removeCompany = function (item) {
-		model.companies.remove(item);
+	model.itemsCompanyAndBranches = ko.observableArray();
+	model.removeCompanyOrBranch = function (item) {
+		model.itemsCompanyAndBranches.remove(item);
 	};
 
-	model.levelOptions = parent.dictionary.activityLevel;
-	model.selectedLevelOption = ko.computed({
-		read: function () {
-			return model.levelOptions.findById(model.level());
-		},
-		write: function (newValue) {
-			model.level(newValue ? newValue.id : undefined);
-		}
+	model.isVisibleToAll = ko.computed(function () {
+		return model.level() === 1;
 	});
-	model.selectedLevelOptionLabel = ko.computed(function () {
-		return model.selectedLevelOption() ? model.selectedLevelOption().label() : '';
+
+	model.isVisibleOnlyToEmployeers = ko.computed(function () {
+		return model.level() === 2;
 	});
+
+	model.isVisibleOnlyToOwner = ko.computed(function () {
+		return model.level() === 6;
+	});
+
+	model.isVisibleToAllExcept = ko.computed(function () {
+		return model.level() === 3;
+	});
+
+	model.setVisibleToAll = function () {
+		model.level(1);
+	};
+
+	model.setVisibleOnlyToEmployeers = function () {
+		model.level(2);
+	};
+
+	model.setVisibleOnlyToOwner = function () {
+		model.level(6);
+	};
+
+	model.setVisibleToAllExcept = function () {
+		model.level(3);
+	};
 
 	model.get = function () {
 		backend.get(model.api + '/resume/' + parent.resumeId + '/state').success(function (data) {
 			model.fromJS(data);
 
-			if (model.companyIds().length > 0) {
-				backgend.post(model.api + '/autocomplete/company', model.companyIds()).success(function (data) {
-					model.companies(data);
+			if (model.branchIds().length > 0) {
+				model.branchIds().forEach(function (id) {
+					var branch = parent.dictionary.branch.findById(id);
+					if (branch) {
+						model.itemsCompanyAndBranches.push(parent.dictionary.branch.findById(id));
+					}
 				});
 			}
+
+			if (model.companyIds().length > 0) {
+				backgend.post(model.api + '/autocomplete/company', model.companyIds()).success(function (data) {
+					model.itemsCompanyAndBranches(data.map(function (item) {
+						item.label = item.comanpyName;
+						return item;
+					}));
+				});
+			}
+
+			model.itemsCompanyAndBranches.subscribe(function (newValue) {
+				model.branchIds(newValue.filter(function (item) {
+					return item.hasOwnProperty('id') && item.id;
+				}));
+
+				model.companyIds(newValue.filter(function (item) {
+					return item.hasOwnProperty('notebookId') && item.notebookId;
+				}));
+			});
 		});
 	};
 
 	model.save = function () {
-		backend.post(model.api, model.toJS());
+		backend.post(model.api + '/resume/' + model.resumeId + '/state', model.toJS()).success(function () {
+			model.isLevelPopupVisible(false);
+		});
 	};
 
 	model.toJS = function () {

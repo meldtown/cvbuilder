@@ -465,7 +465,7 @@ input:-moz-placeholder {
 		z-index: 999;
 	}
 
-	.alert-message {
+	.alert-message{
 		min-width: 400px;
 		height: 50px;
 		line-height: 50px;
@@ -507,6 +507,7 @@ input:-moz-placeholder {
 		display: block;
 	}
 
+
 	.tooltip-container {
 		position: relative;
 		.input-tooltip {
@@ -520,7 +521,7 @@ input:-moz-placeholder {
 			background-color: #dcedc8;
 			border-radius: 2px;
 			z-index: 50;
-			&:before {
+			&:before{
 				content: '';
 				display: block;
 				position: absolute;
@@ -545,38 +546,41 @@ input:-moz-placeholder {
 		text-align: center;
 	}
 
-	.actions {
-		margin-top: 15px;
-		padding-left: 45px;
-		a {
-			text-decoration: none;
-			span {
-				color: #545353;
-			}
-		}
-		i {
-			margin-right: 15px;
+	.activity-level-popup {
+		z-index: 2;
+		position: absolute;
+		right: 0;
+		top: 100%;
+		background:white;
+		width:400px;
+		margin:20px 0;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+
+		.active {
+			background-color: #f7f7f7;
 		}
 
-		.actions-container {
-			ul {
-				li {
-					list-style: none;
-					&:not(:last-of-type) {
-						margin-bottom: 20px;
-					}
-				}
-				margin: 0;
-			}
-			h5 {
-				&:nth-of-type(2) {
-					cursor: pointer;
-					span {
-						border-bottom: 1px dashed currentColor;
-						margin-right: 5px;
-					}
-				}
-			}
+		.anonymous {
+			border: 1px solid #ccc;
+			border-left: none;
+			border-right: none;
+		}
+
+		.actions {
+			padding:10px 20px;
+		}
+
+		.t > .m,
+		.t > .f {
+			padding: 10px;
+		}
+
+		.t > .m:first-child {
+			padding-left: 20px;
+		}
+
+		.t > .m:last-child {
+			padding-right: 20px;
 		}
 	}
 
