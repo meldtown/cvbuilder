@@ -6,6 +6,8 @@ Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 Controls
 --------
 
+Message above the header: "Чтобы опубликовать резюме на сайте обязательно заполните раздел "Опыт работы" или "Образование".", quoted text will be links to add blocks
+
 Header - makrup
 Header / SearchState / Companies control
 Header / SearchState / Branches control

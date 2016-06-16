@@ -27,73 +27,116 @@
 		<i class="fa fa-clock-o rua-p-c-light" style="margin-left: 20px"></i>
 		<select data-bind="options: searchStateOptions, optionsText: 'label', optionsValue: 'id', value: searchState"></select>
 
-		<span data-bind="with: state">
-			<select data-bind="options: levelOptions, optionsText: 'label', value: selectedLevelOption"></select>
+		<span data-bind="with: state" style="position: relative">
+			<span data-bind="click: toggleLevelPopup">
+				<span>Доступно</span><small class="rua-p-c-light" data-bind="text: selectedLevelOptionLabel"></small>
+			</span>
+
+			<span data-bind="if: isLevelPopupVisible">
+				<div class="activity-level-popup">
+					<div data-bind="click: setVisibleToAll, css: { active: isVisibleToAll }">
+						<div class="t top">
+							<div class="m">
+								<i class="fa fa-globe rua-p-c-light"></i>
+							</div>
+							<div class="f">
+								<span>Всем пользователям</span>
+							</div>
+							<div class="m">
+						<span data-bind="if: isVisibleToAll">
+							<i class="fa fa-check text-success"></i>
+						</span>
+							</div>
+						</div>
+					</div>
+					<div data-bind="click: setVisibleOnlyToEmployeers, css: { active: isVisibleOnlyToEmployeers }">
+						<div class="t top">
+							<div class="m">
+								<i class="fa fa-briefcase rua-p-c-light"></i>
+							</div>
+							<div class="f">
+								<span>Зарегистрированным работодателям</span>
+							</div>
+							<div class="m">
+						<span data-bind="if: isVisibleOnlyToEmployeers">
+							<i class="fa fa-check text-success"></i>
+						</span>
+							</div>
+						</div>
+					</div>
+					<div data-bind="click: setVisibleOnlyToOwner, css: { active: isVisibleOnlyToOwner }">
+						<div class="t top">
+							<div class="m">
+								<i class="fa fa-lock rua-p-c-light"></i>
+							</div>
+							<div class="f">
+								<span>Только мне (скрытое резюме)</span>
+							</div>
+							<div class="m">
+						<span data-bind="if: isVisibleOnlyToOwner">
+							<i class="fa fa-check text-success"></i>
+						</span>
+							</div>
+						</div>
+					</div>
+					<div data-bind="click: setVisibleToAllExcept, css: { active: isVisibleToAllExcept }">
+						<div class="t top">
+							<div class="m">
+								<i class="fa fa-filter rua-p-c-light"></i>
+							</div>
+							<div class="f">
+								<p>
+									<span>Всем работодателям, кроме</span>
+									<br>
+									<small class="rua-p-c-light">введите название компании и выберите из списка</small>
+								</p>
+								<div class="form-inline">
+									<input type="text" class="input-block-level" data-bind="autocompleteCompanies: { value: itemsCompanyAndBranches, api: api }">
+								</div>
+								<div>
+						<span data-bind="foreach: itemsCompanyAndBranches">
+							<span class="label label-default">
+								<span data-bind="text: label"></span>
+								<a href="#" class="rua-p-c-light rua-b-none" data-bind="click: $parent.removeCompanyOrBranch">&times;</a>
+							</span>
+						</span>
+								</div>
+							</div>
+							<div class="m">
+						<span data-bind="if: isVisibleToAllExcept">
+							<i class="fa fa-check text-success"></i>
+						</span>
+							</div>
+						</div>
+					</div>
+					<div class="anonymous">
+						<div class="t top">
+							<div class="m">
+								<i class="fa fa-eye rua-p-c-light hidden"></i>
+							</div>
+							<div class="f">
+								<span>Анонимное резюме</span>
+								<div>
+									<small class="rua-p-c-light">lorem ipsum dolor sit amet</small>
+								</div>
+							</div>
+						</div>
+						<div class="t top">
+							<div class="m">
+								<input type="checkbox" id="anon" name="anon" style="margin: 0" data-bind="checked: anonymous"/>
+							</div>
+							<div class="f">
+								<label for="anon">Сделать анонимным</label>
+							</div>
+						</div>
+					</div>
+					<div class="actions">
+						<a href="#" class="btn btn-danger" data-bind="click: save">Применить</a>
+						<a href="#" class="btn btn-link rua-p-c-light" data-bind="click: cancelLevel">Отмена</a>
+					</div>
+				</div>
+			</span>
+
 		</span>
 	</div>
 </div>
-
-<!--
-<div data-bind="with: state">
-	<div class="row">
-		<div class="col d-1of3">
-			<label for="branchIdsReadonly">branchIds:</label>
-		</div>
-		<div class="col d-2of3">
-			<input id="branchIdsReadonly" name="branchIdsReadonly" type="text" data-bind="value: branchIds" readonly />
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<label for="input">input:</label>
-		</div>
-		<div class="col d-2of3">
-			<input id="input" name="input" type="text" data-bind="autocompleteBranches: { value: branches, options: branchOptions }" />
-			<div>
-				<span data-bind="foreach: computedBranches">
-					<span class="label label-default">
-						<span data-bind="text: label"></span>
-						<a href="#" class="rua-p-c-light rua-b-none" data-bind="click: $parent.removeBranch">&times;</a>
-					</span>
-				</span>
-				<span data-bind="if: isMoreBranchesTogglerVisible">
-					<span class="label label-default" data-bind="click: toggleMoreBranches">
-						<span data-bind="label: resource.all"></span>
-						<i class="fa fa-angle-down" data-bind="css: toggleMoreBranchesIconClass"></i>
-					</span>
-				</span>
-			</div>
-
-		</div>
-	</div>
-</div>
--->
-
-<!--
-<div data-bind="with: state">
-	<div class="row">
-		<div class="col d-1of3">
-			<label for="companyIdsReadonly">companyIds:</label>
-		</div>
-		<div class="col d-2of3">
-			<input id="companyIdsReadonly" name="companyIdsReadonly" type="text" data-bind="value: companyIds" readonly />
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col d-1of3">
-			<label for="input">input:</label>
-		</div>
-		<div class="col d-2of3">
-			<input id="input" name="input" type="text" data-bind="autocompleteCompanies: { value: companies, api: api }" />
-			<div data-bind="foreach: companies">
-					<span class="label label-default">
-						<span data-bind="text: companyName"></span>
-						<a href="#" class="rua-p-c-light rua-b-none" data-bind="click: $parent.removeCompany">&times;</a>
-					</span>
-			</div>
-		</div>
-	</div>
-</div>
--->

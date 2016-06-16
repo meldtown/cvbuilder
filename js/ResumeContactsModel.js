@@ -244,9 +244,10 @@ function ResumeContactsModel (parent) {
 	};
 
 	model.isAddPortfolioButtonVisible = ko.computed(function () {
-		return model.portfolio().filter(function (item) {
-				return item.portfolio() && item.portfolio().length > 0;
-			}).length > 0;
+		return model.portfolio()
+				.filter(function (item) {
+					return item.portfolio() && item.portfolio().length > 0;
+				}).length > 0;
 	});
 
 	InitEditableModel(model, 'contacts');
@@ -372,8 +373,6 @@ function ResumeContactsSocialNetworkModel (parent, data) {
 				else if (model.subTypeAsString() === '4') return text.indexOf('twitter.com') === 0;
 				else if (model.subTypeAsString() === '5') return text.indexOf('plus.google.com') === 0;
 				else if (model.subTypeAsString() === '6') return text.indexOf('ok.ru') === 0;
-
-				///return text.indexOf(domain) === 0;
 			},
 			message: function (params, observable) {
 				return model.resource.wrongFormat.label();

@@ -546,6 +546,44 @@ input:-moz-placeholder {
 		text-align: center;
 	}
 
+	.activity-level-popup {
+		z-index: 2;
+		position: absolute;
+		right: 0;
+		top: 100%;
+		background:white;
+		width:400px;
+		margin:20px 0;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+
+		.active {
+			background-color: #f7f7f7;
+		}
+
+		.anonymous {
+			border: 1px solid #ccc;
+			border-left: none;
+			border-right: none;
+		}
+
+		.actions {
+			padding:10px 20px;
+		}
+
+		.t > .m,
+		.t > .f {
+			padding: 10px;
+		}
+
+		.t > .m:first-child {
+			padding-left: 20px;
+		}
+
+		.t > .m:last-child {
+			padding-right: 20px;
+		}
+	}
+
 }
 
 .ui-autocomplete .ui-menu-item a.autocomplete-company {
