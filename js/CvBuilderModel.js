@@ -270,6 +270,20 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		return model.dictionary.resource.addExperience.label();
 	});
 
+	model.isAllActionsVisible = ko.observable(false);
+
+	model.toggleAllActions = function () {
+		model.isAllActionsVisible(!model.isAllActionsVisible());
+	};
+
+	model.toggleActionsText = ko.computed(function () {
+		return model.isAllActionsVisible() ? model.dictionary.resource.turnActions.label() : model.dictionary.resource.allActions.label();
+	});
+
+	model.toggleActionsClass = ko.computed(function () {
+		return model.isAllActionsVisible() ? 'fa fa-caret-up' : 'fa fa-caret-down';
+	});
+
 	model.load = function () {
 		backend.get(model.api + '/resume/' + model.resumeId + '/searchstate').success(function (data) {
 			model.searchState(data || 1);
