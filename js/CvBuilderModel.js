@@ -24,7 +24,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 			// add findById method to dictionary
 			model.dictionary[key].findById = function (id) {
-				id = id || '';
+				if (id !== 0) id = id || '';
 				return model.dictionary[key].filter(function (item) {
 					return item.id.toString() === id.toString();
 				}).shift();

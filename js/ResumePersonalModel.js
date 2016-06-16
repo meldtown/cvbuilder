@@ -141,14 +141,25 @@ function ResumePersonalModel (parent) {
 		write: function (newValue) {
 			model.sex(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.selectedSexOptionLabel = ko.computed(function () {
-		if (model.selectedSexOption()) {
-			if (model.selectedSexOption()._lng().dictionary === 'en') return model.selectedSexOption().label();
-			else return model.selectedSexOption().label() + ' ' + model.resource.personalSexLabel.label().toLocaleLowerCase();
-		} else {
-			return model.selectedSexOption() ? model.selectedSexOption().label() : '';
+	}).extend({
+		validation: {
+			validator: function (val) {
+				if (model.sex() === 0 || model.sex() === 1) {
+					return true;
+				} else return false;
+			},
+			message: function (params, observable) {
+				return model.resource.requiredMessage.label();
+			}
 		}
+	});
+	model.selectedSexOptionLabel = ko.computed(function () {
+		var label = parent.dictionary.sex.findById(model.sex());
+		label = label ? label.label() : '';
+
+		return model._lng().dictionary === 'en'
+			? label
+			: label + ' ' + model.resource.personalSexLabel.label().toLocaleLowerCase();
 	});
 
 	// model.dateBirthFormatted = ko.computed(function () {
