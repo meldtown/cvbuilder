@@ -12,10 +12,30 @@
 		<div data-bind="text: dictionary.resource.resumeTooltip.label" class="rua-p-c-light resume-tooltip"></div>
 	</div>
 	<div class="col d-1of3" style="vertical-align: bottom">
-		<div class="form-inline">
-			<label for="uilanguage">Язык резюме</label>
-			<select id="uilanguage" data-bind="options: _lngOptions, optionsText: 'label', value: _lng"></select>
+		<!--<div class="form-inline">-->
+		<!--<label for="uilanguage">Язык резюме</label>-->
+		<!--<select id="uilanguage" data-bind="options: _lngOptions, optionsText: 'label', value: _lng"></select>-->
+		<!--</div>-->
+		<div class="language-toggler">
+			<a href="#" data-bind="togglerFor: isLanguageSelectPopupOpen" class="rua-p-c-light rua-b-none">
+				<span data-bind="text: selectedLanguageLabel"></span>
+				<i class="fa fa-caret-down"></i>
+			</a>
+
+			<div class="language-popup" data-bind="stopClickPropagation: true, css: { active: isLanguageSelectPopupOpen }">
+				<div><a href="#" class="rua-p-c-light" data-bind="click: setRussian">
+					Русский
+						<i data-bind="visible: isRussianSelected" class="fa fa-check"></i>
+				</a></div>
+				<div><a href="#" class="rua-p-c-light" data-bind="click: setUkrainian">Українська
+					<i data-bind="visible: isUkrainianSelected" class="fa fa-check"></i>
+				</a></div>
+				<div><a href="#" class="rua-p-c-light" data-bind="click: setEnglish">English
+					<i data-bind="visible: isEnglishSelected" class="fa fa-check"></i>
+				</a></div>
+			</div>
 		</div>
+		<div class="rua-p-c-light language-toggler-label" data-bind="label: dictionary.resource.cvLanguageToggler"></div>
 	</div>
 </div>
 <div class="cvbuilder-white-box" style="margin: 20px 0;">

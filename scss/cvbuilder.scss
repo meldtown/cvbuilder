@@ -20,10 +20,10 @@
 $buttonColor: #b70004;
 $ruaPcLight: #7e7e7e;
 
-
 span, div {
 	word-wrap: break-word;
 }
+
 input::-webkit-input-placeholder {
 	@extend .rua-p-c-light;
 	opacity: .7;
@@ -351,7 +351,6 @@ input:-moz-placeholder {
 			padding-left: 30px;
 		}
 	}
-;
 
 	.recommendation-block {
 		background-color: #eee;
@@ -687,4 +686,52 @@ input:-moz-placeholder {
 		small {
 			opacity: .8;
 		}
-	}}
+	}
+	.language-toggler-label {
+		font-weight: bold;
+		margin-right: 20px;
+		float: right;
+		font-size: 13px;
+	}
+	.language-toggler {
+		float: right;
+		position: relative;
+		margin-right: 50px;
+		font-size: 13px;
+		& > a span {
+			border-bottom: 1px dashed currentColor;
+		}
+		.language-popup {
+			position: absolute;
+			background-color: #fff;
+			box-shadow: 0 0 10px 0 rgba(120,120,120,.5);
+			& > div {
+				position: relative;
+				cursor: pointer;
+				text-transform: lowercase;
+				padding: 5px 50px 5px 5px;
+				&:hover {
+					background-color: #f7f7f7;
+				}
+			}
+
+			top: -5px;
+			a {
+				text-decoration: none;
+
+				.fa {
+					position: absolute;
+					right: 5px;
+					top: 50%;
+					transform: translateY(-50%);
+					color: #71a544;
+					font-size: 17px;
+				}
+			}
+		}
+		.language-popup:not(.active) {
+			display: none
+		}
+	}
+
+}

@@ -9,6 +9,35 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		{id: 2, label: 'English', moment: 'us', dictionary: 'en', enum: 'English'}
 	];
 	model._lng = ko.observable(model._lngOptions[0]);
+	model.selectedLanguageLabel = ko.computed(function () {
+		return model._lng().label;
+	});
+
+	model.isLanguageSelectPopupOpen = ko.observable(false);
+
+	model.setEnglish = function () {
+		model._lng(model._lngOptions[2]);
+		model.isLanguageSelectPopupOpen(false);
+	};
+	model.setUkrainian = function () {
+		model._lng(model._lngOptions[1]);
+		model.isLanguageSelectPopupOpen(false);
+	};
+	model.setRussian = function () {
+		model._lng(model._lngOptions[0]);
+		model.isLanguageSelectPopupOpen(false);
+	};
+	model.isRussianSelected = ko.computed(function () {
+		return model._lng().id === 1;
+	});
+
+	model.isUkrainianSelected = ko.computed(function () {
+		return model._lng().id === 3;
+	});
+
+	model.isEnglishSelected = ko.computed(function () {
+		return model._lng().id === 2;
+	});
 
 	model.dictionary = dictionary;
 
