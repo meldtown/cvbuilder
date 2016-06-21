@@ -43,8 +43,8 @@
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="location" name="location" maxlength="255" class="input-block-level" data-bind="autocompleteCity: { value: location, options: cityOptions }">
-			<span class="validationMessage" data-bind="validationMessage: cityId"></span>
+			<input type="text" id="location" name="location" maxlength="255" class="input-block-level" data-bind="validationElement: location, autocompleteCity: { value: location, options: cityOptions }">
+			<span class="validationMessage" data-bind="validationMessage: location"></span>
 		</div>
 	</div>
 
