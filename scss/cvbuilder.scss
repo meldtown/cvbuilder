@@ -20,6 +20,10 @@
 $buttonColor: #b70004;
 $ruaPcLight: #7e7e7e;
 
+
+span, div {
+	word-wrap: break-word;
+}
 input::-webkit-input-placeholder {
 	@extend .rua-p-c-light;
 	opacity: .7;
