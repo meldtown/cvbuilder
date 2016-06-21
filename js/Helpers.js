@@ -1,3 +1,27 @@
+ko.bindingHandlers.togglerFor = {
+	init: function (element, valueAccessor) {
+		var property = valueAccessor();
+
+		jQuery(element).on('click', function (event) {
+			event.preventDefault();
+			event.stopPropagation();
+			property(!property());
+		});
+
+		jQuery(element).closest('html').on('click', function () {
+			property(false);
+		});
+	}
+};
+
+ko.bindingHandlers.stopClickPropagation = {
+	init: function (element) {
+		jQuery(element).on('click', function (event) {
+			event.stopPropagation();
+		});
+	}
+};
+
 ko.bindingHandlers.element = {
 	init: function (element, valueAccessor) {
 		var target = valueAccessor();
