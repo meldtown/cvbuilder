@@ -180,10 +180,6 @@ function ResumeContactsModel (parent) {
 	model.get = function () {
 		backend.get(parent.api + '/resume/' + parent.resumeId + '/contact').success(function (data) {
 			model.fromJS(data);
-
-			if (model.portfolio().length === 0) {
-				model.portfolio.push(new ResumeContactsPortfolioModel(model));
-			}
 		});
 	};
 
@@ -218,6 +214,9 @@ function ResumeContactsModel (parent) {
 		model.additionalPhones().forEach(function (item) {
 			item.beginEdit();
 		});
+		if (model.portfolio().length === 0) {
+			model.portfolio.push(new ResumeContactsPortfolioModel(model));
+		}
 		model.portfolio().forEach(function (item) {
 			item.beginEdit();
 		});

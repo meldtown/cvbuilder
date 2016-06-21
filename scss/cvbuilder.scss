@@ -704,7 +704,7 @@ input:-moz-placeholder {
 		.language-popup {
 			position: absolute;
 			background-color: #fff;
-			box-shadow: 0 0 10px 0 rgba(120,120,120,.5);
+			box-shadow: 0 0 10px 0 rgba(120, 120, 120, .5);
 			& > div {
 				position: relative;
 				cursor: pointer;
@@ -732,6 +732,32 @@ input:-moz-placeholder {
 		.language-popup:not(.active) {
 			display: none
 		}
+	}
+
+	.state-toggler {
+		display: inline-block;
+		position: relative;
+		.state-popup {
+			&:not(.active) {
+				display: none;
+			}
+			position: absolute;
+			background-color: #fff;
+			box-shadow: 0 0 10px 0 rgba(120, 120, 120, .5);
+			& > div {
+				cursor: pointer;
+				text-transform: lowercase;
+				padding: 5px 50px 5px 5px;
+				&:hover {
+					background-color: #f7f7f7;
+				}
+			}
+			top: -5px;
+			a {
+				text-docaration: none;
+			}
+		}
+
 	}
 
 }
