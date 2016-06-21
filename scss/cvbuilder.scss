@@ -730,14 +730,18 @@ input:-moz-placeholder {
 			}
 		}
 		.language-popup:not(.active) {
-			display: none
+			display: none;
 		}
 	}
 
 	.state-toggler {
 		display: inline-block;
+		margin-left: 7px;
 		position: relative;
+		font-size: 12px;
+		vertical-align: middle;
 		.state-popup {
+			z-index: 666;
 			&:not(.active) {
 				display: none;
 			}
@@ -746,15 +750,25 @@ input:-moz-placeholder {
 			box-shadow: 0 0 10px 0 rgba(120, 120, 120, .5);
 			& > div {
 				cursor: pointer;
-				text-transform: lowercase;
+				position: relative;
 				padding: 5px 50px 5px 5px;
+				min-width: 135px;
 				&:hover {
 					background-color: #f7f7f7;
 				}
 			}
 			top: -5px;
 			a {
-				text-docaration: none;
+				text-decoration: none;
+
+				.fa {
+					position: absolute;
+					right: 5px;
+					top: 50%;
+					transform: translateY(-50%);
+					color: #71a544;
+					font-size: 17px;
+				}
 			}
 		}
 

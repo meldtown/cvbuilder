@@ -49,23 +49,23 @@
 		<span data-bind="text: dateFormatted"></span>
 		<button class="btn btn-danger" data-bind="click: updateDate">Update</button>
 
-		<i class="fa fa-clock-o rua-p-c-light" style="margin-left: 20px"></i>
+		<i class="fa fa-clock-o rua-p-c-light" style="margin-left: 20px; font-size: 17px; vertical-align: middle;"></i>
 		<div class="state-toggler">
 			<a href="#" data-bind="togglerFor: isStateSelectPopupOpen" class="rua-p-c-light rua-b-none">
-				<span data-bind="text: selectedStateLabel"></span>
+				<span data-bind="html: selectedStateLabel"></span>
 				<i class="fa fa-caret-down"></i>
 			</a>
 			<div class="state-popup" data-bind="stopClickPropagation: true, css: { active: isStateSelectPopupOpen }">
-				<div>
-					<a href="#" class="rua-p-c-light" data-bind="click: setSearch">
-						<span data-bind="text: searchStateOptions[0].label"></span>
-						<i data-bind="visible: isRussianSelected" class="fa fa-check"></i>
+				<div data-bind="click: setSearch">
+					<a href="#" class="rua-p-c-light">
+						<span data-bind="html: searchStateOptions[0].label"></span>
+						<i data-bind="visible: isSearchStateSelected" class="fa fa-check"></i>
 					</a>
 				</div>
-				<div>
-					<a href="#" class="rua-p-c-light" data-bind="click: setWork">
-						<span data-bind="text: searchStateOptions[1].label"></span>
-						<i data-bind="visible: isRussianSelected" class="fa fa-check"></i>
+				<div data-bind="click: setWork">
+					<a href="#" class="rua-p-c-light" >
+						<span data-bind="html: searchStateOptions[1].label"></span>
+						<i data-bind="visible: isWorkStateSelected" class="fa fa-check"></i>
 					</a>
 				</div>
 			</div>

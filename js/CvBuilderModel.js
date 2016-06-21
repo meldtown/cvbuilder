@@ -193,15 +193,15 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.searchStateOptions = [
 		new DictionaryModel(model, {
 			id: 1,
-			ru: 'Активно \n ищу работу',
-			ua: 'Активно \n шукаю роботу',
-			en: 'Actively \n seeking employment'
+			ru: 'Активно <br /> ищу работу',
+			ua: 'Активно <br /> шукаю роботу',
+			en: 'Actively <br /> seeking employment'
 		}),
 		new DictionaryModel(model, {
 			id: 2,
-			ru: 'Работаю, но открыт \n для предложений',
-			ua: 'Працюю, але розгляну \n пропозиції',
-			en: 'Employed but open \n to new opportunities'
+			ru: 'Работаю, но открыт <br /> для предложений',
+			ua: 'Працюю, але розгляну <br /> пропозиції',
+			en: 'Employed but open <br /> to new opportunities'
 		})
 	];
 
@@ -212,7 +212,15 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	});
 
 	model.isStateSelectPopupOpen = ko.observable(false);
-	
+
+	model.isSearchStateSelected = ko.computed(function () {
+		return model.searchState() === 1;
+	});
+
+	model.isWorkStateSelected = ko.computed(function () {
+		return model.searchState() === 2;
+	});
+
 	model.setSearch = function () {
 		model.searchState(1);
 		model.isStateSelectPopupOpen(false);
@@ -221,7 +229,6 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		model.searchState(2);
 		model.isStateSelectPopupOpen(false);
 	};
-
 
 	model.getUiLanguage = function () {
 		backend.get(parent.api + '/resume/' + model.resumeId + '/uilanguage').success(function (data) {
