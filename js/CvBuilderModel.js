@@ -24,7 +24,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 			// add findById method to dictionary
 			model.dictionary[key].findById = function (id) {
-				id = id || '';
+				if (id !== 0) id = id || '';
 				return model.dictionary[key].filter(function (item) {
 					return item.id.toString() === id.toString();
 				}).shift();
@@ -228,8 +228,8 @@ function CvBuilderModel (api, resumeId, dictionary) {
 
 		if (model.contacts.phone()) result += 10;
 		if (model.skill.text()) result += 10;
-		if (model.isExperienceBlockAdded()) result += 5;
-		if (model.experience().length > 1) result += 5;
+		if (model.experience().length >= 1) result += 5;
+		if (model.experience().length >= 2) result += 5;
 		if (model.isEducationBlockAdded()) result += 10;
 		if (model.isLanguageBlockAdded()) result += 5;
 		if (model.isTrainingBlockAdded()) result += 5;

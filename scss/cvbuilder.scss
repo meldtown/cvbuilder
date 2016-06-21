@@ -465,7 +465,7 @@ input:-moz-placeholder {
 		z-index: 999;
 	}
 
-	.alert-message{
+	.alert-message {
 		min-width: 400px;
 		height: 50px;
 		line-height: 50px;
@@ -507,7 +507,6 @@ input:-moz-placeholder {
 		display: block;
 	}
 
-
 	.tooltip-container {
 		position: relative;
 		.input-tooltip {
@@ -521,7 +520,7 @@ input:-moz-placeholder {
 			background-color: #dcedc8;
 			border-radius: 2px;
 			z-index: 50;
-			&:before{
+			&:before {
 				content: '';
 				display: block;
 				position: absolute;
@@ -551,9 +550,9 @@ input:-moz-placeholder {
 		position: absolute;
 		right: 0;
 		top: 100%;
-		background:white;
-		width:400px;
-		margin:20px 0;
+		background: white;
+		width: 400px;
+		margin: 20px 0;
 		box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
 
 		.active {
@@ -564,10 +563,6 @@ input:-moz-placeholder {
 			border: 1px solid #ccc;
 			border-left: none;
 			border-right: none;
-		}
-
-		.actions {
-			padding:10px 20px;
 		}
 
 		.t > .m,
@@ -584,37 +579,108 @@ input:-moz-placeholder {
 		}
 	}
 
-}
+	.actions {
+		margin-top: 15px;
+		padding-left: 45px;
+		a {
+			text-decoration: none;
+			span {
+				color: #545353;
+			}
+		}
+		i {
+			margin-right: 15px;
+		}
 
-.ui-autocomplete .ui-menu-item a.autocomplete-company {
-	display: flex;
-	align-items: center;
-	min-height: 55px;
+		.actions-container {
+			ul {
+				li {
+					list-style: none;
+					&:not(:last-of-type) {
+						margin-bottom: 20px;
+					}
+				}
+				margin: 0;
+			}
+			h5 {
+				&:nth-of-type(2) {
+					cursor: pointer;
+					span {
+						border-bottom: 1px dashed currentColor;
+						margin-right: 5px;
+					}
+				}
+			}
+			.show-all {
+				margin-top: 20px;
+			}
 
-	span {
+		}
+
+		.ui-autocomplete .ui-menu-item a.autocomplete-company {
+			display: flex;
+			align-items: center;
+			min-height: 55px;
+
+			span {
+				display: flex;
+				flex-direction: column;
+			}
+
+			img {
+				width: auto;
+				height: auto;
+				max-width: none;
+			}
+
+			& > span:first-child {
+				align-self: stretch;
+				width: 95px;
+				text-align: center;
+				background-position: 50% 50%;
+				background-repeat: no-repeat;
+			}
+
+			& > span:last-child {
+				padding-left: 10px;
+			}
+
+			small {
+				opacity: .8;
+			}
+		}
+
+	}
+
+	.ui-autocomplete .ui-menu-item a.autocomplete-company {
 		display: flex;
-		flex-direction: column;
-	}
+		align-items: center;
+		min-height: 55px;
 
-	img {
-		width: auto;
-		height: auto;
-		max-width: none;
-	}
+		span {
+			display: flex;
+			flex-direction: column;
+		}
 
-	& > span:first-child {
-		align-self: stretch;
-		width: 95px;
-		text-align: center;
-		background-position: 50% 50%;
-		background-repeat: no-repeat;
-	}
+		img {
+			width: auto;
+			height: auto;
+			max-width: none;
+		}
 
-	& > span:last-child {
-		padding-left: 10px;
-	}
+		& > span:first-child {
+			align-self: stretch;
+			width: 95px;
+			text-align: center;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+		}
 
-	small {
-		opacity: .8;
-	}
-}
+		& > span:last-child {
+			padding-left: 10px;
+		}
+
+		small {
+			opacity: .8;
+		}
+	}}
