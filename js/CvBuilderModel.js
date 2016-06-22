@@ -179,7 +179,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		if (!model.date()) return '';
 
 		moment.locale(model._lng().moment);
-		return moment(model.date()).format('LL');
+		return moment(model.date()).format('LL').replace('г.', '');
 	});
 	model.updateDate = function () {
 		backend.post(model.api + '/resume/' + model.resumeId + '/date').success(function () {

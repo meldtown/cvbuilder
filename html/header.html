@@ -38,16 +38,16 @@
 		<div class="rua-p-c-light language-toggler-label" data-bind="label: dictionary.resource.cvLanguageToggler"></div>
 	</div>
 </div>
-<div class="cvbuilder-white-box" style="margin: 20px 0;">
+<div class="cvbuilder-white-box" style="margin: 20px 0; padding: 20px 0 20px 44px; position:relative;">
 	<div class="form-inline">
-		<span data-bind="with: state">
-			<i class="fa fa-eye rua-p-c-light"></i>
-			<span data-bind="text: viewCount"></span>
+		<span data-bind="with: state" style="font-size: 13px;">
+			<i class="fa fa-eye rua-p-c-light" style="margin-right: 7px;"></i>
+			<span data-bind="text: viewCount"></span>&nbsp;<span data-bind="label: resource.levelViewCount"></span>
 		</span>
 
-		<i class="fa fa-calendar rua-p-c-light" style="margin-left: 20px"></i>
-		<span data-bind="text: dateFormatted"></span>
-		<button class="btn btn-danger" data-bind="click: updateDate">Update</button>
+		<i class="fa fa-calendar rua-p-c-light" style="margin-left: 30px"></i>
+		<span data-bind="text: dateFormatted" style="font-size: 13px;"></span>
+		<button class="btn btn-danger" data-bind="label: dictionary.resource.updateButton, click: updateDate" style="margin: 0 40px 0 16px; font-size: 12px; padding: 8px 16px;"></button>
 
 		<i class="fa fa-clock-o rua-p-c-light" style="margin-left: 20px; font-size: 17px; vertical-align: middle;"></i>
 		<div class="state-toggler">
@@ -63,27 +63,33 @@
 					</a>
 				</div>
 				<div data-bind="click: setWork">
-					<a href="#" class="rua-p-c-light" >
+					<a href="#" class="rua-p-c-light">
 						<span data-bind="html: searchStateOptions[1].label"></span>
 						<i data-bind="visible: isWorkStateSelected" class="fa fa-check"></i>
 					</a>
 				</div>
 			</div>
 		</div>
-		<span data-bind="with: state" style="position: relative">
-			<span data-bind="click: toggleLevelPopup">
-				<span>Доступно</span><small class="rua-p-c-light" data-bind="text: selectedLevelOptionLabel"></small>
+		<div class="level-toggler">
+			<div class="logo-container"><i data-bind="css: state.levelLogoClass"></i></div>
+			<span data-bind="with: state">
+			<span data-bind="togglerFor: isLevelPopupOpen" style="cursor: pointer;">
+				<span data-bind="label: resource.levelAvailability"></span>
+				<br>
+				<small class="rua-p-c-light" data-bind="text: selectedLevelOptionLabel"></small>
+				<i class="fa fa-caret-down rua-p-c-light"></i>
 			</span>
 
-			<span data-bind="if: isLevelPopupVisible">
-				<div class="activity-level-popup">
+				<div class="activity-level-popup" data-bind="stopClickPropagation: true, css: { active: isLevelPopupOpen }">
 					<div data-bind="click: setVisibleToAll, css: { active: isVisibleToAll }">
 						<div class="t top">
 							<div class="m">
 								<i class="fa fa-globe rua-p-c-light"></i>
 							</div>
 							<div class="f">
-								<span>Всем пользователям</span>
+								<span data-bind="label: resource.levelAllUsersHeader"></span>
+								<br>
+								<small class="rua-p-c-light" data-bind="visible: isVisibleToAll, label: resource.levelAllUsersHint"></small>
 							</div>
 							<div class="m">
 						<span data-bind="if: isVisibleToAll">
@@ -98,7 +104,9 @@
 								<i class="fa fa-briefcase rua-p-c-light"></i>
 							</div>
 							<div class="f">
-								<span>Зарегистрированным работодателям</span>
+								<span data-bind="label: resource.levelRegisteredUsersHeader"></span>
+								<br>
+								<small class="rua-p-c-light" data-bind="visible: isVisibleOnlyToEmployeers, label: resource.levelRegisteredUsersHint"></small>
 							</div>
 							<div class="m">
 						<span data-bind="if: isVisibleOnlyToEmployeers">
@@ -113,7 +121,9 @@
 								<i class="fa fa-lock rua-p-c-light"></i>
 							</div>
 							<div class="f">
-								<span>Только мне (скрытое резюме)</span>
+								<span data-bind="label: resource.levelHiddenHeader"></span>
+								<br>
+								<small class="rua-p-c-light" data-bind="visible: isVisibleOnlyToOwner, label: resource.levelHiddenHint"></small>
 							</div>
 							<div class="m">
 						<span data-bind="if: isVisibleOnlyToOwner">
@@ -129,11 +139,11 @@
 							</div>
 							<div class="f">
 								<p>
-									<span>Всем работодателям, кроме</span>
+									<span data-bind="label: resource.levelAllExceptHeader"></span>
 									<br>
-									<small class="rua-p-c-light">введите название компании и выберите из списка</small>
+									<small class="rua-p-c-light" data-bind="visible: isVisibleToAllExcept, label: resource.levelAllExceptHeader"></small>
 								</p>
-								<div class="form-inline">
+								<div class="form-inline" data-bind="visible: isVisibleToAllExcept">
 									<input type="text" class="input-block-level" data-bind="autocompleteCompanies: { value: itemsCompanyAndBranches, api: api }">
 								</div>
 								<div>
@@ -158,9 +168,9 @@
 								<i class="fa fa-eye rua-p-c-light hidden"></i>
 							</div>
 							<div class="f">
-								<span>Анонимное резюме</span>
+								<span data-bind="label: resource.levelAnonymousHeader"></span>
 								<div>
-									<small class="rua-p-c-light">lorem ipsum dolor sit amet</small>
+									<small class="rua-p-c-light" data-bind="label: resource.levelAnonymousHint"></small>
 								</div>
 							</div>
 						</div>
@@ -169,17 +179,17 @@
 								<input type="checkbox" id="anon" name="anon" style="margin: 0" data-bind="checked: anonymous"/>
 							</div>
 							<div class="f">
-								<label for="anon">Сделать анонимным</label>
+								<label for="anon" data-bind="label: resource.levelMakeAnonymous"></label>
 							</div>
 						</div>
 					</div>
 					<div class="actions">
-						<a href="#" class="btn btn-danger" data-bind="click: save">Применить</a>
-						<a href="#" class="btn btn-link rua-p-c-light" data-bind="click: cancelLevel">Отмена</a>
+						<a href="#" class="btn btn-danger" data-bind="click: save, label: resource.applyButton"></a>
+						<a href="#" class="btn btn-link rua-p-c-light" data-bind="click: cancelLevel, label: resource.cancelButton"></a>
 					</div>
 				</div>
-			</span>
 
-		</span>
+
+		</span></div>
 	</div>
 </div>

@@ -62,22 +62,27 @@ function ResumeStateModel (parent) {
 		var item = parent.dictionary.activityLevel.findById(model.level());
 		return item ? item.label() : '';
 	});
-	model.isLevelPopupVisible = ko.observable(false);
 	model.previousLevel = ko.observable();
 	model.previousBranchIds = ko.observableArray();
 	model.previousCompanyIds = ko.observableArray();
-	model.toggleLevelPopup = function () {
-		model.previousLevel(model.level());
-		model.previousBranchIds(model.branchIds());
-		model.previousCompanyIds(model.companyIds());
-		model.isLevelPopupVisible(!model.isLevelPopupVisible());
-	};
+
+	model.isLevelPopupOpen = ko.observable(false);
 	model.cancelLevel = function () {
-		model.level(model.previousLevel());
-		model.branchIds(model.previousBranchIds());
-		model.companyIds(model.previousCompanyIds());
-		model.isLevelPopupVisible(false);
+		model.isLevelPopupOpen(false);
 	};
+	model.isLevelPopupOpen.subscribe(function (newValue) {
+		if (newValue === false) {
+			if (model.previousLevel()) {
+				model.level(model.previousLevel());
+				model.branchIds(model.previousBranchIds());
+				model.companyIds(model.previousCompanyIds());
+			}
+		} else if (newValue === true) {
+			model.previousLevel(model.level());
+			model.previousBranchIds(model.branchIds());
+			model.previousCompanyIds(model.companyIds());
+		}
+	});
 
 	model.anonymous = ko.observable();
 
@@ -102,6 +107,13 @@ function ResumeStateModel (parent) {
 
 	model.isVisibleToAllExcept = ko.computed(function () {
 		return model.level() === 3;
+	});
+
+	model.levelLogoClass = ko.computed(function () {
+		if (model.isVisibleToAll()) return 'fa fa-globe';
+		if (model.isVisibleOnlyToEmployeers()) return 'fa fa-briefcase';
+		if (model.isVisibleOnlyToOwner()) return 'fa fa-lock';
+		if (model.isVisibleToAllExcept()) return 'fa fa-filter';
 	});
 
 	model.setVisibleToAll = function () {
@@ -156,7 +168,8 @@ function ResumeStateModel (parent) {
 
 	model.save = function () {
 		backend.post(model.api + '/resume/' + model.resumeId + '/state', model.toJS()).success(function () {
-			model.isLevelPopupVisible(false);
+			model.previousLevel(null);
+			model.isLevelPopupOpen(false);
 		});
 	};
 

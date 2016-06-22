@@ -549,13 +549,12 @@ input:-moz-placeholder {
 	}
 
 	.activity-level-popup {
-		z-index: 2;
+		z-index: 500;
 		position: absolute;
 		right: 0;
 		top: 100%;
 		background: white;
 		width: 400px;
-		margin: 20px 0;
 		box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
 
 		.active {
@@ -583,7 +582,7 @@ input:-moz-placeholder {
 	}
 
 	.actions {
-		margin-top: 15px;
+		margin: 15px 0;
 		padding-left: 45px;
 		a {
 			text-decoration: none;
@@ -705,6 +704,7 @@ input:-moz-placeholder {
 			position: absolute;
 			background-color: #fff;
 			box-shadow: 0 0 10px 0 rgba(120, 120, 120, .5);
+			z-index: 333;
 			& > div {
 				position: relative;
 				cursor: pointer;
@@ -772,6 +772,68 @@ input:-moz-placeholder {
 			}
 		}
 
+	}
+
+	.level-toggler {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 295px;
+		padding: 20px;
+		box-sizing: border-box;
+		border-left: 1px solid rgba(0, 0, 0, 0.12);
+		.logo-container {
+			position: absolute;
+			width: 38px;
+			top: 0;
+			right: 0;
+			height: 100%;
+			font-size: 28px;
+			text-align: center;
+			background-color: #c5e1a5;
+			i {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				color: rgba(120,120,120,.5);
+			}
+		}
+		& > span > span {
+			font-size: 13px;
+			small {
+				font-size: 12px;
+			}
+		}
+		.activity-level-popup {
+			right: 0;
+			&:not(.active) {
+				display: none;
+			}
+			& > div {
+				&:nth-child(-n + 4):hover {
+					background-color: #f7f7f7;
+					cursor: pointer;
+				}
+			}
+			.f {
+				span {
+					font-size: 13px;
+				}
+				small {
+					font-size: 12px;
+				}
+			}
+		}
+
+		.t.top input[type=checkbox] {
+			cursor: pointer;
+		}
+		
+		label[for=anon] {
+			cursor: pointer;
+		}
 	}
 
 }
