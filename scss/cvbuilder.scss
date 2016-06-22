@@ -836,4 +836,59 @@ input:-moz-placeholder {
 		}
 	}
 
+	.greeting-popup {
+		position: relative;
+		background-color: #fafafa;
+		padding-right: 50px;
+		&.gray {
+			p span:last-child {
+				color: #c55d59;
+				border-bottom: 1px dashed currentColor;
+				cursor: pointer;
+				margin-left: 5px;
+			}
+			.success-icon {
+				background-color: #bdbdbd;
+			}
+		}
+		box-shadow: 2px 5px 4px 0 rgba(120,120,120, .8);
+		&::after {
+			content: '';
+			display: table;
+			clear: both;
+		}
+		.success-icon {
+			float: left;
+			width: 102px;
+			height: 135px;
+			box-sizing: border-box;
+			padding: 0 20px;
+			line-height: 135px;
+			background-color: #9ccc65;
+			text-align: center;
+			color: #fff;
+			margin-right: 22px;
+			i {
+				font-size: 47px;
+			}
+		}
+		h1 {
+			padding-top: 15px;
+			box-sizing: border-box;
+			margin: 0;
+		}
+
+		p {
+			margin: 15px 0 0 0;
+		}
+		
+		a {
+			position: absolute;
+			top: 7px;
+			right: 7px;
+			font-size: 40px;
+			opacity: .6;
+		}
+	}
+
 }

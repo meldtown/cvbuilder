@@ -2,11 +2,29 @@
 	<span data-bind="clickTogglerFor: 'acme'"></span>
 </span>
 
-
-<div class="row">
+<div class="greeting-popup" data-bind="visible: congretPopupOpen">
+	<div class="success-icon">
+		<i class="fa fa-check"></i>
+	</div>
+	<h1 class="rua-p-c-light" data-bind="label: dictionary.resource.congretHeader"></h1>
+	<p class="rua-p-c-light" data-bind="label: dictionary.resource.congretText"></p>
+	<a href="#" class="rua-p-c-light" data-bind="click: closeCongretPopup"><i class="fa fa-times-circle"></i></a>
+</div>
+<div class="greeting-popup gray" data-bind="visible: congretPopupOpen">
+	<div class="success-icon">
+		<i class="fa fa-check"></i>
+	</div>
+	<h1 class="rua-p-c-light" data-bind="label: dictionary.resource.congretHeaderNotAvail"></h1>
+	<p class="rua-p-c-light">
+		<span data-bind="label: dictionary.resource.congretTextNotAvail"></span>
+		<span data-bind="label: dictionary.resource.makeAvail"></span>
+	</p>
+	<a href="#" class="rua-p-c-light" data-bind="click: closeCongretPopup"><i class="fa fa-times-circle"></i></a>
+</div>
+<div class="row" style="clear: left;">
 	<div class="col d-2of3">
 		<h1>
-			<span>Ваше резюме</span>
+			<span data-bind="label: dictionary.resource.yourCv"></span>
 			<span data-bind="if: position.position">&quot;<span data-bind="text: position.position"></span>&quot;</span>
 		</h1>
 		<div data-bind="text: dictionary.resource.resumeTooltip.label" class="rua-p-c-light resume-tooltip"></div>

@@ -296,6 +296,11 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		return result;
 	});
 
+	model.congretPopupOpen = ko.observable(true);
+	model.closeCongretPopup = function () {
+		model.congretPopupOpen(false);
+	};
+
 	model.more = ko.observable(false);
 
 	model.toggleMore = function () {
