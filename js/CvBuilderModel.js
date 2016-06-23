@@ -313,6 +313,10 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		return model.congretPopupOpen() && !model.congretGrayNoExpPopupVisible() && !model.congretGrayPrivatePopupVisible();
 	});
 
+	model.isLevelOptionDisabled = ko.computed(function () {
+		return !model.experience().length && !model.education().length && model.state.isVisibleOnlyToOwner();
+	})
+
 	model.more = ko.observable(false);
 
 	model.toggleMore = function () {
