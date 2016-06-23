@@ -108,7 +108,7 @@
 			</span>
 
 				<div class="activity-level-popup" data-bind="stopClickPropagation: true, css: { active: isLevelPopupOpen }">
-					<div data-bind="click: setVisibleToAll, css: { active: isVisibleToAll }">
+					<div data-bind="click: setVisibleToAll, css: { active: isVisibleToAll, disabled: $parent.congretGrayNoExpPopupVisible }">
 						<div class="t top">
 							<div class="m">
 								<i class="fa fa-globe rua-p-c-light"></i>
@@ -125,7 +125,7 @@
 							</div>
 						</div>
 					</div>
-					<div data-bind="click: setVisibleOnlyToEmployeers, css: { active: isVisibleOnlyToEmployeers }">
+					<div data-bind="click: setVisibleOnlyToEmployeers, css: { active: isVisibleOnlyToEmployeers, disabled: $parent.congretGrayNoExpPopupVisible }">
 						<div class="t top">
 							<div class="m">
 								<i class="fa fa-briefcase rua-p-c-light"></i>
@@ -159,7 +159,7 @@
 							</div>
 						</div>
 					</div>
-					<div data-bind="click: setVisibleToAllExcept, css: { active: isVisibleToAllExcept }">
+					<div data-bind="click: setVisibleToAllExcept, css: { active: isVisibleToAllExcept, disabled: $parent.congretGrayNoExpPopupVisible }">
 						<div class="t top">
 							<div class="m">
 								<i class="fa fa-filter rua-p-c-light"></i>
@@ -189,7 +189,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="anonymous">
+					<div class="anonymous" data-bind="css: {disabled: $parent.congretGrayNoExpPopupVisible}">
 						<div class="t top">
 							<div class="m">
 								<i class="fa fa-eye rua-p-c-light hidden"></i>

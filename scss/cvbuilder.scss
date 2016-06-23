@@ -783,6 +783,11 @@ input:-moz-placeholder {
 		padding: 20px;
 		box-sizing: border-box;
 		border-left: 1px solid rgba(0, 0, 0, 0.12);
+		.disabled {
+			pointer-events: none;
+			cursor: not-allowed;
+			opacity: .4;
+		}
 		.logo-container {
 			position: absolute;
 			width: 38px;
