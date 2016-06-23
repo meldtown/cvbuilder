@@ -173,6 +173,11 @@ function ResumeStateModel (parent) {
 		});
 	};
 
+	model.makeAvailable = function () {
+		model.setVisibleToAll();
+		model.save();
+	}
+
 	model.toJS = function () {
 		return mapper.toJS(model);
 	};
