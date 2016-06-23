@@ -19,11 +19,10 @@
 		</div>
 	</div>
 
-	<div data-bind="if: isAdditionalPhonesBlockVisibleForm">
 		<div data-bind="foreach: additionalPhones">
 			<div class="row">
 				<div class="col d-1of3">
-					<label>&nbsp;</label>
+					<label data-bind="label: resource.contactsAdditionalPhoneLabel"></label>
 				</div>
 				<div class="col d-2of3">
 					<div data-bind="template: tpl"></div>

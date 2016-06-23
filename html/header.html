@@ -97,10 +97,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="level-toggler">
+		<div class="level-toggler" data-bind="togglerFor: state.isLevelPopupOpen" >
 			<div class="logo-container"><i data-bind="css: state.levelLogoClass"></i></div>
 			<span data-bind="with: state">
-			<span data-bind="togglerFor: isLevelPopupOpen" style="cursor: pointer;">
+			<span>
 				<span data-bind="label: resource.levelAvailability"></span>
 				<br>
 				<small class="rua-p-c-light" data-bind="text: selectedLevelOptionLabel"></small>

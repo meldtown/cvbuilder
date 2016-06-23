@@ -32,7 +32,7 @@ function ResumeContactsModel (parent) {
 	model.socialNetworks = ko.observableArray();
 
 	model.isAdditionalPhonesBlockVisibleView = ko.computed(function () {
-		return model.phone() && model.additionalPhones().length > 0;
+		return model.additionalPhones().length > 0;
 	});
 
 	model.isAdditionalPhonesBlockVisibleForm = ko.computed(function () {

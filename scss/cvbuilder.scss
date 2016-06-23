@@ -782,6 +782,7 @@ input:-moz-placeholder {
 		width: 295px;
 		padding: 20px;
 		box-sizing: border-box;
+		cursor: pointer;
 		border-left: 1px solid rgba(0, 0, 0, 0.12);
 		.disabled {
 			pointer-events: none;
