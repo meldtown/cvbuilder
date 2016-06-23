@@ -301,6 +301,18 @@ function CvBuilderModel (api, resumeId, dictionary) {
 		model.congretPopupOpen(false);
 	};
 
+	model.congretGrayNoExpPopupVisible = ko.computed(function () {
+		return !model.experience().length && !model.education().length;
+	});
+
+	model.congretGrayPrivatePopupVisible = ko.computed(function () {
+		return !model.congretGrayNoExpPopupVisible() && model.state.isVisibleOnlyToOwner();
+	});
+
+	model.congretGreenPopupVisible = ko.computed(function () {
+		return model.congretPopupOpen() && !model.congretGrayNoExpPopupVisible() && !model.congretGrayPrivatePopupVisible();
+	});
+
 	model.more = ko.observable(false);
 
 	model.toggleMore = function () {
