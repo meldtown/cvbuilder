@@ -5,8 +5,12 @@ function ResumePersonalModel (parent) {
 		return parent._lng();
 	});
 
+	model.api = ko.computed(function () {
+		return parent.api();
+	});
+
+
 	model.resource = parent.dictionary.resource;
-	model.api = parent.api;
 	model.resumeId = parent.resumeId;
 
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
@@ -94,7 +98,7 @@ function ResumePersonalModel (parent) {
 
 			formData.append('blob', model.dataURItoBlob(respponse));
 
-			xhr.open('POST', parent.api + '/resume/' + parent.resumeId + '/photo', true);
+			xhr.open('POST', parent.api() + '/resume/' + parent.resumeId + '/photo', true);
 			xhr.onload = function () {
 				if (xhr.status === 200) {
 					model._photo(JSON.parse(this.response));
@@ -198,14 +202,14 @@ function ResumePersonalModel (parent) {
 	};
 
 	model.get = function () {
-		backend.get(parent.api + '/resume/' + parent.resumeId + '/personal').success(function (data) {
+		backend.get(parent.api() + '/resume/' + parent.resumeId + '/personal').success(function (data) {
 			model.fromJS(data);
 		});
 		model.getPhoto();
 	};
 
 	model.getPhoto = function () {
-		backend.get(parent.api + '/resume/' + parent.resumeId + '/photo').success(function (data) {
+		backend.get(parent.api() + '/resume/' + parent.resumeId + '/photo').success(function (data) {
 			model._photo(data);
 		});
 	};
@@ -214,7 +218,7 @@ function ResumePersonalModel (parent) {
 		if (model.errors().length === 0) {
 			model.removeEmptyMoving();
 
-			backend.post(parent.api + '/resume/' + parent.resumeId + '/personal', model.toJS())
+			backend.post(parent.api() + '/resume/' + parent.resumeId + '/personal', model.toJS())
 				.success(function () {
 					model.commit();
 					model.successMessage(model.resource.successSave.label());

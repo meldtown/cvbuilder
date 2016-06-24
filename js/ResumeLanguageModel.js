@@ -5,6 +5,11 @@ function ResumeLanguageModel (parent, data) {
 		return parent._lng();
 	});
 
+	model.api = ko.computed(function () {
+		return parent.api();
+	});
+
+
 	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;
@@ -62,7 +67,7 @@ function ResumeLanguageModel (parent, data) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			backend.post(parent.api + '/resume/' + parent.resumeId + '/language', model.toJS())
+			backend.post(parent.api() + '/resume/' + parent.resumeId + '/language', model.toJS())
 				.success(function () {
 					model._savedOrFromBackend(true);
 					model.commit();
@@ -80,7 +85,7 @@ function ResumeLanguageModel (parent, data) {
 
 	model.remove = function () {
 		if (model._savedOrFromBackend()) {
-			backend.remove(parent.api + '/resume/' + parent.resumeId + '/language/' + model.languageId())
+			backend.remove(parent.api() + '/resume/' + parent.resumeId + '/language/' + model.languageId())
 				.success(function () {
 					parent.language.remove(model);
 				});

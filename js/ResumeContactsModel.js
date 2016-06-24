@@ -5,6 +5,11 @@ function ResumeContactsModel (parent) {
 		return parent._lng();
 	});
 
+	model.api = ko.computed(function () {
+		return parent.api();
+	});
+
+
 	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;
@@ -178,7 +183,7 @@ function ResumeContactsModel (parent) {
 	};
 
 	model.get = function () {
-		backend.get(parent.api + '/resume/' + parent.resumeId + '/contact').success(function (data) {
+		backend.get(parent.api() + '/resume/' + parent.resumeId + '/contact').success(function (data) {
 			model.fromJS(data);
 		});
 	};
@@ -188,7 +193,7 @@ function ResumeContactsModel (parent) {
 			model.removeBadOrEmptyAdditionalPhones();
 			model.removeEmptyPortfolio();
 			model.removeEmptyAndInvalidSocialNetworks();
-			backend.post(parent.api + '/resume/' + parent.resumeId + '/contact', model.toJS())
+			backend.post(parent.api() + '/resume/' + parent.resumeId + '/contact', model.toJS())
 				.success(function () {
 					model.commit();
 					model.additionalPhones().forEach(function (item) {

@@ -5,18 +5,21 @@ function ResumePositionModel (parent, data) {
 		return parent._lng();
 	});
 
+	model.api = ko.computed(function () {
+		return parent.api();
+	});
+
 	model._keywordsApiUrl = ko.computed(function () {
-		return parent.api + '/autocomplete/keyword';
+		return parent.api() + '/autocomplete/keyword';
 	});
 
 	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;
-	model.api = parent.api + '/resume/' + parent.resumeId + '/position';
+
 
 	model.id = ko.observable();
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.experienceId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.salary = ko.observable().extend({
 		digit: {
@@ -105,14 +108,14 @@ function ResumePositionModel (parent, data) {
 	};
 
 	model.get = function () {
-		backend.get(model.api).success(function (data) {
+		backend.get(model.api() + '/resume/' + parent.resumeId + '/position').success(function (data) {
 			model.fromJS(data);
 		});
 	};
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			backend.post(parent.api + '/resume/' + parent.resumeId + '/position', model.toJS())
+			backend.post(model.api() + '/resume/' + parent.resumeId + '/position', model.toJS())
 				.success(function (id) {
 					model.id(id);
 					model.commit();
@@ -127,19 +130,6 @@ function ResumePositionModel (parent, data) {
 			model.errors.showAllMessages(true);
 		}
 	};
-
-	model.experienceOptions = parent.dictionary.experience;
-	model.selectedExperienceOption = ko.computed({
-		read: function () {
-			return model.experienceOptions.findById(model.experienceId());
-		},
-		write: function (newValue) {
-			model.experienceId(newValue ? newValue.id : undefined);
-		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.selectedExperienceOptionLabel = ko.computed(function () {
-		return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
-	});
 
 	InitEditableModel(model, 'position');
 	InitBadRequestResponseHandler(model);

@@ -3,20 +3,20 @@ function ResumeExperienceModel (parent, data) {
 
 	model.resumeId = parent.resumeId;
 
-	model._api = ko.computed(function () {
-		return parent.api;
-	});
-
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
 
+	model.api = ko.computed(function () {
+		return parent.api();
+	});
+
 	model._keywordsApiUrl = ko.computed(function () {
-		return parent.api + '/autocomplete/keyword';
+		return parent.api() + '/autocomplete/keyword';
 	});
 
 	model._companyApiUrl = ko.computed(function () {
-		return parent.api + '/autocomplete/company';
+		return parent.api() + '/autocomplete/company';
 	});
 
 	model._branch = parent.dictionary.branch;
@@ -88,7 +88,7 @@ function ResumeExperienceModel (parent, data) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			backend.post(parent.api + '/resume/' + parent.resumeId + '/experience', model.toJS())
+			backend.post(parent.api() + '/resume/' + parent.resumeId + '/experience', model.toJS())
 				.success(function (id) {
 					model.id(id);
 					model.commit();
@@ -109,7 +109,7 @@ function ResumeExperienceModel (parent, data) {
 
 	model.remove = function () {
 		if (model.id()) {
-			backend.remove(parent.api + '/resume/' + parent.resumeId + '/experience/' + model.id())
+			backend.remove(parent.api() + '/resume/' + parent.resumeId + '/experience/' + model.id())
 				.success(function () {
 					parent.experience.remove(model);
 				});
@@ -218,7 +218,7 @@ function ResumeExperienceRecommendationModel (parent, data) {
 
 	model.remove = function (item) {
 		if (model.id()) {
-			backend.remove(parent._api() + '/resume/' + parent.resumeId + '/experience/' + parent.id() + '/recommendation/' + model.id())
+			backend.remove(parent.api() + '/resume/' + parent.resumeId + '/experience/' + parent.id() + '/recommendation/' + model.id())
 				.success(function () {
 					parent.recommendationList.remove(item);
 				});

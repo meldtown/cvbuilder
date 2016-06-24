@@ -19,6 +19,7 @@
 		</div>
 	</div>
 
+	<div class="row">
 		<div data-bind="foreach: additionalPhones">
 			<div class="row">
 				<div class="col d-1of3">
@@ -29,19 +30,18 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col d-1of3">
-				<label>&nbsp;</label>
-			</div>
-			<div class="col d-2of3">
-				<button class="add-phone-button" data-bind="click: addAdditionalPhone">
-					<i class="fa fa-plus-circle"></i>
-					<span data-bind="label: resource.addPhone"></span>
-				</button>
-			</div>
+	</div>
+	<div class="row">
+		<div class="col d-1of3">
+			<label>&nbsp;</label>
+		</div>
+		<div class="col d-2of3">
+			<button class="add-phone-button" data-bind="click: addAdditionalPhone">
+				<i class="fa fa-plus-circle"></i>
+				<span data-bind="label: resource.addPhone"></span>
+			</button>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="email">
@@ -130,5 +130,8 @@
 			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel"></a>
 		</div>
 	</div>
-
 </div>
+
+
+
+

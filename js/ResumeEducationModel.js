@@ -5,6 +5,11 @@ function ResumeEducationModel (parent, data) {
 		return parent._lng();
 	});
 
+	model.api = ko.computed(function () {
+		return parent.api();
+	});
+
+
 	model.resource = parent.dictionary.resource;
 	model.cityOptions = parent.dictionary.city;
 
@@ -61,7 +66,7 @@ function ResumeEducationModel (parent, data) {
 
 	model.save = function () {
 		if (model.errors().length === 0) {
-			backend.post(parent.api + '/resume/' + parent.resumeId + '/education', model.toJS())
+			backend.post(parent.api() + '/resume/' + parent.resumeId + '/education', model.toJS())
 				.success(function (id) {
 					model.id(id);
 					model.commit();
@@ -79,7 +84,7 @@ function ResumeEducationModel (parent, data) {
 
 	model.remove = function () {
 		if (model.id()) {
-			backend.remove(parent.api + '/resume/' + parent.resumeId + '/education/' + model.id())
+			backend.remove(parent.api() + '/resume/' + parent.resumeId + '/education/' + model.id())
 				.success(function () {
 					parent.education.remove(model);
 				});

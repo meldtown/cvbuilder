@@ -1,16 +1,21 @@
-function CvBuilderModel (api, resumeId, dictionary) {
+function CvBuilderModel (api, resumeId, dictionary, uiLanguage) {
 	var model = this;
 
-	model.api = api;
 	model.resumeId = resumeId;
 	model._lngOptions = [
 		{id: 1, label: 'Русский', moment: 'ru', dictionary: 'ru', enum: 'Russian'},
 		{id: 3, label: 'Українська', moment: 'uk', dictionary: 'ua', enum: 'Ukrainian'},
 		{id: 2, label: 'English', moment: 'us', dictionary: 'en', enum: 'English'}
 	];
-	model._lng = ko.observable(model._lngOptions[0]);
+	model._lng = ko.observable(model._lngOptions.filter(function (item) {
+		return item.id === uiLanguage;
+	}).shift() || model._lngOptions[0]);
 	model.selectedLanguageLabel = ko.computed(function () {
 		return model._lng().label;
+	});
+
+	model.api = ko.computed(function () {
+		return api.replace('api.', model._lng().dictionary + '.api.');
 	});
 
 	model.isLanguageSelectPopupOpen = ko.observable(false);
@@ -87,7 +92,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.experience = ko.observableArray([]);
 
 	model.getExperiences = function () {
-		backend.get(parent.api + '/resume/' + model.resumeId + '/experience').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/experience').success(function (data) {
 			data.forEach(function (item) {
 				model.experience.push(new ResumeExperienceModel(model, item));
 			});
@@ -104,7 +109,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.education = ko.observableArray();
 
 	model.getEducation = function () {
-		backend.get(parent.api + '/resume/' + model.resumeId + '/education').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/education').success(function (data) {
 			data.forEach(function (item) {
 				model.education.push(new ResumeEducationModel(model, item));
 			});
@@ -125,7 +130,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.language = ko.observableArray();
 
 	model.getLanguage = function () {
-		backend.get(parent.api + '/resume/' + model.resumeId + '/language').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/language').success(function (data) {
 			data.forEach(function (item) {
 				model.language.push(new ResumeLanguageModel(model, item));
 			});
@@ -142,7 +147,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	model.additional = ko.observableArray();
 
 	model.getAdditional = function () {
-		backend.get(parent.api + '/resume/' + model.resumeId + '/additional').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/additional').success(function (data) {
 			data.forEach(function (item) {
 				model.additional.push(new ResumeAdditionalModel(model, item));
 			});
@@ -167,7 +172,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	};
 
 	model.getTraining = function () {
-		backend.get(parent.api + '/resume/' + model.resumeId + '/training').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/training').success(function (data) {
 			data.forEach(function (item) {
 				model.training.push(new ResumeTraininglModel(model, item));
 			});
@@ -231,7 +236,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	};
 
 	model.getUiLanguage = function () {
-		backend.get(parent.api + '/resume/' + model.resumeId + '/uilanguage').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/uilanguage').success(function (data) {
 			if (data) {
 				var option = model._lngOptions.filter(function (item) {
 					return item.id === data;
@@ -240,7 +245,7 @@ function CvBuilderModel (api, resumeId, dictionary) {
 			}
 
 			model._lng.subscribe(function () {
-				backend.post(parent.api + '/resume/' + model.resumeId + '/uilanguage?language=' + model._lng().id);
+				backend.post(model.api() + '/resume/' + model.resumeId + '/uilanguage?language=' + model._lng().id);
 			});
 		});
 	};
@@ -361,15 +366,15 @@ function CvBuilderModel (api, resumeId, dictionary) {
 	});
 
 	model.load = function () {
-		backend.get(model.api + '/resume/' + model.resumeId + '/searchstate').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/searchstate').success(function (data) {
 			model.searchState(data || 1);
 
 			model.searchState.subscribe(function () {
-				backend.post(model.api + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
+				backend.post(model.api() + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
 			});
 		});
 
-		backend.get(model.api + '/resume/' + model.resumeId + '/date').success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/date').success(function (data) {
 			model.date(data);
 		});
 

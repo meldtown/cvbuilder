@@ -52,9 +52,12 @@ function ResumeStateModel (parent) {
 		return parent._lng();
 	});
 
+	model.api = ko.computed(function () {
+		return parent.api();
+	});
+
 	model.resource = parent.dictionary.resource;
 	model.resumeId = parent.resumeId;
-	model.api = parent.api;
 
 	model.viewCount = ko.observable();
 	model.level = ko.observable();
@@ -133,7 +136,7 @@ function ResumeStateModel (parent) {
 	};
 
 	model.get = function () {
-		backend.get(model.api + '/resume/' + parent.resumeId + '/state').success(function (data) {
+		backend.get(model.api() + '/resume/' + parent.resumeId + '/state').success(function (data) {
 			model.fromJS(data);
 
 			if (model.branchIds().length > 0) {
@@ -146,7 +149,7 @@ function ResumeStateModel (parent) {
 			}
 
 			if (model.companyIds().length > 0) {
-				backgend.post(model.api + '/autocomplete/company', model.companyIds()).success(function (data) {
+				backgend.post(model.api() + '/autocomplete/company', model.companyIds()).success(function (data) {
 					model.itemsCompanyAndBranches(data.map(function (item) {
 						item.label = item.comanpyName;
 						return item;
@@ -167,7 +170,7 @@ function ResumeStateModel (parent) {
 	};
 
 	model.save = function () {
-		backend.post(model.api + '/resume/' + model.resumeId + '/state', model.toJS()).success(function () {
+		backend.post(model.api() + '/resume/' + model.resumeId + '/state', model.toJS()).success(function () {
 			model.previousLevel(null);
 			model.isLevelPopupOpen(false);
 		});

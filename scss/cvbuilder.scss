@@ -654,38 +654,7 @@ input:-moz-placeholder {
 
 	}
 
-	.ui-autocomplete .ui-menu-item a.autocomplete-company {
-		display: flex;
-		align-items: center;
-		min-height: 55px;
 
-		span {
-			display: flex;
-			flex-direction: column;
-		}
-
-		img {
-			width: auto;
-			height: auto;
-			max-width: none;
-		}
-
-		& > span:first-child {
-			align-self: stretch;
-			width: 95px;
-			text-align: center;
-			background-position: 50% 50%;
-			background-repeat: no-repeat;
-		}
-
-		& > span:last-child {
-			padding-left: 10px;
-		}
-
-		small {
-			opacity: .8;
-		}
-	}
 	.language-toggler-label {
 		font-weight: bold;
 		margin-right: 20px;
@@ -897,4 +866,37 @@ input:-moz-placeholder {
 		}
 	}
 
+}
+
+.ui-autocomplete .ui-menu-item a.autocomplete-company {
+	display: flex;
+	align-items: center;
+	min-height: 55px;
+
+	span {
+		display: flex;
+		flex-direction: column;
+	}
+
+	img {
+		width: auto;
+		height: auto;
+		max-width: none;
+	}
+
+	& > span:first-child {
+		align-self: stretch;
+		width: 95px;
+		text-align: center;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+	}
+
+	& > span:last-child {
+		padding-left: 10px;
+	}
+
+	small {
+		opacity: .8;
+	}
 }
