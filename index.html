@@ -112,7 +112,15 @@
 	var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
 	var resumeId = 3496188;
 
-	jQuery.when(
+	jQuery.when( $.ajax({
+			type: 'GET',
+			url: api + '/resume/' + resumeId + '/uilanguage',
+			contentType: 'application/json',
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
+		}),
 		jQuery.getJSON(api + '/dictionary/language'),
 		jQuery.getJSON(api + '/dictionary/experience'),
 		jQuery.getJSON(api + '/dictionary/education'),
@@ -124,9 +132,12 @@
 		jQuery.getJSON(api + '/dictionary/language/skill'),
 		jQuery.getJSON(api + '/dictionary/additional'),
 		jQuery.getJSON(api + '/dictionary/sex'),
-		jQuery.getJSON(api + '/dictionary/currency')
-	).then(function (language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency) {
+		jQuery.getJSON(api + '/dictionary/currency'),
+		jQuery.getJSON(api + '/dictionary/rubric'),
+		jQuery.getJSON(api + '/dictionary/subrubric')
+	).then(function (uilanguage, language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency, rubric, subrubric) {
 		var dictionary = {
+			uilanguage: uilanguage,
 			language: language[0],
 			experience: experience[0],
 			educationType: education[0].slice(1),
@@ -138,10 +149,12 @@
 			languageSkill: languageSkill[0],
 			additional: additional[0],
 			sex: sex[0],
-			currency: currency[0]
+			currency: currency[0],
+			rubric: rubric[0],
+			subrubric: subrubric[0]
 		};
 
-		window.model = new CvBuilderModel(api, resumeId, dictionary);
+		window.model = new CvBuilderModel(api, resumeId, dictionary, uilanguage);
 		ko.applyBindings(model);
 	});
 </script>

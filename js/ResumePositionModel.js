@@ -14,13 +14,28 @@ function ResumePositionModel (parent, data) {
 	});
 
 	model.resource = parent.dictionary.resource;
+	model.rubric = ko.observableArray(parent.dictionary.rubric);
+	model.subrubric = ko.observableArray(parent.dictionary.subrubric);
 
 	model.resumeId = parent.resumeId;
-
 
 	model.id = ko.observable();
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.checkedSubrubrics = ko.observableArray([]);
+	model.selectedRubric = ko.observable(model.rubric()[0]);
+	model.selectedSubrubrics = ko.computed(function () {
+		return model.subrubric().filter(function (item) {
+			return model.selectedRubric().id === item.parentId;
+		});
+	});
+	model.removeItem = function (data) {
+		model.checkedSubrubrics.remove(data);
+	};
+	model.isCheckboxEnabled = function (data) {
+		var selectedIds = model.checkedSubrubrics().map(function (i) { return i.id; });
+		return model.checkedSubrubrics().length < 2 || selectedIds.indexOf(data.id) !== -1;
+	};
 	model.salary = ko.observable().extend({
 		digit: {
 			params: true,
