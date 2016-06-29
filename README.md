@@ -8,21 +8,6 @@ Controls
 
 Message above the header: "Чтобы опубликовать резюме на сайте обязательно заполните раздел "Опыт работы" или "Образование".", quoted text will be links to add blocks
 
-Header - makrup
-Header / SearchState / Companies control
-Header / SearchState / Branches control
-Header / SearchState / Control
-
-
-Personal info / Photo / add button markup and styles
-
-API url should be computed from selected language everywhere
-
-
-Computed for add experience/language etc buttons text, first time "Add experience", second "Add more experience"
-Sidebar / links - markup, backend?
-Contacts / SocialNetworks - ask for validation rules (skype)
-
 
 Dependencies
 ------------

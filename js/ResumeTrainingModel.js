@@ -8,8 +8,6 @@ function ResumeTraininglModel (parent, data) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-
-
 	model.resource = parent.dictionary.resource;
 	model.cityOptions = parent.dictionary.city;
 	model.resumeId = parent.resumeId;

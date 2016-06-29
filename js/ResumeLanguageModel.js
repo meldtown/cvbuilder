@@ -8,8 +8,6 @@ function ResumeLanguageModel (parent, data) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-
-
 	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;

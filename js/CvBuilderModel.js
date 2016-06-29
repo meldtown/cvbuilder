@@ -320,7 +320,7 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage) {
 
 	model.isLevelOptionDisabled = ko.computed(function () {
 		return !model.experience().length && !model.education().length && model.state.isVisibleOnlyToOwner();
-	})
+	});
 
 	model.more = ko.observable(false);
 
