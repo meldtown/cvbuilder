@@ -84,6 +84,34 @@ function getDummyDictionary () {
 				ua: 'education 2'
 			}
 		],
+		rubric: [
+			{
+				id: 1,
+				ru: 'rubric 1',
+				en: 'rubric 1',
+				ua: 'rubric 1'
+			},
+			{
+				id: 2,
+				ru: 'rubric 2',
+				en: 'rubric 2',
+				ua: 'rubric 2'
+			}
+		],
+		subrubric: [
+			{
+				id: 1,
+				ru: 'subrubric 1',
+				en: 'subrubric 1',
+				ua: 'subrubric 1'
+			},
+			{
+				id: 2,
+				ru: 'subrubric 2',
+				en: 'subrubric 2',
+				ua: 'subrubric 2'
+			}
+		],
 		currency: [
 			{
 				id: 1,
@@ -147,6 +175,11 @@ function getDummyDictionary () {
 				ru: 'addElseExperience',
 				en: 'addElseExperience',
 				ua: 'addElseExperience'
+			},
+			personalSexLabel: {
+				ru: 'personalSexLabel',
+				en: 'personalSexLabel',
+				ua: 'personalSexLabel'
 			}
 		}
 	};
