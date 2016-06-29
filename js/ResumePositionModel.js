@@ -14,28 +14,74 @@ function ResumePositionModel (parent, data) {
 	});
 
 	model.resource = parent.dictionary.resource;
-	model.rubric = ko.observableArray(parent.dictionary.rubric);
-	model.subrubric = ko.observableArray(parent.dictionary.subrubric);
+	model.experience = parent.dictionary.experience;
+	model.rubric = parent.dictionary.rubric;
+
+	model.subrubric = ko.observableArray([]);
+	var subrubricModels = parent.dictionary.subrubric.map(function (item) {
+		return new SubrubricModel(item._lng, item.en, item.ru, item.ua, item.parentId, item.label, item.experienceId, item.id, model);
+	});
+	model.subrubric(subrubricModels);
+
+	model.checkedSubrubrics = ko.computed(function () {
+		return (model.subrubric ? model.subrubric() : []).filter(function (item) {
+			return item.isChecked();
+		});
+	});
 
 	model.resumeId = parent.resumeId;
-
 	model.id = ko.observable();
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.checkedSubrubrics = ko.observableArray([]);
-	model.selectedRubric = ko.observable(model.rubric()[0]);
+	model.selectedRubric = ko.observable(model.rubric[0]);
 	model.selectedSubrubrics = ko.computed(function () {
 		return model.subrubric().filter(function (item) {
 			return model.selectedRubric().id === item.parentId;
 		});
 	});
-	model.removeItem = function (data) {
-		model.checkedSubrubrics.remove(data);
-	};
-	model.isCheckboxEnabled = function (data) {
-		var selectedIds = model.checkedSubrubrics().map(function (i) { return i.id; });
-		return model.checkedSubrubrics().length < 2 || selectedIds.indexOf(data.id) !== -1;
-	};
+
+	function SubrubricModel (_lng, en, ru, ua, parentId, label, experienceId, id, parent) {
+		var model = this;
+		model._lng = _lng;
+		model.en = en;
+		model.ua = ua;
+		model.ru = ru;
+		model.parentId = parentId;
+		model.label = label;
+		model.experienceId = ko.observable(experienceId);
+		model.id = id;
+		model.experienceOptions = parent.experience;
+		model.resource = parent.resource;
+
+		model.isCheckBoxEnabled = ko.computed(function () {
+			var checkedIds = parent.subrubric().filter(function (item) {
+				return item.isChecked();
+			}).map(function (item) {
+				return item.id;
+			});
+
+			return checkedIds.length < 2 || checkedIds.indexOf(model.id) !== -1;
+		});
+
+		model.isChecked = ko.observable(false);
+
+		model.uncheck = function () {
+			model.isChecked(false);
+		};
+
+		model.selectedExperienceOption = ko.computed({
+			read: function () {
+				return model.experienceOptions.findById(model.experienceId);
+			},
+			write: function (newValue) {
+				model.experienceId(newValue ? newValue.id : undefined);
+			}
+		}).extend(utils.requiredOnly(model.resource.requiredMessage));
+		model.selectedExperienceOptionLabel = ko.computed(function () {
+			return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
+		});
+	}
+
 	model.salary = ko.observable().extend({
 		digit: {
 			params: true,
@@ -126,11 +172,25 @@ function ResumePositionModel (parent, data) {
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/position').success(function (data) {
 			model.fromJS(data);
 		});
+		backend.get(model.api() + '/resume/' + parent.resumeId + '/rubric').success(function (data) {
+			model.fromJS(data);
+		});
 	};
 
 	model.save = function () {
 		if (model.errors().length === 0) {
 			backend.post(model.api() + '/resume/' + parent.resumeId + '/position', model.toJS())
+				.success(function (id) {
+					model.id(id);
+					model.commit();
+					model.successMessage(model.resource.successSave.label());
+				})
+				.fail(function (jqXHR) {
+					if (jqXHR.status === 400) {
+						model.handleBarRequestResponse(jqXHR);
+					}
+				});
+			backend.post(model.api() + '/resume/' + parent.resumeId + '/rubric', model.toJS())
 				.success(function (id) {
 					model.id(id);
 					model.commit();
