@@ -36,8 +36,10 @@ ko.bindingHandlers.togglerFor = {
 			property(!property());
 		});
 
-		jQuery(element).closest('html').on('click', function () {
-			property(false);
+		jQuery(element).closest('html').on('click', function (event) {
+			if (jQuery(event.target).closest('.ui-autocomplete').size() === 0) {
+				property(false);
+			}
 		});
 	}
 };
