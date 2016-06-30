@@ -87,13 +87,14 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		return '+' + model.percentForBlock.experience + '%';
 	});
 
+	model.state = new ResumeStateModel(model);
 	model.position = new ResumePositionModel(model);
 	model.personalInfo = new ResumePersonalModel(model);
 	model.contacts = new ResumeContactsModel(model);
+
 	model.skill = new ResumeSkillModel(model);
 
 	model.experience = ko.observableArray([]);
-
 	model.getExperiences = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/experience').success(function (data) {
 			data.forEach(function (item) {
@@ -109,8 +110,8 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		return item;
 	};
 
-	model.education = ko.observableArray();
 
+	model.education = ko.observableArray();
 	model.getEducation = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/education').success(function (data) {
 			data.forEach(function (item) {
@@ -130,8 +131,8 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		model.contacts.beginEdit();
 	};
 
-	model.language = ko.observableArray();
 
+	model.language = ko.observableArray();
 	model.getLanguage = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/language').success(function (data) {
 			data.forEach(function (item) {
@@ -147,8 +148,8 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		return item;
 	};
 
-	model.additional = ko.observableArray();
 
+	model.additional = ko.observableArray();
 	model.getAdditional = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/additional').success(function (data) {
 			data.forEach(function (item) {
@@ -165,8 +166,8 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		return item;
 	};
 
-	model.training = ko.observableArray([]);
 
+	model.training = ko.observableArray([]);
 	model.addTraining = function () {
 		var item = new ResumeTraininglModel(model);
 		model.training.push(item);
@@ -195,7 +196,6 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		});
 	};
 
-	model.state = new ResumeStateModel(model);
 
 	model.searchState = ko.observable(1);
 	model.searchStateOptions = [

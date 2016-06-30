@@ -20,6 +20,9 @@ function ResumeContactsModel (parent) {
 			}
 		}
 	});
+	model.displayedPhone = ko.computed(function () {
+		return parent.state.anonymous() ? model.resource.anonimousHiddenFeild.label() : model.phone();
+	});
 	model.additionalPhones = ko.observableArray();
 	model.email = ko.observable().extend({
 		required: utils.required(model.resource.requiredMessage),
@@ -30,7 +33,13 @@ function ResumeContactsModel (parent) {
 			}
 		}
 	});
+	model.displayedEmail = ko.computed(function () {
+		return parent.state.anonymous() ? model.resource.anonimousHiddenFeild.label() : model.email();
+	});
 	model.skype = ko.observable();
+	model.displayedSkype = ko.computed(function () {
+		return parent.state.anonymous() ? model.resource.anonimousHiddenFeild.label() : model.skype();
+	});
 	model.portfolio = ko.observableArray();
 	model.socialNetworks = ko.observableArray();
 

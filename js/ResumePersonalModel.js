@@ -12,8 +12,14 @@ function ResumePersonalModel (parent) {
 	model.resumeId = parent.resumeId;
 
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.displayedName = ko.computed(function () {
+		return parent.state.anonymous() ? model.resource.anonimousNameFirst.label() : model.name();
+	});
 	model.middleName = ko.observable();
 	model.surName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.displayedSurName = ko.computed(function () {
+		return parent.state.anonymous() ? model.resource.anonimousNameSecond.label() : model.surName();
+	});
 	model.dateBirth = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.sex = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.cityId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
