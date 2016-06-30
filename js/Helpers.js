@@ -1,3 +1,31 @@
+ko.bindingHandlers.confirmRemove = {
+	init: function (element, valueAccessor, viewModel) {
+		var property = valueAccessor();
+		var handler = property.handler;
+		var dialog = jQuery(property.dialogSelector);
+
+		if (typeof handler !== 'function') return;
+
+		jQuery(element).on('click', function (event) {
+			event.preventDefault();
+			dialog.dialog('open');
+			dialog.find('.confirm').off('click').on('click', function (event) {
+				event.preventDefault();
+				handler();
+				dialog.dialog('close');
+			});
+		});
+
+		if (!dialog.hasClass('ui-dialog-content')) {
+			dialog.dialog();
+			dialog.on('click', '.cancel', function (event) {
+				event.preventDefault();
+				dialog.dialog('close');
+			});
+		}
+	}
+};
+
 ko.bindingHandlers.togglerFor = {
 	init: function (element, valueAccessor) {
 		var property = valueAccessor();

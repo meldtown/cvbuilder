@@ -6,7 +6,7 @@
 			<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.educationRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
 

@@ -370,21 +370,18 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 
 	model.createCopy = function () {
 		backend.post(model.api() + '/resume/' + model.resumeId + '/copy')
-			.success(function () {
-				console.log('success');
+			.success(function (data) {
+				window.open(data);
 			})
 			.fail(function () {
-				console.log('fail');
 			});
 	};
 
 	model.removeCV = function () {
 		backend.remove(model.api() + '/resume/' + model.resumeId)
 			.success(function () {
-				console.log('success');
 			})
 			.fail(function () {
-				console.log('fail');
 			});
 	};
 

@@ -96,6 +96,7 @@
 <script src="js/CvBuilderModel.js"></script>
 
 <script>
+	jQuery.support.cors = true;
 	jQuery.extend(jQuery.ui.dialog.prototype.options, {
 		//appendTo: 'form',
 		dialogClass: 'without-title',
@@ -108,7 +109,6 @@
 </script>
 
 <script>
-	jQuery.support.cors = true;
 	var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
 	var resumeId = 9171642;
 
