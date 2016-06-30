@@ -1,50 +1,3 @@
-ko.bindingHandlers.clickTogglerFor = {
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-		var value = valueAccessor();
-		var valueUnwrapped = ko.unwrap(value);
-
-		if (typeof valueUnwrapped !== 'string') {
-			console.error('clickTogglerFor valueAccessor should be string', element, valueAccessor);
-		}
-
-		if (!viewModel.hasOwnProperty(valueUnwrapped)) {
-			viewModel[valueUnwrapped] = ko.observable(false);
-		}
-
-		jQuery(element).on('click', function (event) {
-			event.preventDefault();
-			event.stopPropagation();
-			viewModel[valueUnwrapped](!viewModel[valueUnwrapped]());
-		});
-	}
-};
-
-ko.bindingHandlers.visibleByToggler = {
-	init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-		var value = valueAccessor();
-		var valueUnwrapped = ko.unwrap(value);
-
-		if (typeof valueUnwrapped !== 'string') {
-			console.error('visibleByToggler valueAccessor should be string', element, valueAccessor);
-		}
-
-		if (!viewModel.hasOwnProperty(valueUnwrapped)) {
-			viewModel[valueUnwrapped] = ko.observable(false);
-		}
-
-		jQuery(element).toggle(viewModel[valueUnwrapped]());
-
-		jQuery(element).closest('body').on('click', function (event) {
-
-		});
-		element.addEventListener('click', function (event) {
-			event.preventDefault();
-
-			viewModel[valueUnwrapped](!viewModel[valueUnwrapped]());
-		});
-	}
-};
-
 function ResumeStateModel (parent) {
 	var model = this;
 
@@ -156,16 +109,6 @@ function ResumeStateModel (parent) {
 					}));
 				});
 			}
-
-			model.itemsCompanyAndBranches.subscribe(function (newValue) {
-				model.branchIds(newValue.filter(function (item) {
-					return item.hasOwnProperty('id') && item.id;
-				}));
-
-				model.companyIds(newValue.filter(function (item) {
-					return item.hasOwnProperty('notebookId') && item.notebookId;
-				}));
-			});
 		});
 	};
 
@@ -182,7 +125,21 @@ function ResumeStateModel (parent) {
 	};
 
 	model.toJS = function () {
-		return mapper.toJS(model);
+		var data = mapper.toJS(model);
+
+		data.branchIds = model.itemsCompanyAndBranches().filter(function (item) {
+			return item.hasOwnProperty('id') && item.id;
+		}).map(function (item) {
+			return item.id;
+		});
+
+		data.companyIds = model.itemsCompanyAndBranches().filter(function (item) {
+			return item.hasOwnProperty('notebookId') && item.notebookId;
+		}).map(function (item) {
+			return item.notebookId;
+		});
+
+		return data;
 	};
 
 	model.fromJS = function (data) {

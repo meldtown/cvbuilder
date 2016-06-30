@@ -19,7 +19,7 @@ function ResumePositionModel (parent, data) {
 
 	model.subrubric = ko.observableArray([]);
 	var subrubricModels = parent.dictionary.subrubric.map(function (item) {
-		return new SubrubricModel(item._lng, item.en, item.ru, item.ua, item.parentId, item.label, item.experienceId, item.id, model);
+		return new SubRubricModel(item._lng, item.en, item.ru, item.ua, item.parentId, item.label, item.experienceId, item.id, model);
 	});
 	model.subrubric(subrubricModels);
 
@@ -34,53 +34,11 @@ function ResumePositionModel (parent, data) {
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.selectedRubric = ko.observable(model.rubric[0]);
-	model.selectedSubrubrics = ko.computed(function () {
+	model.subRubricsFilteredByParentRubric = ko.computed(function () {
 		return model.subrubric().filter(function (item) {
 			return model.selectedRubric().id === item.parentId;
 		});
 	});
-
-	function SubrubricModel (_lng, en, ru, ua, parentId, label, experienceId, id, parent) {
-		var model = this;
-		model._lng = _lng;
-		model.en = en;
-		model.ua = ua;
-		model.ru = ru;
-		model.parentId = parentId;
-		model.label = label;
-		model.experienceId = ko.observable(experienceId);
-		model.id = id;
-		model.experienceOptions = parent.experience;
-		model.resource = parent.resource;
-
-		model.isCheckBoxEnabled = ko.computed(function () {
-			var checkedIds = parent.subrubric().filter(function (item) {
-				return item.isChecked();
-			}).map(function (item) {
-				return item.id;
-			});
-
-			return checkedIds.length < 2 || checkedIds.indexOf(model.id) !== -1;
-		});
-
-		model.isChecked = ko.observable(false);
-
-		model.uncheck = function () {
-			model.isChecked(false);
-		};
-
-		model.selectedExperienceOption = ko.computed({
-			read: function () {
-				return model.experienceOptions.findById(model.experienceId);
-			},
-			write: function (newValue) {
-				model.experienceId(newValue ? newValue.id : undefined);
-			}
-		}).extend(utils.requiredOnly(model.resource.requiredMessage));
-		model.selectedExperienceOptionLabel = ko.computed(function () {
-			return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
-		});
-	}
 
 	model.salary = ko.observable().extend({
 		digit: {
@@ -159,6 +117,8 @@ function ResumePositionModel (parent, data) {
 	model.toJS = function () {
 		var data = mapper.toJS(model);
 		data.salary = data.salary || 0;
+		delete data.rubric;
+		delete data.subrubric;
 		return data;
 	};
 
@@ -190,7 +150,12 @@ function ResumePositionModel (parent, data) {
 						model.handleBarRequestResponse(jqXHR);
 					}
 				});
-			backend.post(model.api() + '/resume/' + parent.resumeId + '/rubric', model.toJS())
+
+			var rubricData = model.checkedSubrubrics().map(function (item) {
+				return {id: item.id, experienceId: item.experienceId()};
+			});
+
+			backend.post(model.api() + '/resume/' + parent.resumeId + '/rubric', rubricData)
 				.success(function (id) {
 					model.id(id);
 					model.commit();
@@ -211,4 +176,46 @@ function ResumePositionModel (parent, data) {
 	InitResultMessage(model);
 
 	if (data) model.fromJS(data);
+}
+
+function SubRubricModel (_lng, en, ru, ua, parentId, label, experienceId, id, parent) {
+	var model = this;
+	model._lng = _lng;
+	model.en = en;
+	model.ua = ua;
+	model.ru = ru;
+	model.parentId = parentId;
+	model.label = label;
+	model.experienceId = ko.observable(experienceId);
+	model.id = id;
+	model.experienceOptions = parent.experience;
+	model.resource = parent.resource;
+
+	model.isCheckBoxEnabled = ko.computed(function () {
+		var checkedIds = parent.subrubric().filter(function (item) {
+			return item.isChecked();
+		}).map(function (item) {
+			return item.id;
+		});
+
+		return checkedIds.length < 2 || checkedIds.indexOf(model.id) !== -1;
+	});
+
+	model.isChecked = ko.observable(false);
+
+	model.uncheck = function () {
+		model.isChecked(false);
+	};
+
+	model.selectedExperienceOption = ko.computed({
+		read: function () {
+			return model.experienceOptions.findById(model.experienceId);
+		},
+		write: function (newValue) {
+			model.experienceId(newValue ? newValue.id : undefined);
+		}
+	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.selectedExperienceOptionLabel = ko.computed(function () {
+		return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
+	});
 }

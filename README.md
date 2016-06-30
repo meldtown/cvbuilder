@@ -3,11 +3,16 @@ CvBuilder
 
 Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 
-Controls
---------
+Tasks
+-----
 
-Message above the header: "Чтобы опубликовать резюме на сайте обязательно заполните раздел "Опыт работы" или "Образование".", quoted text will be links to add blocks
-
+ * What happens after resume copy from sidebar? - open new window with copied cv
+ * What happens after resume remove from sidebar? - temporary hide
+ * Add confirm dialogs to remove links (edu, exp, trainins, languages, additional)
+ * Add confirm dialog to resume remove
+ * After saving/removing edu/exp should call status.get to update header
+ * Configure IIS for local dev
+ * Если пользователь выбирает Анонимное резюме, то скрываем: Имя, контакты, название компаний в которых работал. https://rabota.atlassian.net/secure/attachment/38678/38678_cvbuilder_mainPgae_anonim.png
 
 Dependencies
 ------------
@@ -37,59 +42,6 @@ WebStorm
 Mark `coverage` and `dist` folders as excluded. `node_modules` as resources root and `spec` as tests root.
 
 Marking is done via right clicking on folder and choosing appropriate action in context menu.
-
-TODO
-----
-
- * <s>Injecting HTML templates into main page may be done better somehow</s>
- * <s>Logic for arrays are in CvBuilderModel which is bad for collaborative work</s>
- * Extract save method from models
-
-Notices
--------
-
-We can not give parent model to child models because of editable will make them both start editing
-
-Backend bad request validation errors response example:
-
-	{
-	  "message": "The request is invalid.",
-	  "modelState": {
-		"data.FirstName": [
-		  "Name is required EN \"MAC\"\r\n<font color=\"red\">was</font> here"
-		],
-		"data.LastName": [
-		  "The LastName field is required."
-		],
-		"data.FavoriteColor": [
-		  "The FavoriteColor field is required.",
-		  "Invalid value"
-		],
-		"data.Email": [
-		  "The Email field is required."
-		]
-	  }
-	}
-
-
-Possible backend responses that should be catched:
-
-404 - not found
-403 - forbidden
-400 - bad request
-
-
-Each model should have:
-
- * fields like in backend
- * save/get methods
- * get method may catch 404, 403
- * save method may catch 403, 400
-
-Each test should check:
-
- * validation rules
- * handling 400 (backend errors)
 
 Browser Sync
 ============
