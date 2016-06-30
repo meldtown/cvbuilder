@@ -1,4 +1,4 @@
-function CvBuilderModel (api, resumeId, dictionary, uiLanguage) {
+function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflink) {
 	var model = this;
 
 	model.resumeId = resumeId;
@@ -17,6 +17,9 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage) {
 	model.api = ko.computed(function () {
 		return api.replace('api.', model._lng().dictionary + '.api.');
 	});
+
+	model.veiwlink = ko.observable(viewlink);
+	model.rtflink = ko.observable(rtflink);
 
 	model.isLanguageSelectPopupOpen = ko.observable(false);
 
@@ -364,6 +367,49 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage) {
 	model.toggleActionsClass = ko.computed(function () {
 		return model.isAllActionsVisible() ? 'fa fa-caret-up' : 'fa fa-caret-down';
 	});
+
+	model.createCopy = function () {
+		backend.post(model.api() + '/resume/' + model.resumeId + '/copy')
+			.success(function () {
+				console.log('success');
+			})
+			.fail(function () {
+				console.log('fail');
+			});
+	};
+
+	model.removeCV = function () {
+		backend.remove(model.api() + '/resume/' + model.resumeId)
+			.success(function () {
+				console.log('success');
+			})
+			.fail(function () {
+				console.log('fail');
+			});
+	};
+
+	model.print = function () {
+		model.additional().forEach(function (item) {
+			item.cancel();
+		});
+		model.contacts.cancel();
+		model.education().forEach(function (item) {
+			item.cancel();
+		});
+		model.experience().forEach(function (item) {
+			item.cancel();
+		});
+		model.language().forEach(function (item) {
+			item.cancel();
+		});
+		model.personalInfo.cancel();
+		model.position.rollback();
+		model.skill.rollback();
+		model.training().forEach(function (item) {
+			item.cancel();
+		});
+		window.print();
+	};
 
 	model.load = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/searchstate').success(function (data) {

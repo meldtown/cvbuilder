@@ -164,7 +164,6 @@ input:-moz-placeholder {
 	.validationMessage {
 		color: #ffa000;
 		display: block;
-		margin-top: -10px;
 		margin-bottom: 10px;
 	}
 
@@ -654,7 +653,6 @@ input:-moz-placeholder {
 
 	}
 
-
 	.language-toggler-label {
 		font-weight: bold;
 		margin-right: 20px;
@@ -771,8 +769,8 @@ input:-moz-placeholder {
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform: translate(-50%,-50%);
-				color: rgba(120,120,120,.5);
+				transform: translate(-50%, -50%);
+				color: rgba(120, 120, 120, .5);
 			}
 		}
 		& > span > span {
@@ -805,7 +803,7 @@ input:-moz-placeholder {
 		.t.top input[type=checkbox] {
 			cursor: pointer;
 		}
-		
+
 		label[for=anon] {
 			cursor: pointer;
 		}
@@ -826,7 +824,7 @@ input:-moz-placeholder {
 				background-color: #bdbdbd;
 			}
 		}
-		box-shadow: 2px 5px 4px 0 rgba(120,120,120, .8);
+		box-shadow: 2px 5px 4px 0 rgba(120, 120, 120, .8);
 		&::after {
 			content: '';
 			display: table;
@@ -856,7 +854,7 @@ input:-moz-placeholder {
 		p {
 			margin: 15px 0 0 0;
 		}
-		
+
 		a {
 			position: absolute;
 			top: 7px;
@@ -887,35 +885,48 @@ input:-moz-placeholder {
 
 }
 
-.ui-autocomplete .ui-menu-item a.autocomplete-company {
-	display: flex;
-	align-items: center;
-	min-height: 55px;
+.ui-autocomplete {
+	z-index: 1000;
+	.ui-menu-item a.autocomplete-company {
 
-	span {
 		display: flex;
-		flex-direction: column;
-	}
+		align-items: center;
+		min-height: 55px;
 
-	img {
-		width: auto;
-		height: auto;
-		max-width: none;
-	}
+		span {
+			display: flex;
+			flex-direction: column;
+		}
 
-	& > span:first-child {
-		align-self: stretch;
-		width: 95px;
-		text-align: center;
-		background-position: 50% 50%;
-		background-repeat: no-repeat;
-	}
+		img {
+			width: auto;
+			height: auto;
+			max-width: none;
+		}
 
-	& > span:last-child {
-		padding-left: 10px;
-	}
+		& > span:first-child {
+			align-self: stretch;
+			width: 95px;
+			text-align: center;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+		}
 
-	small {
-		opacity: .8;
+		& > span:last-child {
+			padding-left: 10px;
+		}
+
+		small {
+			opacity: .8;
+		}
+	}
+}
+
+@media print {
+	.hidden-on-print, .sidebar, .btn, .edit, .fa, .footer-blocks, .add-block-button, footer {
+		display: none;
+	}
+	.visible-on-print {
+		width: 100%;
 	}
 }

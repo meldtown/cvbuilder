@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="dist/cvbuilder.css">
 </head>
 <body class="rua-l-body">
-<div class="header header-default">
+<div class="header header-default hidden-on-print">
 	<ul class="header-inner">
 		<li class="header-item header-item-logo">
 			<a class="header-link" href="/"><i class="ri_logo" style="padding-right: 0;"></i></a></li>
@@ -110,9 +110,10 @@
 <script>
 	jQuery.support.cors = true;
 	var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
-	var resumeId = 3496188;
+	var resumeId = 9171642;
 
-	jQuery.when( $.ajax({
+	jQuery.when(
+		$.ajax({
 			type: 'GET',
 			url: api + '/resume/' + resumeId + '/uilanguage',
 			contentType: 'application/json',
@@ -134,8 +135,26 @@
 		jQuery.getJSON(api + '/dictionary/sex'),
 		jQuery.getJSON(api + '/dictionary/currency'),
 		jQuery.getJSON(api + '/dictionary/rubric'),
-		jQuery.getJSON(api + '/dictionary/subrubric')
-	).then(function (uilanguage, language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency, rubric, subrubric) {
+		jQuery.getJSON(api + '/dictionary/subrubric'),
+		$.ajax({
+			type: 'GET',
+			url: api + '/resume/' + resumeId + '/viewlink',
+			contentType: 'application/json',
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
+		}),
+		$.ajax({
+			type: 'GET',
+			url: api + '/resume/' + resumeId + '/rtflink',
+			contentType: 'application/json',
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
+		})
+	).then(function (uilanguage, language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency, rubric, subrubric, viewlink, rtflink) {
 		var dictionary = {
 			uilanguage: uilanguage,
 			language: language[0],
@@ -151,10 +170,12 @@
 			sex: sex[0],
 			currency: currency[0],
 			rubric: rubric[0],
-			subrubric: subrubric[0]
+			subrubric: subrubric[0],
+			viewlink: viewlink[0],
+			rtflink: rtflink[0]
 		};
 
-		window.model = new CvBuilderModel(api, resumeId, dictionary, uilanguage);
+		window.model = new CvBuilderModel(api, resumeId, dictionary, uilanguage, viewlink[0], rtflink[0]);
 		ko.applyBindings(model);
 	});
 </script>
