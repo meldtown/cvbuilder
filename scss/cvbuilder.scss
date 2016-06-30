@@ -44,6 +44,10 @@ input:-moz-placeholder {
 	opacity: .7;
 }
 
+input[type=checkbox], input[type=radio] {
+	margin-top: 0;
+}
+
 .fa-pencil {
 	color: #7e7e7e;;
 }
@@ -781,6 +785,7 @@ input:-moz-placeholder {
 		}
 		.activity-level-popup {
 			right: 0;
+			z-index: 2000;
 			&:not(.active) {
 				display: none;
 			}
@@ -886,7 +891,7 @@ input:-moz-placeholder {
 }
 
 .ui-autocomplete {
-	z-index: 1000;
+	z-index: 3000;
 	.ui-menu-item a.autocomplete-company {
 
 		display: flex;
@@ -920,6 +925,9 @@ input:-moz-placeholder {
 			opacity: .8;
 		}
 	}
+}
+header, .header, .header-inner {
+	z-index: 5000;
 }
 
 @media print {

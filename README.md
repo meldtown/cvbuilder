@@ -6,13 +6,9 @@ Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 Tasks
 -----
 
- * What happens after resume copy from sidebar? - open new window with copied cv
- * What happens after resume remove from sidebar? - temporary hide
- * Add confirm dialogs to remove links (edu, exp, trainins, languages, additional)
- * Add confirm dialog to resume remove
+
  * After saving/removing edu/exp should call status.get to update header
  * Configure IIS for local dev
- * Если пользователь выбирает Анонимное резюме, то скрываем: Имя, контакты, название компаний в которых работал. https://rabota.atlassian.net/secure/attachment/38678/38678_cvbuilder_mainPgae_anonim.png
 
 Dependencies
 ------------
