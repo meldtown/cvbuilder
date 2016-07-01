@@ -66,6 +66,14 @@ input[type=checkbox], input[type=radio] {
 		font-family: 'Roboto', sans-serif;
 	}
 
+	.btn.btn-danger.disabled {
+		opacity: .7;
+		cursor: not-allowed;
+		pointer-events: none;
+		color: #7e7e7e;
+		border-color: #7e7e7e;
+	}
+
 	.edit {
 		font-size: 12px;
 		margin-left: 7px;

@@ -21,8 +21,10 @@
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
 			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeild"></span>
-			<div data-bind="visible: !$parent.state.anonymous, foreach: additionalPhones">
-				<div class="rua-p-c-light" data-bind="template: tpl"></div>
+			<div data-bind="ifnot: $parent.state.anonymous">
+				<div data-bind="foreach: additionalPhones">
+					<div class="rua-p-c-light" data-bind="template: tpl"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -48,8 +50,10 @@
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
 			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeild"></span>
-			<div data-bind="visible: !$parent.state.anonymous, foreach: nonEmptyPortfolio">
-				<div class="rua-p-c-light" data-bind="template: tpl"></div>
+			<div data-bind="ifnot: $parent.state.anonymous">
+				<div data-bind="foreach: nonEmptyPortfolio">
+					<div class="rua-p-c-light" data-bind="template: tpl"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -59,8 +63,10 @@
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
 			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeild"></span>
-			<div data-bind="visible: !$parent.state.anonymous, foreach: socialNetworks">
-				<a class="socialnetwork-view" data-bind="html: subTypeIcon, attr: { href: text }"></a>
+			<div data-bind="ifnot: $parent.state.anonymous">
+				<div data-bind="foreach: socialNetworks">
+					<a class="socialnetwork-view" data-bind="html: subTypeIcon, attr: { href: text }"></a>
+				</div>
 			</div>
 		</div>
 	</div>
