@@ -33,8 +33,10 @@ function ResumePositionModel (parent, data) {
 	model.id = ko.observable();
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.selectedRubric = ko.observable(model.rubric[0]);
+	model.selectedRubric = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.subRubricsFilteredByParentRubric = ko.computed(function () {
+		if (!model.selectedRubric()) return [];
+
 		return model.subrubric().filter(function (item) {
 			return model.selectedRubric().id === item.parentId;
 		});
@@ -138,7 +140,24 @@ function ResumePositionModel (parent, data) {
 	};
 
 	model.save = function () {
-		if (model.errors().length === 0) {
+		var checkedSubRubricsCount = model.checkedSubrubrics().length;
+		var checkedSubRubricsWithSelectedExperienceCount = model.checkedSubrubrics().filter(function (item) {
+			return item.experienceId();
+		}).length;
+
+		if (checkedSubRubricsCount === 0) {
+			model.selectedRubric(undefined);
+		}
+
+		if (checkedSubRubricsCount !== checkedSubRubricsWithSelectedExperienceCount) {
+			model.checkedSubrubrics().filter(function (item) {
+				return !item.experienceId();
+			}).forEach(function (item) {
+				item.errors.showAllMessages(true);
+			});
+		}
+
+		if (model.errors().length === 0 && checkedSubRubricsCount > 0 && checkedSubRubricsCount === checkedSubRubricsWithSelectedExperienceCount) {
 			backend.post(model.api() + '/resume/' + parent.resumeId + '/position', model.toJS())
 				.success(function (id) {
 					model.id(id);
@@ -209,7 +228,7 @@ function SubRubricModel (_lng, en, ru, ua, parentId, label, experienceId, id, pa
 
 	model.selectedExperienceOption = ko.computed({
 		read: function () {
-			return model.experienceOptions.findById(model.experienceId);
+			return model.experienceOptions.findById(model.experienceId());
 		},
 		write: function (newValue) {
 			model.experienceId(newValue ? newValue.id : undefined);
@@ -218,4 +237,6 @@ function SubRubricModel (_lng, en, ru, ua, parentId, label, experienceId, id, pa
 	model.selectedExperienceOptionLabel = ko.computed(function () {
 		return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
 	});
+
+	model.errors = ko.validation.group(model);
 }
