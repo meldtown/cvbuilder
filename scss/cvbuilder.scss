@@ -817,7 +817,7 @@ input[type=checkbox], input[type=radio] {
 	.greeting-popup {
 		position: relative;
 		background-color: #fafafa;
-		padding-right: 50px;
+		padding: 0 50px 15px 120px;
 		&.gray {
 			p span:last-child {
 				color: #c55d59;
@@ -836,18 +836,23 @@ input[type=checkbox], input[type=radio] {
 			clear: both;
 		}
 		.success-icon {
-			float: left;
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
 			width: 102px;
-			height: 135px;
 			box-sizing: border-box;
 			padding: 0 20px;
-			line-height: 135px;
 			background-color: #9ccc65;
 			text-align: center;
 			color: #fff;
 			margin-right: 22px;
 			i {
 				font-size: 47px;
+				position: absolute;
+				top: 50%;
+				laeft: 50%;
+				transform: translate(-50%,-50%);
 			}
 		}
 		h1 {
