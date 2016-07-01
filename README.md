@@ -6,15 +6,10 @@ Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 Tasks
 -----
 
- * Make .greeting-popup(s) fluid not fixed height
  * Fix computed that allows resume publication
  * Disable "Update date" button if resume is not published RUA-16154
- * Remove email from sidebar
- * Remove more toggler from sidebar
- * RUA-16150
  * Ask AlexR what to do when there is 5 resumes and user press copy button
  * After saving/removing edu/exp should call status.get to update header
- * Configure IIS for local dev
  * Make one request at start instead of 100500
 
 Dependencies

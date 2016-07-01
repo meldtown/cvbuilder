@@ -235,22 +235,30 @@
 				</div>
 			</div>
 			<div class="actions">
-				<a class="rua-p-c-light" href="http://img1.rabota.com.ua/data/cvpubrules.pdf" target="_blank"><i class="fa fa-file-pdf-o"></i><span  data-bind="label: dictionary.resource.resumeLocationRules"></span></a>
+				<a class="rua-p-c-light" href="http://img1.rabota.com.ua/data/cvpubrules.pdf" target="_blank"><i class="fa fa-file-pdf-o"></i><span data-bind="label: dictionary.resource.resumeLocationRules"></span></a>
 				<div class="actions-container">
 					<h5 class="rua-p-c-light" data-bind="label: dictionary.resource.actions"></h5>
 					<ul>
-						<li><a class="rua-p-c-light" data-bind="attr: {href: veiwlink}" target="_blank"><i class="fa fa-eye"></i><span data-bind="label: dictionary.resource.viewAtSite"></span></a></li>
-						<li><a class="rua-p-c-light" data-bind="attr: {href: rtflink}"><i class="fa fa-file-o"></i><span data-bind="label: dictionary.resource.download"></span></a></li>
-						<li><a class="rua-p-c-light" href="#" data-bind="click: createCopy" target="_blank"><i class="fa fa-files-o"></i><span data-bind="label: dictionary.resource.makeCopy"></span></a></li>
+						<li>
+							<a class="rua-p-c-light" data-bind="attr: {href: veiwlink}" target="_blank"><i class="fa fa-eye"></i><span data-bind="label: dictionary.resource.viewAtSite"></span></a>
+						</li>
+						<li>
+							<a class="rua-p-c-light" data-bind="attr: {href: rtflink}"><i class="fa fa-file-o"></i><span data-bind="label: dictionary.resource.download"></span></a>
+						</li>
+						<li>
+							<a class="rua-p-c-light" href="#" data-bind="click: createCopy" target="_blank"><i class="fa fa-files-o"></i><span data-bind="label: dictionary.resource.makeCopy"></span></a>
+						</li>
+						<li>
+							<a class="rua-p-c-light" href="#" data-bind="click: print"><i class="fa fa-print"></i><span data-bind="label: dictionary.resource.print"></span></a>
+						</li>
+						<li style="display: none;">
+							<a class="rua-p-c-light" href="#" target="_blank"><i class="fa fa-envelope-o"></i><span data-bind="label: dictionary.resource.sendEmail"></span></a>
+						</li>
+						<li style="display: none;">
+							<a class="rua-p-c-light" data-bind="confirmRemove: { handler: removeCV, dialogSelector: '#dlgConfirmResumeRemove' }" href="#" target="_blank"><i class="fa fa-times"></i><span data-bind="label: dictionary.resource.delete"></span></a>
+						</li>
 					</ul>
-					<div class="show-all" data-bind="visible: isAllActionsVisible">
-						<ul class="rua-p-c-light">
-							<li><a class="rua-p-c-light"  href="#" data-bind="click: print"><i class="fa fa-print"></i><span data-bind="label: dictionary.resource.print"></span></a></li>
-							<li><a class="rua-p-c-light" href="#" target="_blank"><i class="fa fa-envelope-o"></i><span data-bind="label: dictionary.resource.sendEmail"></span></a></li>
-							<li style="display: none;"><a class="rua-p-c-light" data-bind="confirmRemove: { handler: removeCV, dialogSelector: '#dlgConfirmResumeRemove' }" href="#" target="_blank"><i class="fa fa-times"></i><span data-bind="label: dictionary.resource.delete"></span></a></li>
-						</ul>
-					</div>
-					<h5 class="rua-p-c-light" data-bind="click: toggleAllActions"><span data-bind="text: toggleActionsText"></span><i data-bind="css: toggleActionsClass"></i></h5>
+
 				</div>
 			</div>
 		</div>
