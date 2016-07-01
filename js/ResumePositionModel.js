@@ -135,7 +135,15 @@ function ResumePositionModel (parent, data) {
 			model.fromJS(data);
 		});
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/rubric').success(function (data) {
-			model.fromJS(data);
+			data.forEach(function (item) {
+				model.subrubric().filter(function (subrubric) {
+					return subrubric.id === item.id;
+				}).forEach(function (subrubric) {
+					subrubric.isChecked(true);
+					subrubric.experienceId(item.experienceId);
+					model.selectedRubric(model.rubric.findById(subrubric.parentId));
+				});
+			});
 		});
 	};
 
