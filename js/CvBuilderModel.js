@@ -432,6 +432,13 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		model.getAdditional();
 		model.getTraining();
 		model.getLanguage();
+
+		/*backend.get(model.api() + '/resume/' + model.resumeId).success(function (data) {
+			model.skill.fromJS(data.skill);
+			model.skill.resumeId = parent.resumeId;
+
+			model.position.fromJS(data.position);
+		});*/
 	};
 
 	model.load();
