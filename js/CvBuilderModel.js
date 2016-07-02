@@ -455,6 +455,15 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 				});
 			}
 			model.position.fromJS(data.position);
+			data.rubrics.forEach(function (item) {
+				model.position.subrubric().filter(function (subrubric) {
+					return subrubric.id === item.id;
+				}).forEach(function (subrubric) {
+					subrubric.isChecked(true);
+					subrubric.experienceId(item.experienceId);
+					model.position.selectedRubric(model.position.rubric.findById(subrubric.parentId));
+				});
+			});
 			model.personalInfo.fromJS(data.personal);
 			model.personalInfo._photo(data.photo);
 			model.contacts.fromJS(data.contact);
