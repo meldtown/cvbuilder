@@ -6,8 +6,7 @@ Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 Tasks
 -----
 
- * Fix computed that allows resume publication
- * Disable "Update date" button if resume is not published RUA-16154
+ * Experience wrap company name spans and hide them for anonymous cv
  * Ask AlexR what to do when there is 5 resumes and user press copy button
  * After saving/removing edu/exp should call status.get to update header
  * Make one request at start instead of 100500
