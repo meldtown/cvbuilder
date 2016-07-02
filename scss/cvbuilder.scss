@@ -1,4 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700&subset=latin,cyrillic,cyrillic-ext);
+//@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700&subset=latin,cyrillic,cyrillic-ext);
+
+@font-face {
+	font-family: 'Roboto';
+	font-weight: 300;
+	font-style: normal;
+	src: url('https://css.rabota.com.ua/fonts/Roboto-300/Roboto-300.eot');
+	src: url('https://css.rabota.com.ua/fonts/Roboto-300/Roboto-300.eot?#iefix') format('embedded-opentype'), local('Roboto Light'), local('Roboto-300'), url('https://css.rabota.com.ua/fonts/Roboto-300/Roboto-300.woff2') format('woff2'), url('https://css.rabota.com.ua/fonts/Roboto-300/Roboto-300.woff') format('woff'), url('https://css.rabota.com.ua/fonts/Roboto-300/Roboto-300.ttf') format('truetype'), url('https://css.rabota.com.ua/fonts/Roboto-300/Roboto-300.svg#Roboto') format('svg');
+}
+
 @import url('//use.fontawesome.com/releases/v4.6.3/css/font-awesome-css.min.css');
 
 /* FONT PATH
