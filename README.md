@@ -6,7 +6,8 @@ Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 Tasks
 -----
 
- * Make one request at start instead of 100500
+ * Disable or hide copy button if there is more than X resume
+ * Make one request at start instead of 100500 (dictionaries?)
 
 Dependencies
 ------------
