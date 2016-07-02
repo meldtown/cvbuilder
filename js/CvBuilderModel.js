@@ -92,7 +92,9 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 	});
 
 	model.state = new ResumeStateModel(model);
+	console.time('position');
 	model.position = new ResumePositionModel(model);
+	console.timeEnd('position');
 	model.personalInfo = new ResumePersonalModel(model);
 	model.contacts = new ResumeContactsModel(model);
 
