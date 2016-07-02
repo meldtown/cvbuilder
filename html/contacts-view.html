@@ -64,8 +64,11 @@
 		<div class="col view-input-value d-9of12 m-1of1">
 			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeild"></span>
 			<div data-bind="ifnot: $parent.state.anonymous">
-				<div style="word-wrap: normal;" data-bind="foreach: socialNetworks">
+				<div class="hidden-on-print" data-bind="foreach: socialNetworks">
 					<a class="socialnetwork-view" data-bind="html: subTypeIcon, attr: { href: text }"></a>
+				</div>
+				<div class="visible-on-print-block" data-bind="foreach: socialNetworks">
+					<span data-bind="text: text"></span>
 				</div>
 			</div>
 		</div>

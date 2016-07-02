@@ -236,7 +236,8 @@ input[type=checkbox], input[type=radio] {
 		margin-left: 20px;
 	}
 
-	.socialnetwork {
+	.socialnetwork,
+	.socialnetwork-view {
 		display: inline-block;
 		width: 30px;
 		height: 30px;
@@ -259,10 +260,10 @@ input[type=checkbox], input[type=radio] {
 	}
 
 	.socialnetwork-view {
-		@extend .socialnetwork;
 		background-color: #fff;
 		border: none;
 		color: #aaa;
+		margin-bottom: 0;
 		&:not(:first-child) {
 			margin-left: 0;
 		}
@@ -469,7 +470,7 @@ input[type=checkbox], input[type=radio] {
 		position: absolute;
 		bottom: 20px;
 		left: calc(100% + 40px);
-		z-index: 999;
+		z-index: 100;
 	}
 
 	.alert-message {
@@ -553,7 +554,7 @@ input[type=checkbox], input[type=radio] {
 	}
 
 	.activity-level-popup {
-		z-index: 500;
+		z-index: 100;
 		position: absolute;
 		right: 0;
 		top: 100%;
@@ -676,7 +677,7 @@ input[type=checkbox], input[type=radio] {
 			position: absolute;
 			background-color: #fff;
 			box-shadow: 0 0 10px 0 rgba(120, 120, 120, .5);
-			z-index: 333;
+			z-index: 100;
 			& > div {
 				position: relative;
 				cursor: pointer;
@@ -713,7 +714,7 @@ input[type=checkbox], input[type=radio] {
 		font-size: 12px;
 		vertical-align: middle;
 		.state-popup {
-			z-index: 666;
+			z-index: 100;
 			&:not(.active) {
 				display: none;
 			}
@@ -786,7 +787,7 @@ input[type=checkbox], input[type=radio] {
 		}
 		.activity-level-popup {
 			right: 0;
-			z-index: 2000;
+			z-index: 100;
 			&:not(.active) {
 				display: none;
 			}
@@ -895,10 +896,13 @@ input[type=checkbox], input[type=radio] {
 		}
 	}
 
+	.visible-on-print-block {
+		display: none;
+	}
 }
 
 .ui-autocomplete {
-	z-index: 3000;
+	z-index: 100;
 	.ui-menu-item a.autocomplete-company {
 
 		display: flex;
@@ -933,14 +937,16 @@ input[type=checkbox], input[type=radio] {
 		}
 	}
 }
-header, .header, .header-inner {
-	z-index: 5000;
-}
 
 @media print {
 	.hidden-on-print, .sidebar, .btn, .edit, .fa, .footer-blocks, .add-block-button, footer {
 		display: none;
 	}
+
+	.cvbuilder .visible-on-print-block {
+		display: block;
+	}
+
 	.visible-on-print {
 		width: 100%;
 	}
