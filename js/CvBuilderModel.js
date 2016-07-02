@@ -114,7 +114,6 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		return item;
 	};
 
-
 	model.education = ko.observableArray();
 	model.getEducation = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/education').success(function (data) {
@@ -151,7 +150,6 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		return item;
 	};
 
-
 	model.additional = ko.observableArray();
 	model.getAdditional = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/additional').success(function (data) {
@@ -168,7 +166,6 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		item.beginEdit();
 		return item;
 	};
-
 
 	model.training = ko.observableArray([]);
 	model.addTraining = function () {
@@ -198,7 +195,6 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 			model.date(moment().format());
 		});
 	};
-
 
 	model.searchState = ko.observable(1);
 	model.searchStateOptions = [
