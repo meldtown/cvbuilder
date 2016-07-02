@@ -1,4 +1,4 @@
-function CvBuilderModel (api, resumeId, dictionary, full, viewlink, rtflink) {
+function CvBuilderModel (api, resumeId, dictionary, full) {
 	var model = this;
 
 	model.resumeId = resumeId;
@@ -22,8 +22,8 @@ function CvBuilderModel (api, resumeId, dictionary, full, viewlink, rtflink) {
 		return api.replace('api.', model._lng().dictionary + '.api.');
 	});
 
-	model.veiwlink = ko.observable(viewlink);
-	model.rtflink = ko.observable(rtflink);
+	model.veiwlink = ko.observable((full || {viewLink: ''}).viewLink);
+	model.rtflink = ko.observable((full || {rtfLink: ''}).rtfLink);
 
 	model.isLanguageSelectPopupOpen = ko.observable(false);
 
