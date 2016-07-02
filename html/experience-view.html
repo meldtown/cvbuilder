@@ -9,19 +9,18 @@
 	</div>
 
 	<p class="rua-p-c-light">
-		<span data-bind="if: companySite">
-			<a href="#" data-bind="text: company, attr: {href: companySite}"></a>
-		</span>
 		<span style="color: #525050;" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeildCompany"></span>
-			<span data-bind="visible: !$parent.state.anonymous">
-				<span data-bind="ifnot: companySite">
-					<span data-bind="text: company"></span>
-				</span>
-
-				<span data-bind="if: branchId">
-					(<span data-bind="text: branch"></span>)
-				</span>
+		<span data-bind="ifnot:  $parent.state.anonymous">
+			<span data-bind="if: companySite">
+				<a class="rua-p-c-light" href="#" data-bind="text: company, attr: {href: companySite}"></a>
 			</span>
+			<span data-bind="ifnot: companySite">
+					<span data-bind="text: company"></span>
+			</span>
+			<span data-bind="if: branchId">
+					(<span data-bind="text: branch"></span>)
+			</span>
+		</span>
 
 		<i class="fa fa-calendar"></i>
 
