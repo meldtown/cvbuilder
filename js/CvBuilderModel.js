@@ -393,6 +393,8 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 	};
 
 	model.setFromJS = function (data) {
+		if (!data) return;
+
 		model.searchState(data.searchState || 1);
 		model.searchState.subscribe(function () {
 			backend.post(model.api() + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
