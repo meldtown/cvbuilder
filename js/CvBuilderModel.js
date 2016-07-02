@@ -404,21 +404,23 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		model.skill.resumeId = model.resumeId;
 		model.state.fromJS(data.state);
 
-		if (model.state.branchIds().length > 0) {
-			model.branchIds().forEach(function (id) {
+		if (data.state.branchIds.length > 0) {
+			data.state.branchIds.forEach(function (id) {
 				var branch = model.dictionary.branch.findById(id);
 				if (branch) {
-					model.itemsCompanyAndBranches.push(model.dictionary.branch.findById(id));
+					model.state.itemsCompanyAndBranches.push(model.dictionary.branch.findById(id));
 				}
 			});
 		}
 
-		if (model.state.companyIds().length > 0) {
-			backgend.post(model.api() + '/autocomplete/company', model.companyIds()).success(function (data) {
-				model.itemsCompanyAndBranches(data.map(function (item) {
-					item.label = item.comanpyName;
+		if (data.state.companyIds.length > 0) {
+			backend.post(model.api() + '/autocomplete/company', data.state.companyIds).success(function (data) {
+				data.map(function (item) {
+					item.label = item.companyName;
 					return item;
-				}));
+				}).forEach(function (item) {
+					model.state.itemsCompanyAndBranches.push(item);
+				});
 			});
 		}
 		model.position.fromJS(data.position);

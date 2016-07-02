@@ -139,6 +139,8 @@ function ResumeStateModel (parent) {
 			return item.notebookId;
 		});
 
+		delete data.itemsCompanyAndBranches;
+
 		return data;
 	};
 
