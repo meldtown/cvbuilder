@@ -405,21 +405,6 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 			});
 		});
 
-		backend.get(model.api() + '/resume/' + model.resumeId + '/date').success(function (data) {
-			model.date(data);
-		});
-
-		// model.state.get();
-		// model.personalInfo.get();
-		// model.contacts.get();
-		// model.skill.get();
-		// model.position.get();
-		// model.getExperiences();
-		// model.getEducation();
-		// model.getAdditional();
-		// model.getTraining();
-		// model.getLanguage();
-
 		backend.get(model.api() + '/resume/' + model.resumeId + '/full').success(function (data) {
 			model.skill.fromJS(data.skill);
 			model.skill.resumeId = model.resumeId;

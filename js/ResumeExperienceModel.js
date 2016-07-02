@@ -87,6 +87,7 @@ function ResumeExperienceModel (parent, data) {
 	};
 
 	model.save = function () {
+		parent.state.get();
 		if (model.errors().length === 0) {
 			backend.post(parent.api() + '/resume/' + parent.resumeId + '/experience', model.toJS())
 				.success(function (id) {
@@ -108,6 +109,7 @@ function ResumeExperienceModel (parent, data) {
 	};
 
 	model.remove = function () {
+		parent.state.get();
 		if (model.id()) {
 			backend.remove(parent.api() + '/resume/' + parent.resumeId + '/experience/' + model.id())
 				.success(function () {
