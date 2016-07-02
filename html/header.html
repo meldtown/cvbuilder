@@ -74,7 +74,7 @@
 
 		<i class="fa fa-calendar rua-p-c-light" style="margin-left: 30px"></i>
 		<span data-bind="text: dateFormatted" style="font-size: 13px;"></span>
-		<button class="btn btn-danger" data-bind="label: dictionary.resource.updateButton, click: updateDate, disabled: isLevelOptionDisabled, css: {disabled: isLevelOptionDisabled}" style="margin: 0 40px 0 16px; font-size: 12px; padding: 8px 16px;"></button>
+		<button class="btn btn-danger" data-bind="label: dictionary.resource.updateButton, click: updateDate, disabled: state.isVisibleOnlyToOwner, css: {disabled: state.isVisibleOnlyToOwner}" style="margin: 0 40px 0 16px; font-size: 12px; padding: 8px 16px;"></button>
 
 		<i class="fa fa-clock-o rua-p-c-light" style="margin-left: 20px; font-size: 17px; vertical-align: middle;"></i>
 		<div class="state-toggler">

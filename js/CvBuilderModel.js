@@ -7,11 +7,15 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		{id: 3, label: 'Українська', moment: 'uk', dictionary: 'ua', enum: 'Ukrainian'},
 		{id: 2, label: 'English', moment: 'us', dictionary: 'en', enum: 'English'}
 	];
-	model._lng = ko.observable(model._lngOptions.filter(function (item) {
-			return item.id === uiLanguage;
-		}).shift() || model._lngOptions[0]);
+	var lng = model._lngOptions.filter(function (item) {
+		return item.id === uiLanguage;
+	}).shift();
+	model._lng = ko.observable(lng || model._lngOptions[0]);
 	model.selectedLanguageLabel = ko.computed(function () {
 		return model._lng().label;
+	});
+	model._lng.subscribe(function () {
+		backend.post(model.api() + '/resume/' + model.resumeId + '/uilanguage?language=' + model._lng().id);
 	});
 
 	model.api = ko.computed(function () {
@@ -237,21 +241,6 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		model.isStateSelectPopupOpen(false);
 	};
 
-	model.getUiLanguage = function () {
-		backend.get(model.api() + '/resume/' + model.resumeId + '/uilanguage').success(function (data) {
-			if (data) {
-				var option = model._lngOptions.filter(function (item) {
-					return item.id === data;
-				}).shift();
-				model._lng(option || model._lngOptions[0]);
-			}
-
-			model._lng.subscribe(function () {
-				backend.post(model.api() + '/resume/' + model.resumeId + '/uilanguage?language=' + model._lng().id);
-			});
-		});
-	};
-
 	model.isExperienceBlockAdded = ko.computed(function () {
 		return model.experience().length >= 2;
 	});
@@ -420,7 +409,6 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 			model.date(data);
 		});
 
-		model.getUiLanguage();
 		// model.state.get();
 		// model.personalInfo.get();
 		// model.contacts.get();
@@ -439,9 +427,9 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 
 			if (model.state.branchIds().length > 0) {
 				model.branchIds().forEach(function (id) {
-					var branch = parent.dictionary.branch.findById(id);
+					var branch = model.dictionary.branch.findById(id);
 					if (branch) {
-						model.itemsCompanyAndBranches.push(parent.dictionary.branch.findById(id));
+						model.itemsCompanyAndBranches.push(model.dictionary.branch.findById(id));
 					}
 				});
 			}

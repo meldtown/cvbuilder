@@ -156,7 +156,6 @@
 		})
 	).then(function (uilanguage, language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency, rubric, subrubric, viewlink, rtflink) {
 		var dictionary = {
-			uilanguage: uilanguage,
 			language: language[0],
 			experience: experience[0],
 			educationType: education[0].slice(1),
@@ -175,7 +174,7 @@
 			rtflink: rtflink[0]
 		};
 
-		window.model = new CvBuilderModel(api, resumeId, dictionary, uilanguage, viewlink[0], rtflink[0]);
+		window.model = new CvBuilderModel(api, resumeId, dictionary, uilanguage[0], viewlink[0], rtflink[0]);
 		ko.applyBindings(model);
 	});
 </script>
