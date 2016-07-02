@@ -115,7 +115,7 @@
 	jQuery.when(
 		$.ajax({
 			type: 'GET',
-			url: api + '/resume/' + resumeId + '/uilanguage',
+			url: api + '/resume/' + resumeId + '/full',
 			contentType: 'application/json',
 			dataType: 'json',
 			xhrFields: {
@@ -154,7 +154,7 @@
 				withCredentials: true
 			}
 		})
-	).then(function (uilanguage, language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency, rubric, subrubric, viewlink, rtflink) {
+	).then(function (full, language, experience, education, city, branch, schedule, resource, activityLevel, languageSkill, additional, sex, currency, rubric, subrubric, viewlink, rtflink) {
 		var dictionary = {
 			language: language[0],
 			experience: experience[0],
@@ -174,7 +174,7 @@
 			rtflink: rtflink[0]
 		};
 
-		window.model = new CvBuilderModel(api, resumeId, dictionary, uilanguage[0], viewlink[0], rtflink[0]);
+		window.model = new CvBuilderModel(api, resumeId, dictionary, full[0], viewlink[0], rtflink[0]);
 		ko.applyBindings(model);
 	});
 </script>

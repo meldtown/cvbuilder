@@ -1,4 +1,4 @@
-function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflink) {
+function CvBuilderModel (api, resumeId, dictionary, full, viewlink, rtflink) {
 	var model = this;
 
 	model.resumeId = resumeId;
@@ -8,7 +8,7 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		{id: 2, label: 'English', moment: 'us', dictionary: 'en', enum: 'English'}
 	];
 	var lng = model._lngOptions.filter(function (item) {
-		return item.id === uiLanguage;
+		return item.id === (full || {uiLanguage: 1}).uiLanguage;
 	}).shift();
 	model._lng = ko.observable(lng || model._lngOptions[0]);
 	model.selectedLanguageLabel = ko.computed(function () {
@@ -396,67 +396,64 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		window.print();
 	};
 
-	model.load = function () {
-		backend.get(model.api() + '/resume/' + model.resumeId + '/searchstate').success(function (data) {
-			model.searchState(data || 1);
-
-			model.searchState.subscribe(function () {
-				backend.post(model.api() + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
-			});
+	model.setFromJS = function (data) {
+		model.searchState(data.searchState || 1);
+		model.searchState.subscribe(function () {
+			backend.post(model.api() + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
 		});
 
-		backend.get(model.api() + '/resume/' + model.resumeId + '/full').success(function (data) {
-			model.skill.fromJS(data.skill);
-			model.skill.resumeId = model.resumeId;
-			model.state.fromJS(data.state);
+		model.date(data.updateDate);
 
-			if (model.state.branchIds().length > 0) {
-				model.branchIds().forEach(function (id) {
-					var branch = model.dictionary.branch.findById(id);
-					if (branch) {
-						model.itemsCompanyAndBranches.push(model.dictionary.branch.findById(id));
-					}
-				});
-			}
+		model.skill.fromJS(data.skill);
+		model.skill.resumeId = model.resumeId;
+		model.state.fromJS(data.state);
 
-			if (model.state.companyIds().length > 0) {
-				backgend.post(model.api() + '/autocomplete/company', model.companyIds()).success(function (data) {
-					model.itemsCompanyAndBranches(data.map(function (item) {
-						item.label = item.comanpyName;
-						return item;
-					}));
-				});
-			}
-			model.position.fromJS(data.position);
-			data.rubrics.forEach(function (item) {
-				model.position.subrubric().filter(function (subrubric) {
-					return subrubric.id === item.id;
-				}).forEach(function (subrubric) {
-					subrubric.isChecked(true);
-					subrubric.experienceId(item.experienceId);
-					model.position.selectedRubric(model.position.rubric.findById(subrubric.parentId));
-				});
+		if (model.state.branchIds().length > 0) {
+			model.branchIds().forEach(function (id) {
+				var branch = model.dictionary.branch.findById(id);
+				if (branch) {
+					model.itemsCompanyAndBranches.push(model.dictionary.branch.findById(id));
+				}
 			});
-			model.personalInfo.fromJS(data.personal);
-			model.personalInfo._photo(data.photo);
-			model.contacts.fromJS(data.contact);
-			data.experiences.forEach(function (item) {
-				model.experience.push(new ResumeExperienceModel(model, item));
+		}
+
+		if (model.state.companyIds().length > 0) {
+			backgend.post(model.api() + '/autocomplete/company', model.companyIds()).success(function (data) {
+				model.itemsCompanyAndBranches(data.map(function (item) {
+					item.label = item.comanpyName;
+					return item;
+				}));
 			});
-			data.educations.forEach(function (item) {
-				model.education.push(new ResumeEducationModel(model, item));
+		}
+		model.position.fromJS(data.position);
+		data.rubrics.forEach(function (item) {
+			model.position.subrubric().filter(function (subrubric) {
+				return subrubric.id === item.id;
+			}).forEach(function (subrubric) {
+				subrubric.isChecked(true);
+				subrubric.experienceId(item.experienceId);
+				model.position.selectedRubric(model.position.rubric.findById(subrubric.parentId));
 			});
-			data.additionals.forEach(function (item) {
-				model.additional.push(new ResumeAdditionalModel(model, item));
-			});
-			data.trainings.forEach(function (item) {
-				model.training.push(new ResumeTraininglModel(model, item));
-			});
-			data.languages.forEach(function (item) {
-				model.language.push(new ResumeLanguageModel(model, item));
-			});
+		});
+		model.personalInfo.fromJS(data.personal);
+		model.personalInfo._photo(data.photo);
+		model.contacts.fromJS(data.contact);
+		data.experiences.forEach(function (item) {
+			model.experience.push(new ResumeExperienceModel(model, item));
+		});
+		data.educations.forEach(function (item) {
+			model.education.push(new ResumeEducationModel(model, item));
+		});
+		data.additionals.forEach(function (item) {
+			model.additional.push(new ResumeAdditionalModel(model, item));
+		});
+		data.trainings.forEach(function (item) {
+			model.training.push(new ResumeTraininglModel(model, item));
+		});
+		data.languages.forEach(function (item) {
+			model.language.push(new ResumeLanguageModel(model, item));
 		});
 	};
 
-	model.load();
+	model.setFromJS(full);
 }
