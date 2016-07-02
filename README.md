@@ -7,7 +7,8 @@ Tasks
 -----
 
  * Disable or hide copy button if there is more than X resume
- * Make one request at start instead of 100500 (dictionaries?)
+ * Make one request at start instead of 100500 (dictionaries/client cache?)
+ * DO NOT WAIT FOR PAGE LOAD!!!!!!!!!!!!!!!!!!!!!!
 
 Dependencies
 ------------
