@@ -8,8 +8,8 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		{id: 2, label: 'English', moment: 'us', dictionary: 'en', enum: 'English'}
 	];
 	model._lng = ko.observable(model._lngOptions.filter(function (item) {
-		return item.id === uiLanguage;
-	}).shift() || model._lngOptions[0]);
+			return item.id === uiLanguage;
+		}).shift() || model._lngOptions[0]);
 	model.selectedLanguageLabel = ko.computed(function () {
 		return model._lng().label;
 	});
@@ -130,7 +130,6 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		model.contacts.additionalPhones.push('');
 		model.contacts.beginEdit();
 	};
-
 
 	model.language = ko.observableArray();
 	model.getLanguage = function () {
@@ -422,23 +421,59 @@ function CvBuilderModel (api, resumeId, dictionary, uiLanguage, viewlink, rtflin
 		});
 
 		model.getUiLanguage();
-		model.state.get();
-		model.personalInfo.get();
-		model.contacts.get();
-		model.skill.get();
-		model.position.get();
-		model.getExperiences();
-		model.getEducation();
-		model.getAdditional();
-		model.getTraining();
-		model.getLanguage();
+		// model.state.get();
+		// model.personalInfo.get();
+		// model.contacts.get();
+		// model.skill.get();
+		// model.position.get();
+		// model.getExperiences();
+		// model.getEducation();
+		// model.getAdditional();
+		// model.getTraining();
+		// model.getLanguage();
 
-		/*backend.get(model.api() + '/resume/' + model.resumeId).success(function (data) {
+		backend.get(model.api() + '/resume/' + model.resumeId + '/full').success(function (data) {
 			model.skill.fromJS(data.skill);
-			model.skill.resumeId = parent.resumeId;
+			model.skill.resumeId = model.resumeId;
+			model.state.fromJS(data.state);
 
+			if (model.state.branchIds().length > 0) {
+				model.branchIds().forEach(function (id) {
+					var branch = parent.dictionary.branch.findById(id);
+					if (branch) {
+						model.itemsCompanyAndBranches.push(parent.dictionary.branch.findById(id));
+					}
+				});
+			}
+
+			if (model.state.companyIds().length > 0) {
+				backgend.post(model.api() + '/autocomplete/company', model.companyIds()).success(function (data) {
+					model.itemsCompanyAndBranches(data.map(function (item) {
+						item.label = item.comanpyName;
+						return item;
+					}));
+				});
+			}
 			model.position.fromJS(data.position);
-		});*/
+			model.personalInfo.fromJS(data.personal);
+			model.personalInfo._photo(data.photo);
+			model.contacts.fromJS(data.contact);
+			data.experiences.forEach(function (item) {
+				model.experience.push(new ResumeExperienceModel(model, item));
+			});
+			data.educations.forEach(function (item) {
+				model.education.push(new ResumeEducationModel(model, item));
+			});
+			data.additionals.forEach(function (item) {
+				model.additional.push(new ResumeAdditionalModel(model, item));
+			});
+			data.trainings.forEach(function (item) {
+				model.training.push(new ResumeTraininglModel(model, item));
+			});
+			data.languages.forEach(function (item) {
+				model.language.push(new ResumeLanguageModel(model, item));
+			});
+		});
 	};
 
 	model.load();
