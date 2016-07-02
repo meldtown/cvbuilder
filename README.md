@@ -8,6 +8,7 @@ Tasks
 
  * Fix position - at moment it takes 1.5 sec
  * Disable or hide copy button if there is more than X resume
+ * Icon font
 
 Dependencies
 ------------
