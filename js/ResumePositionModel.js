@@ -14,33 +14,43 @@ function ResumePositionModel (parent, data) {
 	});
 
 	model.resource = parent.dictionary.resource;
-	model.experience = parent.dictionary.experience;
-	model.rubric = parent.dictionary.rubric;
+	model.rubricOptions = parent.dictionary.rubric;
+	model.selectedRubric = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 
-	model.subrubric = ko.observableArray([]);
-	var subrubricModels = parent.dictionary.subrubric.map(function (item) {
-		return new SubRubricModel(item._lng, item.en, item.ru, item.ua, item.parentId, item.label, item.experienceId, item.id, model);
-	});
-	model.subrubric(subrubricModels);
+	model.subRubricsFilteredByParentRubric = ko.computed(function () {
+		if (!model.selectedRubric()) return [];
 
-	model.checkedSubrubrics = ko.computed(function () {
-		return (model.subrubric ? model.subrubric() : []).filter(function (item) {
-			return item.isChecked();
+		var selectedRubricId = model.selectedRubric().id;
+
+		return parent.dictionary.subrubric.filter(function (item) {
+			return item.parentId === selectedRubricId;
 		});
 	});
+
+	model.experienceOptions = parent.dictionary.experience;
+	model.checkedSubRubrics = ko.observableArray([]);
+	model.checkedSubRubrics.subscribe(function (newValue) {
+		newValue.forEach(function (item) {
+			if (!item.hasOwnProperty('selectedExperienceOption')) {
+				item.selectedExperienceOption = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+			}/* else {
+				item.selectedExperienceOption(undefined);
+				item.selectedExperienceOption.clearError();
+			}*/
+		});
+	});
+	model.isCheckboxEnabled = function (data) {
+		var selectedIds = model.checkedSubRubrics().map(function (i) { return i.id; });
+		return model.checkedSubRubrics().length < 2 || selectedIds.indexOf(data.id) !== -1;
+	};
+	model.unCheckSubRubric = function (item) {
+		model.checkedSubRubrics.remove(item);
+	};
 
 	model.resumeId = parent.resumeId;
 	model.id = ko.observable();
 	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
 	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.selectedRubric = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.subRubricsFilteredByParentRubric = ko.computed(function () {
-		if (!model.selectedRubric()) return [];
-
-		return model.subrubric().filter(function (item) {
-			return model.selectedRubric().id === item.parentId;
-		});
-	});
 
 	model.salary = ko.observable().extend({
 		digit: {
@@ -135,22 +145,21 @@ function ResumePositionModel (parent, data) {
 			model.fromJS(data);
 		});
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/rubric').success(function (data) {
-			data.forEach(function (item) {
-				model.subrubric().filter(function (subrubric) {
-					return subrubric.id === item.id;
-				}).forEach(function (subrubric) {
-					subrubric.isChecked(true);
-					subrubric.experienceId(item.experienceId);
-					model.selectedRubric(model.rubric.findById(subrubric.parentId));
-				});
+			var checkedSubRubrics = data.map(function (item) {
+				var subrubric = parent.dictionary.subrubric.findById(item.id);
+				var option = model.experienceOptions.findById(item.experienceId);
+				subrubric.selectedExperienceOption = ko.observable(option).extend(utils.requiredOnly(model.resource.requiredMessage));
+				return subrubric;
 			});
+			model.checkedSubRubrics(checkedSubRubrics);
+			model.selectedRubric(parent.dictionary.rubric.findById(model.checkedSubRubrics()[0].parentId));
 		});
 	};
 
 	model.save = function () {
-		var checkedSubRubricsCount = model.checkedSubrubrics().length;
-		var checkedSubRubricsWithSelectedExperienceCount = model.checkedSubrubrics().filter(function (item) {
-			return item.experienceId();
+		var checkedSubRubricsCount = model.checkedSubRubrics().length;
+		var checkedSubRubricsWithSelectedExperienceCount = model.checkedSubRubrics().filter(function (item) {
+			return item.selectedExperienceOption();
 		}).length;
 
 		if (checkedSubRubricsCount === 0) {
@@ -158,9 +167,12 @@ function ResumePositionModel (parent, data) {
 		}
 
 		if (checkedSubRubricsCount !== checkedSubRubricsWithSelectedExperienceCount) {
-			model.checkedSubrubrics().filter(function (item) {
-				return !item.experienceId();
+			model.checkedSubRubrics().filter(function (item) {
+				return !item.experienceId || !item.experienceId();
 			}).forEach(function (item) {
+				if (!item.errors) {
+					item.errors = ko.validation.group(item);
+				}
 				item.errors.showAllMessages(true);
 			});
 		}
@@ -178,8 +190,8 @@ function ResumePositionModel (parent, data) {
 					}
 				});
 
-			var rubricData = model.checkedSubrubrics().map(function (item) {
-				return {id: item.id, experienceId: item.experienceId()};
+			var rubricData = model.checkedSubRubrics().map(function (item) {
+				return {id: item.id, experienceId: item.selectedExperienceOption().id};
 			});
 
 			backend.post(model.api() + '/resume/' + parent.resumeId + '/rubric', rubricData)
@@ -203,48 +215,4 @@ function ResumePositionModel (parent, data) {
 	InitResultMessage(model);
 
 	if (data) model.fromJS(data);
-}
-
-function SubRubricModel (_lng, en, ru, ua, parentId, label, experienceId, id, parent) {
-	var model = this;
-	model._lng = _lng;
-	model.en = en;
-	model.ua = ua;
-	model.ru = ru;
-	model.parentId = parentId;
-	model.label = label;
-	model.experienceId = ko.observable(experienceId);
-	model.id = id;
-	model.experienceOptions = parent.experience;
-	model.resource = parent.resource;
-
-	model.isCheckBoxEnabled = ko.computed(function () {
-		var checkedIds = parent.subrubric().filter(function (item) {
-			return item.isChecked();
-		}).map(function (item) {
-			return item.id;
-		});
-
-		return checkedIds.length < 2 || checkedIds.indexOf(model.id) !== -1;
-	});
-
-	model.isChecked = ko.observable(false);
-
-	model.uncheck = function () {
-		model.isChecked(false);
-	};
-
-	model.selectedExperienceOption = ko.computed({
-		read: function () {
-			return model.experienceOptions.findById(model.experienceId());
-		},
-		write: function (newValue) {
-			model.experienceId(newValue ? newValue.id : undefined);
-		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.selectedExperienceOptionLabel = ko.computed(function () {
-		return model.selectedExperienceOption() ? model.selectedExperienceOption().label() : '';
-	});
-
-	model.errors = ko.validation.group(model);
 }

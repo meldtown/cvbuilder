@@ -24,16 +24,14 @@
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
-
-			<select class="input-block-level" name="rubric" id="rubric" data-bind="optionsCaption: resource.positionChooseRubric.label, options: rubric, optionsText: 'label', value: selectedRubric"></select>
+			<select class="input-block-level" name="rubric" id="rubric" data-bind="optionsCaption: resource.positionChooseRubric.label, options: rubricOptions, optionsText: 'label', value: selectedRubric"></select>
 			<div class="input-tooltip">
 				<p data-bind="text: resource.tooltipAdvice.label"></p>
 				<p class="rua-p-c-light" data-bind="text: resource.rubricHint.label"></p>
 			</div>
-
-
 		</div>
 	</div>
+
 	<div data-bind="if: selectedRubric">
 		<div class="row">
 			<div class="col d-1of3">
@@ -45,13 +43,13 @@
 			<div class="col d-2of3">
 				<div data-bind="foreach: subRubricsFilteredByParentRubric">
 					<label>
-						<input type="checkbox" data-bind="enable: isCheckBoxEnabled, checked: isChecked" style="margin: 0 5px 0 0;"><span data-bind="text: label"></span>
+						<input data-bind="checked: $parent.checkedSubRubrics, value: $data, enable: $parent.isCheckboxEnabled($data)" type="checkbox" style="margin: 0 5px 0 0;"><span data-bind="text: label"></span>
 					</label>
 				</div>
-				<div class="chosen-rubrics" data-bind="foreach: checkedSubrubrics">
+				<div class="chosen-rubrics" data-bind="foreach: checkedSubRubrics">
 					<div class="rua-p-c-light">
-						<span data-bind="text: $data.label"></span>
-						<span data-bind="click: uncheck">&times;</span>
+						<span data-bind="text: label"></span>
+						<span data-bind="click: $parent.unCheckSubRubric">&times;</span>
 					</div>
 				</div>
 			</div>
@@ -59,21 +57,20 @@
 	</div>
 
 	<div class="row">
-		<div data-bind="foreach: checkedSubrubrics">
+		<div data-bind="foreach: checkedSubRubrics">
 			<div class="col d-1of3">
-				<label>
-					<span data-bind="label: resource.positionExperienceLabel"></span><br>
+				<label for="experienceId">
+					<span data-bind="label: $parent.resource.positionExperienceLabel"></span><br>
 					<span data-bind="text: label"></span>
 				</label>
 			</div>
 			<div class="col d-2of3 tooltip-container">
-				<select class="input-block-level" name="experienceId" data-bind="optionsCaption: resource.positionAddExperienceLabel.label, options: experienceOptions, optionsText: 'label', value: selectedExperienceOption"></select>
+				<select class="input-block-level" id="experienceId" name="experienceId" data-bind="optionsCaption: $parent.resource.positionAddExperienceLabel.label, options: $parent.experienceOptions, optionsText: 'label', value: selectedExperienceOption"></select>
 				<div class="input-tooltip">
-					<p data-bind="text: resource.tooltipAdvice.label"></p>
-					<p class="rua-p-c-light" data-bind="text: resource.tooltipPositionExperience.label"></p>
+					<p data-bind="text: $parent.resource.tooltipAdvice.label"></p>
+					<p class="rua-p-c-light" data-bind="text: $parent.resource.tooltipPositionExperience.label"></p>
 				</div>
 			</div>
-			<!--<input id="experienceId" name="experienceId" data-bind="value: experienceId, valueUpdate: 'keyup'">-->
 		</div>
 	</div>
 
