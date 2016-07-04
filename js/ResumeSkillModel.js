@@ -47,9 +47,9 @@ function ResumeSkillModel (parent, data) {
 		mapper.fromJS(model, data);
 	};
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'skill');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }

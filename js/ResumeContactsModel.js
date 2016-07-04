@@ -261,11 +261,11 @@ function ResumeContactsModel (parent, data) {
 				}).length > 0;
 	});
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'contacts');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }
 
 function ResumeContactsAdditionalPhoneModel (parent, data) {

@@ -252,11 +252,11 @@ function ResumePersonalModel (parent, data, photo) {
 		model.moving.push(new ResumePersonalMovingModel(model));
 	};
 
+	if (data) model.fromJS(data);
+	
 	InitEditableModel(model, 'personal');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }
 
 function ResumePersonalMovingModel (parent, data) {

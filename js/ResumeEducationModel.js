@@ -100,9 +100,9 @@ function ResumeEducationModel (parent, data) {
 		}
 	};
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'education');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }

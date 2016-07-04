@@ -69,9 +69,9 @@ function ResumeTraininglModel (parent, data) {
 		}
 	};
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'training');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }

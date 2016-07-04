@@ -69,9 +69,9 @@ function ResumeAdditionalModel (parent, data) {
 		parent.additional.remove(model);
 	};
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'additional');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }

@@ -156,11 +156,11 @@ function ResumeExperienceModel (parent, data) {
 		model.edit();
 	};
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'experience');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }
 
 function ResumeExperienceRecommendationModel (parent, data) {
