@@ -261,7 +261,7 @@
 							<a class="rua-p-c-light" data-bind="attr: {href: rtflink}"><i class="fa fa-file-o"></i><span data-bind="label: dictionary.resource.download"></span></a>
 						</li>
 						<li>
-							<a class="rua-p-c-light" href="#" data-bind="click: createCopy" target="_blank"><i class="fa fa-files-o"></i><span data-bind="label: dictionary.resource.makeCopy"></span></a>
+							<a class="rua-p-c-light" href="#" data-bind="click: createCopy, disabled: isCopyLinkDisabled" target="_blank"><i class="fa fa-files-o"></i><span data-bind="label: dictionary.resource.makeCopy"></span></a>
 						</li>
 						<li>
 							<a class="rua-p-c-light" href="#" data-bind="click: print"><i class="fa fa-print"></i><span data-bind="label: dictionary.resource.print"></span></a>

@@ -1,7 +1,10 @@
 function CvBuilderModel (api, resumeId, dictionary, data) {
 	var model = this;
 
+	model._maxResumeCount = 5;
+
 	data = ko.utils.extend({
+		resumeCount: 1,
 		uiLanguage: 1,
 		viewLink: '',
 		rtfLink: '',
@@ -41,6 +44,10 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 
 	model.veiwlink = ko.observable(data.viewLink);
 	model.rtflink = ko.observable(data.rtfLink);
+	model.resumeCount = ko.observable(data.resumeCount);
+	model.isCopyLinkDisabled = ko.computed(function () {
+		return model.resumeCount() > model._maxResumeCount;
+	});
 
 	model.isLanguageSelectPopupOpen = ko.observable(false);
 
@@ -416,7 +423,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 	});
 
 	model.isOnlyOneExperienceAdded = ko.computed(function () {
-		return model.experience().length === 1;
+		return model.experience().length === 1 && model.experience()[0].inTransaction() !== false;
 	});
 
 	model.isOnlyOneLanguageAdded = ko.computed(function () {
