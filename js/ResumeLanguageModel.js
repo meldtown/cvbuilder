@@ -105,6 +105,10 @@ function ResumeLanguageModel (parent, data) {
 		model._savedOrFromBackend(true);
 	}
 
+	model.isRemoveButtonVisible = ko.computed(function () {
+		return model._savedOrFromBackend();
+	});
+
 	InitEditableModel(model, 'language');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
