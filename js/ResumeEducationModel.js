@@ -9,7 +9,6 @@ function ResumeEducationModel (parent, data) {
 		return parent.api();
 	});
 	model.resource = parent.dictionary.resource;
-	model.cityOptions = parent.dictionary.city;
 
 	model.resumeId = parent.resumeId;
 	model.cityId = ko.observable();
@@ -100,9 +99,9 @@ function ResumeEducationModel (parent, data) {
 		}
 	};
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'education');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }

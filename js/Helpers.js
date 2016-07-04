@@ -362,7 +362,10 @@ ko.validation.init({
 }, true);
 
 function InitEditableModel (model, templatePrefix) {
+	var isEdu = model instanceof ResumeTraininglModel || model instanceof ResumeEducationModel;
+	if (isEdu) console.time('ACME');
 	ko.editable(model);
+	if (isEdu) console.timeEnd('ACME');
 	model.errors = ko.validation.group(model);
 	model.tpl = ko.computed(function () {
 		return model.inTransaction() ? templatePrefix + '-form' : templatePrefix + '-view';

@@ -99,12 +99,12 @@ function ResumeLanguageModel (parent, data) {
 		}
 	};
 
-	InitEditableModel(model, 'language');
-	InitBadRequestResponseHandler(model);
-	InitResultMessage(model);
-
 	if (data) {
 		model.fromJS(data);
 		model._savedOrFromBackend(true);
 	}
+
+	InitEditableModel(model, 'language');
+	InitBadRequestResponseHandler(model);
+	InitResultMessage(model);
 }

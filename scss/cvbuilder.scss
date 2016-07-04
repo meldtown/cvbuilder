@@ -1,12 +1,12 @@
-//@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700&subset=latin,cyrillic,cyrillic-ext);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700&subset=latin,cyrillic,cyrillic-ext);
 
-@font-face {
+/*@font-face {
 	font-family: 'Roboto';
 	font-weight: 300;
 	font-style: normal;
 	src: url('//css.rabota.com.ua/fonts/Roboto-300/Roboto-300.eot');
 	src: url('//css.rabota.com.ua/fonts/Roboto-300/Roboto-300.eot?#iefix') format('embedded-opentype'), local('Roboto Light'), local('Roboto-300'), url('//css.rabota.com.ua/fonts/Roboto-300/Roboto-300.woff2') format('woff2'), url('//css.rabota.com.ua/fonts/Roboto-300/Roboto-300.woff') format('woff'), url('//css.rabota.com.ua/fonts/Roboto-300/Roboto-300.ttf') format('truetype'), url('//css.rabota.com.ua/fonts/Roboto-300/Roboto-300.svg#Roboto') format('svg');
-}
+}*/
 
 //Variables
 
@@ -897,7 +897,7 @@ input[type=checkbox], input[type=radio] {
 			span:last-child {
 				position: absolute;
 				right: 5px;
-				top: 3px;
+				top: 4px;
 				font-size: 28px;
 				cursor: pointer;
 				opacity: .8;

@@ -1,5 +1,22 @@
-function CvBuilderModel (api, resumeId, dictionary, full) {
+function CvBuilderModel (api, resumeId, dictionary, data) {
 	var model = this;
+
+	data = ko.utils.extend({
+		uiLanguage: 1,
+		viewLink: '',
+		rtfLink: '',
+		state: undefined,
+		position: undefined,
+		personal: undefined,
+		photo: undefined,
+		contact: undefined,
+		skill: undefined,
+		experiences: [],
+		educations: [],
+		additionals: [],
+		trainings: [],
+		languages: []
+	}, data);
 
 	model.resumeId = resumeId;
 	model._lngOptions = [
@@ -8,7 +25,7 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		{id: 2, label: 'English', moment: 'us', dictionary: 'en', enum: 'English'}
 	];
 	var lng = model._lngOptions.filter(function (item) {
-		return item.id === (full || {uiLanguage: 1}).uiLanguage;
+		return item.id === data.uiLanguage;
 	}).shift();
 	model._lng = ko.observable(lng || model._lngOptions[0]);
 	model.selectedLanguageLabel = ko.computed(function () {
@@ -22,8 +39,8 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		return api.replace('api.', model._lng().dictionary + '.api.');
 	});
 
-	model.veiwlink = ko.observable((full || {viewLink: ''}).viewLink);
-	model.rtflink = ko.observable((full || {rtfLink: ''}).rtfLink);
+	model.veiwlink = ko.observable(data.viewLink);
+	model.rtflink = ko.observable(data.rtfLink);
 
 	model.isLanguageSelectPopupOpen = ko.observable(false);
 
@@ -91,14 +108,31 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		return '+' + model.percentForBlock.experience + '%';
 	});
 
-	model.state = new ResumeStateModel(model);
-	model.position = new ResumePositionModel(model);
-	model.personalInfo = new ResumePersonalModel(model);
-	model.contacts = new ResumeContactsModel(model);
+	console.time('state');
+	model.state = new ResumeStateModel(model, data.state);
+	console.timeEnd('state');
+	console.time('position');
+	model.position = new ResumePositionModel(model, data.position, (data || {rubrics: null}).rubrics);
+	console.timeEnd('position');
+	console.time('personalInfo');
+	model.personalInfo = new ResumePersonalModel(model, data.personal, (data || {photo: null}).photo);
+	console.timeEnd('personalInfo');
+	console.time('contacts');
+	model.contacts = new ResumeContactsModel(model, data.contact);
 
-	model.skill = new ResumeSkillModel(model);
+	model.addAdditionalPhone = function () {
+		model.contacts.additionalPhones.push('');
+		model.contacts.beginEdit();
+	};
+	console.timeEnd('contacts');
+	console.time('skill');
+	model.skill = new ResumeSkillModel(model, data.skill);
+	console.timeEnd('skill');
 
-	model.experience = ko.observableArray([]);
+	console.time('experience');
+	model.experience = ko.observableArray((data || {experience: []}).experiences.map(function (item) {
+		return new ResumeExperienceModel(model, item);
+	}));
 	model.getExperiences = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/experience').success(function (data) {
 			data.forEach(function (item) {
@@ -113,8 +147,12 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		item.beginEdit();
 		return item;
 	};
+	console.timeEnd('experience');
 
-	model.education = ko.observableArray();
+	console.time('education');
+	model.education = ko.observableArray(data.educations.map(function (item) {
+		return new ResumeEducationModel(model, item);
+	}));
 	model.getEducation = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/education').success(function (data) {
 			data.forEach(function (item) {
@@ -129,12 +167,12 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		item.beginEdit();
 		return item;
 	};
-	model.addAdditionalPhone = function () {
-		model.contacts.additionalPhones.push('');
-		model.contacts.beginEdit();
-	};
+	console.timeEnd('education');
 
-	model.language = ko.observableArray();
+	console.time('language');
+	model.language = ko.observableArray(data.languages.map(function (item) {
+		return new ResumeLanguageModel(model, item);
+	}));
 	model.getLanguage = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/language').success(function (data) {
 			data.forEach(function (item) {
@@ -149,8 +187,12 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		item.beginEdit();
 		return item;
 	};
+	console.timeEnd('language');
 
-	model.additional = ko.observableArray();
+	console.time('additional');
+	model.additional = ko.observableArray(data.additionals.map(function (item) {
+		return new ResumeAdditionalModel(model, item);
+	}));
 	model.getAdditional = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/additional').success(function (data) {
 			data.forEach(function (item) {
@@ -166,8 +208,12 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		item.beginEdit();
 		return item;
 	};
+	console.timeEnd('additional');
 
-	model.training = ko.observableArray([]);
+	console.time('training');
+	model.training = ko.observableArray(data.trainings.map(function (item) {
+		return new ResumeTraininglModel(model, item);
+	}));
 	model.addTraining = function () {
 		var item = new ResumeTraininglModel(model);
 		model.training.push(item);
@@ -182,8 +228,10 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 			});
 		});
 	};
+	console.timeEnd('training');
 
-	model.date = ko.observable();
+	console.time('date');
+	model.date = ko.observable(data.updateDate);
 	model.dateFormatted = ko.computed(function () {
 		if (!model.date()) return '';
 
@@ -195,8 +243,13 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 			model.date(moment().format());
 		});
 	};
+	console.timeEnd('date');
 
-	model.searchState = ko.observable(1);
+	console.time('searchState');
+	model.searchState = ko.observable((data || {searchState: 1}).searchState || 1);
+	model.searchState.subscribe(function () {
+		backend.post(model.api() + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
+	});
 	model.searchStateOptions = [
 		new DictionaryModel(model, {
 			id: 1,
@@ -236,7 +289,9 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		model.searchState(2);
 		model.isStateSelectPopupOpen(false);
 	};
+	console.timeEnd('searchState');
 
+	console.time('rest');
 	model.isExperienceBlockAdded = ko.computed(function () {
 		return model.experience().length >= 2;
 	});
@@ -411,69 +466,5 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		});
 		window.print();
 	};
-
-	model.setFromJS = function (data) {
-		if (!data) return;
-
-		model.searchState(data.searchState || 1);
-		model.searchState.subscribe(function () {
-			backend.post(model.api() + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
-		});
-
-		model.date(data.updateDate);
-
-		model.skill.fromJS(data.skill);
-		model.skill.resumeId = model.resumeId;
-		model.state.fromJS(data.state);
-
-		if (data.state.branchIds.length > 0) {
-			data.state.branchIds.forEach(function (id) {
-				var branch = model.dictionary.branch.findById(id);
-				if (branch) {
-					model.state.itemsCompanyAndBranches.push(model.dictionary.branch.findById(id));
-				}
-			});
-		}
-
-		if (data.state.companyIds.length > 0) {
-			backend.post(model.api() + '/autocomplete/company', data.state.companyIds).success(function (data) {
-				data.map(function (item) {
-					item.label = item.companyName;
-					return item;
-				}).forEach(function (item) {
-					model.state.itemsCompanyAndBranches.push(item);
-				});
-			});
-		}
-		model.position.fromJS(data.position);
-		data.rubrics.forEach(function (item) {
-			model.position.subrubric().filter(function (subrubric) {
-				return subrubric.id === item.id;
-			}).forEach(function (subrubric) {
-				subrubric.isChecked(true);
-				subrubric.experienceId(item.experienceId);
-				model.position.selectedRubric(model.position.rubric.findById(subrubric.parentId));
-			});
-		});
-		model.personalInfo.fromJS(data.personal);
-		model.personalInfo._photo(data.photo);
-		model.contacts.fromJS(data.contact);
-		data.experiences.forEach(function (item) {
-			model.experience.push(new ResumeExperienceModel(model, item));
-		});
-		data.educations.forEach(function (item) {
-			model.education.push(new ResumeEducationModel(model, item));
-		});
-		data.additionals.forEach(function (item) {
-			model.additional.push(new ResumeAdditionalModel(model, item));
-		});
-		data.trainings.forEach(function (item) {
-			model.training.push(new ResumeTraininglModel(model, item));
-		});
-		data.languages.forEach(function (item) {
-			model.language.push(new ResumeLanguageModel(model, item));
-		});
-	};
-
-	model.setFromJS(full);
+	console.timeEnd('rest');
 }

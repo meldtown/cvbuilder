@@ -9,7 +9,6 @@ function ResumeTraininglModel (parent, data) {
 		return parent.api();
 	});
 	model.resource = parent.dictionary.resource;
-	model.cityOptions = parent.dictionary.city;
 	model.resumeId = parent.resumeId;
 	model.id = ko.observable();
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
@@ -69,9 +68,9 @@ function ResumeTraininglModel (parent, data) {
 		}
 	};
 
+	if (data) model.fromJS(data);
+
 	InitEditableModel(model, 'training');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
-
-	if (data) model.fromJS(data);
 }
