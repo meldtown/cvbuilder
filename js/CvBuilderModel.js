@@ -46,7 +46,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 	model.rtflink = ko.observable(data.rtfLink);
 	model.resumeCount = ko.observable(data.resumeCount);
 	model.isCopyLinkDisabled = ko.computed(function () {
-		return model.resumeCount() > model._maxResumeCount;
+		return model.resumeCount() >= model._maxResumeCount;
 	});
 
 	model.isLanguageSelectPopupOpen = ko.observable(false);
@@ -437,6 +437,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 	model.createCopy = function () {
 		backend.post(model.api() + '/resume/' + model.resumeId + '/copy')
 			.success(function (data) {
+				model.resumeCount(model.resumeCount() + 1);
 				window.open(data);
 			})
 			.fail(function () {

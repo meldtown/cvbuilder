@@ -6,7 +6,6 @@ Set of assets for [RUA-15537](https://rabota.atlassian.net/browse/RUA-15537)
 Tasks
 -----
 
- * Disable or hide copy button if there is more than X resume
  * Icon font
 
 Dependencies
