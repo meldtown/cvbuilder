@@ -103,7 +103,7 @@ function ResumeLanguageModel (parent, data) {
 		model.fromJS(data);
 		model._savedOrFromBackend(true);
 	}
-	
+
 	InitEditableModel(model, 'language');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);

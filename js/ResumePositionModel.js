@@ -218,7 +218,7 @@ function ResumePositionModel (parent, data, rubrics) {
 
 	if (data) model.fromJS(data);
 	if (rubrics) model.rubricsFromJS(rubrics);
-	
+
 	InitEditableModel(model, 'position');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);

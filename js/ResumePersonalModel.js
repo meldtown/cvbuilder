@@ -253,7 +253,7 @@ function ResumePersonalModel (parent, data, photo) {
 	};
 
 	if (data) model.fromJS(data);
-	
+
 	InitEditableModel(model, 'personal');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
