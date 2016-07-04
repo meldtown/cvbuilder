@@ -9,7 +9,6 @@ function ResumeTraininglModel (parent, data) {
 		return parent.api();
 	});
 	model.resource = parent.dictionary.resource;
-	model.cityOptions = parent.dictionary.city;
 	model.resumeId = parent.resumeId;
 	model.id = ko.observable();
 	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));

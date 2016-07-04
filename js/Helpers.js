@@ -362,7 +362,7 @@ ko.validation.init({
 }, true);
 
 function InitEditableModel (model, templatePrefix) {
-	var isEdu = model instanceof ResumeEducationModel;
+	var isEdu = model instanceof ResumeTraininglModel || model instanceof ResumeEducationModel;
 	if (isEdu) console.time('ACME');
 	ko.editable(model);
 	if (isEdu) console.timeEnd('ACME');
