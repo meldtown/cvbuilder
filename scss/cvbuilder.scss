@@ -54,6 +54,11 @@ input[type=checkbox], input[type=radio] {
 	color: #7e7e7e;
 }
 
+:focus {
+	outline: none;
+	border: none;
+}
+
 .cvbuilder {
 	&, h1, h2, h3, h4 {
 		font-family: 'Roboto', sans-serif;
@@ -144,7 +149,8 @@ input[type=checkbox], input[type=radio] {
 	}
 
 	.cvbuilder-block-subtitle {
-		margin: 0;
+		margin: 0 0 10px 0;
+		font-size: 20px;
 	}
 
 	.cvbuilder-view,
@@ -907,10 +913,6 @@ input[type=checkbox], input[type=radio] {
 
 	.visible-on-print-block {
 		display: none;
-	}
-
-	.d-pr-1of2 {
-		padding-right: 0;
 	}
 
 	.m .remove-button {
