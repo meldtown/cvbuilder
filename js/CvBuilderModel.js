@@ -92,9 +92,7 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 	});
 
 	model.state = new ResumeStateModel(model);
-	console.time('position');
 	model.position = new ResumePositionModel(model);
-	console.timeEnd('position');
 	model.personalInfo = new ResumePersonalModel(model);
 	model.contacts = new ResumeContactsModel(model);
 
@@ -441,21 +439,26 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		model.personalInfo.fromJS(data.personal);
 		model.personalInfo._photo(data.photo);
 		model.contacts.fromJS(data.contact);
-		data.experiences.forEach(function (item) {
-			model.experience.push(new ResumeExperienceModel(model, item));
-		});
-		data.educations.forEach(function (item) {
-			model.education.push(new ResumeEducationModel(model, item));
-		});
-		data.additionals.forEach(function (item) {
-			model.additional.push(new ResumeAdditionalModel(model, item));
-		});
-		data.trainings.forEach(function (item) {
-			model.training.push(new ResumeTraininglModel(model, item));
-		});
-		data.languages.forEach(function (item) {
-			model.language.push(new ResumeLanguageModel(model, item));
-		});
+
+		model.experience(data.experiences.map(function (item) {
+			return new ResumeExperienceModel(model, item);
+		}));
+
+		model.education(data.educations.map(function (item) {
+			return new ResumeEducationModel(model, item);
+		}));
+
+		model.additional(data.additionals.map(function (item) {
+			return new ResumeAdditionalModel(model, item);
+		}));
+
+		model.training(data.trainings.map(function (item) {
+			return new ResumeTraininglModel(model, item);
+		}));
+
+		model.language(data.languages.map(function (item) {
+			return new ResumeLanguageModel(model, item);
+		}));
 	};
 
 	model.setFromJS(full);
