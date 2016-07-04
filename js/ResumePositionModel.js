@@ -1,4 +1,4 @@
-function ResumePositionModel (parent, data) {
+function ResumePositionModel (parent, data, rubrics) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -140,19 +140,25 @@ function ResumePositionModel (parent, data) {
 		mapper.fromJS(model, data);
 	};
 
+	model.rubricsFromJS = function (data) {
+		if (!data) return;
+
+		var checkedSubRubrics = data.map(function (item) {
+			var subrubric = parent.dictionary.subrubric.findById(item.id);
+			var option = model.experienceOptions.findById(item.experienceId);
+			subrubric.selectedExperienceOption = ko.observable(option).extend(utils.requiredOnly(model.resource.requiredMessage));
+			return subrubric;
+		});
+		model.checkedSubRubrics(checkedSubRubrics);
+		model.selectedRubric(parent.dictionary.rubric.findById(model.checkedSubRubrics()[0].parentId));
+	};
+
 	model.get = function () {
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/position').success(function (data) {
 			model.fromJS(data);
 		});
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/rubric').success(function (data) {
-			var checkedSubRubrics = data.map(function (item) {
-				var subrubric = parent.dictionary.subrubric.findById(item.id);
-				var option = model.experienceOptions.findById(item.experienceId);
-				subrubric.selectedExperienceOption = ko.observable(option).extend(utils.requiredOnly(model.resource.requiredMessage));
-				return subrubric;
-			});
-			model.checkedSubRubrics(checkedSubRubrics);
-			model.selectedRubric(parent.dictionary.rubric.findById(model.checkedSubRubrics()[0].parentId));
+			model.rubricsFromJS(data);
 		});
 	};
 
@@ -215,4 +221,5 @@ function ResumePositionModel (parent, data) {
 	InitResultMessage(model);
 
 	if (data) model.fromJS(data);
+	if (rubrics) model.rubricsFromJS(rubrics);
 }

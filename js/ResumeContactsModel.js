@@ -1,4 +1,4 @@
-function ResumeContactsModel (parent) {
+function ResumeContactsModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -264,6 +264,8 @@ function ResumeContactsModel (parent) {
 	InitEditableModel(model, 'contacts');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
+
+	if (data) model.fromJS(data);
 }
 
 function ResumeContactsAdditionalPhoneModel (parent, data) {

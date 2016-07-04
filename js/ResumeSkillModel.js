@@ -1,4 +1,4 @@
-function ResumeSkillModel (parent) {
+function ResumeSkillModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -50,4 +50,6 @@ function ResumeSkillModel (parent) {
 	InitEditableModel(model, 'skill');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
+
+	if (data) model.fromJS(data);
 }

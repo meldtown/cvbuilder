@@ -1,4 +1,4 @@
-function ResumePersonalModel (parent) {
+function ResumePersonalModel (parent, data, photo) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -255,6 +255,8 @@ function ResumePersonalModel (parent) {
 	InitEditableModel(model, 'personal');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
+
+	if (data) model.fromJS(data);
 }
 
 function ResumePersonalMovingModel (parent, data) {
@@ -293,4 +295,12 @@ function ResumePersonalMovingModel (parent, data) {
 	model.remove = function (item) {
 		parent.moving.remove(item);
 	};
+
+	if (data) {
+		model.fromJS(data);
+	}
+
+	if (photo) {
+		model._photo(photo);
+	}
 }

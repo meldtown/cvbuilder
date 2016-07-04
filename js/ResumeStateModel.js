@@ -1,4 +1,4 @@
-function ResumeStateModel (parent) {
+function ResumeStateModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -91,24 +91,6 @@ function ResumeStateModel (parent) {
 	model.get = function () {
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/state').success(function (data) {
 			model.fromJS(data);
-
-			if (model.branchIds().length > 0) {
-				model.branchIds().forEach(function (id) {
-					var branch = parent.dictionary.branch.findById(id);
-					if (branch) {
-						model.itemsCompanyAndBranches.push(parent.dictionary.branch.findById(id));
-					}
-				});
-			}
-
-			if (model.companyIds().length > 0) {
-				backgend.post(model.api() + '/autocomplete/company', model.companyIds()).success(function (data) {
-					model.itemsCompanyAndBranches(data.map(function (item) {
-						item.label = item.comanpyName;
-						return item;
-					}));
-				});
-			}
 		});
 	};
 
@@ -146,5 +128,29 @@ function ResumeStateModel (parent) {
 
 	model.fromJS = function (data) {
 		mapper.fromJS(model, data);
+
+		if (data.branchIds.length > 0) {
+			data.branchIds.forEach(function (id) {
+				var branch = parent.dictionary.branch.findById(id);
+				if (branch) {
+					model.itemsCompanyAndBranches.push(parent.dictionary.branch.findById(id));
+				}
+			});
+		}
+
+		if (data.companyIds.length > 0) {
+			backend.post(model.api() + '/autocomplete/company', data.companyIds).success(function (data) {
+				data.map(function (item) {
+					item.label = item.companyName;
+					return item;
+				}).forEach(function (item) {
+					model.itemsCompanyAndBranches.push(item);
+				});
+			});
+		}
 	};
+
+	if (data) {
+		model.fromJS(data);
+	}
 }
