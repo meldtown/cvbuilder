@@ -30,7 +30,6 @@ function ResumeLanguageModel (parent, data) {
 
 	model.languageOptions = parent.dictionary.language;
 	model.computedLanguageOptions = ko.computed(function () {
-		console.log(parent.language);
 		var alreadySelectedLanguages = parent.language().map(function (item) {
 			return item.languageId();
 		});

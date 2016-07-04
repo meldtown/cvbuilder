@@ -1,5 +1,14 @@
+ko.bindingHandlers.scrollableTo = {
+	init: function (element, valueAccessor, allBindings, viewModel) {
+		viewModel.scrollTo = function () {
+			var y = viewModel instanceof ResumeContactsModel ? 500 : jQuery(element).offset().top - 80;
+			window.scrollTo(0, y);
+		};
+	}
+};
+
 ko.bindingHandlers.confirmRemove = {
-	init: function (element, valueAccessor, viewModel) {
+	init: function (element, valueAccessor) {
 		var property = valueAccessor();
 		var handler = property.handler;
 		var dialog = jQuery(property.dialogSelector);
@@ -362,7 +371,6 @@ ko.validation.init({
 }, true);
 
 function InitEditableModel (model, templatePrefix) {
-	var isEdu = model instanceof ResumeTraininglModel || model instanceof ResumeEducationModel;
 	ko.editable(model);
 	model.errors = ko.validation.group(model);
 	model.tpl = ko.computed(function () {

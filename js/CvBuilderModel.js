@@ -114,15 +114,16 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 	model.percentExperienceFormatted = ko.computed(function () {
 		return '+' + model.percentForBlock.experience + '%';
 	});
-	
+
 	model.state = new ResumeStateModel(model, data.state);
-
 	model.position = new ResumePositionModel(model, data.position, (data || {rubrics: null}).rubrics);
-
 	model.personalInfo = new ResumePersonalModel(model, data.personal, (data || {photo: null}).photo);
 
 	model.contacts = new ResumeContactsModel(model, data.contact);
-
+	model.contactsBeginEditAndScrollTo = function () {
+		model.contacts.edit();
+		model.contacts.scrollTo();
+	};
 	model.addAdditionalPhone = function () {
 		model.contacts.additionalPhones.push('');
 		model.contacts.beginEdit();
@@ -145,6 +146,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeExperienceModel(model);
 		model.experience.push(item);
 		item.beginEdit();
+		item.scrollTo();
 		return item;
 	};
 
@@ -163,12 +165,16 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeEducationModel(model);
 		model.education.push(item);
 		item.beginEdit();
+		item.scrollTo();
 		return item;
 	};
 
-	model.language = ko.observableArray(data.languages.map(function (item) {
+	model.language = ko.observableArray([]);
+	var dataLanguages = data.languages.map(function (item) {
 		return new ResumeLanguageModel(model, item);
-	}));
+	});
+	model.language(dataLanguages);
+
 	model.getLanguage = function () {
 		backend.get(model.api() + '/resume/' + model.resumeId + '/language').success(function (data) {
 			data.forEach(function (item) {
@@ -181,11 +187,10 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeLanguageModel(model);
 		model.language.push(item);
 		item.beginEdit();
+		item.scrollTo();
 		return item;
 	};
-	console.timeEnd('language');
 
-	console.time('additional');
 	model.additional = ko.observableArray(data.additionals.map(function (item) {
 		return new ResumeAdditionalModel(model, item);
 	}));
@@ -202,11 +207,10 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		item.selectedPredefinedTitle(item.predefinedTitles[item.predefinedTitles.length - 1].label());
 		model.additional.push(item);
 		item.beginEdit();
+		item.scrollTo();
 		return item;
 	};
-	console.timeEnd('additional');
 
-	console.time('training');
 	model.training = ko.observableArray(data.trainings.map(function (item) {
 		return new ResumeTraininglModel(model, item);
 	}));
@@ -214,6 +218,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeTraininglModel(model);
 		model.training.push(item);
 		item.beginEdit();
+		item.scrollTo();
 		return item;
 	};
 
@@ -224,9 +229,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 			});
 		});
 	};
-	console.timeEnd('training');
 
-	console.time('date');
 	model.date = ko.observable(data.updateDate);
 	model.dateFormatted = ko.computed(function () {
 		if (!model.date()) return '';
@@ -239,9 +242,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 			model.date(moment().format());
 		});
 	};
-	console.timeEnd('date');
 
-	console.time('searchState');
 	model.searchState = ko.observable((data || {searchState: 1}).searchState || 1);
 	model.searchState.subscribe(function () {
 		backend.post(model.api() + '/resume/' + model.resumeId + '/searchstate?state=' + model.searchState());
@@ -285,9 +286,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		model.searchState(2);
 		model.isStateSelectPopupOpen(false);
 	};
-	console.timeEnd('searchState');
 
-	console.time('rest');
 	model.isExperienceBlockAdded = ko.computed(function () {
 		return model.experience().length >= 2;
 	});
@@ -463,5 +462,4 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		});
 		window.print();
 	};
-	console.timeEnd('rest');
 }
