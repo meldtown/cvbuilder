@@ -113,8 +113,6 @@
 	var api = 'http://' + location.hostname.replace('cvbuilder', 'api');
 	var resumeId = 9171642;
 
-	console.time('app');
-	console.time('backend');
 	jQuery.when(
 		$.ajax({
 			type: 'GET',
@@ -158,15 +156,8 @@
 			subrubric: subrubric[0]
 		};
 
-		console.time('model');
-		console.time('ko');
 		window.model = new CvBuilderModel(api, resumeId, dictionary, full[0]);
-		console.timeEnd('model');
-		console.time('apply');
 		ko.applyBindings(model);
-		console.timeEnd('apply');
-		console.timeEnd('ko');
-		console.timeEnd('app');
 	});
 </script>
 
