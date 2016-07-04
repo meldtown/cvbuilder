@@ -4,37 +4,46 @@
 
 	<div class="row">
 		<div class="col d-8of12 d-pr-2of2 m-1of1 m-pr-o visible-on-print">
-			<div class="cvbuilder-white-box">
+			<div class="cvbuilder-white-box" style="padding-left: 40px; padding-right: 40px;">
 				<div data-bind="with: personalInfo">
 					<div data-bind="template: tpl"></div>
 				</div>
 
 				<div data-bind="with: contacts">
+					<hr style="margin: 0;">
 					<div data-bind="template: tpl"></div>
 				</div>
 
 				<div data-bind="with: position">
+					<hr style="margin: 0;">
 					<div data-bind="template: tpl"></div>
 				</div>
+
 
 				<div data-bind="with: skill">
+					<hr style="margin: 0;">
 					<div data-bind="template: tpl"></div>
 				</div>
 
+
 				<div>
-					<h3 class="cvbuilder-block-title"
-						data-bind="label: dictionary.resource.experienceRubricNameLabel"></h3>
+					<hr>
+					<div data-bind="ifnot: isOnlyOneExperienceAdded">
+						<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.experienceRubricNameLabel"></h3>
+					</div>
 					<div data-bind="foreach: experience">
 						<div data-bind="template: tpl"></div>
 					</div>
 					<button class="add-block-button" data-bind="click: addExperience">
 						<i class="fa fa-plus-circle "></i>
-						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addExperience"></span>
+						<span class="rua-p-c-light" data-bind="label: dictionary.resource.addExperienceMain"></span>
 						<span data-bind="if: isOneExperienceAdded"><span data-bind="text: percentExperienceFormatted"></span></span>
 					</button>
 				</div>
 
+
 				<div data-bind="if: isEducationBlockAdded">
+					<hr>
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.educationNameLabel"></h3>
 					<div data-bind="foreach: education">
 						<div data-bind="template: tpl"></div>
@@ -45,7 +54,9 @@
 					</button>
 				</div>
 
+
 				<div data-bind="if: isTrainingBlockAdded">
+					<hr>
 					<h3 class="cvbuilder-block-title"
 						data-bind="label: dictionary.resource.trainingRubricNameLabel"></h3>
 					<div data-bind="foreach: training">
@@ -57,7 +68,9 @@
 					</button>
 				</div>
 
+
 				<div data-bind="if: isAdditionalBlockAdded">
+					<hr>
 					<h3 class="cvbuilder-block-title" data-bind="label: dictionary.resource.additionalNameLabel"></h3>
 					<div data-bind="foreach: additional">
 						<div data-bind="template: tpl"></div>
@@ -69,7 +82,9 @@
 					</button>
 				</div>
 
+
 				<div data-bind="if: isLanguageBlockAdded">
+					<hr>
 					<h3 class="cvbuilder-block-title"
 						data-bind="label: dictionary.resource.languageRubricNameLabel"></h3>
 					<div data-bind="foreach: language">

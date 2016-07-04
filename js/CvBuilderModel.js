@@ -352,6 +352,26 @@ function CvBuilderModel (api, resumeId, dictionary, full) {
 		return model.isAllActionsVisible() ? 'fa fa-caret-up' : 'fa fa-caret-down';
 	});
 
+	model.isOnlyOneAdditionalAdded = ko.computed(function () {
+		return model.additional().length === 1;
+	});
+
+	model.isOnlyOneEducationAdded = ko.computed(function () {
+		return model.education().length === 1;
+	});
+
+	model.isOnlyOneExperienceAdded = ko.computed(function () {
+		return model.experience().length === 1;
+	});
+
+	model.isOnlyOneLanguageAdded = ko.computed(function () {
+		return model.language().length === 1;
+	});
+
+	model.isOnlyOneTrainingAdded = ko.computed(function () {
+		return model.training().length === 1;
+	});
+
 	model.createCopy = function () {
 		backend.post(model.api() + '/resume/' + model.resumeId + '/copy')
 			.success(function (data) {

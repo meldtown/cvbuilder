@@ -1,7 +1,7 @@
 <div class="cvbuilder-form">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="label: resource.additionalNameLabel"></h3>
+			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneAdditionalAdded, label: resource.additionalNameLabel"></h3>
 			<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.additionalRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
