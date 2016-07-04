@@ -156,6 +156,10 @@ function ResumeExperienceModel (parent, data) {
 		model.edit();
 	};
 
+	model.isRemoveButtonVisible = ko.computed(function () {
+		return model.id();
+	});
+
 	if (data) model.fromJS(data);
 
 	InitEditableModel(model, 'experience');

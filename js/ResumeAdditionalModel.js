@@ -69,6 +69,10 @@ function ResumeAdditionalModel (parent, data) {
 		parent.additional.remove(model);
 	};
 
+	model.isRemoveButtonVisible = ko.computed(function () {
+		return model.id();
+	});
+
 	if (data) model.fromJS(data);
 
 	InitEditableModel(model, 'additional');

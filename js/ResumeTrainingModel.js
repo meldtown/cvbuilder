@@ -70,6 +70,10 @@ function ResumeTraininglModel (parent, data) {
 
 	if (data) model.fromJS(data);
 
+	model.isRemoveButtonVisible = ko.computed(function () {
+		return model.id();
+	});
+
 	InitEditableModel(model, 'training');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);

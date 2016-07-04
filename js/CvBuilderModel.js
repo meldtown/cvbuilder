@@ -114,29 +114,22 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 	model.percentExperienceFormatted = ko.computed(function () {
 		return '+' + model.percentForBlock.experience + '%';
 	});
-
-	console.time('state');
+	
 	model.state = new ResumeStateModel(model, data.state);
-	console.timeEnd('state');
-	console.time('position');
+
 	model.position = new ResumePositionModel(model, data.position, (data || {rubrics: null}).rubrics);
-	console.timeEnd('position');
-	console.time('personalInfo');
+
 	model.personalInfo = new ResumePersonalModel(model, data.personal, (data || {photo: null}).photo);
-	console.timeEnd('personalInfo');
-	console.time('contacts');
+
 	model.contacts = new ResumeContactsModel(model, data.contact);
 
 	model.addAdditionalPhone = function () {
 		model.contacts.additionalPhones.push('');
 		model.contacts.beginEdit();
 	};
-	console.timeEnd('contacts');
-	console.time('skill');
-	model.skill = new ResumeSkillModel(model, data.skill);
-	console.timeEnd('skill');
 
-	console.time('experience');
+	model.skill = new ResumeSkillModel(model, data.skill);
+
 	model.experience = ko.observableArray((data || {experience: []}).experiences.map(function (item) {
 		return new ResumeExperienceModel(model, item);
 	}));
@@ -154,9 +147,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		item.beginEdit();
 		return item;
 	};
-	console.timeEnd('experience');
 
-	console.time('education');
 	model.education = ko.observableArray(data.educations.map(function (item) {
 		return new ResumeEducationModel(model, item);
 	}));
@@ -174,9 +165,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		item.beginEdit();
 		return item;
 	};
-	console.timeEnd('education');
 
-	console.time('language');
 	model.language = ko.observableArray(data.languages.map(function (item) {
 		return new ResumeLanguageModel(model, item);
 	}));
@@ -415,23 +404,23 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 	});
 
 	model.isOnlyOneAdditionalAdded = ko.computed(function () {
-		return model.additional().length === 1;
+		return model.additional().length === 1 && model.additional()[0].inTransaction();
 	});
 
 	model.isOnlyOneEducationAdded = ko.computed(function () {
-		return model.education().length === 1;
+		return model.education().length === 1 && model.education()[0].inTransaction();
 	});
 
 	model.isOnlyOneExperienceAdded = ko.computed(function () {
-		return model.experience().length === 1 && model.experience()[0].inTransaction() !== false;
+		return model.experience().length === 1 && model.experience()[0].inTransaction();
 	});
 
 	model.isOnlyOneLanguageAdded = ko.computed(function () {
-		return model.language().length === 1;
+		return model.language().length === 1 && model.language()[0].inTransaction();
 	});
 
 	model.isOnlyOneTrainingAdded = ko.computed(function () {
-		return model.training().length === 1;
+		return model.training().length === 1 && model.training()[0].inTransaction();
 	});
 
 	model.createCopy = function () {
