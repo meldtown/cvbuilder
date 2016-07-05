@@ -19,13 +19,9 @@ function ResumeExperienceModel (parent, data) {
 		return parent.api() + '/autocomplete/company';
 	});
 
-	model._branch = parent.dictionary.branch;
-
-	model.resource = parent.dictionary.resource;
-
 	model.id = ko.observable();
-	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.company = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.position = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
+	model.company = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.branchId = ko.observable();
 	model.branch = ko.computed(function () {
 		var data = parent.dictionary.branch.findById(model.branchId());
@@ -33,7 +29,7 @@ function ResumeExperienceModel (parent, data) {
 	});
 	model.description = ko.observable();
 	model.notebookCompanyId = ko.observable();
-	model.startWork = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.startWork = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.endWork = ko.observable().extend({
 		validation: {
 			validator: function (val) {
@@ -44,7 +40,7 @@ function ResumeExperienceModel (parent, data) {
 				}
 			},
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return parent.dictionary.resource.wrongFormat.label();
 			}
 		}
 	});
@@ -58,7 +54,7 @@ function ResumeExperienceModel (parent, data) {
 	});
 
 	model.endWorkFormatted = ko.computed(function () {
-		if (model.endWork() === '1900-01-01T00:00:00') return model.resource.tillNow.label();
+		if (model.endWork() === '1900-01-01T00:00:00') return parent.dictionary.resource.tillNow.label();
 		moment.locale(model._lng().moment);
 		return moment(model.endWork()).format('LL');
 	});
@@ -82,7 +78,7 @@ function ResumeExperienceModel (parent, data) {
 		mapper.fromJS(model, data);
 
 		model.recommendationList(data.recommendationList.map(function (item) {
-			return new ResumeExperienceRecommendationModel(model, item);
+			return new ResumeExperienceRecommendationModel(model, parent.dictionary.resource, item);
 		}));
 	};
 
@@ -96,7 +92,7 @@ function ResumeExperienceModel (parent, data) {
 					model.recommendationList().forEach(function (item) {
 						item.commit();
 					});
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -137,22 +133,21 @@ function ResumeExperienceModel (parent, data) {
 		}
 	};
 
-	model.branchOptions = parent.dictionary.branch;
 	model.selectedBranchOption = ko.computed({
 		read: function () {
-			return model.branchOptions.findById(model.branchId());
+			return parent.dictionary.branch.findById(model.branchId());
 		},
 		write: function (newValue) {
 			model.branchId(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	}).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 
 	model.selectedBranchOptionLabel = ko.computed(function () {
 		return model.selectedBranchOption() ? model.selectedBranchOption().label() : '';
 	});
 
 	model.addRecommendation = function () {
-		model.recommendationList.push(new ResumeExperienceRecommendationModel(model));
+		model.recommendationList.push(new ResumeExperienceRecommendationModel(model, parent.dictionary.resource));
 		model.edit();
 	};
 
@@ -167,10 +162,8 @@ function ResumeExperienceModel (parent, data) {
 	InitResultMessage(model);
 }
 
-function ResumeExperienceRecommendationModel (parent, data) {
+function ResumeExperienceRecommendationModel (parent, resource, data) {
 	var model = this;
-
-	model._branch = parent._branch;
 
 	model._lng = ko.computed(function () {
 		return parent._lng();
@@ -184,18 +177,16 @@ function ResumeExperienceRecommendationModel (parent, data) {
 		return parent._keywordsApiUrl();
 	});
 
-	model.resource = parent.resource;
-
 	model.id = ko.observable();
 	model.experienceId = ko.observable();
-	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.companyName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.name = ko.observable().extend(utils.requiredOnly(resource.requiredMessage));
+	model.position = ko.observable().extend(utils.requiredOnly(resource.requiredMessage));
+	model.companyName = ko.observable().extend(utils.requiredOnly(resource.requiredMessage));
 	model.email = ko.observable().extend({
 		email: {
 			params: true,
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return resource.wrongFormat.label();
 			}
 		}
 	});
@@ -203,7 +194,7 @@ function ResumeExperienceRecommendationModel (parent, data) {
 		pattern: {
 			params: '^[0-9\\-\\+\\(\\)\\ ]+.$',
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return resource.wrongFormat.label();
 			}
 		}
 	});
@@ -211,7 +202,7 @@ function ResumeExperienceRecommendationModel (parent, data) {
 	model.resumeId = parent.resumeId;
 
 	model.blockTitleLabel = ko.computed(function () {
-		return parent.resource.recommendationRubricNameLabel.label().replace('1', (parent.recommendationList.indexOf(model) + 1));
+		return resource.recommendationRubricNameLabel.label().replace('1', (parent.recommendationList.indexOf(model) + 1));
 	});
 
 	model.fromJS = function (data) {

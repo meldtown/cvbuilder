@@ -1,12 +1,11 @@
 <div class="cvbuilder-form recommendation-block">
 
-
 	<div class="row">
 		<div class="col d-2of3">
 			<h5 class="cvbuilder-block-title" data-bind="text: blockTitleLabel"></h5>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
+			<a class="rua-p-c-light" href="#" data-bind="label: $root.dictionary.resource.delete, click: remove"></a>
 		</div>
 	</div>
 
@@ -16,7 +15,7 @@
 		<div class="col d-2of3">
 			<label class="checkbox">
 				<input type="checkbox" name="position" data-bind="checked: atRequest">
-				<span data-bind="label: resource.recommendationAtRequestLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.recommendationAtRequestLabel"></span>
 			</label>
 		</div>
 	</div>
@@ -24,56 +23,55 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="recommendator">
-				<span data-bind="label: resource.recommendationRecommendatorLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.recommendationRecommendatorLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" maxlength="255" id="recommendator" class="input-block-level" name="recommendator" data-bind="attr: {placeholder: resource.recommendationNameLabel.label}, value: name, valueUpdate: 'keyup'">
+			<input type="text" maxlength="255" id="recommendator" class="input-block-level" name="recommendator" data-bind="attr: {placeholder: $root.dictionary.resource.recommendationNameLabel.label}, value: name, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="position">
-				<span data-bind="label: resource.recommendationPositionLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.recommendationPositionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="position" name="position" maxlength="255" class="input-block-level" type="text" data-bind="attr: {placeholder: resource.addRecommendationPositionLabel.label}, value: position, , autocompleteKeyword: position">
+			<input id="position" name="position" maxlength="255" class="input-block-level" type="text" data-bind="attr: {placeholder: $root.dictionary.resource.addRecommendationPositionLabel.label}, value: position, , autocompleteKeyword: position">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="company">
-				<span data-bind="label: resource.recommendationCompanyLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.recommendationCompanyLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" maxlength="255" class="input-block-level" id="company" name="company" data-bind="attr: {placeholder: resource.addRecommendationCompanyLabel.label}, value: companyName, autocompleteCompany: companyName">
+			<input type="text" maxlength="255" class="input-block-level" id="company" name="company" data-bind="attr: {placeholder: $root.dictionary.resource.addRecommendationCompanyLabel.label}, value: companyName, autocompleteCompany: companyName">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="phone">
-				<span data-bind="label: resource.recommendationPhoneLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.recommendationPhoneLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" maxlength="255" class="input-block-level" id="phone" name="phone" data-bind="attr: {placeholder: resource.addRecommendationPhone.label}, value: phone, valueUpdate: 'keyup'">
+			<input type="text" maxlength="255" class="input-block-level" id="phone" name="phone" data-bind="attr: {placeholder: $root.dictionary.resource.addRecommendationPhone.label}, value: phone, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="email">
-				<span data-bind="label: resource.recommendationEmailLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.recommendationEmailLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" maxlength="255" class="input-block-level" id="email" name="email" data-bind="attr: {placeholder: resource.addRecommendationEmail.label}, value: email, valueUpdate: 'keyup'">
+			<input type="text" maxlength="255" class="input-block-level" id="email" name="email" data-bind="attr: {placeholder: $root.dictionary.resource.addRecommendationEmail.label}, value: email, valueUpdate: 'keyup'">
 		</div>
 	</div>
-
 </div>

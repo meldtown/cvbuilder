@@ -169,11 +169,6 @@ ko.bindingHandlers.autocompleteCompany = {
 			return;
 		}
 
-		if (!viewModel || !viewModel._branch) {
-			console.log('autocompleteCompany skip model without _branch', element, valueAccessor);
-			return;
-		}
-
 		jQuery(element).autocomplete({
 			source: viewModel._companyApiUrl(),
 			minLength: 2,

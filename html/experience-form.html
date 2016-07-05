@@ -2,25 +2,25 @@
 
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneExperienceAdded, label: resource.experienceRubricNameLabel"></h3>
-			<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.experienceRubricTooltip"></span>
+			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneExperienceAdded, label: $root.dictionary.resource.experienceRubricNameLabel"></h3>
+			<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.experienceRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
+			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: $root.dictionary.resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="company">
-				<span data-bind="label: resource.experienceCompanyLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.experienceCompanyLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
 			<input type="text" id="company" name="company" maxlength="255" class="input-block-level" data-bind="value: company, valueUpdate: 'keyup', autocompleteCompany: company">
 			<div class="input-tooltip">
-				<p data-bind="text: resource.tooltipAdvice.label"></p>
-				<p class="rua-p-c-light" data-bind="text: resource.tooltipExperienceCompany.label"></p>
+				<p data-bind="text: $root.dictionary.resource.tooltipAdvice.label"></p>
+				<p class="rua-p-c-light" data-bind="text: $root.dictionary.resource.tooltipExperienceCompany.label"></p>
 			</div>
 		</div>
 	</div>
@@ -28,26 +28,25 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="branchId">
-				<span data-bind="label: resource.experienceAreaLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.experienceAreaLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select name="area" id="branchId" class="input-block-level" data-bind="optionsCaption: resource.experienceChooseArea.label, options: branchOptions, value: selectedBranchOption, optionsText: 'label'"></select>
+			<select name="area" id="branchId" class="input-block-level" data-bind="optionsCaption: $root.dictionary.resource.experienceChooseArea.label, options: $root.dictionary.branch, value: selectedBranchOption, optionsText: 'label'"></select>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="position">
-				<span data-bind="label: resource.experiencePositionLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.experiencePositionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
-			<input id="position" name="position" type="text" maxlength="255" class="input-block-level"
-				   data-bind="value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
+			<input id="position" name="position" type="text" maxlength="255" class="input-block-level" data-bind="value: position, valueUpdate: 'keyup', autocompleteKeyword: position">
 			<div class="input-tooltip">
-				<p data-bind="text: resource.tooltipAdvice.label"></p>
-				<p class="rua-p-c-light" data-bind="text: resource.tooltipExperiencePosition.label"></p>
+				<p data-bind="text: $root.dictionary.resource.tooltipAdvice.label"></p>
+				<p class="rua-p-c-light" data-bind="text: $root.dictionary.resource.tooltipExperiencePosition.label"></p>
 			</div>
 		</div>
 	</div>
@@ -55,50 +54,39 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label>
-				<span data-bind="label: resource.experiencePeriodLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.experiencePeriodLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
 			<div class="row">
 				<div class="col d-1of2 d-pr-1of2">
-					<yearmonth-widget
-						params="value: startWork, _lng: _lng, resource: resource, validationElement: startWork"></yearmonth-widget>
+					<yearmonth-widget params="value: startWork, _lng: _lng, resource: $root.dictionary.resource, validationElement: startWork"></yearmonth-widget>
 				</div>
 				<div class="col d-1of2 d-pl-1of2">
-					<yearmonth-widget
-						params="value: endWork, _lng: _lng, resource: resource, showTillNowOption: true, validationElement: endWork"></yearmonth-widget>
+					<yearmonth-widget params="value: endWork, _lng: _lng, resource: $root.dictionary.resource, showTillNowOption: true, validationElement: endWork"></yearmonth-widget>
 				</div>
 			</div>
-			<!--<input id="startWork" name="startWork" class="input-block-level" data-bind="value: startWork, valueUpdate: 'keyup'">-->
-			<!--<input id="endWork" name="endWork" class="input-block-level" data-bind="value: endWork, valueUpdate: 'keyup'">-->
 		</div>
 	</div>
-
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="description">
-				<span data-bind="label: resource.experienceDescriptionLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.experienceDescriptionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<textarea name="description" id="description" cols="70" rows="10"
-					  data-bind="tinylight: description, validationElement: description"></textarea>
+			<textarea name="description" id="description" cols="70" rows="10" data-bind="tinylight: description, validationElement: description"></textarea>
 			<span class="validationMessage" data-bind="validationMessage: description"></span>
 		</div>
 	</div>
 
 	<div class="row">
-
-
 		<div>
 			<div data-bind="foreach: recommendationList">
 				<div data-bind="template: tpl"></div>
 			</div>
-
 		</div>
-
-
 	</div>
 	<div class="row">
 		<div class="col d-1of3"></div>
@@ -106,7 +94,7 @@
 			<div class="recommendation-list" data-bind="if: isAddRecomendationButtonVisible">
 				<button class="add-phone-button" data-bind="click: addRecommendation">
 					<i class="fa fa-plus-circle"></i>
-					<span data-bind="label: resource.addRecommendation"></span>
+					<span data-bind="label: $root.dictionary.resource.addRecommendation"></span>
 				</button>
 			</div>
 		</div>
@@ -117,10 +105,9 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel"></a>
+			<button class="btn btn-primary" data-bind="label: $root.dictionary.resource.save, click: save"></button>
+			<a class="rua-p-c-light cancel" data-bind="label: $root.dictionary.resource.discard, click: cancel"></a>
 		</div>
 	</div>
-
 </div>
 

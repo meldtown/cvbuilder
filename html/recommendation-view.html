@@ -1,16 +1,15 @@
 <div class="cvbuilder-view">
-
 	<div>
-			<h4 data-bind="label: resource.recommendationRubricNameLabel"></h4>
+		<h4 data-bind="label: $root.dictionary.resource.recommendationRubricNameLabel"></h4>
 	</div>
 
 	<div>
-		<b data-bind="visible: atRequest, label: resource.recommendationAtRequestLabel"></b>
+		<b data-bind="visible: atRequest, label: $root.dictionary.resource.recommendationAtRequestLabel"></b>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.recommendationRecommendatorLabel"></span>
+			<span data-bind="label: $root.dictionary.resource.recommendationRecommendatorLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: name"></span>
@@ -19,7 +18,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.recommendationPositionLabel"></span>
+			<span data-bind="label: $root.dictionary.resource.recommendationPositionLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: position"></span>
@@ -28,7 +27,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.recommendationCompanyLabel"></span>
+			<span data-bind="label: $root.dictionary.resource.recommendationCompanyLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: companyName"></span>
@@ -37,7 +36,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.recommendationPhoneLabel"></span>
+			<span data-bind="label: $root.dictionary.resource.recommendationPhoneLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: phone"></span>
@@ -46,7 +45,7 @@
 
 	<div class="row">
 		<div class="col d-1of3">
-			<span data-bind="label: resource.recommendationEmailLabel"></span>
+			<span data-bind="label: $root.dictionary.resource.recommendationEmailLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span data-bind="text: email"></span>

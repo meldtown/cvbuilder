@@ -4,12 +4,12 @@
 			<h3 style="margin: 0;" data-bind="text: position"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: resource.edit, click: edit"></a>
+			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: $root.dictionary.resource.edit, click: edit"></a>
 		</div>
 	</div>
 
 	<p class="rua-p-c-light">
-		<span style="color: #525050;" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeildCompany"></span>
+		<span style="color: #525050;" data-bind="visible: $parent.state.anonymous, label: $root.dictionary.resource.anonimousHiddenFeildCompany"></span>
 		<span data-bind="ifnot:  $parent.state.anonymous">
 			<span data-bind="if: companySite">
 				<a class="rua-p-c-light" href="#" data-bind="text: company, attr: {href: companySite}"></a>
