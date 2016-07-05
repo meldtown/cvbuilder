@@ -146,7 +146,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeExperienceModel(model);
 		model.experience.push(item);
 		item.beginEdit();
-		item.scrollTo();
+		if (item.scrollTo) item.scrollTo();
 		return item;
 	};
 
@@ -165,7 +165,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeEducationModel(model);
 		model.education.push(item);
 		item.beginEdit();
-		item.scrollTo();
+		if (item.scrollTo) item.scrollTo();
 		return item;
 	};
 
@@ -187,7 +187,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeLanguageModel(model);
 		model.language.push(item);
 		item.beginEdit();
-		item.scrollTo();
+		if (item.scrollTo) item.scrollTo();
 		return item;
 	};
 
@@ -207,7 +207,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		item.selectedPredefinedTitle(item.predefinedTitles[item.predefinedTitles.length - 1].label());
 		model.additional.push(item);
 		item.beginEdit();
-		item.scrollTo();
+		if (item.scrollTo) item.scrollTo();
 		return item;
 	};
 
@@ -218,7 +218,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 		var item = new ResumeTraininglModel(model);
 		model.training.push(item);
 		item.beginEdit();
-		item.scrollTo();
+		if (item.scrollTo) item.scrollTo();
 		return item;
 	};
 
