@@ -1,12 +1,10 @@
 ko.bindingHandlers.scrollableTo = {
 	init: function (element, valueAccessor, allBindings, viewModel) {
-		if (!viewModel instanceof ResumeExperienceModel) {
-			viewModel.scrollTo = function () {
-				setTimeout(function () {
-					window.scrollTo(0, jQuery(element).offset().top);
-				}, 100);
-			};
-		}
+		viewModel.scrollTo = function () {
+			setTimeout(function () {
+				window.scrollTo(0, jQuery(element).offset().top - 80);
+			}, 100);
+		};
 	}
 };
 
