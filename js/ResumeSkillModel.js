@@ -9,11 +9,9 @@ function ResumeSkillModel (parent, data) {
 		return parent.api();
 	});
 
-	model.resource = parent.dictionary.resource;
-
 	model.resumeId = parent.resumeId;
 
-	model.text = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.text = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 
 	model.get = function () {
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/skill').success(function (data) {
@@ -27,7 +25,7 @@ function ResumeSkillModel (parent, data) {
 			backend.post(model.api() + '/resume/' + parent.resumeId + '/skill', model.toJS())
 				.success(function () {
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {

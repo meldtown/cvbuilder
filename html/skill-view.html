@@ -1,15 +1,15 @@
 <div class="cvbuilder-view">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-title" data-bind="label: resource.skillRubricNameLabel"></h3>
+			<h3 class="cvbuilder-block-title" data-bind="label: $root.dictionary.resource.skillRubricNameLabel"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: resource.edit, click: beginEdit"></a>
+			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: $root.dictionary.resource.edit, click: beginEdit"></a>
 		</div>
 	</div>
 	<div data-bind="ifnot: text">
 		<div class="skill-hint rua-p-c-light">
-			<span data-bind="label: resource.skillExampleLabel"></span>
+			<span data-bind="label: $root.dictionary.resource.skillExampleLabel"></span>
 		</div>
 
 	</div>
