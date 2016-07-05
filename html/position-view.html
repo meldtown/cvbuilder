@@ -1,13 +1,12 @@
 <div class="cvbuilder-view">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 style="margin-bottom: 15px;" class="cvbuilder-block-title" data-bind="label: resource.positionRubricNameLabel"></h3>
+			<h3 style="margin-bottom: 15px;" class="cvbuilder-block-title" data-bind="label: $root.dictionary.resource.positionRubricNameLabel"></h3>
 		</div>
 		<div class="col d-1of3 text-right">
-			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: resource.edit, click: beginEdit"></a>
+			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: $root.dictionary.resource.edit, click: beginEdit"></a>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col d-1of3">
 			<span style="font-size: 20px; color: #000" class="rua-p-c-light view-label" data-bind="text: position"></span>
@@ -18,7 +17,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-1of3">
-			<span class="rua-p-c-light view-label" data-bind="visible: !!scheduleId, label: resource.positionTypeLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="visible: !!scheduleId, label: $root.dictionary.resource.positionTypeLabel"></span>
 		</div>
 		<div class="col d-2of3 view-input-value">
 			<span class="rua-p-c-light" data-bind="text: selectedScheduleOptionLabel"></span>
@@ -26,12 +25,11 @@
 	</div>
 	<div class="row" data-bind="visible: salary">
 		<div class="col d-1of3">
-			<span class="rua-p-c-light view-label" data-bind="label: resource.positionSalaryLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: $root.dictionary.resource.positionSalaryLabel"></span>
 		</div>
 		<div class="col d-2of3">
 			<span class="rua-p-c-light view-input-value" data-bind="text: formattedSalary"></span>
 		</div>
 	</div>
 	<div class="message-container" data-bind="template: { name: 'message', data: $data }"></div>
-
 </div>

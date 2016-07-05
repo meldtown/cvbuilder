@@ -13,9 +13,7 @@ function ResumePositionModel (parent, data, rubrics) {
 		return parent.api() + '/autocomplete/keyword';
 	});
 
-	model.resource = parent.dictionary.resource;
-	model.rubricOptions = parent.dictionary.rubric;
-	model.selectedRubric = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.selectedRubric = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 
 	model.subRubricsFilteredByParentRubric = ko.computed(function () {
 		if (!model.selectedRubric()) return [];
@@ -27,12 +25,11 @@ function ResumePositionModel (parent, data, rubrics) {
 		});
 	});
 
-	model.experienceOptions = parent.dictionary.experience;
 	model.checkedSubRubrics = ko.observableArray([]);
 	model.checkedSubRubrics.subscribe(function (newValue) {
 		newValue.forEach(function (item) {
 			if (!item.hasOwnProperty('selectedExperienceOption')) {
-				item.selectedExperienceOption = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+				item.selectedExperienceOption = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 			}/* else {
 				item.selectedExperienceOption(undefined);
 				item.selectedExperienceOption.clearError();
@@ -49,48 +46,46 @@ function ResumePositionModel (parent, data, rubrics) {
 
 	model.resumeId = parent.resumeId;
 	model.id = ko.observable();
-	model.position = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.scheduleId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.position = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
+	model.scheduleId = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 
 	model.salary = ko.observable().extend({
 		digit: {
 			params: true,
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return parent.dictionary.resource.wrongFormat.label();
 			}
 		},
 		min: {
 			params: 0,
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return parent.dictionary.resource.wrongFormat.label();
 			}
 		},
 		max: {
 			params: 200000,
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return parent.dictionary.resource.wrongFormat.label();
 			}
 		}
 	});
 	model.currencyId = ko.observable();
 
-	model.scheduleOptions = parent.dictionary.schedule;
 	model.selectedScheduleOption = ko.computed({
 		read: function () {
-			return model.scheduleOptions.findById(model.scheduleId());
+			return parent.dictionary.schedule.findById(model.scheduleId());
 		},
 		write: function (newValue) {
 			model.scheduleId(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	}).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.selectedScheduleOptionLabel = ko.computed(function () {
 		return model.selectedScheduleOption() ? model.selectedScheduleOption().label() : '';
 	});
 
-	model.currencyOptions = parent.dictionary.currency;
 	model.selectedCurrencyOption = ko.computed({
 		read: function () {
-			return model.currencyOptions.findById(model.currencyId());
+			return parent.dictionary.currency.findById(model.currencyId());
 		},
 		write: function (newValue) {
 			model.currencyId(newValue ? newValue.id : undefined);
@@ -103,7 +98,7 @@ function ResumePositionModel (parent, data, rubrics) {
 				return model.salary() && model.salary.isValid() && val;
 			},
 			message: function (params, observable) {
-				return model.resource.requiredMessage.label();
+				return parent.dictionary.resource.requiredMessage.label();
 			}
 		}
 	});
@@ -123,7 +118,7 @@ function ResumePositionModel (parent, data, rubrics) {
 			result = result + ' ' + model.selectedCurrencyOptionLabel();
 		}
 
-		return model.resource.from.label() + ' ' + result;
+		return parent.dictionary.resource.from.label() + ' ' + result;
 	});
 
 	model.toJS = function () {
@@ -145,8 +140,8 @@ function ResumePositionModel (parent, data, rubrics) {
 
 		var checkedSubRubrics = data.map(function (item) {
 			var subrubric = parent.dictionary.subrubric.findById(item.id);
-			var option = model.experienceOptions.findById(item.experienceId);
-			subrubric.selectedExperienceOption = ko.observable(option).extend(utils.requiredOnly(model.resource.requiredMessage));
+			var option = parent.dictionary.experience.findById(item.experienceId);
+			subrubric.selectedExperienceOption = ko.observable(option).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 			return subrubric;
 		});
 		model.checkedSubRubrics(checkedSubRubrics);
@@ -188,7 +183,7 @@ function ResumePositionModel (parent, data, rubrics) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -204,7 +199,7 @@ function ResumePositionModel (parent, data, rubrics) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
