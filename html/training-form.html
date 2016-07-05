@@ -4,7 +4,7 @@
 			<h3 class="cvbuilder-block-title rua-p-c-light" data-bind="visible: $parent.isOnlyOneTrainingAdded, label: $root.dictionary.resource.trainingRubricNameLabel"></h3>
 			<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.trainingRubricTooltip"></span>
 		</div>
-		<div class="col d-1of3 text-right">
+		<div class="col d-1of3 text-right" style="vertical-align: top;">
 			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: $root.dictionary.resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col d-1of3">
+		<div class="col d-1of3" style="vertical-align: top;">
 			<label for="description">
 				<span data-bind="label: $root.dictionary.resource.trainingDescriptionLabel"></span>
 			</label>

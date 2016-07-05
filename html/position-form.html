@@ -34,7 +34,7 @@
 
 	<div data-bind="if: selectedRubric">
 		<div class="row">
-			<div class="col d-1of3">
+			<div class="col d-1of3" style="vertical-align: top;">
 				<label for="rubric">
 					<span data-bind="label: $root.dictionary.resource.subrubricLabel"></span><br>
 					<span class="rua-p-c-light" data-bind="label: $root.dictionary.resource.subrubricHint"></span>
@@ -58,17 +58,19 @@
 
 	<div class="row">
 		<div data-bind="foreach: checkedSubRubrics">
-			<div class="col d-1of3">
-				<label for="experienceId">
-					<span data-bind="label: $root.dictionary.resource.positionExperienceLabel"></span><br>
-					<span data-bind="text: label"></span>
-				</label>
-			</div>
-			<div class="col d-2of3 tooltip-container">
-				<select class="input-block-level" id="experienceId" name="experienceId" data-bind="optionsCaption: $root.dictionary.resource.positionAddExperienceLabel.label, options: $root.dictionary.experience, optionsText: 'label', value: selectedExperienceOption"></select>
-				<div class="input-tooltip">
-					<p data-bind="text: $root.dictionary.resource.tooltipAdvice.label"></p>
-					<p class="rua-p-c-light" data-bind="text: $root.dictionary.resource.tooltipPositionExperience.label"></p>
+			<div class="row">
+				<div class="col d-1of3">
+					<label for="experienceId">
+						<span data-bind="label: $root.dictionary.resource.positionExperienceLabel"></span><br>
+						<span data-bind="text: label"></span>
+					</label>
+				</div>
+				<div class="col d-2of3 tooltip-container">
+					<select class="input-block-level" id="experienceId" name="experienceId" data-bind="optionsCaption: $root.dictionary.resource.positionAddExperienceLabel.label, options: $root.dictionary.experience, optionsText: 'label', value: selectedExperienceOption"></select>
+					<div class="input-tooltip">
+						<p data-bind="text: $root.dictionary.resource.tooltipAdvice.label"></p>
+						<p class="rua-p-c-light" data-bind="text: $root.dictionary.resource.tooltipPositionExperience.label"></p>
+					</div>
 				</div>
 			</div>
 		</div>

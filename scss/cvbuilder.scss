@@ -61,6 +61,7 @@ input[type=checkbox], input[type=radio] {
 .cvbuilder {
 	&, h1, h2, h3, h4 {
 		font-family: 'Roboto', sans-serif;
+		line-height: normal;
 	}
 
 	.btn.btn-danger.disabled {
@@ -87,6 +88,19 @@ input[type=checkbox], input[type=radio] {
 		background: #f7f7f7;
 		padding: 20px;
 		margin-top: 20px;
+		.col {
+			vertical-align: middle;
+			label {
+				margin-bottom: 0;
+			}
+			select, input[type=text] {
+				margin-bottom: 0;
+			}
+
+		}
+		.row {
+			margin-bottom: 10px;
+		}
 		h3 {
 			font-size: 18px;
 		}
@@ -241,6 +255,7 @@ input[type=checkbox], input[type=radio] {
 		background: none;
 		color: rgba(183, 0, 4, .5);
 		font-size: 14px;
+		margin-top: 5px;
 		margin-bottom: 30px;
 	}
 
@@ -271,7 +286,6 @@ input[type=checkbox], input[type=radio] {
 		background-color: #d9d9d9;
 		border-radius: 2px;
 		color: #fff;
-		margin-bottom: 30px;
 		&:not(:first-child) {
 			margin-left: 10px;
 		}
@@ -288,6 +302,9 @@ input[type=checkbox], input[type=radio] {
 		border: none;
 		color: #aaa;
 		margin-bottom: 0;
+		i {
+			vertical-align: top;
+		}
 		&:not(:first-child) {
 			margin-left: 0;
 		}
@@ -474,7 +491,7 @@ input[type=checkbox], input[type=radio] {
 	.message-container {
 		position: absolute;
 		bottom: 20px;
-		left: calc(100% + 40px);
+		left: calc(100% + 60px);
 		z-index: 100;
 	}
 
@@ -484,7 +501,7 @@ input[type=checkbox], input[type=radio] {
 		line-height: 50px;
 		font-size: 18px;
 		background-color: #dcedc8;
-		border: 2px solid #9ccc65;
+		border: 1px solid #9ccc65;
 		border-radius: 2px;
 		box-shadow: 0 2px 4px 0 rgba(126, 126, 126, .5);
 		&::after {
@@ -888,6 +905,12 @@ input[type=checkbox], input[type=radio] {
 			font-size: 40px;
 			opacity: .6;
 		}
+
+	}
+
+	#isCanBeInterviewed {
+		float: none;
+		margin-right: 5px;
 	}
 
 	.chosen-rubrics {
@@ -906,6 +929,7 @@ input[type=checkbox], input[type=radio] {
 				font-size: 28px;
 				cursor: pointer;
 				opacity: .8;
+				line-height: 21px;
 			}
 		}
 	}

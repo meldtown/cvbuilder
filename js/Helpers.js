@@ -3,7 +3,7 @@ ko.bindingHandlers.scrollableTo = {
 		if (!viewModel instanceof ResumeExperienceModel) {
 			viewModel.scrollTo = function () {
 				setTimeout(function () {
-					window.scrollTo(0, jQuery(element).offset().top - 80);
+					window.scrollTo(0, jQuery(element).offset().top);
 				}, 100);
 			};
 		}

@@ -5,7 +5,7 @@
 			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneExperienceAdded, label: $root.dictionary.resource.experienceRubricNameLabel"></h3>
 			<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.experienceRubricTooltip"></span>
 		</div>
-		<div class="col d-1of3 text-right">
+		<div class="col d-1of3 text-right" style="vertical-align: top;">
 			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: $root.dictionary.resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
@@ -59,10 +59,10 @@
 		</div>
 		<div class="col d-2of3">
 			<div class="row">
-				<div class="col d-1of2 d-pr-1of2">
+				<div class="col d-1of2 d-pr-1of2" style="margin-bottom: 0;">
 					<yearmonth-widget params="value: startWork, _lng: _lng, resource: $root.dictionary.resource, validationElement: startWork"></yearmonth-widget>
 				</div>
-				<div class="col d-1of2 d-pl-1of2">
+				<div class="col d-1of2 d-pl-1of2" style="margin-bottom: 0;">
 					<yearmonth-widget params="value: endWork, _lng: _lng, resource: $root.dictionary.resource, showTillNowOption: true, validationElement: endWork"></yearmonth-widget>
 				</div>
 			</div>
@@ -70,7 +70,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col d-1of3">
+		<div class="col d-1of3" style="vertical-align: top;">
 			<label for="description">
 				<span data-bind="label: $root.dictionary.resource.experienceDescriptionLabel"></span>
 			</label>
