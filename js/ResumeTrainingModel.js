@@ -8,13 +8,13 @@ function ResumeTraininglModel (parent, data) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-	model.resource = parent.dictionary.resource;
+
 	model.resumeId = parent.resumeId;
 	model.id = ko.observable();
-	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.name = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.location = ko.observable();
 	model.description = ko.observable();
-	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.year = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.location = ko.observable();
 
 	model.yearOptions = [];
@@ -38,7 +38,7 @@ function ResumeTraininglModel (parent, data) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {

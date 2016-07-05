@@ -1,55 +1,55 @@
 <div class="cvbuilder-form" data-bind="scrollableTo: true">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-title rua-p-c-light" data-bind="visible: $parent.isOnlyOneTrainingAdded, label: resource.trainingRubricNameLabel"></h3>
-			<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.trainingRubricTooltip"></span>
+			<h3 class="cvbuilder-block-title rua-p-c-light" data-bind="visible: $parent.isOnlyOneTrainingAdded, label: $root.dictionary.resource.trainingRubricNameLabel"></h3>
+			<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.trainingRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
+			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: $root.dictionary.resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="name">
-				<span data-bind="label: resource.trainingNameLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.trainingNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" maxlength="255" class="input-block-level" id="name" name="name" data-bind="attr: {placeholder: resource.trainingAddNameLabel.label}, value: name, valueUpdate: 'keyup'">
+			<input type="text" maxlength="255" class="input-block-level" id="name" name="name" data-bind="attr: {placeholder: $root.dictionary.resource.trainingAddNameLabel.label}, value: name, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="location">
-				<span data-bind="label: resource.personalCityNameLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.personalCityNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" maxlength="255" class="input-block-level" maxlength="255" id="location" name="location" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: location, options: $root.dictionary.city }, validationElement: location">
+			<input type="text" class="input-block-level" maxlength="255" id="location" name="location" data-bind="attr: { placeholder: $root.dictionary.resource.personalChooseCity.label }, autocompleteCityId: { value: location, options: $root.dictionary.city }, validationElement: location">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="year">
-				<span data-bind="label: resource.trainingYearLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.trainingYearLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="year" name="year" class="input-block-level" data-bind="optionsCaption: resource.year.label, options: yearOptions, value: year"></select>
+			<select id="year" name="year" class="input-block-level" data-bind="optionsCaption: $root.dictionary.resource.year.label, options: yearOptions, value: year"></select>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="description">
-				<span data-bind="label: resource.trainingDescriptionLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.trainingDescriptionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<textarea class="input-block-level" id="description" cols="70" rows="10" name="description" data-bind="attr: {placeholder: resource.trainingAddDescriptionLabel.label}, value: description, valueUpdate: 'keyup', tinylight: description, validationElement: description"></textarea>
+			<textarea class="input-block-level" id="description" cols="70" rows="10" name="description" data-bind="attr: {placeholder: $root.dictionary.resource.trainingAddDescriptionLabel.label}, value: description, valueUpdate: 'keyup', tinylight: description, validationElement: description"></textarea>
 			<span class="validationMessage" data-bind="validationMessage: description"></span>
 		</div>
 	</div>
@@ -59,8 +59,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel">Cancel</a>
+			<button class="btn btn-primary" data-bind="label: $root.dictionary.resource.save, click: save"></button>
+			<a class="rua-p-c-light cancel" data-bind="label: $root.dictionary.resource.discard, click: cancel">Cancel</a>
 		</div>
 	</div>
 </div>
