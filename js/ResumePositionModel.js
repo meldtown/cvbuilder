@@ -145,7 +145,9 @@ function ResumePositionModel (parent, data) {
 				return subrubric;
 			});
 			model.checkedSubRubrics(checkedSubRubrics);
-			model.selectedRubric(parent.dictionary.rubric.findById(model.checkedSubRubrics()[0].parentId));
+			if (model.checkedSubRubrics().length) {
+				model.selectedRubric(parent.dictionary.rubric.findById(model.checkedSubRubrics()[0].parentId));
+			}
 		}
 
 		delete data.rubrics;
