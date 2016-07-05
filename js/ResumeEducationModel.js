@@ -8,18 +8,17 @@ function ResumeEducationModel (parent, data) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;
 	model.cityId = ko.observable();
 
 	model.id = ko.observable();
 	model.typeId = ko.observable();
-	model.schoolName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.location = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.schoolName = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
+	model.location = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.speciality = ko.observable();
 	model.diploma = ko.observable();
-	model.year = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.year = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 
 	model.yearOptions = [];
 	for (var year = (new Date()).getFullYear(); year >= (new Date()).getFullYear() - 80; year--) {
@@ -32,8 +31,8 @@ function ResumeEducationModel (parent, data) {
 
 	model.schoolNameLabel = ko.computed(function () {
 		return model.typeId() === 4
-			? model.resource.educationSchoolNameLabel.label()
-			: model.resource.educationUniversityNameLabel.label();
+			? parent.dictionary.resource.educationSchoolNameLabel.label()
+			: parent.dictionary.resource.educationUniversityNameLabel.label();
 	});
 
 	model.toJS = function () {
@@ -56,7 +55,7 @@ function ResumeEducationModel (parent, data) {
 				model.speciality('');
 			}
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	}).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.selectedTypeOptionLabel = ko.computed(function () {
 		return model.selectedTypeOption() ? model.selectedTypeOption().label() : '';
 	});
@@ -68,7 +67,7 @@ function ResumeEducationModel (parent, data) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {

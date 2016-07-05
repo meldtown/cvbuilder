@@ -2,22 +2,22 @@
 
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneEducationAdded, label: resource.educationNameLabel"></h3>
-			<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.educationRubricTooltip"></span>
+			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneEducationAdded, label: $root.dictionary.resource.educationNameLabel"></h3>
+			<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.educationRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
+			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: $root.dictionary.resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="typeId">
-				<span data-bind="label: resource.educationTypeLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.educationTypeLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="typeId" name="typeId" class="input-block-level" data-bind="optionsCaption: resource.positionAddTypeLabel.label, options: typeOptions, optionsText: 'label', value: selectedTypeOption"></select>
+			<select id="typeId" name="typeId" class="input-block-level" data-bind="optionsCaption: $root.dictionary.resource.positionAddTypeLabel.label, options: typeOptions, optionsText: 'label', value: selectedTypeOption"></select>
 		</div>
 	</div>
 
@@ -28,10 +28,10 @@
 			</label>
 		</div>
 		<div class="col d-2of3 tooltip-container">
-			<input type="text" id="schoolName" name="schoolName" maxlength="255"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddNameLabel.label}, value: schoolName, valueUpdate: 'keyup'">
+			<input type="text" id="schoolName" name="schoolName" maxlength="255"  class="input-block-level" data-bind="attr: {placeholder: $root.dictionary.resource.educationAddNameLabel.label}, value: schoolName, valueUpdate: 'keyup'">
 			<div class="input-tooltip">
-				<p data-bind="text: resource.tooltipAdvice.label"></p>
-				<p class="rua-p-c-light" data-bind="text: resource.tooltipEducationSchoolName.label"></p>
+				<p data-bind="text: $root.dictionary.resource.tooltipAdvice.label"></p>
+				<p class="rua-p-c-light" data-bind="text: $root.dictionary.resource.tooltipEducationSchoolName.label"></p>
 			</div>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="location">
-				<span data-bind="label: resource.educationLocationLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.educationLocationLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -51,33 +51,33 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="speciality">
-				<span data-bind="label: resource.educationSpecialityLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.educationSpecialityLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="speciality" name="speciality" maxlength="255"  class="input-block-level" data-bind="enable: isSpecialityEnabled, attr: {placeholder: resource.educationAddSpecialityLabel.label}, value: speciality, valueUpdate: 'keyup'">
+			<input type="text" id="speciality" name="speciality" maxlength="255"  class="input-block-level" data-bind="enable: isSpecialityEnabled, attr: {placeholder: $root.dictionary.resource.educationAddSpecialityLabel.label}, value: speciality, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row" style="display: none">
 		<div class="col d-1of3">
 			<label for="diploma">
-				<span data-bind="label: resource.educationDiplomaLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.educationDiplomaLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input id="diploma" name="diploma"  class="input-block-level" data-bind="attr: {placeholder: resource.educationAddDiplomaLabel.label}, value: diploma, valueUpdate: 'keyup'">
+			<input id="diploma" name="diploma"  class="input-block-level" data-bind="attr: {placeholder: $root.dictionary.resource.educationAddDiplomaLabel.label}, value: diploma, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="year">
-				<span data-bind="label: resource.year"></span>
+				<span data-bind="label: $root.dictionary.resource.year"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="year" name="year" class="input-block-level" data-bind="optionsCaption: resource.year.label, options: yearOptions, value: year"></select>
+			<select id="year" name="year" class="input-block-level" data-bind="optionsCaption: $root.dictionary.resource.year.label, options: yearOptions, value: year"></select>
 		</div>
 	</div>
 
@@ -86,9 +86,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel"></a>
+			<button class="btn btn-primary" data-bind="label: $root.dictionary.resource.save, click: save"></button>
+			<a class="rua-p-c-light cancel" data-bind="label: $root.dictionary.resource.discard, click: cancel"></a>
 		</div>
 	</div>
-
 </div>
