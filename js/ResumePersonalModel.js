@@ -8,21 +8,21 @@ function ResumePersonalModel (parent, data, photo) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-	model.resource = parent.dictionary.resource;
+
 	model.resumeId = parent.resumeId;
 
-	model.name = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.name = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.displayedName = ko.computed(function () {
-		return parent.state.anonymous() ? model.resource.anonimousNameFirst.label() : model.name();
+		return parent.state.anonymous() ? parent.dictionary.resource.anonimousNameFirst.label() : model.name();
 	});
 	model.middleName = ko.observable();
-	model.surName = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.surName = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.displayedSurName = ko.computed(function () {
-		return parent.state.anonymous() ? model.resource.anonimousNameSecond.label() : model.surName();
+		return parent.state.anonymous() ? parent.dictionary.resource.anonimousNameSecond.label() : model.surName();
 	});
-	model.dateBirth = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.sex = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.cityId = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.dateBirth = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
+	model.sex = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
+	model.cityId = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.moving = ko.observableArray();
 
 	model._defaultPhoto = 'http://img1.rabota.com.ua/static/2013/11/img/nophoto.png';
@@ -34,8 +34,8 @@ function ResumePersonalModel (parent, data, photo) {
 	});
 	model.addOrChangePhotoButtonLabel = ko.computed(function () {
 		return model.isPhotoAdded()
-			? model.resource.changePhoto.label()
-			: model.resource.addPhoto.label();
+			? parent.dictionary.resource.changePhoto.label()
+			: parent.dictionary.resource.addPhoto.label();
 	});
 
 	model.dataURItoBlob = function (dataURI) {
@@ -126,9 +126,8 @@ function ResumePersonalModel (parent, data, photo) {
 		jQuery(model._photoDialog()).dialog('close');
 	};
 
-	model.cityOptions = parent.dictionary.city;
 	model.city = ko.computed(function () {
-		var data = model.cityOptions.findById(model.cityId());
+		var data = parent.dictionary.city.findById(model.cityId());
 		return data ? data.label() : '';
 	});
 	model.cityId.subscribe(function (newValue) {
@@ -152,12 +151,10 @@ function ResumePersonalModel (parent, data, photo) {
 	}).extend({
 		validation: {
 			validator: function (val) {
-				if (model.sex() === 0 || model.sex() === 1) {
-					return true;
-				} else return false;
+				return model.sex() === 0 || model.sex() === 1;
 			},
 			message: function (params, observable) {
-				return model.resource.requiredMessage.label();
+				return parent.dictionary.resource.requiredMessage.label();
 			}
 		}
 	});
@@ -167,7 +164,7 @@ function ResumePersonalModel (parent, data, photo) {
 
 		return model._lng().dictionary === 'en'
 			? label
-			: label + ' ' + model.resource.personalSexLabel.label().toLocaleLowerCase();
+			: label + ' ' + parent.dictionary.resource.personalSexLabel.label().toLocaleLowerCase();
 	});
 
 	// model.dateBirthFormatted = ko.computed(function () {
@@ -201,7 +198,7 @@ function ResumePersonalModel (parent, data, photo) {
 		mapper.fromJS(model, data);
 
 		model.moving(data.moving.map(function (item) {
-			return new ResumePersonalMovingModel(model, item);
+			return new ResumePersonalMovingModel(parent, model, item);
 		}));
 	};
 
@@ -225,7 +222,7 @@ function ResumePersonalModel (parent, data, photo) {
 			backend.post(parent.api() + '/resume/' + parent.resumeId + '/personal', model.toJS())
 				.success(function () {
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -249,21 +246,21 @@ function ResumePersonalModel (parent, data, photo) {
 	};
 
 	model.addMoving = function () {
-		model.moving.push(new ResumePersonalMovingModel(model));
+		model.moving.push(new ResumePersonalMovingModel(parent, model));
 	};
 
 	if (data) model.fromJS(data);
+	if (photo) model._photo(photo);
 
 	InitEditableModel(model, 'personal');
 	InitBadRequestResponseHandler(model);
 	InitResultMessage(model);
 }
 
-function ResumePersonalMovingModel (parent, data) {
+function ResumePersonalMovingModel (root, parent, data) {
 	var model = this;
 
 	model.cityId = ko.observable(data);
-	model.resource = parent.resource;
 
 	model.toJS = function () {
 		return model.cityId();
@@ -282,13 +279,13 @@ function ResumePersonalMovingModel (parent, data) {
 			return cityId && cityId !== model.cityId();
 		});
 
-		return parent.cityOptions.filter(function (item) {
+		return root.dictionary.city.filter(function (item) {
 			return item.id !== parent.cityId() && otherMovings.indexOf(item.id) === -1;
 		});
 	});
 
 	model.label = ko.computed(function () {
-		var data = parent.cityOptions.findById(model.cityId());
+		var data = root.dictionary.city.findById(model.cityId());
 		return data ? data.label() : '';
 	});
 
@@ -296,11 +293,5 @@ function ResumePersonalMovingModel (parent, data) {
 		parent.moving.remove(item);
 	};
 
-	if (data) {
-		model.fromJS(data);
-	}
-
-	if (photo) {
-		model._photo(photo);
-	}
+	if (data) model.fromJS(data);
 }

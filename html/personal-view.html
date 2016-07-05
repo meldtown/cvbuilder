@@ -12,7 +12,7 @@
 					</h3>
 				</div>
 				<div class="col d-4of10 text-right">
-					<i class="fa fa-pencil"></i><a class="edit rua-p-c-light" href="#" data-bind="label: resource.edit, click: edit"></a>
+					<i class="fa fa-pencil"></i><a class="edit rua-p-c-light" href="#" data-bind="label: $root.dictionary.resource.edit, click: edit"></a>
 				</div>
 			</div>
 			<div class="rua-p-c-light">
@@ -25,7 +25,7 @@
 			</div>
 			<div class="rua-p-c-light" data-bind="if: moving">
 				<div data-bind="if: isMovingAble">
-					<span data-bind="label: resource.moveAbility"></span>
+					<span data-bind="label: $root.dictionary.resource.moveAbility"></span>
 				</div>
 				<span data-bind="text: movingLabels"></span>
 			</div>

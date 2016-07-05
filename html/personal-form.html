@@ -12,21 +12,21 @@
 				<span data-bind="text: surName"></span>
 			</span>
 			<div class="personal-photo-hint rua-p-c-light">
-				<p data-bind="label: resource.personalPhotoHintHeader"></p>
-				<p data-bind="label: resource.personalPhotoHint"></p>
+				<p data-bind="label: $root.dictionary.resource.personalPhotoHintHeader"></p>
+				<p data-bind="label: $root.dictionary.resource.personalPhotoHint"></p>
 			</div>
 		</div>
 	</div>
 
 	<hr>
 
-	<h3 class="cvbuilder-block-title rua-p-c-light" data-bind="label: resource.personalRubricNameLabel"></h3>
-	<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.personalRubricTooltip"></span>
+	<h3 class="cvbuilder-block-title rua-p-c-light" data-bind="label: $root.dictionary.resource.personalRubricNameLabel"></h3>
+	<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.personalRubricTooltip"></span>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="name">
-				<span data-bind="label: resource.personalNameLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.personalNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -37,7 +37,7 @@
 	<div class="row" style="display: none">
 		<div class="col d-1of3">
 			<label for="middleName">
-				<span data-bind="label: resource.personalMiddleNameLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.personalMiddleNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -48,7 +48,7 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="surName">
-				<span data-bind="label: resource.personalSurnameLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.personalSurnameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -59,19 +59,18 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label>
-				<span data-bind="label: resource.personalDateBirthLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.personalDateBirthLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<!--<input class="input-block-level" id="dateBirth" name="dateBirth" data-bind="value: dateBirth, valueUpdate: 'keyup'">-->
-			<datepicker-widget params="value: dateBirth, _lng: _lng, validationElement: dateBirth, resource: resource"></datepicker-widget>
+			<datepicker-widget params="value: dateBirth, _lng: _lng, validationElement: dateBirth, resource: $root.dictionary.resource"></datepicker-widget>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="sex">
-				<span data-bind="label: resource.personalSexLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.personalSexLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -82,13 +81,13 @@
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="cityId">
-				<span data-bind="label: resource.personalCityNameLabel"></span><br>
-				<span class=" rua-p-c-light" data-bind="label: resource.personalCityTooltip"></span>
+				<span data-bind="label: $root.dictionary.resource.personalCityNameLabel"></span><br>
+				<span class=" rua-p-c-light" data-bind="label: $root.dictionary.resource.personalCityTooltip"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
 			<div>
-				<input id="cityId" name="cityId" type="text" maxlength="255" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }, validationElement: cityId">
+				<input id="cityId" name="cityId" type="text" maxlength="255" class="input-block-level" data-bind="attr: { placeholder: $root.dictionary.resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: $root.dictionary.city }, validationElement: cityId">
 				<span class="validationMessage" data-bind="validationMessage: cityId"></span>
 			</div>
 		</div>
@@ -103,16 +102,16 @@
 				<div data-bind="foreach: moving">
 					<div class="media">
 						<div class="pull-right">
-							<a class="btn btn-link rua-p-c-light" href="#" data-bind="label: resource.delete, click: remove"></a>
+							<a class="btn btn-link rua-p-c-light" href="#" data-bind="label: $root.dictionary.resource.delete, click: remove"></a>
 						</div>
 						<div class="media-body">
-							<input type="text" maxlength="255" class="input-block-level" data-bind="attr: { placeholder: resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: cityOptions }">
+							<input type="text" maxlength="255" class="input-block-level" data-bind="attr: { placeholder: $root.dictionary.resource.personalChooseCity.label }, autocompleteCityId: { value: cityId, options: $root.dictionary.city }">
 						</div>
 					</div>
 				</div>
 				<button class="add-button" data-bind="click: addMoving">
 					<i class="fa fa-plus-circle"></i>
-					<span data-bind="label: resource.addCity"></span>
+					<span data-bind="label: $root.dictionary.resource.addCity"></span>
 				</button>
 			</div>
 		</div>
@@ -124,8 +123,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<a class="rua-p-c-light cancel rua-b-hover" data-bind="label: resource.discard, click: cancel"></a>
+			<button class="btn btn-primary" data-bind="label: $root.dictionary.resource.save, click: save"></button>
+			<a class="rua-p-c-light cancel rua-b-hover" data-bind="label: $root.dictionary.resource.discard, click: cancel"></a>
 		</div>
 	</div>
 
@@ -137,7 +136,7 @@
 <div class="croppie-dialog" style="display: none" data-bind="element: _photoDialog">
 	<div class="croppie-container"></div>
 	<div class="actions">
-		<a href="#" class="btn btn-primary" data-bind="label: resource.save, click: onPhotoSubmit"></a>
-		<a href="#" class="btn btn-link rua-p-c-light" data-bind="label: resource.discard, click: onPhotoCancel"></a>
+		<a href="#" class="btn btn-primary" data-bind="label: $root.dictionary.resource.save, click: onPhotoSubmit"></a>
+		<a href="#" class="btn btn-link rua-p-c-light" data-bind="label: $root.dictionary.resource.discard, click: onPhotoCancel"></a>
 	</div>
 </div>
