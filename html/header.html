@@ -69,7 +69,7 @@
 	<div class="form-inline">
 		<span data-bind="with: state" style="font-size: 13px;">
 			<i class="fa fa-eye rua-p-c-light" style="margin-right: 7px;"></i>
-			<span data-bind="text: viewCount"></span>&nbsp;<span data-bind="label: resource.levelViewCount"></span>
+			<span data-bind="text: viewCount"></span>&nbsp;<span data-bind="label: $root.dictionary.resource.levelViewCount"></span>
 		</span>
 
 		<i class="fa fa-calendar rua-p-c-light" style="margin-left: 43px"></i>
@@ -101,7 +101,7 @@
 			<div class="logo-container"><i data-bind="css: state.levelLogoClass"></i></div>
 			<span data-bind="with: state">
 			<span>
-				<span data-bind="label: resource.levelAvailability"></span>
+				<span data-bind="label: $root.dictionary.resource.levelAvailability"></span>
 				<br>
 				<small class="rua-p-c-light" data-bind="text: selectedLevelOptionLabel"></small>
 				<i class="fa fa-caret-down rua-p-c-light"></i>
@@ -114,9 +114,9 @@
 								<i class="fa fa-globe rua-p-c-light"></i>
 							</div>
 							<div class="f">
-								<span data-bind="label: resource.levelAllUsersHeader"></span>
+								<span data-bind="label: $root.dictionary.resource.levelAllUsersHeader"></span>
 								<br>
-								<small class="rua-p-c-light" data-bind="visible: isVisibleToAll, label: resource.levelAllUsersHint"></small>
+								<small class="rua-p-c-light" data-bind="visible: isVisibleToAll, label: $root.dictionary.resource.levelAllUsersHint"></small>
 							</div>
 							<div class="m">
 						<span data-bind="if: isVisibleToAll">
@@ -131,9 +131,9 @@
 								<i class="fa fa-briefcase rua-p-c-light"></i>
 							</div>
 							<div class="f">
-								<span data-bind="label: resource.levelRegisteredUsersHeader"></span>
+								<span data-bind="label: $root.dictionary.resource.levelRegisteredUsersHeader"></span>
 								<br>
-								<small class="rua-p-c-light" data-bind="visible: isVisibleOnlyToEmployeers, label: resource.levelRegisteredUsersHint"></small>
+								<small class="rua-p-c-light" data-bind="visible: isVisibleOnlyToEmployeers, label: $root.dictionary.resource.levelRegisteredUsersHint"></small>
 							</div>
 							<div class="m">
 						<span data-bind="if: isVisibleOnlyToEmployeers">
@@ -148,9 +148,9 @@
 								<i class="fa fa-lock rua-p-c-light"></i>
 							</div>
 							<div class="f">
-								<span data-bind="label: resource.levelHiddenHeader"></span>
+								<span data-bind="label: $root.dictionary.resource.levelHiddenHeader"></span>
 								<br>
-								<small class="rua-p-c-light" data-bind="visible: isVisibleOnlyToOwner, label: resource.levelHiddenHint"></small>
+								<small class="rua-p-c-light" data-bind="visible: isVisibleOnlyToOwner, label: $root.dictionary.resource.levelHiddenHint"></small>
 							</div>
 							<div class="m">
 						<span data-bind="if: isVisibleOnlyToOwner">
@@ -166,9 +166,9 @@
 							</div>
 							<div class="f">
 								<p>
-									<span data-bind="label: resource.levelAllExceptHeader"></span>
+									<span data-bind="label: $root.dictionary.resource.levelAllExceptHeader"></span>
 									<br>
-									<small class="rua-p-c-light" data-bind="visible: isVisibleToAllExcept, label: resource.levelAllExceptHeader"></small>
+									<small class="rua-p-c-light" data-bind="visible: isVisibleToAllExcept, label: $root.dictionary.resource.levelAllExceptHeader"></small>
 								</p>
 								<div class="form-inline" data-bind="visible: isVisibleToAllExcept">
 									<input type="text" style="margin-bottom: 10px;" class="input-block-level" data-bind="autocompleteCompanies: { value: itemsCompanyAndBranches, api: api }">
@@ -195,9 +195,9 @@
 								<i class="fa fa-eye rua-p-c-light hidden"></i>
 							</div>
 							<div class="f">
-								<span data-bind="label: resource.levelAnonymousHeader"></span>
+								<span data-bind="label: $root.dictionary.resource.levelAnonymousHeader"></span>
 								<div>
-									<small class="rua-p-c-light" data-bind="label: resource.levelAnonymousHint"></small>
+									<small class="rua-p-c-light" data-bind="label: $root.dictionary.resource.levelAnonymousHint"></small>
 								</div>
 							</div>
 						</div>
@@ -206,13 +206,13 @@
 								<input type="checkbox" id="anon" name="anon" style="margin: 0" data-bind="checked: anonymous"/>
 							</div>
 							<div class="f">
-								<label for="anon" data-bind="label: resource.levelMakeAnonymous"></label>
+								<label for="anon" data-bind="label: $root.dictionary.resource.levelMakeAnonymous"></label>
 							</div>
 						</div>
 					</div>
 					<div class="actions">
-						<a href="#" class="btn btn-danger" data-bind="click: save, label: resource.applyButton"></a>
-						<a href="#" class="btn btn-link rua-p-c-light" data-bind="click: cancelLevel, label: resource.cancelButton"></a>
+						<a href="#" class="btn btn-danger" data-bind="click: save, label: $root.dictionary.resource.applyButton"></a>
+						<a href="#" class="btn btn-link rua-p-c-light" data-bind="click: cancelLevel, label: $root.dictionary.resource.cancelButton"></a>
 					</div>
 				</div>
 

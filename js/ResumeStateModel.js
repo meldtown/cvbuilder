@@ -9,7 +9,6 @@ function ResumeStateModel (parent, data) {
 		return parent.api();
 	});
 
-	model.resource = parent.dictionary.resource;
 	model.resumeId = parent.resumeId;
 
 	model.viewCount = ko.observable();
