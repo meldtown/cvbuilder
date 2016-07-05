@@ -1,4 +1,4 @@
-function ResumePositionModel (parent, data, rubrics) {
+function ResumePositionModel (parent, data) {
 	var model = this;
 
 	model._lng = ko.computed(function () {
@@ -126,34 +126,36 @@ function ResumePositionModel (parent, data, rubrics) {
 		data.salary = data.salary || 0;
 		delete data.rubric;
 		delete data.subrubric;
+
+		data.rubrics = model.checkedSubRubrics().map(function (item) {
+			return {id: item.id, experienceId: item.selectedExperienceOption().id};
+		});
+
 		return data;
 	};
 
 	model.fromJS = function (data) {
 		if (!data) return;
 
+		if (data.rubrics) {
+			var checkedSubRubrics = data.rubrics.map(function (item) {
+				var subrubric = parent.dictionary.subrubric.findById(item.id);
+				var option = parent.dictionary.experience.findById(item.experienceId);
+				subrubric.selectedExperienceOption = ko.observable(option).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
+				return subrubric;
+			});
+			model.checkedSubRubrics(checkedSubRubrics);
+			model.selectedRubric(parent.dictionary.rubric.findById(model.checkedSubRubrics()[0].parentId));
+		}
+
+		delete data.rubrics;
+
 		mapper.fromJS(model, data);
-	};
-
-	model.rubricsFromJS = function (data) {
-		if (!data) return;
-
-		var checkedSubRubrics = data.map(function (item) {
-			var subrubric = parent.dictionary.subrubric.findById(item.id);
-			var option = parent.dictionary.experience.findById(item.experienceId);
-			subrubric.selectedExperienceOption = ko.observable(option).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
-			return subrubric;
-		});
-		model.checkedSubRubrics(checkedSubRubrics);
-		model.selectedRubric(parent.dictionary.rubric.findById(model.checkedSubRubrics()[0].parentId));
 	};
 
 	model.get = function () {
 		backend.get(model.api() + '/resume/' + parent.resumeId + '/position').success(function (data) {
 			model.fromJS(data);
-		});
-		backend.get(model.api() + '/resume/' + parent.resumeId + '/rubric').success(function (data) {
-			model.rubricsFromJS(data);
 		});
 	};
 
@@ -190,29 +192,12 @@ function ResumePositionModel (parent, data, rubrics) {
 						model.handleBarRequestResponse(jqXHR);
 					}
 				});
-
-			var rubricData = model.checkedSubRubrics().map(function (item) {
-				return {id: item.id, experienceId: item.selectedExperienceOption().id};
-			});
-
-			backend.post(model.api() + '/resume/' + parent.resumeId + '/rubric', rubricData)
-				.success(function (id) {
-					model.id(id);
-					model.commit();
-					model.successMessage(parent.dictionary.resource.successSave.label());
-				})
-				.fail(function (jqXHR) {
-					if (jqXHR.status === 400) {
-						model.handleBarRequestResponse(jqXHR);
-					}
-				});
 		} else {
 			model.errors.showAllMessages(true);
 		}
 	};
 
 	if (data) model.fromJS(data);
-	if (rubrics) model.rubricsFromJS(rubrics);
 
 	InitEditableModel(model, 'position');
 	InitBadRequestResponseHandler(model);

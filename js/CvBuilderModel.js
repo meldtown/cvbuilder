@@ -116,7 +116,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 	});
 
 	model.state = new ResumeStateModel(model, data.state);
-	model.position = new ResumePositionModel(model, data.position, (data || {rubrics: null}).rubrics);
+	model.position = new ResumePositionModel(model, data.position);
 	model.personalInfo = new ResumePersonalModel(model, data.personal, (data || {photo: null}).photo);
 
 	model.contacts = new ResumeContactsModel(model, data.contact);
