@@ -3,6 +3,11 @@ function ResumeExperienceModel (parent, data) {
 
 	model.resumeId = parent.resumeId;
 
+	model._el = ko.observable();
+	model.scrollTo = function () {
+		window.scrollTo(0, jQuery(model._el()).offset().top - 80);
+	};
+
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
