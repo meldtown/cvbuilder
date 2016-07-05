@@ -1,15 +1,15 @@
 <div class="cvbuilder-view">
 	<div class="row">
 		<div class="col d-9of12 m-1of1">
-			<h3 class="cvbuilder-block-title" data-bind="label: resource.contactsNameLabel"></h3>
+			<h3 class="cvbuilder-block-title" data-bind="label: $root.dictionary.resource.contactsNameLabel"></h3>
 		</div>
 		<div class="col d-3of12 m-1of1 text-right">
-			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: resource.edit, click: edit"></a>
+			<i class="fa fa-pencil"></i><a class="rua-p-c-light edit" href="#" data-bind="label: $root.dictionary.resource.edit, click: edit"></a>
 		</div>
 	</div>
 	<div class="row" data-bind="visible: phone">
 		<div class="col d-3of12 m-1of1">
-			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsPhoneLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: $root.dictionary.resource.contactsPhoneLabel"></span>
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
 			<span class="rua-p-c-light" data-bind="text: displayedPhone"></span>
@@ -17,10 +17,10 @@
 	</div>
 	<div class="row" data-bind="visible: isAdditionalPhonesBlockVisibleView">
 		<div class="col d-3of12 m-1of1">
-			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsAdditionalPhonesLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: $root.dictionary.resource.contactsAdditionalPhonesLabel"></span>
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
-			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeild"></span>
+			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: $root.dictionary.resource.anonimousHiddenFeild"></span>
 			<div data-bind="ifnot: $parent.state.anonymous">
 				<div data-bind="foreach: additionalPhones">
 					<div class="rua-p-c-light" data-bind="template: tpl"></div>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="row">
 		<div class="col d-3of12 m-1of1">
-			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsEmailLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: $root.dictionary.resource.contactsEmailLabel"></span>
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
 			<a class="rua-p-c-light" data-bind="text: displayedEmail, attr: { href: emailHref }"></a>
@@ -38,7 +38,7 @@
 	</div>
 	<div class="row" data-bind="visible: skype">
 		<div class="col d-3of12 m-1of1">
-			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsSkypeLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: $root.dictionary.resource.contactsSkypeLabel"></span>
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
 			<a class="rua-p-c-light" data-bind="text: displayedSkype, attr: { href: skypeHref }"></a>
@@ -46,10 +46,10 @@
 	</div>
 	<div class="row" data-bind="visible: isPortfoliodBlockVisible">
 		<div class="col d-3of12 m-1of1">
-			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsPortfolioLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: $root.dictionary.resource.contactsPortfolioLabel"></span>
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
-			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeild"></span>
+			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: $root.dictionary.resource.anonimousHiddenFeild"></span>
 			<div data-bind="ifnot: $parent.state.anonymous">
 				<div data-bind="foreach: nonEmptyPortfolio">
 					<div class="rua-p-c-light" data-bind="template: tpl"></div>
@@ -59,10 +59,10 @@
 	</div>
 	<div class="row" data-bind="visible: isSocialNetworksBlockVisible">
 		<div class="col d-3of12 m-1of1">
-			<span class="rua-p-c-light view-label" data-bind="label: resource.contactsSocialNetworksLabel"></span>
+			<span class="rua-p-c-light view-label" data-bind="label: $root.dictionary.resource.contactsSocialNetworksLabel"></span>
 		</div>
 		<div class="col view-input-value d-9of12 m-1of1">
-			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: resource.anonimousHiddenFeild"></span>
+			<span class="rua-p-c-light" data-bind="visible: $parent.state.anonymous, label: $root.dictionary.resource.anonimousHiddenFeild"></span>
 			<div data-bind="ifnot: $parent.state.anonymous">
 				<div class="hidden-on-print" data-bind="foreach: socialNetworks">
 					<a class="socialnetwork-view" data-bind="html: subTypeIcon, attr: { href: text }"></a>

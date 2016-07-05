@@ -8,7 +8,6 @@ function ResumeContactsModel (parent, data) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;
 
@@ -16,29 +15,29 @@ function ResumeContactsModel (parent, data) {
 		pattern: {
 			params: '^[0-9\\-\\+\\(\\)\\ ]+.$',
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return parent.dictionary.resource.wrongFormat.label();
 			}
 		}
 	});
 	model.displayedPhone = ko.computed(function () {
-		return parent.state.anonymous() ? model.resource.anonimousHiddenFeild.label() : model.phone();
+		return parent.state.anonymous() ? parent.dictionary.resource.anonimousHiddenFeild.label() : model.phone();
 	});
 	model.additionalPhones = ko.observableArray();
 	model.email = ko.observable().extend({
-		required: utils.required(model.resource.requiredMessage),
+		required: utils.required(parent.dictionary.resource.requiredMessage),
 		email: {
 			params: true,
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return parent.dictionary.resource.wrongFormat.label();
 			}
 		}
 	});
 	model.displayedEmail = ko.computed(function () {
-		return parent.state.anonymous() ? model.resource.anonimousHiddenFeild.label() : model.email();
+		return parent.state.anonymous() ? parent.dictionary.resource.anonimousHiddenFeild.label() : model.email();
 	});
 	model.skype = ko.observable();
 	model.displayedSkype = ko.computed(function () {
-		return parent.state.anonymous() ? model.resource.anonimousHiddenFeild.label() : model.skype();
+		return parent.state.anonymous() ? parent.dictionary.resource.anonimousHiddenFeild.label() : model.skype();
 	});
 	model.portfolio = ko.observableArray();
 	model.socialNetworks = ko.observableArray();
@@ -111,7 +110,7 @@ function ResumeContactsModel (parent, data) {
 		if (socialNetwork) {
 			model.socialNetworks.remove(socialNetwork);
 		} else {
-			model.socialNetworks.push(new ResumeContactsSocialNetworkModel(model, {
+			model.socialNetworks.push(new ResumeContactsSocialNetworkModel(model, parent.dictionary.resource, {
 				type: 'SocialNetwork',
 				subType: subType
 			}));
@@ -181,11 +180,11 @@ function ResumeContactsModel (parent, data) {
 		}));
 
 		model.portfolio(data.portfolio.map(function (item) {
-			return new ResumeContactsPortfolioModel(model, item);
+			return new ResumeContactsPortfolioModel(model, parent.dictionary.resource, item);
 		}));
 
 		model.socialNetworks(data.socialNetworks.map(function (item) {
-			return new ResumeContactsSocialNetworkModel(model, item);
+			return new ResumeContactsSocialNetworkModel(model, parent.dictionary.resource, item);
 		}));
 	};
 
@@ -209,7 +208,7 @@ function ResumeContactsModel (parent, data) {
 					model.portfolio().forEach(function (item) {
 						item.commit();
 					});
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {
@@ -227,7 +226,7 @@ function ResumeContactsModel (parent, data) {
 			item.beginEdit();
 		});
 		if (model.portfolio().length === 0) {
-			model.portfolio.push(new ResumeContactsPortfolioModel(model));
+			model.portfolio.push(new ResumeContactsPortfolioModel(model, parent.dictionary.resource));
 		}
 		model.portfolio().forEach(function (item) {
 			item.beginEdit();
@@ -250,7 +249,7 @@ function ResumeContactsModel (parent, data) {
 	};
 
 	model.addPortfolio = function () {
-		model.portfolio.push(new ResumeContactsPortfolioModel(model));
+		model.portfolio.push(new ResumeContactsPortfolioModel(model, parent.dictionary.resource));
 		model.edit();
 	};
 
@@ -298,10 +297,9 @@ function ResumeContactsAdditionalPhoneModel (parent, data) {
 	InitEditableModel(model, 'phone');
 }
 
-function ResumeContactsPortfolioModel (parent, data) {
+function ResumeContactsPortfolioModel (parent, resource, data) {
 	var model = this;
 
-	model.resource = parent.resource;
 	model.portfolio = ko.observable(data);
 
 	model.isRemoveButtonVisible = ko.computed(function () {
@@ -309,7 +307,7 @@ function ResumeContactsPortfolioModel (parent, data) {
 	});
 
 	model.formRowLabel = ko.computed(function () {
-		return parent.portfolio.indexOf(model) > 0 ? '' : model.resource.contactsPortfolioLabel.label();
+		return parent.portfolio.indexOf(model) > 0 ? '' : resource.contactsPortfolioLabel.label();
 	});
 
 	model.isLink = ko.computed(function () {
@@ -333,10 +331,9 @@ function ResumeContactsPortfolioModel (parent, data) {
 	InitEditableModel(model, 'portfolio');
 }
 
-function ResumeContactsSocialNetworkModel (parent, data) {
+function ResumeContactsSocialNetworkModel (parent, resource, data) {
 	var model = this;
 
-	model.resource = parent.resource;
 	model._lng = ko.computed(function () {
 		return parent._lng();
 	});
@@ -373,7 +370,7 @@ function ResumeContactsSocialNetworkModel (parent, data) {
 		required: {
 			params: true,
 			message: function (params, observable) {
-				return model.resource.requiredMessage.label();
+				return resource.requiredMessage.label();
 			}
 		},
 		validation: {
@@ -388,7 +385,7 @@ function ResumeContactsSocialNetworkModel (parent, data) {
 				else if (model.subTypeAsString() === '6') return text.indexOf('ok.ru') === 0;
 			},
 			message: function (params, observable) {
-				return model.resource.wrongFormat.label();
+				return resource.wrongFormat.label();
 			}
 		}
 	});
