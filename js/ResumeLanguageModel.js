@@ -8,7 +8,6 @@ function ResumeLanguageModel (parent, data) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-	model.resource = parent.dictionary.resource;
 
 	model.resumeId = parent.resumeId;
 
@@ -28,7 +27,6 @@ function ResumeLanguageModel (parent, data) {
 		mapper.fromJS(model, data);
 	};
 
-	model.languageOptions = parent.dictionary.language;
 	model.computedLanguageOptions = ko.computed(function () {
 		var alreadySelectedLanguages = parent.language().map(function (item) {
 			return item.languageId();
@@ -40,25 +38,24 @@ function ResumeLanguageModel (parent, data) {
 	});
 	model.selectedLanguageOption = ko.computed({
 		read: function () {
-			return model.languageOptions.findById(model.languageId());
+			return parent.dictionary.language.findById(model.languageId());
 		},
 		write: function (newValue) {
 			model.languageId(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	}).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.selectedLanguageOptionLabel = ko.computed(function () {
 		return model.selectedLanguageOption() ? model.selectedLanguageOption().label() : '';
 	});
 
-	model.languageSkillOptions = parent.dictionary.languageSkill;
 	model.selectedLanguageSkillOption = ko.computed({
 		read: function () {
-			return model.languageSkillOptions.findById(model.skillsLevel());
+			return parent.dictionary.languageSkill.findById(model.skillsLevel());
 		},
 		write: function (newValue) {
 			model.skillsLevel(newValue ? newValue.id : undefined);
 		}
-	}).extend(utils.requiredOnly(model.resource.requiredMessage));
+	}).extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 	model.selectedLanguageSkillOptionLabel = ko.computed(function () {
 		return model.selectedLanguageSkillOption() ? model.selectedLanguageSkillOption().label() : '';
 	});
@@ -69,7 +66,7 @@ function ResumeLanguageModel (parent, data) {
 				.success(function () {
 					model._savedOrFromBackend(true);
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {

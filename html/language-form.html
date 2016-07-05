@@ -1,45 +1,45 @@
 <div class="cvbuilder-form" data-bind="scrollableTo: true">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneLanguageAdded, label: resource.languageRubricNameLabel"></h3>
-			<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.languageRubricTooltip"></span>
+			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneLanguageAdded, label: $root.dictionary.resource.languageRubricNameLabel"></h3>
+			<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.languageRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
+			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: $root.dictionary.resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="languageId">
-				<span data-bind="label: resource.languageNameLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.languageNameLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="languageId" name="languageId" class="input-block-level" data-bind="optionsCaption: resource.languageChooseLanguage.label, options: computedLanguageOptions, optionsText: 'label', value: selectedLanguageOption, disable: _savedOrFromBackend"></select>
+			<select id="languageId" name="languageId" class="input-block-level" data-bind="optionsCaption: $root.dictionary.resource.languageChooseLanguage.label, options: computedLanguageOptions, optionsText: 'label', value: selectedLanguageOption, disable: _savedOrFromBackend"></select>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="skillsLevel">
-				<span data-bind="label: resource.languageSkillLevelLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.languageSkillLevelLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<select id="skillsLevel" name="skillsLevel" class="input-block-level" data-bind="optionsCaption: resource.languageChooseLanguageSkill.label, options: languageSkillOptions, optionsText: 'label', value: selectedLanguageSkillOption"></select>
+			<select id="skillsLevel" name="skillsLevel" class="input-block-level" data-bind="optionsCaption: $root.dictionary.resource.languageChooseLanguageSkill.label, options: $root.dictionary.languageSkill, optionsText: 'label', value: selectedLanguageSkillOption"></select>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="certificate">
-				<span data-bind="label: resource.languageCertificateLabel"></span><br>
-				<span data-bind="label: resource.languageCertificateTooltip"></span>
+				<span data-bind="label: $root.dictionary.resource.languageCertificateLabel"></span><br>
+				<span data-bind="label: $root.dictionary.resource.languageCertificateTooltip"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" id="certificate" name="certificate" maxlength="255" class="input-block-level" data-bind="attr: {placeholder: resource.languageAddCertificateLabel.label}, value: certificate, valueUpdate: 'keyup'">
+			<input type="text" id="certificate" name="certificate" maxlength="255" class="input-block-level" data-bind="attr: {placeholder: $root.dictionary.resource.languageAddCertificateLabel.label}, value: certificate, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
@@ -47,7 +47,7 @@
 		<div class="col d-2of3 pull-right">
 			<label class="checkbox">
 				<input id="isCanBeInterviewed" type="checkbox" name="isCanBeInterviewed" data-bind="checked: isCanBeInterviewed, valueUpdate: 'keyup'">
-				<span data-bind="label: resource.languageIsCanBeInterviewedLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.languageIsCanBeInterviewedLabel"></span>
 			</label>
 		</div>
 	</div>
@@ -57,9 +57,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel"></a>
+			<button class="btn btn-primary" data-bind="label: $root.dictionary.resource.save, click: save"></button>
+			<a class="rua-p-c-light cancel" data-bind="label: $root.dictionary.resource.discard, click: cancel"></a>
 		</div>
 	</div>
-
 </div>
