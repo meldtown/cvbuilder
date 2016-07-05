@@ -8,22 +8,21 @@ function ResumeAdditionalModel (parent, data) {
 	model.api = ko.computed(function () {
 		return parent.api();
 	});
-	model.resource = parent.dictionary.resource;
+
 	model.resumeId = parent.resumeId;
 
 	model.id = ko.observable();
-	model.title = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
-	model.description = ko.observable().extend(utils.requiredOnly(model.resource.requiredMessage));
+	model.title = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
+	model.description = ko.observable().extend(utils.requiredOnly(parent.dictionary.resource.requiredMessage));
 
-	model.predefinedTitles = parent.dictionary.additional;
 	model.selectedPredefinedTitle = ko.observable();
 	model.selectedPredefinedTitle.subscribe(function (label) {
-		model.title(label === model.predefinedTitles[model.predefinedTitles.length - 1].label() ? '' : label);
+		model.title(label === parent.dictionary.additional[parent.dictionary.additional.length - 1].label() ? '' : label);
 		model.title.isModified(false);
 	});
 
 	model.isCustomTitleSelected = ko.computed(function () {
-		return model.selectedPredefinedTitle() === model.predefinedTitles[model.predefinedTitles.length - 1].label();
+		return model.selectedPredefinedTitle() === parent.dictionary.additional[parent.dictionary.additional.length - 1].label();
 	});
 
 	model.fromJS = function (data) {
@@ -41,7 +40,7 @@ function ResumeAdditionalModel (parent, data) {
 				.success(function (id) {
 					model.id(id);
 					model.commit();
-					model.successMessage(model.resource.successSave.label());
+					model.successMessage(parent.dictionary.resource.successSave.label());
 				})
 				.fail(function (jqXHR) {
 					if (jqXHR.status === 400) {

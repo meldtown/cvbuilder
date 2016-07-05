@@ -1,16 +1,16 @@
 <div class="cvbuilder-form">
 	<div class="row">
 		<div class="col d-2of3">
-			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneAdditionalAdded, label: resource.additionalNameLabel"></h3>
-			<span class="rua-p-c-light rubric-tooltip" data-bind="label: resource.additionalRubricTooltip"></span>
+			<h3 class="cvbuilder-block-subtitle rua-p-c-light" data-bind="visible: $parent.isOnlyOneAdditionalAdded, label: $root.dictionary.resource.additionalNameLabel"></h3>
+			<span class="rua-p-c-light rubric-tooltip" data-bind="label: $root.dictionary.resource.additionalRubricTooltip"></span>
 		</div>
 		<div class="col d-1of3 text-right">
-			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
+			<a class="rua-p-c-light" href="#" data-bind="visible: isRemoveButtonVisible, label: $root.dictionary.resource.delete, confirmRemove: { handler: remove, dialogSelector: '#dlgConfirmBlockRemove' }"></a>
 		</div>
 	</div>
 
 	<div class="row">
-		<ul class="list-2-cols" data-bind="foreach: predefinedTitles">
+		<ul class="list-2-cols" data-bind="foreach: $root.dictionary.additional">
 			<li>
 				<label>
 					<input type="radio" data-bind="checked: $parent.selectedPredefinedTitle, value: label">
@@ -20,23 +20,21 @@
 		</ul>
 	</div>
 
-
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="title">
-				<span data-bind="label: resource.additionalTitleLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.additionalTitleLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
-			<input type="text" class="input-block-level" id="title" maxlength="255" name="title"
-				   data-bind="enable: isCustomTitleSelected, attr: {placeholder: resource.additionalAddNameLabel.label}, value: title, valueUpdate: 'keyup'">
+			<input type="text" class="input-block-level" id="title" maxlength="255" name="title" data-bind="enable: isCustomTitleSelected, attr: {placeholder: $root.dictionary.resource.additionalAddNameLabel.label}, value: title, valueUpdate: 'keyup'">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col d-1of3">
 			<label for="description">
-				<span data-bind="label: resource.additionalDescriptionLabel"></span>
+				<span data-bind="label: $root.dictionary.resource.additionalDescriptionLabel"></span>
 			</label>
 		</div>
 		<div class="col d-2of3">
@@ -50,8 +48,8 @@
 			&nbsp;
 		</div>
 		<div class="col d-2of3">
-			<button class="btn btn-primary" data-bind="label: resource.save, click: save"></button>
-			<a class="rua-p-c-light cancel" data-bind="label: resource.discard, click: cancel"></a>
+			<button class="btn btn-primary" data-bind="label: $root.dictionary.resource.save, click: save"></button>
+			<a class="rua-p-c-light cancel" data-bind="label: $root.dictionary.resource.discard, click: cancel"></a>
 		</div>
 	</div>
 </div>
