@@ -204,7 +204,7 @@ function CvBuilderModel (api, resumeId, dictionary, data) {
 
 	model.addAdditional = function () {
 		var item = new ResumeAdditionalModel(model);
-		item.selectedPredefinedTitle(item.predefinedTitles[item.predefinedTitles.length - 1].label());
+		item.selectedPredefinedTitle(model.dictionary.additional[model.dictionary.additional.length - 1].label());
 		model.additional.push(item);
 		item.beginEdit();
 		if (item.scrollTo) item.scrollTo();
